@@ -1,14 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 
-<!-- ########################################
+<!--
+########################################
+# DR400-dauphin by PAF team
+# April 2012 : Modified by PAF team
+# http://equipe-flightgear.forumactif.com
+##########################################
 
- # DR400-dauphin by PAF team
- # April 2012 : Modified by PAF team
- # http://equipe-flightgear.forumactif.com
-
-##########################################-->
-
-  <!--
   ELT based on an Artex ELT (now Cobham)
   http://www.acrelectronics.com/products/b/aviation/catalog/elt-remote-switches/remote-switch-standard
   Author: Pavel Cueto
@@ -21,14 +19,14 @@
       <file>YOUR/INSTRUMENT/FOLDER/ROUTE/HERE/ELTmessage.nas</file>
     </ELT>
   </nasal>
-  -->
+-->
 
 <PropertyList>
 
   <path>ArtexELT.ac</path>
 
   <animation>
-  <!-- Objets opaques -->
+    <!-- Objets opaques -->
     <object-name>Base</object-name>
     <object-name>BaseSwitch</object-name>
     <object-name>Switch</object-name>
@@ -82,7 +80,7 @@
     <visible>false</visible>
     <action>
       <button>0</button>
-      <repeatable>false</repeatable> 
+      <repeatable>false</repeatable>
       <binding>
         <command>property-assign</command>
         <property>instrumentation/elt/test</property>
@@ -137,10 +135,10 @@
       <z-m>0.000</z-m>
     </center>
     <axis>
-      <x> 0</x>
+      <x>0</x>
       <y>-1</y>
-      <z> 0</z>
-    </axis>    
+      <z>0</z>
+    </axis>
   </animation>
 
   <animation>
@@ -154,10 +152,10 @@
       <z-m>0.000</z-m>
     </center>
     <axis>
-      <x> 0</x>
+      <x>0</x>
       <y>-1</y>
-      <z> 0</z>
-    </axis>    
+      <z>0</z>
+    </axis>
   </animation>
 
   <animation>
@@ -202,9 +200,9 @@
     </font-resolution>
     <alignment>center-center</alignment>
     <offsets>
-      <x-m>  0.008 </x-m>
-      <y-m> -0.020 </y-m>
-      <z-m>  0.005 </z-m>
+      <x-m>0.008</x-m>
+      <y-m>-0.020</y-m>
+      <z-m>0.005</z-m>
     </offsets>
   </text>
 
@@ -212,9 +210,9 @@
     <type>material</type>
     <object-name>textosg</object-name>
     <emission>
-      <red>   0.8 </red>
-      <green> 0.8 </green>
-      <blue>  0.0 </blue>
+      <red>.8</red>
+      <green>.8</green>
+      <blue>.0</blue>
     </emission>
   </animation>
 
