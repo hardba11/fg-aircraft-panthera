@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PropertyList>
+
+  <path>cockpit.ac</path>
+
+  <animation>
+    <type>material</type>
+    <object-name>body_int</object-name>
+    <object-name>window_int</object-name>
+    <object-name>door_front_right_int</object-name>
+    <object-name>door_front_left_int</object-name>
+    <object-name>door_back_int</object-name>
+    <object-name>floor</object-name>
+    <texture-prop>texture</texture-prop>
+    <texture>textures/interior.png</texture>
+  </animation>
+
+  <model>
+    <path>Aircraft/panthera/instruments/all/instruments-model.xml</path>
+  </model>
+
+  <model>
+    <path>Aircraft/panthera/instruments/asi/asi.xml</path>
+  </model>
+
+  <model>
+    <path>Aircraft/panthera/instruments/alt/alt.xml</path>
+  </model>
+
+  <model>
+    <path>Aircraft/panthera/instruments/ai/ai.xml</path>
+  </model>
+
+  <model>
+    <path>Aircraft/panthera/instruments/thrust/thrust.xml</path>
+  </model>
+
+</PropertyList>

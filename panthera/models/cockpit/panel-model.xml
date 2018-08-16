@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PropertyList>
+
+  <path>panel.ac</path>
+
+  <animation>
+    <type>material</type>
+    <object-name>inst_panel</object-name>
+    <object-name>yoke_left</object-name>
+    <object-name>yoke_right</object-name>
+  </animation>
+
+</PropertyList>

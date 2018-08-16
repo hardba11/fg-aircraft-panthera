@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PropertyList>
+
+  <path>seats.ac</path>
+
+  <animation>
+    <type>material</type>
+    <object-name>seat_front_right</object-name>
+    <object-name>seat_front_left</object-name>
+    <object-name>seat_back_right</object-name>
+    <object-name>seat_back_left</object-name>
+  </animation>
+
+</PropertyList>

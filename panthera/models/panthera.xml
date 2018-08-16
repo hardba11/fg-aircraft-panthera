@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PropertyList>
+
+  <model>
+    <path>Aircraft/panthera/models/aircraft/aircraft-model.xml</path>
+  </model>
+
+  <!--model>
+    <path>Aircraft/panthera/models/cockpit/cockpit-model.xml</path>
+  </model>
+
+  <model>
+    <path>Aircraft/panthera/models/cockpit/panel-model.xml</path>
+  </model>
+
+  <model>
+    <path>Aircraft/panthera/models/seats/seats.xml</path>
+  </model-->
+
+  <!--nasal>
+    <load>
+var livery_update = aircraft.livery_update.new("Aircraft/panthera/models/Liveries");
+    </load>
+    <unload>
+livery_update.stop();
+    </unload>
+  </nasal-->
+
+</PropertyList>
