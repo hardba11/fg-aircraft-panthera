@@ -1,42 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+################################################################################
+#
+#             MAIN PROPERTIES DESCRIPTION AND INITIALISATION
+#
+################################################################################
+
+http://wiki.flightgear.org/Property_tree
+
+-->
 
 <PropertyList>
-
+  <!--
+================================================================================
+                                                                  SIM PROPERTIES
+================================================================================
+  -->
   <sim>
-    <description>pipistrel panthera</description>
-    <aircraft-version>1</aircraft-version>
-    <status>development</status>
-    <author>urbu</author>
-    <flight-model>jsb</flight-model>
-    <aero>panthera-JSBSim</aero>
-    <startup>
-      <splash-texture>Aircraft/panthera/Pipistrel_Panthera splash.png</splash-texture>
-    </startup>
-    <splash-title>panthera</splash-title>
 
+    <!-- ~~~~~~~~~~~~~~~~~~ metadata -->
+    <description type="string">Pipistrel Panthera</description>
+    <long-description type="string">FIXME</long-description>
+    <aircraft-version type="string">20180806-01</aircraft-version>
+    <minimum-fg-version type="string">2018.1.1</minimum-fg-version>
+
+    <!-- old / simple style -->
+    <author>urbu</author>
+
+    <!-- new in FlightGear 2018.3.0 style -->
+    <authors> 
+      <author n="0">
+        <name>urbu</name>
+        <description>creator</description>
+        <nick></nick>
+      </author>
+      <author n="1">
+        <name>hardball SLK</name>
+        <description>model, FDM, systems</description>
+        <nick>F-HRBD</nick>
+      </author>
+    </authors>
+    <maintainers>
+      <maintainer n="0">
+        <name>hardball SLK</name>
+        <email>nico@localhost</email>
+      </maintainer>
+    </maintainers>
+    <primary-set type="bool">true</primary-set>
+    <urls>
+      <home-page>https://github.com/hardba11/fg-aircraft-panthera</home-page>
+      <support />
+      <wikipedia />
+      <code-repository>https://github.com/hardba11/fg-aircraft-panthera</code-repository>
+    </urls>
+
+    <status type="string">development</status>
+    <tags>
+    </tags>
+
+
+    <rating>
+      <FDM type="int">1</FDM>
+      <systems type="int">0</systems>
+      <cockpit type="int">1</cockpit>
+      <model type="int">1</model>
+    </rating>
+
+    <!-- ~~~~~~~~~~~~~~~~~~ flight model -->
+    <flight-model>yasim</flight-model>
+    <aero>fdm/panthera-yasim</aero>
+
+    <!-- ~~~~~~~~~~~~~~~~~~ model -->
     <model>
-      <path>Aircraft/panthera/Models/panthera.xml</path>
+      <path>Aircraft/panthera/models/panthera.xml</path>
       <livery>
         <file type="string" />
       </livery>
     </model>
 
-    <nasal>
-      <ELT>
-        <file>YOUR/INSTRUMENT/FOLDER/ROUTE/HERE/ELTmessage.nas</file>
-      </ELT>
-    </nasal>
+    <!-- ~~~~~~~~~~~~~~~~~~ sound -->
+    <sound>
+      <path>Aircraft/panthera/sounds/sounds.xml</path>
+    </sound>
 
+    <!-- ~~~~~~~~~~~~~~~~~~ specific menu -->
+    <!--menubar>
+      <default>
+        <menu n="100">
+          <label>panthera</label>
+          <enabled type="bool">true</enabled>
+          <item>
+            <label>Select Livery</label>
+            <binding>
+              <command>nasal</command>
+              <script>aircraft.livery.dialog.open()</script>
+            </binding>
+          </item>
+        </menu>
+      </default>
+    </menubar-->
+
+    <!-- ~~~~~~~~~~~~~~~~~~ initialisation -->
+    <startup>
+      <splash-texture>Aircraft/panthera/contrib/splash.png</splash-texture>
+    </startup>
+    <splash-title>panthera</splash-title>
+
+    <!-- ~~~~~~~~~~~~~~~~~~ views -->
     <view n="0">
       <name>Pilot</name>
       <type>lookfrom</type>
       <internal type="bool">true</internal>
       <config>
         <ground-level-nearplane-m type="double">0.5f</ground-level-nearplane-m>
-        <x-offset-m type="double">-0.31</x-offset-m>
-        <y-offset-m type="double">0.62</y-offset-m>
+        <x-offset-m type="double">-0.22</x-offset-m>
+        <y-offset-m type="double">0.35</y-offset-m>
         <z-offset-m type="double">-1.35</z-offset-m>
-        <pitch-offset-deg>-12</pitch-offset-deg>
+        <pitch-offset-deg>-5</pitch-offset-deg>
+        <default-field-of-view-deg type="double">61.0</default-field-of-view-deg>
         <limits>
           <enabled type="bool">false</enabled>
           <left>
@@ -53,54 +134,19 @@
       </config>
     </view>
 
-    <sound>
-      <path>Aircraft/panthera/panthera-sound.xml</path>
-    </sound>
-
-<!--
-    <autopilot>
-      <path>Aircraft/panthera/Dialogs/panthera-autopilot.xml</path>
-    </autopilot>
--->
-
-    <menubar>
-      <default>
-        <menu n="100">
-          <label>panthera</label>
-          <enabled type="bool">true</enabled>
-          <item>
-            <label>Select Livery</label>
-            <binding>
-              <command>nasal</command>
-              <script>aircraft.livery.dialog.open()</script>
-            </binding>
-          </item>
-        </menu>
-      </default>
-    </menubar>
   </sim>
 
-  <controls>
-    <engines>
-      <engine n="0">
-        <magnetos type="int">3</magnetos>
-        <master-bat type="bool">true</master-bat>
-        <master-alt type="bool">true</master-alt>
-      </engine>
-    </engines>
-    <engines>
-      <engine>
-        <master-bat type="bool">true</master-bat>
-        <master-alt type="bool">true</master-alt>
-      </engine>
-    </engines>
-  </controls>
 
+  <!--
+================================================================================
+                                                                OTHER PROPERTIES
+================================================================================
+  -->
   <engines>
     <engine>
-      <rpm type="double">0</rpm>
-      <magnetos type="int">0</magnetos>
-      <mixture type="double">0</mixture>
+      <rpm type="double">1000</rpm>
+      <magnetos type="int">3</magnetos>
+      <mixture type="double">0.5</mixture>
       <running type="bool">true</running>
     </engine>
   </engines>
@@ -125,5 +171,15 @@
       </key>
     </keyboard>
   </input>
+
+  <controls>
+    <engines>
+      <engine n="0">
+        <magnetos type="int">3</magnetos>
+        <master-bat type="bool">true</master-bat>
+        <master-alt type="bool">true</master-alt>
+      </engine>
+    </engines>
+  </controls>
 
 </PropertyList>
