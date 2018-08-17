@@ -6,16 +6,16 @@
     <path>Aircraft/panthera/models/aircraft/aircraft-model.xml</path>
   </model>
 
-  <!--model>
+  <model>
     <path>Aircraft/panthera/models/cockpit/cockpit-model.xml</path>
   </model>
 
   <model>
-    <path>Aircraft/panthera/models/cockpit/panel-model.xml</path>
+    <path>Aircraft/panthera/models/seats/seats.xml</path>
   </model>
 
-  <model>
-    <path>Aircraft/panthera/models/seats/seats.xml</path>
+  <!--model>
+    <path>Aircraft/panthera/models/cockpit/panel-model.xml</path>
   </model-->
 
   <!--nasal>

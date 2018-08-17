@@ -4,7 +4,7 @@
 
   <path>cockpit.ac</path>
 
-  <animation>
+  <!--animation>
     <type>material</type>
     <object-name>body_int</object-name>
     <object-name>window_int</object-name>
@@ -34,6 +34,6 @@
 
   <model>
     <path>Aircraft/panthera/instruments/thrust/thrust.xml</path>
-  </model>
+  </model-->
 
 </PropertyList>
