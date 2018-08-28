@@ -18,22 +18,41 @@
 
   <model>
     <path>Aircraft/panthera/instruments/all/instruments-model.xml</path>
-  </model>
-
-  <model>
-    <path>Aircraft/panthera/instruments/asi/asi.xml</path>
-  </model>
-
-  <model>
-    <path>Aircraft/panthera/instruments/alt/alt.xml</path>
-  </model>
-
-  <model>
-    <path>Aircraft/panthera/instruments/ai/ai.xml</path>
-  </model>
-
-  <model>
-    <path>Aircraft/panthera/instruments/thrust/thrust.xml</path>
   </model-->
+
+<!-- USED FOR DEVELOPMENT -->
+  <!--animation>
+    <type>translate</type>
+    <object-name>turn-pilot</object-name>
+    <property>/_debug/float1</property>
+    <factor>1</factor>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+  </animation>
+  <animation>
+    <type>translate</type>
+    <object-name>turn-pilot</object-name>
+    <property>/_debug/float2</property>
+    <factor>1</factor>
+    <axis>
+      <x>0</x>
+      <y>1</y>
+      <z>0</z>
+    </axis>
+  </animation>
+  <animation>
+    <type>translate</type>
+    <object-name>turn-pilot</object-name>
+    <property>/_debug/float3</property>
+    <factor>1</factor>
+    <axis>
+      <x>0</x>
+      <y>0</y>
+      <z>1</z>
+    </axis>
+  </animation-->
 
 </PropertyList>
