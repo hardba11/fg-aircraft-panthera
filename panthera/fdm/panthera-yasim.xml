@@ -1,8 +1,8 @@
 <airplane mass="1742.9">
 
   <!-- approach configuration -->
-  <approach speed="55" aoa="14" fuel="0.6">  <!-- 55 -->
-    <control-setting axis="/controls/engines/engine[0]/throttle" value="0.4"/>
+  <approach speed="55" aoa="10" fuel="0.6">
+    <control-setting axis="/controls/engines/engine[0]/throttle" value="0.3"/>
     <control-setting axis="/controls/engines/engine[0]/mixture" value="1.0"/>
     <control-setting axis="/controls/engines/engine[0]/propeller-pitch" value="1.0"/>
     <control-setting axis="/controls/flight/flaps" value="1.0"/>
@@ -14,7 +14,7 @@
   </approach>
 
   <!-- cruise configuration -->
-  <cruise speed="156" alt="9000" fuel="1.0">
+  <cruise speed="300" alt="5000" fuel="1.0">
     <control-setting axis="/controls/engines/engine[0]/throttle" value="1.0"/>
     <control-setting axis="/controls/engines/engine[0]/mixture" value="0.6"/>
     <control-setting axis="/controls/engines/engine[0]/propeller-pitch" value="0.8"/>
@@ -63,8 +63,8 @@
   </vstab>
 
   <!-- engine -->
-  <propeller radius="1" cruise-speed="131" cruise-rpm="2400" cruise-alt="15000" cruise-power="113" takeoff-power="250" takeoff-rpm="2575" x="0.0" y="0.0" z="0.0" mass="600" moment="6" min-rpm="800" max-rpm="2575" fine-stop="1.0" coarse-stop="4.0" >
-    <piston-engine eng-rpm="2575" alt="0" eng-power="250" displacement="541.5" compression="8.5"/>
+  <propeller radius="1" cruise-speed="250" cruise-rpm="2400" cruise-alt="9000" cruise-power="260" takeoff-power="260" takeoff-rpm="2600" x="0.0" y="0.0" z="0.0" mass="600" moment="6" min-rpm="800" max-rpm="2700" fine-stop="1.0" coarse-stop="4.0" >
+    <piston-engine eng-rpm="2700" alt="0" eng-power="260" displacement="541.5" compression="8.5"/>
     <actionpt x="0.0" y="0.0" z="0.0" />
     <control-input control="THROTTLE" axis="/controls/engines/engine[0]/throttle" />
     <control-input control="STARTER" axis="/controls/engines/engine[0]/starter" />

@@ -111,7 +111,7 @@ helice : x=-4.2528 y=0 z=-0.179864
 
   <animation>
     <type>rotate</type>
-    <object-name>instrument.alt.needle1000</object-name>
+    <object-name>instrument.alt.needle100</object-name>
     <property>instrumentation/altimeter/indicated-altitude-ft</property>
     <factor>0.36</factor>
     <center>
@@ -127,7 +127,7 @@ helice : x=-4.2528 y=0 z=-0.179864
   </animation>
   <animation>
     <type>rotate</type>
-    <object-name>instrument.alt.needle100</object-name>
+    <object-name>instrument.alt.needle1000</object-name>
     <property>instrumentation/altimeter/indicated-altitude-ft</property>
     <factor>0.036</factor>
     <center>

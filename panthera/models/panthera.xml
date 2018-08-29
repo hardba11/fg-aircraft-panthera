@@ -10,10 +10,9 @@
     <path>Aircraft/panthera/models/cockpit/cockpit-model.xml</path>
   </model>
 
-
   <!--nasal>
     <load>
-var livery_update = aircraft.livery_update.new("Aircraft/panthera/models/Liveries");
+var livery_update = aircraft.livery_update.new("Aircraft/panthera/models/liveries");
     </load>
     <unload>
 livery_update.stop();
