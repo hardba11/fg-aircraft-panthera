@@ -4,21 +4,247 @@
 
   <path>cockpit.ac</path>
 
-  <!--animation>
+<!--
+
+alt needle : x=-2.0848 y=0.101493 z=0.165175
+alt knob : x=-2.0441 y=0.064831 z=0.128742
+middle levers : x=-1.72 y=-0.094829 z=-0.356806
+gear + flaps lever : x=-2.0734 y=-0.165004 z=-0.164448
+trim : x=-1.6029 y=0.01897 z=-0.287153
+fuel : x=-1.53 y=-0.015762 z=-0.291934
+bottom switch : x=-2.0624 y=-0.401747 z=-0.159959
+helice : x=-4.2528 y=0 z=-0.179864
+
+-->
+
+  <animation>
     <type>material</type>
-    <object-name>body_int</object-name>
-    <object-name>window_int</object-name>
-    <object-name>door_front_right_int</object-name>
-    <object-name>door_front_left_int</object-name>
-    <object-name>door_back_int</object-name>
-    <object-name>floor</object-name>
-    <texture-prop>texture</texture-prop>
-    <texture>textures/interior.png</texture>
+    <object-name>bottom.boxes</object-name>
+    <object-name>bottom.buttons</object-name>
+    <object-name>bottom.lever.flaps</object-name>
+    <object-name>bottom.lever.gear</object-name>
+    <object-name>bottom.switches</object-name>
+    <object-name>cabin</object-name>
+    <object-name>equipement</object-name>
+    <object-name>front.boxes</object-name>
+    <object-name>front.panel</object-name>
+    <object-name>front.panel_top</object-name>
+    <object-name>front.warning_light</object-name>
+    <object-name>instrument.ai.box</object-name>
+    <object-name>instrument.ai.tape</object-name>
+    <object-name>instrument.alt.box</object-name>
+    <object-name>instrument.alt.knob</object-name>
+    <object-name>instrument.alt.needle100</object-name>
+    <object-name>instrument.alt.needle1000</object-name>
+    <object-name>instrument.asi.box</object-name>
+    <object-name>instrument.asi.needle</object-name>
+    <object-name>middle.knob.fuel_selector</object-name>
+    <object-name>middle.knob.trim</object-name>
+    <object-name>middle.lever.mix</object-name>
+    <object-name>middle.lever.propeller</object-name>
+    <object-name>middle.lever.throttle</object-name>
+    <object-name>middle.panel</object-name>
+    <object-name>seats</object-name>
   </animation>
 
-  <model>
-    <path>Aircraft/panthera/instruments/all/instruments-model.xml</path>
-  </model-->
+
+  <animation>
+    <type>rotate</type>
+    <object-name>instrument.asi.needle</object-name>
+    <property>instrumentation/airspeed-indicator/indicated-speed-kt</property>
+    <interpolation>
+      <entry><ind>0</ind><dep>0</dep></entry>
+      <entry><ind>60</ind><dep>45</dep></entry>
+      <entry><ind>80</ind><dep>76</dep></entry>
+      <entry><ind>100</ind><dep>110</dep></entry>
+      <entry><ind>120</ind><dep>144</dep></entry>
+      <entry><ind>140</ind><dep>178</dep></entry>
+      <entry><ind>160</ind><dep>210</dep></entry>
+      <entry><ind>180</ind><dep>241</dep></entry>
+      <entry><ind>200</ind><dep>272</dep></entry>
+      <entry><ind>220</ind><dep>302</dep></entry>
+      <entry><ind>240</ind><dep>330</dep></entry>
+    </interpolation>
+    <center>
+      <x-m>-2.045</x-m>
+      <y-m>-0.100</y-m>
+      <z-m>0.1652</z-m>
+    </center>
+    <axis>
+      <x>-1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+  </animation>
+
+
+  <animation>
+    <type>texmultiple</type>
+    <object-name>instrument.ai.tape</object-name>
+    <transform>
+      <subtype>textranslate</subtype>
+      <property>orientation/pitch-deg</property>
+      <interpolation>
+        <entry><ind>-90.0</ind><dep>-0.21</dep></entry>
+        <entry><ind>0.0</ind><dep>0.0</dep></entry>
+        <entry><ind>90.0</ind><dep>0.21</dep></entry>
+      </interpolation>
+      <axis>
+        <x>0</x>
+        <y>1</y>
+      </axis>
+    </transform>
+    <transform>
+      <subtype>texrotate</subtype>
+      <property>orientation/roll-deg</property>
+      <axis>
+        <x>0</x>
+        <y>0</y>
+        <z>-1</z>
+      </axis>
+      <center>
+        <x>0.92</x>
+        <y>0.61</y>
+      </center>
+    </transform>
+  </animation>
+
+  <animation>
+    <type>rotate</type>
+    <object-name>instrument.alt.needle1000</object-name>
+    <property>instrumentation/altimeter/indicated-altitude-ft</property>
+    <factor>0.36</factor>
+    <center>
+      <x-m>-2.0848</x-m>
+      <y-m>0.101493</y-m>
+      <z-m>0.165175</z-m>
+    </center>
+    <axis>
+      <x>-1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+  </animation>
+  <animation>
+    <type>rotate</type>
+    <object-name>instrument.alt.needle100</object-name>
+    <property>instrumentation/altimeter/indicated-altitude-ft</property>
+    <factor>0.036</factor>
+    <center>
+      <x-m>-2.0848</x-m>
+      <y-m>0.101493</y-m>
+      <z-m>0.165175</z-m>
+    </center>
+    <axis>
+      <x>-1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+  </animation>
+
+
+
+
+  <animation>
+    <type>rotate</type>
+    <object-name>middle.lever.throttle</object-name>
+    <property>controls/engines/engine/throttle</property>
+    <interpolation>
+      <entry><ind>0</ind><dep>40</dep></entry>
+      <entry><ind>1</ind><dep>-40</dep></entry>
+    </interpolation>
+    <center>
+      <x-m>-1.72</x-m>
+      <y-m>-0.094829</y-m>
+      <z-m>-0.356806</z-m>
+    </center>
+    <axis>
+      <x>0</x>
+      <y>1</y>
+      <z>0</z>
+    </axis>
+  </animation>
+
+  <animation>
+    <type>rotate</type>
+    <object-name>middle.lever.propeller</object-name>
+    <property>controls/engines/engine/propeller-pitch</property>
+    <interpolation>
+      <entry><ind>0</ind><dep>40</dep></entry>
+      <entry><ind>1</ind><dep>-40</dep></entry>
+    </interpolation>
+    <center>
+      <x-m>-1.72</x-m>
+      <y-m>-0.094829</y-m>
+      <z-m>-0.356806</z-m>
+    </center>
+    <axis>
+      <x>0</x>
+      <y>1</y>
+      <z>0</z>
+    </axis>
+  </animation>
+
+  <animation>
+    <type>rotate</type>
+    <object-name>middle.lever.mix</object-name>
+    <property>controls/engines/engine/mixture</property>
+    <interpolation>
+      <entry><ind>0</ind><dep>40</dep></entry>
+      <entry><ind>1</ind><dep>-40</dep></entry>
+    </interpolation>
+    <center>
+      <x-m>-1.72</x-m>
+      <y-m>-0.094829</y-m>
+      <z-m>-0.356806</z-m>
+    </center>
+    <axis>
+      <x>0</x>
+      <y>1</y>
+      <z>0</z>
+    </axis>
+  </animation>
+
+  <animation>
+    <type>rotate</type>
+    <object-name>bottom.lever.gear</object-name>
+    <property>controls/gear/gear-down</property>
+    <interpolation>
+      <entry><ind>0</ind><dep>-35</dep></entry>
+      <entry><ind>1</ind><dep>35</dep></entry>
+    </interpolation>
+    <center>
+      <x-m>-2.0734</x-m>
+      <y-m>-0.165004</y-m>
+      <z-m>-0.164448</z-m>
+    </center>
+    <axis>
+      <x>0</x>
+      <y>1</y>
+      <z>0</z>
+    </axis>
+  </animation>
+
+  <animation>
+    <type>rotate</type>
+    <object-name>bottom.lever.flaps</object-name>
+    <property>controls/flight/flaps</property>
+    <interpolation>
+      <entry><ind>0</ind><dep>-60</dep></entry>
+      <entry><ind>1</ind><dep>0</dep></entry>
+    </interpolation>
+    <center>
+      <x-m>-2.0734</x-m>
+      <y-m>-0.165004</y-m>
+      <z-m>-0.164448</z-m>
+    </center>
+    <axis>
+      <x>0</x>
+      <y>1</y>
+      <z>0</z>
+    </axis>
+  </animation>
+
 
 <!-- USED FOR DEVELOPMENT -->
   <!--animation>
