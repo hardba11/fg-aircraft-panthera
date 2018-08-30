@@ -23,7 +23,6 @@ How to start ?
 for the best experience I recommend :
 - use flightgear version >= 2016.3.1
 - to see lights, shadows and reheat, enable ALS (atmospheric light scattering)
-- to ride a rocket, launch fgfs with parameter --enable-fuel-freeze --prop:/sim/fuel-fraction=0.1
 
 3/ launch
 ---------

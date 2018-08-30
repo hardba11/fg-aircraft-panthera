@@ -58,7 +58,6 @@ http://wiki.flightgear.org/Property_tree
     <tags>
     </tags>
 
-
     <rating>
       <FDM type="int">1</FDM>
       <systems type="int">0</systems>
@@ -68,7 +67,7 @@ http://wiki.flightgear.org/Property_tree
 
     <!-- ~~~~~~~~~~~~~~~~~~ flight model -->
     <flight-model>yasim</flight-model>
-    <aero>fdm/panthera-yasim</aero>
+    <aero>fdm/caravanW-yasim</aero>
 
     <!-- ~~~~~~~~~~~~~~~~~~ model -->
     <model>

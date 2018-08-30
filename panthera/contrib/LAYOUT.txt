@@ -29,10 +29,6 @@ models/aircraft/liveries/
     for aircraft-specific livery textures (not default) : png
 models/cockpit/
     for 3D models of cockpit : xml, ac, png
-models/engine/
-    for 3D models of engines : xml, ac, png
-models/stores/
-    for external 3D models (tank, weapons) : xml, ac, png
 models/effects/*
     all effects : xml, ac, nas
 instruments/

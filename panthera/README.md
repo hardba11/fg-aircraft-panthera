@@ -6,19 +6,19 @@ markdown README.md > md.html ; cat {hd.inc,md,ft.inc}.html > github.html
 
 It is usable in [FLIGHTGEAR open source flight simulator](http://www.flightgear.org).
 
-Still in development - help needed
+Still in development - help needed for
 - find documentation
 - find images
-- create jsbsim or yasim flight model
-- improve exterior and interior 3d model and textures
-- create exterior animations (ailerons, gears, flaps, doors, etc)
-- add exterior lights
+- jsbsim or yasim flight model
+- 3d model and textures exterior and interior 
+- exterior animations (ailerons, gears, flaps, doors, etc)
+- effects : rain, shadows, reflection, lights
 - add cockpit and instrument lights
-- add system scripts
-- add instrument animations
-- create autopilot
-- improve sounds
-- add effects
+- system scripts (start/stop procedures)
+- keyboard mapping
+- set autopilot
+- sounds
+- liveries
 
 
 
