@@ -6,16 +6,17 @@
 
 <!--
 
-alt needle : x=-2.0848 y=0.101493 z=0.165175
-alt knob : x=-2.0441 y=0.064831 z=0.128742
-middle levers : x=-1.72 y=-0.094829 z=-0.356806
-gear + flaps lever : x=-2.0734 y=-0.165004 z=-0.164448
-magneto : x=-2.0589 y=-0.501767 z=-0.087571
-trim : x=-1.6029 y=0.01897 z=-0.287153
-fuel : x=-1.53 y=-0.015762 z=-0.291934
-bottom switch : x=-2.0624 y=-0.401747 z=-0.159959
+alt needle : x=0 y=0.101493 z=0.165175
+alt knob : x=0 y=0.064831 z=0.128742
+middle levers : x=-1.7845 y=0 z=-0.4
+gear + flaps lever : x=-2.1371 y=0 z=-0.164448
+magneto : x=0 y=-0.501767 z=-0.087571
+trim : x=-1.6666 y=0.01897 z=0
+fuel : x=-1.5937 y=-0.015762 z=0
+bottom switch : x=-2.1244 y=0 z=-0.16045
 helice : x=-4.2528 y=0 z=-0.179864
-switch master : x=-2.0655 y=-0.501767 z=-0.044256
+switch master : x=-2.1348 y=0 z=-0.044256
+magcompass : x=-2.0852 y=0 z=0.27545
 
 -->
 
@@ -40,6 +41,9 @@ switch master : x=-2.0655 y=-0.501767 z=-0.044256
     <object-name>instrument.alt.needle1000</object-name>
     <object-name>instrument.asi.box</object-name>
     <object-name>instrument.asi.needle</object-name>
+    <object-name>instrument.magcompass.box</object-name>
+    <object-name>instrument.magcompass.mark</object-name>
+    <object-name>instrument.magcompass.ring</object-name>
     <object-name>middle.knob.fuel_selector</object-name>
     <object-name>middle.knob.trim</object-name>
     <object-name>middle.lever.mix</object-name>
@@ -49,7 +53,7 @@ switch master : x=-2.0655 y=-0.501767 z=-0.044256
     <object-name>seats</object-name>
   </animation>
 
-
+  <!-- ~~~~~~~~~~~~~~~~~~ AIR SPEED INDICATOR -->
   <animation>
     <type>rotate</type>
     <object-name>instrument.asi.needle</object-name>
@@ -68,7 +72,7 @@ switch master : x=-2.0655 y=-0.501767 z=-0.044256
       <entry><ind>240</ind><dep>330</dep></entry>
     </interpolation>
     <center>
-      <x-m>-2.045</x-m>
+      <x-m>0</x-m>
       <y-m>-0.100</y-m>
       <z-m>0.1652</z-m>
     </center>
@@ -79,6 +83,7 @@ switch master : x=-2.0655 y=-0.501767 z=-0.044256
     </axis>
   </animation>
 
+  <!-- ~~~~~~~~~~~~~~~~~~ ATTITUDE INDICATOR -->
 
   <animation>
     <type>texmultiple</type>
@@ -111,13 +116,14 @@ switch master : x=-2.0655 y=-0.501767 z=-0.044256
     </transform>
   </animation>
 
+  <!-- ~~~~~~~~~~~~~~~~~~ ALTIMETER -->
   <animation>
     <type>rotate</type>
     <object-name>instrument.alt.needle100</object-name>
     <property>instrumentation/altimeter/indicated-altitude-ft</property>
     <factor>0.36</factor>
     <center>
-      <x-m>-2.0848</x-m>
+      <x-m>0</x-m>
       <y-m>0.101493</y-m>
       <z-m>0.165175</z-m>
     </center>
@@ -144,9 +150,25 @@ switch master : x=-2.0655 y=-0.501767 z=-0.044256
     </axis>
   </animation>
 
+  <!-- ~~~~~~~~~~~~~~~~~~ MAGCOMPASS -->
+  <animation>
+    <type>rotate</type>
+    <object-name>instrument.magcompass.ring</object-name>
+    <property>/instrumentation/magnetic-compass/indicated-heading-deg</property>
+    <center>
+      <x-m>-2.0852</x-m>
+      <y-m>0</y-m>
+      <z-m>0</z-m>
+    </center>
+    <axis>
+      <x>0</x>
+      <y>0</y>
+      <z>1</z>
+    </axis>
+  </animation>
 
 
-
+  <!-- ~~~~~~~~~~~~~~~~~~ THROTTLE -->
   <animation>
     <type>rotate</type>
     <object-name>middle.lever.throttle</object-name>
@@ -156,9 +178,9 @@ switch master : x=-2.0655 y=-0.501767 z=-0.044256
       <entry><ind>1</ind><dep>-40</dep></entry>
     </interpolation>
     <center>
-      <x-m>-1.72</x-m>
-      <y-m>-0.094829</y-m>
-      <z-m>-0.356806</z-m>
+      <x-m>-1.7845</x-m>
+      <y-m>0</y-m>
+      <z-m>-.4</z-m>
     </center>
     <axis>
       <x>0</x>
@@ -167,6 +189,7 @@ switch master : x=-2.0655 y=-0.501767 z=-0.044256
     </axis>
   </animation>
 
+  <!-- ~~~~~~~~~~~~~~~~~~ PROPELLER -->
   <animation>
     <type>rotate</type>
     <object-name>middle.lever.propeller</object-name>
@@ -176,9 +199,9 @@ switch master : x=-2.0655 y=-0.501767 z=-0.044256
       <entry><ind>1</ind><dep>-40</dep></entry>
     </interpolation>
     <center>
-      <x-m>-1.72</x-m>
-      <y-m>-0.094829</y-m>
-      <z-m>-0.356806</z-m>
+      <x-m>-1.7845</x-m>
+      <y-m>0</y-m>
+      <z-m>-.4</z-m>
     </center>
     <axis>
       <x>0</x>
@@ -187,6 +210,7 @@ switch master : x=-2.0655 y=-0.501767 z=-0.044256
     </axis>
   </animation>
 
+  <!-- ~~~~~~~~~~~~~~~~~~ MIXTURE -->
   <animation>
     <type>rotate</type>
     <object-name>middle.lever.mix</object-name>
@@ -196,9 +220,9 @@ switch master : x=-2.0655 y=-0.501767 z=-0.044256
       <entry><ind>1</ind><dep>-40</dep></entry>
     </interpolation>
     <center>
-      <x-m>-1.72</x-m>
-      <y-m>-0.094829</y-m>
-      <z-m>-0.356806</z-m>
+      <x-m>-1.7845</x-m>
+      <y-m>0</y-m>
+      <z-m>-.4</z-m>
     </center>
     <axis>
       <x>0</x>
@@ -207,6 +231,7 @@ switch master : x=-2.0655 y=-0.501767 z=-0.044256
     </axis>
   </animation>
 
+  <!-- ~~~~~~~~~~~~~~~~~~ GEARS -->
   <animation>
     <type>rotate</type>
     <object-name>bottom.lever.gear</object-name>
@@ -216,8 +241,8 @@ switch master : x=-2.0655 y=-0.501767 z=-0.044256
       <entry><ind>1</ind><dep>35</dep></entry>
     </interpolation>
     <center>
-      <x-m>-2.0734</x-m>
-      <y-m>-0.165004</y-m>
+      <x-m>-2.1371</x-m>
+      <y-m>0</y-m>
       <z-m>-0.164448</z-m>
     </center>
     <axis>
@@ -227,6 +252,7 @@ switch master : x=-2.0655 y=-0.501767 z=-0.044256
     </axis>
   </animation>
 
+  <!-- ~~~~~~~~~~~~~~~~~~ FLAPS -->
   <animation>
     <type>rotate</type>
     <object-name>bottom.lever.flaps</object-name>
@@ -236,8 +262,8 @@ switch master : x=-2.0655 y=-0.501767 z=-0.044256
       <entry><ind>1</ind><dep>0</dep></entry>
     </interpolation>
     <center>
-      <x-m>-2.0734</x-m>
-      <y-m>-0.165004</y-m>
+      <x-m>-2.1371</x-m>
+      <y-m>0</y-m>
       <z-m>-0.164448</z-m>
     </center>
     <axis>
