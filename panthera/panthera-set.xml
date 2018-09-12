@@ -135,6 +135,17 @@ http://wiki.flightgear.org/Property_tree
 
   </sim>
 
+  <instrumentation>
+    <my_aircraft>
+      <map>
+        <controls>
+          <serviceable type="bool">1</serviceable>
+          <zoom type="int">13</zoom>
+        </controls>
+      </map>
+    </my_aircraft>
+  </instrumentation>
+
 
   <!--
 ================================================================================
@@ -180,5 +191,18 @@ http://wiki.flightgear.org/Property_tree
       </engine>
     </engines>
   </controls>
+
+  <!--
+================================================================================
+                                                                           NASAL
+================================================================================
+  -->
+
+  <nasal>
+    <map>
+      <file type="string">Aircraft/panthera/include/map.nas</file>
+    </map>
+  </nasal>
+
 
 </PropertyList>
