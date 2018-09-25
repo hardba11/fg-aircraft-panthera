@@ -26,10 +26,12 @@ magcompass : x=-2.0852 y=0 z=0.27545
     <object-name>bottom.lever.flaps</object-name>
     <object-name>bottom.lever.gear</object-name>
     <object-name>cabine</object-name>
-    <object-name>center.box.screen</object-name>
+    <object-name>center.top_screen</object-name>
     <object-name>commandes</object-name>
     <object-name>instrument.ai.box</object-name>
     <object-name>instrument.ai.tape</object-name>
+    <object-name>instrument.ai.screen</object-name>
+    <object-name>left.screen</object-name>
     <object-name>instrument.alt.box</object-name>
     <object-name>instrument.alt.knob</object-name>
     <object-name>instrument.alt.needle100</object-name>
@@ -45,6 +47,21 @@ magcompass : x=-2.0852 y=0 z=0.27545
     <object-name>tableau</object-name>
     <object-name>vis</object-name>
   </animation>
+
+  <animation>
+    <type>material</type>
+    <object-name>instrument.ai.screen</object-name>
+    <object-name>center.top_screen</object-name>
+    <object-name>left.screen</object-name>
+    <emission>
+      <factor>1</factor>
+      <red>1</red>
+      <green>1</green>
+      <blue>1</blue>
+    </emission>
+  </animation>
+
+
 
   <!-- ~~~~~~~~~~~~~~~~~~ AIR SPEED INDICATOR -->
   <animation>

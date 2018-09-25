@@ -1,4 +1,4 @@
-print("*** LOADING map - map.nas ... ***");
+print("*** LOADING map.nas ... ***");
 
 # namespace : map
 
@@ -249,7 +249,7 @@ var MAP = {
 
 var init = setlistener("/sim/signals/fdm-initialized", func() {
     removelistener(init); # only call once
-    var my_map = MAP.new({'node': 'center.box.screen'});
+    var my_map = MAP.new({'node': 'center.top_screen'});
     my_map.update();
 });
 

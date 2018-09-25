@@ -172,7 +172,7 @@ http://wiki.flightgear.org/Property_tree
         <z-offset-m type="double">-0.5</z-offset-m>
         <pitch-offset-deg>-7</pitch-offset-deg>
         <heading-offset-deg type="double">10</heading-offset-deg>
-        <default-field-of-view-deg type="double">78.7</default-field-of-view-deg>
+        <default-field-of-view-deg type="double">70.9</default-field-of-view-deg>
         <limits>
           <enabled type="bool">true</enabled>
           <left>
@@ -258,6 +258,9 @@ http://wiki.flightgear.org/Property_tree
     <map>
       <file type="string">Aircraft/panthera/include/map.nas</file>
     </map>
+    <ai>
+      <file type="string">Aircraft/panthera/include/ai_canvas.nas</file>
+    </ai>
   </nasal>
 
 
