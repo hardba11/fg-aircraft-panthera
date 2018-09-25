@@ -22,24 +22,12 @@ magcompass : x=-2.0852 y=0 z=0.27545
 
   <animation>
     <type>material</type>
-    <object-name>bottom.box</object-name>
-    <object-name>bottom.buttons</object-name>
+    <object-name>accessoires</object-name>
     <object-name>bottom.lever.flaps</object-name>
     <object-name>bottom.lever.gear</object-name>
-    <object-name>bottom.switches</object-name>
-    <object-name>cabin</object-name>
-    <object-name>center.box</object-name>
+    <object-name>cabine</object-name>
     <object-name>center.box.screen</object-name>
-    <object-name>instrument.light.button</object-name>
-    <object-name>centerbottom.box</object-name>
-    <object-name>equipement</object-name>
-    <object-name>front.boxes</object-name>
-    <object-name>front.button.ptt</object-name>
-    <object-name>front.knob.magneto</object-name>
-    <object-name>front.panel</object-name>
-    <object-name>front.panel_top</object-name>
-    <object-name>front.switch.master</object-name>
-    <object-name>front.warning_light</object-name>
+    <object-name>commandes</object-name>
     <object-name>instrument.ai.box</object-name>
     <object-name>instrument.ai.tape</object-name>
     <object-name>instrument.alt.box</object-name>
@@ -49,16 +37,13 @@ magcompass : x=-2.0852 y=0 z=0.27545
     <object-name>instrument.asi.box</object-name>
     <object-name>instrument.asi.needle</object-name>
     <object-name>instrument.magcompass.box</object-name>
-    <object-name>instrument.magcompass.mark</object-name>
     <object-name>instrument.magcompass.ring</object-name>
-    <object-name>middle.box</object-name>
-    <object-name>middle.knob.fuel_selector</object-name>
-    <object-name>middle.knob.trim</object-name>
     <object-name>middle.lever.mix</object-name>
     <object-name>middle.lever.propeller</object-name>
     <object-name>middle.lever.throttle</object-name>
-    <object-name>middle.panel</object-name>
-    <object-name>seats</object-name>
+    <object-name>panneaux</object-name>
+    <object-name>tableau</object-name>
+    <object-name>vis</object-name>
   </animation>
 
   <!-- ~~~~~~~~~~~~~~~~~~ AIR SPEED INDICATOR -->
@@ -316,5 +301,48 @@ magcompass : x=-2.0852 y=0 z=0.27545
       <z>1</z>
     </axis>
   </animation-->
+
+
+  <model>
+    <name>siege-pilot</name>
+    <path>Aircraft/panthera/models/cockpit/seat-model.xml</path>
+    <offsets>
+      <x-m type="float">0</x-m>
+      <y-m type="float">-.4</y-m>
+      <z-m type="float">0</z-m>
+    </offsets>
+  </model>
+  <model>
+    <name>siege-copilot</name>
+    <path>Aircraft/panthera/models/cockpit/seat-model.xml</path>
+    <offsets>
+      <x-m type="float">0</x-m>
+      <y-m type="float">.4</y-m>
+      <z-m type="float">0</z-m>
+    </offsets>
+  </model>
+  <model>
+    <name>siege-arr-gauche</name>
+    <path>Aircraft/panthera/models/cockpit/seat-model.xml</path>
+    <offsets>
+      <x-m type="float">.99</x-m>
+      <y-m type="float">-.23</y-m>
+      <z-m type="float">0</z-m>
+    </offsets>
+  </model>
+  <model>
+    <name>siege-arr-droit</name>
+    <path>Aircraft/panthera/models/cockpit/seat-model.xml</path>
+    <offsets>
+      <x-m type="float">.99</x-m>
+      <y-m type="float">.23</y-m>
+      <z-m type="float">0</z-m>
+    </offsets>
+  </model>
+
+
+
+
+
 
 </PropertyList>

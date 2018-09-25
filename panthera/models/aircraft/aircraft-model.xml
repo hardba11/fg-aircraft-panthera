@@ -35,7 +35,7 @@
     </condition>
   </animation>
 
-  <animation>
+  <!--animation>
     <type>select</type>
     <object-name>propeller_fast</object-name>
     <condition>
@@ -44,7 +44,7 @@
         <value>400</value>
       </greater-than>
     </condition>
-  </animation>
+  </animation-->
 
   <animation>
     <type>blend</type>
@@ -59,7 +59,7 @@
     <type>spin</type>
     <object-name>propeller_fast</object-name>
     <property>engines/engine[0]/rpm</property>
-    <factor>-0.002</factor>
+    <factor>-0.008</factor>
     <center>
       <x-m>-4.2528</x-m>
       <y-m>0</y-m>

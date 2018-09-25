@@ -111,9 +111,10 @@ http://wiki.flightgear.org/Property_tree
       <type>lookfrom</type>
       <internal type="bool">true</internal>
       <config>
-        <ground-level-nearplane-m type="double">0.5f</ground-level-nearplane-m>
-        <x-offset-m type="double">-.26</x-offset-m>
-        <y-offset-m type="double">.32</y-offset-m>
+        <from-model type="bool">true</from-model>
+        <ground-level-nearplane-m type="double">0.5</ground-level-nearplane-m>
+        <x-offset-m type="double">-.21</x-offset-m>
+        <y-offset-m type="double">.28</y-offset-m>
         <z-offset-m type="double">-1.53</z-offset-m>
         <pitch-offset-deg>-5</pitch-offset-deg>
         <default-field-of-view-deg type="double">78.7</default-field-of-view-deg>
@@ -121,6 +122,61 @@ http://wiki.flightgear.org/Property_tree
           <enabled type="bool">true</enabled>
           <left>
             <heading-max-deg type="double">140</heading-max-deg>
+            <x-offset-max-m type="double">0.10</x-offset-max-m>
+            <x-offset-threshold-deg type="double">45</x-offset-threshold-deg>
+          </left>
+          <right>
+            <heading-max-deg type="double">160</heading-max-deg>
+            <x-offset-max-m type="double">0.20</x-offset-max-m>
+            <x-offset-threshold-deg type="double">65</x-offset-threshold-deg>
+          </right>
+        </limits>
+      </config>
+    </view>
+    <view n="105">
+      <name>Copilot</name>
+      <type>lookfrom</type>
+      <internal type="bool">true</internal>
+      <config>
+        <from-model type="bool">true</from-model>
+        <ground-level-nearplane-m type="double">0.5</ground-level-nearplane-m>
+        <x-offset-m type="double">.40</x-offset-m>
+        <y-offset-m type="double">.25</y-offset-m>
+        <z-offset-m type="double">-1.53</z-offset-m>
+        <pitch-offset-deg>-5</pitch-offset-deg>
+        <default-field-of-view-deg type="double">78.7</default-field-of-view-deg>
+        <limits>
+          <enabled type="bool">true</enabled>
+          <left>
+            <heading-max-deg type="double">140</heading-max-deg>
+            <x-offset-max-m type="double">0.10</x-offset-max-m>
+            <x-offset-threshold-deg type="double">45</x-offset-threshold-deg>
+          </left>
+          <right>
+            <heading-max-deg type="double">160</heading-max-deg>
+            <x-offset-max-m type="double">0.20</x-offset-max-m>
+            <x-offset-threshold-deg type="double">65</x-offset-threshold-deg>
+          </right>
+        </limits>
+      </config>
+    </view>
+    <view n="106">
+      <name>Passenger</name>
+      <type>lookfrom</type>
+      <internal type="bool">true</internal>
+      <config>
+        <from-model type="bool">true</from-model>
+        <ground-level-nearplane-m type="double">0.5</ground-level-nearplane-m>
+        <x-offset-m type="double">.16</x-offset-m>
+        <y-offset-m type="double">.30</y-offset-m>
+        <z-offset-m type="double">-0.5</z-offset-m>
+        <pitch-offset-deg>-7</pitch-offset-deg>
+        <heading-offset-deg type="double">10</heading-offset-deg>
+        <default-field-of-view-deg type="double">78.7</default-field-of-view-deg>
+        <limits>
+          <enabled type="bool">true</enabled>
+          <left>
+            <heading-max-deg type="double">100</heading-max-deg>
             <x-offset-max-m type="double">0.10</x-offset-max-m>
             <x-offset-threshold-deg type="double">45</x-offset-threshold-deg>
           </left>
