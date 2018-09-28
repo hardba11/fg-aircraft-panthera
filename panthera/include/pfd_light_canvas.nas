@@ -1,11 +1,11 @@
-print("*** LOADING ai_canvas.nas ... ***");
+print("*** LOADING pfd_light_canvas.nas ... ***");
 
 var width = 1024;
 var height = 1024;
 
-var AI = {
+var PFD_LIGHT = {
     canvas_settings: {
-        'name': 'ai',
+        'name': 'pfd_light',
         'size': [1024, 1024],
         'view': [width, height],
         'mipmapping': 1
@@ -13,8 +13,8 @@ var AI = {
     new: func(placement)
     {
         var m = {
-            parents: [AI],
-            canvas: canvas.new(AI.canvas_settings)
+            parents: [PFD_LIGHT],
+            canvas: canvas.new(PFD_LIGHT.canvas_settings)
         };
 
         m.canvas.addPlacement(placement);
@@ -58,9 +58,56 @@ var AI = {
             .lineTo(5 * (width / 8), (height / 2) - (10 * 20));
 
 
+
+        m.top_symbol = m.horizontal_container.createChild('path', 'top_symbol')
+            .setStrokeLineWidth(10)
+            .set('stroke', 'rgb(255, 255, 255)')
+            .moveTo((width / 2), (height / 3) + 45)
+            .lineTo((width / 2) - 4, (height / 3) + 50)
+            .lineTo((width / 2) + 4, (height / 3) + 50)
+            .close();
+
+
+
+
         m.center = m.my_container.createChild('path', 'center')
             .rect((width / 2) - 5, (height / 2) - 5, 10, 10)
             .setColorFill(1, 1, 0);
+        m.speed_bg = m.my_container.createChild('path', 'speed_bg')
+            .set('stroke', 'rgb(255, 255, 255)')
+            .rect((width / 4) - 95, (height / 2) - 15, 100, 30)
+            .setColorFill(0, 0, 0);
+        m.speed = m.my_container.createChild('text', 'speed')
+            .setTranslation((width / 4), (height / 2))
+            .setAlignment('right-center')
+            .setFont('LiberationFonts/LiberationSansNarrow-Bold.ttf')
+            .setFontSize(30)
+            .setColor(1, 1, 1, 1)
+            .setText('SPEED');
+
+        m.alt_bg = m.my_container.createChild('path', 'alt_bg')
+            .set('stroke', 'rgb(255, 255, 255)')
+            .rect((3 * (width / 4)) - 5, (height / 2) - 15, 100, 30)
+            .setColorFill(0, 0, 0);
+        m.alt = m.my_container.createChild('text', 'alt')
+            .setTranslation(3 * (width / 4), (height / 2))
+            .setAlignment('left-center')
+            .setFont('LiberationFonts/LiberationSansNarrow-Bold.ttf')
+            .setFontSize(30)
+            .setColor(1, 1, 1, 1)
+            .setText('ALT');
+
+        m.hdg_bg = m.my_container.createChild('path', 'hdg_bg')
+            .set('stroke', 'rgb(255, 255, 255)')
+            .rect((width / 2) - 50, (height / 3) - 15, 100, 30)
+            .setColorFill(0, 0, 0);
+        m.hdg = m.my_container.createChild('text', 'hdg')
+            .setTranslation((width / 2), (height / 3))
+            .setAlignment('center-center')
+            .setFont('LiberationFonts/LiberationSansNarrow-Bold.ttf')
+            .setFontSize(30)
+            .setColor(1, 1, 1, 1)
+            .setText('HDG');
 
         return m;
     },
@@ -76,6 +123,11 @@ var AI = {
         me.t_vertical_container.setTranslation(0, pitch_deg * 10);
         me.t_horizontal_container.setRotation(-(roll_deg * D2R), (width / 2), (height / 2));
 
+        me.speed.setText(sprintf('%d', speed));
+        me.alt.setText(sprintf('%d', alt));
+        me.hdg.setText(sprintf('%d', hdg));
+
+
         var time_speed = getprop("/sim/speed-up") or 1;
         var loop_speed = (time_speed == 1) ? .1 : 10 * time_speed;
         settimer(func() { me.update(); }, loop_speed);
@@ -84,8 +136,8 @@ var AI = {
 
 var init = setlistener("/sim/signals/fdm-initialized", func() {
     removelistener(init); # only call once
-    var my_ai = AI.new({'node': 'instrument.ai.screen'});
-    my_ai.update();
+    var my_pfd_light = PFD_LIGHT.new({'node': 'left.screen'});
+    my_pfd_light.update();
 });
 
 
