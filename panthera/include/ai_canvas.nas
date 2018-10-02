@@ -2,12 +2,179 @@ print("*** LOADING ai_canvas.nas ... ***");
 
 var width = 1024;
 var height = 1024;
+var angle_to_pixel_factor = 7;
+
+#===============================================================================
+#                                              FUNCTIONS TO DRAW SIMPLE ELEMENTS
+
+#-------------------------------------------------------------------------------
+#                                                                       draw_arc
+# this function draws an arc
+# params :
+# - element     : canvas object created by createChild()
+# - center_x    : coord x of the center of the arc in px
+# - center_y    : coord y of the center of the arc in px
+# - radius      : radius
+# - start_angle : start angle in deg ()
+# - end_angle   : end angle in deg ()
+# - color       : color
+# - line_width  : line_width
+#
+var draw_arc = func(element, center_x, center_y, radius, start_angle, end_angle, color, line_width)
+{
+    var coord_start_x = center_x + (radius * math.cos(start_angle * D2R));
+    var coord_start_y = center_y - (radius * math.sin(start_angle * D2R));
+
+    var to_x = -(radius * math.cos(start_angle * D2R)) + (radius * math.cos(end_angle * D2R));
+    var to_y = (radius * math.sin(start_angle * D2R)) - (radius * math.sin(end_angle * D2R));
+
+    element.setStrokeLineWidth(line_width)
+        .set('stroke', color)
+        .moveTo(coord_start_x, coord_start_y)
+        .arcSmallCCW(radius, radius, 0, to_x, to_y);
+}
+
+
+#===============================================================================
+#                                                      FUNCTIONS TO DRAW OBJECTS
+
+var draw_background = func(container)
+{
+    sky = container.createChild('path', 'sky')
+        .rect(-(width / 2), -(height / 2), (width * 2), height)
+        .setColorFill(.15, .63, 1);
+    ground = container.createChild('path', 'ground')
+        .rect(-(width / 2), (height / 2), (width * 2), height)
+        .setColorFill(.54, .38, .2);
+    horizon_line = container.createChild('path', 'horizon_line')
+        .setColor(1, 1, 1)
+        .setStrokeLineWidth(6)
+        .moveTo(-(width / 2), (height / 2))
+        .lineTo((width + (width / 2)), (height / 2));
+
+    var deg_line = {};
+    var deg_label = {};
+    var deg = 0;
+    var line_offset = 0;
+    foreach(var main_deg ; [10, 20, 30])
+    {
+        deg = main_deg;
+        foreach(var pos_or_min ; ['m', 'p'])
+        {
+            line_offset = (pos_or_min == 'm') ? (height / 2) - (angle_to_pixel_factor * deg) : (height / 2) + (angle_to_pixel_factor * deg);
+
+            deg_line[pos_or_min ~ deg] = container.createChild('path', 'deg_line_'~ pos_or_min ~'-'~ deg)
+                .setColor(1, 1, 1)
+                .setStrokeLineWidth(5)
+                .moveTo(16 * (width / 40), line_offset)
+                .lineTo(19 * (width / 40), line_offset);
+            deg_line[pos_or_min ~ deg] = container.createChild('path', 'deg_line_'~ pos_or_min ~'-'~ deg)
+                .setColor(1, 1, 1)
+                .setStrokeLineWidth(5)
+                .moveTo(21 * (width / 40), line_offset)
+                .lineTo(24 * (width / 40), line_offset);
+
+            deg_label[pos_or_min ~ deg] = container.createChild('text', 'deg_label_'~ pos_or_min ~'-'~ deg)
+                .setTranslation((width / 2), line_offset)
+                .setAlignment('center-center')
+                .setFont('LiberationFonts/LiberationSansNarrow-Bold.ttf')
+                .setFontSize(45)
+                .setColor(1, 1, 1, 1)
+                .setText(deg);
+        }
+
+        deg = main_deg - 5;
+        foreach(var pos_or_min ; ['m', 'p'])
+        {
+            line_offset = (pos_or_min == 'm') ? (height / 2) - (angle_to_pixel_factor * deg) : (height / 2) + (angle_to_pixel_factor * deg);
+
+            deg_line[pos_or_min ~ deg] = container.createChild('path', 'deg_line_'~ pos_or_min ~'-'~ deg)
+                .setColor(1, 1, 1)
+                .setStrokeLineWidth(5)
+                .moveTo(9 * (width / 20), line_offset)
+                .lineTo(11 * (width / 20), line_offset);
+        }
+    }
+}
+
+
+var draw_static_marks = func(container)
+{
+        center = container.createChild('path', 'center')
+            .rect((width / 2) - 7, (height / 2) - 7, 14, 14)
+            .setColorFill(1, 1, 0);
+        roll_arc = container.createChild('path', 'roll_arc');
+        draw_arc(roll_arc,
+            width / 2,
+            height / 2,
+            (height / 4) + 25,
+            0,
+            180,
+            'rgb(255, 255, 255)',
+            8);
+        zero_deg_mark = container.createChild('path', 'zero_deg_mark')
+            .setStrokeLineWidth(3)
+            .set('stroke', 'rgb(255, 255, 255)')
+            .moveTo((width / 2), (height / 4) - 35)
+            .lineTo((width / 2) - 15, (height / 4) - 60)
+            .lineTo((width / 2) + 15, (height / 4) - 60)
+            .setColorFill(1, 1, 1)
+            .close();
+        horizontal_mark_left = container.createChild('path', 'horizontal_mark_left')
+            .setColor(1, 1, 1)
+            .setStrokeLineWidth(10)
+            .moveTo(3 * width / 16, height / 2)
+            .lineTo(6 * width / 16, height / 2);
+        horizontal_mark_right = container.createChild('path', 'horizontal_mark_right')
+            .setColor(1, 1, 1)
+            .setStrokeLineWidth(10)
+            .moveTo(13 * width / 16, height / 2)
+            .lineTo(10 * width / 16, height / 2);
+
+        var roll_mark = {};
+        foreach(var deg ; [30, 60])
+        {
+            roll_mark['roll_mark_m'~ deg] = container.createChild('path', 'roll_mark_m'~ deg)
+                .setColor(1, 1, 1)
+                .setStrokeLineWidth(8)
+                .moveTo((width / 2), (height / 4) - 30)
+                .lineTo((width / 2), (height / 4) - 60)
+                .setCenter((width / 2), (height / 2))
+                .setRotation(-deg * D2R);
+            roll_mark['roll_mark_p'~ deg] = container.createChild('path', 'roll_mark_p'~ deg)
+                .setColor(1, 1, 1)
+                .setStrokeLineWidth(8)
+                .moveTo((width / 2), (height / 4) - 30)
+                .lineTo((width / 2), (height / 4) - 60)
+                .setCenter((width / 2), (height / 2))
+                .setRotation(deg * D2R);
+        }
+        foreach(var deg ; [10, 20, 45])
+        {
+            roll_mark['roll_mark_m'~ deg] = container.createChild('path', 'roll_mark_m'~ deg)
+                .setColor(1, 1, 1)
+                .setStrokeLineWidth(8)
+                .moveTo((width / 2), (height / 4) - 30)
+                .lineTo((width / 2), (height / 4) - 45)
+                .setCenter((width / 2), (height / 2))
+                .setRotation(-deg * D2R);
+            roll_mark['roll_mark_p'~ deg] = container.createChild('path', 'roll_mark_p'~ deg)
+                .setColor(1, 1, 1)
+                .setStrokeLineWidth(8)
+                .moveTo((width / 2), (height / 4) - 30)
+                .lineTo((width / 2), (height / 4) - 45)
+                .setCenter((width / 2), (height / 2))
+                .setRotation(deg * D2R);
+        }
+}
+
+#===============================================================================
 
 var AI = {
     canvas_settings: {
         'name': 'ai',
         'size': [1024, 1024],
-        'view': [width, height],
+        'view': [1024, 1024],
         'mipmapping': 1
     },
     new: func(placement)
@@ -25,42 +192,18 @@ var AI = {
         m.vertical_container = m.horizontal_container.createChild('group');
         m.t_vertical_container = m.vertical_container.createTransform();
 
-        m.sky = m.vertical_container.createChild('path', 'sky')
-            .rect(-(width / 2), -(height / 2), (width * 2), height)
-            .setColorFill(.15, .63, 1);
-        m.ground = m.vertical_container.createChild('path', 'ground')
-            .rect(-(width / 2), (height / 2), (width * 2), height)
-            .setColorFill(.54, .38, .2);
-        m.horizon = m.vertical_container.createChild('path', 'horizon')
-            .setColor(1, 1, 1)
-            .setStrokeLineWidth(4)
-            .moveTo(-(width / 2), (height / 2))
-            .lineTo((width + (width / 2)), (height / 2));
-        m.d10 = m.vertical_container.createChild('path', 'd10')
-            .setColor(1, 1, 1)
-            .setStrokeLineWidth(2)
-            .moveTo(3 * (width / 8), (height / 2) + (10 * 10))
-            .lineTo(5 * (width / 8), (height / 2) + (10 * 10));
-        m.t10 = m.vertical_container.createChild('path', 't10')
-            .setColor(1, 1, 1)
-            .setStrokeLineWidth(2)
-            .moveTo(3 * (width / 8), (height / 2) - (10 * 10))
-            .lineTo(5 * (width / 8), (height / 2) - (10 * 10));
-        m.d20 = m.vertical_container.createChild('path', 'd20')
-            .setColor(1, 1, 1)
-            .setStrokeLineWidth(2)
-            .moveTo(3 * (width / 8), (height / 2) + (10 * 20))
-            .lineTo(5 * (width / 8), (height / 2) + (10 * 20));
-        m.t20 = m.vertical_container.createChild('path', 't20')
-            .setColor(1, 1, 1)
-            .setStrokeLineWidth(2)
-            .moveTo(3 * (width / 8), (height / 2) - (10 * 20))
-            .lineTo(5 * (width / 8), (height / 2) - (10 * 20));
+        draw_background(m.vertical_container);
 
+        m.top_symbol = m.horizontal_container.createChild('path', 'top_symbol')
+            .setStrokeLineWidth(3)
+            .set('stroke', 'rgb(255, 255, 255)')
+            .moveTo((width / 2), (height / 4) - 20)
+            .lineTo((width / 2) - 15, (height / 4) + 12)
+            .lineTo((width / 2) + 15, (height / 4) + 12)
+            .setColorFill(1, 1, 1)
+            .close();
 
-        m.center = m.my_container.createChild('path', 'center')
-            .rect((width / 2) - 5, (height / 2) - 5, 10, 10)
-            .setColorFill(1, 1, 0);
+        draw_static_marks(m.my_container);
 
         return m;
     },
@@ -73,11 +216,11 @@ var AI = {
         var alt            = getprop("/instrumentation/altimeter/indicated-altitude-ft");
         var hdg            = getprop("/orientation/heading-magnetic-deg");
 
-        me.t_vertical_container.setTranslation(0, pitch_deg * 10);
+        me.t_vertical_container.setTranslation(0, pitch_deg * angle_to_pixel_factor);
         me.t_horizontal_container.setRotation(-(roll_deg * D2R), (width / 2), (height / 2));
 
         var time_speed = getprop("/sim/speed-up") or 1;
-        var loop_speed = (time_speed == 1) ? .1 : 10 * time_speed;
+        var loop_speed = (time_speed == 1) ? .1 : 2 * time_speed;
         settimer(func() { me.update(); }, loop_speed);
     }
 };

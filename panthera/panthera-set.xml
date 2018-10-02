@@ -39,6 +39,11 @@ http://wiki.flightgear.org/Property_tree
         <description>model, FDM, systems</description>
         <nick>F-HRBD</nick>
       </author>
+      <author n="2">
+        <name>D-ECHO</name>
+        <description>JSBSIM, systems</description>
+        <nick>D_ECHO</nick>
+      </author>
     </authors>
     <maintainers>
       <maintainer n="0">
@@ -67,7 +72,7 @@ http://wiki.flightgear.org/Property_tree
 
     <!-- ~~~~~~~~~~~~~~~~~~ flight model -->
     <flight-model>yasim</flight-model>
-    <aero>fdm/caravanW-yasim</aero>
+    <aero>fdm/WIP-yasim</aero>
 
     <!-- ~~~~~~~~~~~~~~~~~~ model -->
     <model>

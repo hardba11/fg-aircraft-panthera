@@ -29,7 +29,6 @@ magcompass : x=-2.0852 y=0 z=0.27545
     <object-name>center.top_screen</object-name>
     <object-name>commandes</object-name>
     <object-name>instrument.ai.box</object-name>
-    <object-name>instrument.ai.tape</object-name>
     <object-name>instrument.ai.screen</object-name>
     <object-name>left.screen</object-name>
     <object-name>instrument.alt.box</object-name>
@@ -91,39 +90,6 @@ magcompass : x=-2.0852 y=0 z=0.27545
       <y>0</y>
       <z>0</z>
     </axis>
-  </animation>
-
-  <!-- ~~~~~~~~~~~~~~~~~~ ATTITUDE INDICATOR -->
-
-  <animation>
-    <type>texmultiple</type>
-    <object-name>instrument.ai.tape</object-name>
-    <transform>
-      <subtype>textranslate</subtype>
-      <property>orientation/pitch-deg</property>
-      <interpolation>
-        <entry><ind>-90.0</ind><dep>-0.21</dep></entry>
-        <entry><ind>0.0</ind><dep>0.0</dep></entry>
-        <entry><ind>90.0</ind><dep>0.21</dep></entry>
-      </interpolation>
-      <axis>
-        <x>0</x>
-        <y>1</y>
-      </axis>
-    </transform>
-    <transform>
-      <subtype>texrotate</subtype>
-      <property>orientation/roll-deg</property>
-      <axis>
-        <x>0</x>
-        <y>0</y>
-        <z>-1</z>
-      </axis>
-      <center>
-        <x>0.92</x>
-        <y>0.61</y>
-      </center>
-    </transform>
   </animation>
 
   <!-- ~~~~~~~~~~~~~~~~~~ ALTIMETER -->
