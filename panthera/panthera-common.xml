@@ -27,7 +27,7 @@ http://wiki.flightgear.org/Property_tree
     <author>urbu</author>
 
     <!-- new in FlightGear 2018.3.0 style -->
-    <authors> 
+    <authors>
       <author n="0">
         <name>urbu</name>
         <description>creator</description>
@@ -261,3 +261,4 @@ http://wiki.flightgear.org/Property_tree
 
 
 </PropertyList>
+

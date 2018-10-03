@@ -95,8 +95,19 @@ var draw_background = func(container)
                 .lineTo(11 * (width / 20), line_offset);
         }
     }
-}
 
+    deg = 35;
+    foreach(var pos_or_min ; ['m', 'p'])
+    {
+        line_offset = (pos_or_min == 'm') ? (height / 2) - (angle_to_pixel_factor * deg) : (height / 2) + (angle_to_pixel_factor * deg);
+
+        deg_line[pos_or_min ~ deg] = container.createChild('path', 'deg_line_'~ pos_or_min ~'-'~ deg)
+            .setColor(1, 1, 1)
+            .setStrokeLineWidth(5)
+            .moveTo(9 * (width / 20), line_offset)
+            .lineTo(11 * (width / 20), line_offset);
+    }
+}
 
 var draw_static_marks = func(container)
 {
@@ -121,15 +132,17 @@ var draw_static_marks = func(container)
             .setColorFill(1, 1, 1)
             .close();
         horizontal_mark_left = container.createChild('path', 'horizontal_mark_left')
-            .setColor(1, 1, 1)
+            .setColor(1, 1, 0)
             .setStrokeLineWidth(10)
             .moveTo(3 * width / 16, height / 2)
-            .lineTo(6 * width / 16, height / 2);
+            .lineTo(6 * width / 16, height / 2)
+            .lineTo(6 * width / 16, (height / 2) + 40);
         horizontal_mark_right = container.createChild('path', 'horizontal_mark_right')
-            .setColor(1, 1, 1)
+            .setColor(1, 1, 0)
             .setStrokeLineWidth(10)
             .moveTo(13 * width / 16, height / 2)
-            .lineTo(10 * width / 16, height / 2);
+            .lineTo(10 * width / 16, height / 2)
+            .lineTo(10 * width / 16, (height / 2) + 40);
 
         var roll_mark = {};
         foreach(var deg ; [30, 60])
@@ -196,7 +209,7 @@ var AI = {
 
         m.top_symbol = m.horizontal_container.createChild('path', 'top_symbol')
             .setStrokeLineWidth(3)
-            .set('stroke', 'rgb(255, 255, 255)')
+            .set('stroke', 'rgb(255, 255, 0)')
             .moveTo((width / 2), (height / 4) - 20)
             .lineTo((width / 2) - 15, (height / 4) + 12)
             .lineTo((width / 2) + 15, (height / 4) + 12)

@@ -5,7 +5,7 @@ OBJECT world
 name "Blender_export__seat.ac"
 kids 1
 OBJECT poly
-name "seat.DONE"
+name "seat"
 loc -1.4285012 -0.3133291 -0.0023793
 texture "seat_tex.png"
 texrep 1 1

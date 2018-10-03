@@ -6,9 +6,10 @@
 
   <animation>
     <type>material</type>
-    <object-name>seat.DONE</object-name>
+    <object-name>seat</object-name>
 
   </animation>
 
 
 </PropertyList>
+

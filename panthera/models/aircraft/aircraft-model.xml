@@ -72,7 +72,6 @@
     </axis>
   </animation>
 
-
   <animation>
     <type>select</type>
     <object-name>train_avant.roue</object-name>
@@ -111,9 +110,9 @@
       <y>1</y>
       <z>0</z>
     </axis>
-  </animation-->
+  </animation>
 
-  <!--animation>
+  <animation>
     <type>rotate</type>
     <object-name>gear_left</object-name>
     <property>gear/gear/position-norm</property>
@@ -192,3 +191,4 @@
   </animation-->
 
 </PropertyList>
+

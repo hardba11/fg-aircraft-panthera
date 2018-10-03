@@ -28,9 +28,9 @@ magcompass : x=-2.0852 y=0 z=0.27545
     <object-name>cabine</object-name>
     <object-name>center.top_screen</object-name>
     <object-name>commandes</object-name>
+    <object-name>instrument.ai.ball</object-name>
     <object-name>instrument.ai.box</object-name>
     <object-name>instrument.ai.screen</object-name>
-    <object-name>left.screen</object-name>
     <object-name>instrument.alt.box</object-name>
     <object-name>instrument.alt.knob</object-name>
     <object-name>instrument.alt.needle100</object-name>
@@ -39,6 +39,7 @@ magcompass : x=-2.0852 y=0 z=0.27545
     <object-name>instrument.asi.needle</object-name>
     <object-name>instrument.magcompass.box</object-name>
     <object-name>instrument.magcompass.ring</object-name>
+    <object-name>left.screen</object-name>
     <object-name>middle.lever.mix</object-name>
     <object-name>middle.lever.propeller</object-name>
     <object-name>middle.lever.throttle</object-name>
@@ -59,8 +60,6 @@ magcompass : x=-2.0852 y=0 z=0.27545
       <blue>1</blue>
     </emission>
   </animation>
-
-
 
   <!-- ~~~~~~~~~~~~~~~~~~ AIR SPEED INDICATOR -->
   <animation>
@@ -111,6 +110,7 @@ magcompass : x=-2.0852 y=0 z=0.27545
       <z>0</z>
     </axis>
   </animation>
+
   <animation>
     <type>rotate</type>
     <object-name>instrument.alt.needle1000</object-name>
@@ -128,6 +128,91 @@ magcompass : x=-2.0852 y=0 z=0.27545
     </axis>
   </animation>
 
+  <animation>
+    <type>pick</type>
+    <object-name>instrument.alt.knob</object-name>
+    <action>
+      <button>0</button>
+      <repeatable>true</repeatable>
+      <interval-sec>0.1</interval-sec>
+      <binding>
+        <command>property-adjust</command>
+        <property>/instrumentation/altimeter/setting-inhg</property>
+        <step>0.1</step>
+        <min>26.0</min>
+        <max>33.0</max>
+        <wrap>false</wrap>
+      </binding>
+    </action>
+    <action>
+      <button>3</button> <!--  scroll up -->
+      <repeatable>true</repeatable>
+      <interval-sec>0.2</interval-sec>
+      <binding>
+        <command>property-adjust</command>
+        <property>/instrumentation/altimeter/setting-inhg</property>
+        <step>0.01</step>
+        <min>26.0</min>
+        <max>33.0</max>
+        <wrap>false</wrap>
+      </binding>
+    </action>
+    <action>
+      <button>1</button>
+      <repeatable>true</repeatable>
+      <interval-sec>0.1</interval-sec>
+      <binding>
+        <command>property-adjust</command>
+        <property>/instrumentation/altimeter/setting-inhg</property>
+        <step>-0.1</step>
+        <min>26.0</min>
+        <max>33.0</max>
+        <wrap>false</wrap>
+      </binding>
+    </action>
+    <action>
+      <button>4</button> <!-- scroll down -->
+      <repeatable>true</repeatable>
+      <interval-sec>0.2</interval-sec>
+      <binding>
+        <command>property-adjust</command>
+        <property>/instrumentation/altimeter/setting-inhg</property>
+        <step>-0.01</step>
+        <min>26.0</min>
+        <max>33.0</max>
+        <wrap>false</wrap>
+      </binding>
+    </action>
+    <hovered>
+      <binding>
+        <command>set-tooltip</command>
+        <tooltip-id>tooltip-stdby-alt-setting-inhg</tooltip-id>
+        <label>InHg settings</label>
+      </binding>
+    </hovered>
+  </animation>
+
+  <!-- ~~~~~~~~~~~~~~~~~~ ATTITUDE INDICATOR : BALL -->
+  <animation>
+    <type>rotate</type>
+    <object-name>instrument.ai.ball</object-name>
+    <property>instrumentation/slip-skid-ball/indicated-slip-skid</property>
+    <factor>10</factor>
+    <min-deg>-11</min-deg>
+    <max-deg>11</max-deg>
+    <center>
+      <x-m>-2.1094</x-m>
+      <y-m>0</y-m>
+      <z-m>0.20082</z-m>
+    </center>
+    <axis>
+      <x>-1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+  </animation>
+
+
   <!-- ~~~~~~~~~~~~~~~~~~ MAGCOMPASS -->
   <animation>
     <type>rotate</type>
@@ -144,7 +229,6 @@ magcompass : x=-2.0852 y=0 z=0.27545
       <z>1</z>
     </axis>
   </animation>
-
 
   <!-- ~~~~~~~~~~~~~~~~~~ THROTTLE -->
   <animation>
@@ -229,6 +313,25 @@ magcompass : x=-2.0852 y=0 z=0.27545
       <z>0</z>
     </axis>
   </animation>
+  <animation>
+    <type>pick</type>
+    <object-name>bottom.lever.gear</object-name>
+    <action>
+      <button>0</button>
+      <repeatable>false</repeatable>
+      <binding>
+        <command>property-toggle</command>
+        <property>controls/gear/gear-down</property>
+      </binding>
+    </action>
+    <hovered>
+      <binding>
+        <command>set-tooltip</command>
+        <tooltip-id>tooltip-command-gears</tooltip-id>
+        <label>Gears (g/G)</label>
+      </binding>
+    </hovered>
+  </animation>
 
   <!-- ~~~~~~~~~~~~~~~~~~ FLAPS -->
   <animation>
@@ -250,9 +353,45 @@ magcompass : x=-2.0852 y=0 z=0.27545
       <z>0</z>
     </axis>
   </animation>
+  <animation>
+    <type>pick</type>
+    <object-name>bottom.lever.flaps</object-name>
+    <action>
+      <button>0</button>
+      <repeatable>false</repeatable>
+      <binding>
+        <command>property-cycle</command>
+        <property>controls/flight/flaps</property>
+        <value>0</value>
+        <value>.33</value>
+        <value>.66</value>
+        <value>1</value>
+        <wrap>false</wrap>
+      </binding>
+    </action>
+    <action>
+      <button>1</button>
+      <repeatable>false</repeatable>
+      <binding>
+        <command>property-cycle</command>
+        <property>controls/flight/flaps</property>
+        <value>1</value>
+        <value>.66</value>
+        <value>.33</value>
+        <value>0</value>
+        <wrap>false</wrap>
+      </binding>
+    </action>
+    <hovered>
+      <binding>
+        <command>set-tooltip</command>
+        <tooltip-id>tooltip-command-flaps</tooltip-id>
+        <label>Flaps ([/])</label>
+      </binding>
+    </hovered>
+  </animation>
 
-
-<!-- USED FOR DEVELOPMENT -->
+  <!-- USED FOR DEVELOPMENT -->
   <!--animation>
     <type>translate</type>
     <object-name>turn-pilot</object-name>
@@ -264,6 +403,7 @@ magcompass : x=-2.0852 y=0 z=0.27545
       <z>0</z>
     </axis>
   </animation>
+
   <animation>
     <type>translate</type>
     <object-name>turn-pilot</object-name>
@@ -275,6 +415,7 @@ magcompass : x=-2.0852 y=0 z=0.27545
       <z>0</z>
     </axis>
   </animation>
+
   <animation>
     <type>translate</type>
     <object-name>turn-pilot</object-name>
@@ -287,7 +428,6 @@ magcompass : x=-2.0852 y=0 z=0.27545
     </axis>
   </animation-->
 
-
   <model>
     <name>siege-pilot</name>
     <path>Aircraft/panthera/models/cockpit/seat-model.xml</path>
@@ -297,6 +437,7 @@ magcompass : x=-2.0852 y=0 z=0.27545
       <z-m type="float">0</z-m>
     </offsets>
   </model>
+
   <model>
     <name>siege-copilot</name>
     <path>Aircraft/panthera/models/cockpit/seat-model.xml</path>
@@ -306,6 +447,7 @@ magcompass : x=-2.0852 y=0 z=0.27545
       <z-m type="float">0</z-m>
     </offsets>
   </model>
+
   <model>
     <name>siege-arr-gauche</name>
     <path>Aircraft/panthera/models/cockpit/seat-model.xml</path>
@@ -315,6 +457,7 @@ magcompass : x=-2.0852 y=0 z=0.27545
       <z-m type="float">0</z-m>
     </offsets>
   </model>
+
   <model>
     <name>siege-arr-droit</name>
     <path>Aircraft/panthera/models/cockpit/seat-model.xml</path>
@@ -325,9 +468,5 @@ magcompass : x=-2.0852 y=0 z=0.27545
     </offsets>
   </model>
 
-
-
-
-
-
 </PropertyList>
+
