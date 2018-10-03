@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+################################################################################
+#
+#             MAIN PROPERTIES DESCRIPTION AND INITIALISATION
+#
+################################################################################
+
+http://wiki.flightgear.org/Property_tree
+
+-->
+
+<PropertyList>
+  <!--
+================================================================================
+                                                                  SIM PROPERTIES
+================================================================================
+  -->
+  <sim>
+
+    <!-- ~~~~~~~~~~~~~~~~~~ metadata -->
+    <long-description type="string">FIXME</long-description>
+    <aircraft-version type="string">20180806-01</aircraft-version>
+    <minimum-fg-version type="string">2018.1.1</minimum-fg-version>
+
+    <!-- old / simple style -->
+    <author>urbu</author>
+
+    <!-- new in FlightGear 2018.3.0 style -->
+    <authors> 
+      <author n="0">
+        <name>urbu</name>
+        <description>creator</description>
+        <nick></nick>
+      </author>
+      <author n="1">
+        <name>hardball SLK</name>
+        <description>model, FDM, systems</description>
+        <nick>F-HRBD</nick>
+      </author>
+      <author n="2">
+        <name>D-ECHO</name>
+        <description>JSBSIM, systems</description>
+        <nick>D_ECHO</nick>
+      </author>
+    </authors>
+    <maintainers>
+      <maintainer n="0">
+        <name>hardball SLK</name>
+        <email>nico@localhost</email>
+      </maintainer>
+    </maintainers>
+    <primary-set type="bool">true</primary-set>
+    <urls>
+      <home-page>https://github.com/hardba11/fg-aircraft-panthera</home-page>
+      <support />
+      <wikipedia />
+      <code-repository>https://github.com/hardba11/fg-aircraft-panthera</code-repository>
+    </urls>
+
+    <status type="string">development</status>
+    <tags>
+    </tags>
+
+    <!-- ~~~~~~~~~~~~~~~~~~ model -->
+    <model>
+      <path>Aircraft/panthera/models/panthera.xml</path>
+      <livery>
+        <file type="string" />
+      </livery>
+    </model>
+
+    <!-- ~~~~~~~~~~~~~~~~~~ sound -->
+    <sound>
+      <path>Aircraft/panthera/sounds/sounds.xml</path>
+    </sound>
+
+    <!-- ~~~~~~~~~~~~~~~~~~ specific menu -->
+    <!--menubar>
+      <default>
+        <menu n="100">
+          <label>panthera</label>
+          <enabled type="bool">true</enabled>
+          <item>
+            <label>Select Livery</label>
+            <binding>
+              <command>nasal</command>
+              <script>aircraft.livery.dialog.open()</script>
+            </binding>
+          </item>
+        </menu>
+      </default>
+    </menubar-->
+
+    <!-- ~~~~~~~~~~~~~~~~~~ initialisation -->
+    <startup>
+      <splash-texture>Aircraft/panthera/contrib/splash.png</splash-texture>
+    </startup>
+    <splash-title>panthera</splash-title>
+
+    <!-- ~~~~~~~~~~~~~~~~~~ views -->
+    <view n="0">
+      <name>Pilot</name>
+      <type>lookfrom</type>
+      <internal type="bool">true</internal>
+      <config>
+        <from-model type="bool">true</from-model>
+        <ground-level-nearplane-m type="double">0.5</ground-level-nearplane-m>
+        <x-offset-m type="double">-.21</x-offset-m>
+        <y-offset-m type="double">.28</y-offset-m>
+        <z-offset-m type="double">-1.53</z-offset-m>
+        <pitch-offset-deg>-5</pitch-offset-deg>
+        <default-field-of-view-deg type="double">78.7</default-field-of-view-deg>
+        <limits>
+          <enabled type="bool">true</enabled>
+          <left>
+            <heading-max-deg type="double">140</heading-max-deg>
+            <x-offset-max-m type="double">0.10</x-offset-max-m>
+            <x-offset-threshold-deg type="double">45</x-offset-threshold-deg>
+          </left>
+          <right>
+            <heading-max-deg type="double">160</heading-max-deg>
+            <x-offset-max-m type="double">0.20</x-offset-max-m>
+            <x-offset-threshold-deg type="double">65</x-offset-threshold-deg>
+          </right>
+        </limits>
+      </config>
+    </view>
+    <view n="105">
+      <name>Copilot</name>
+      <type>lookfrom</type>
+      <internal type="bool">true</internal>
+      <config>
+        <from-model type="bool">true</from-model>
+        <ground-level-nearplane-m type="double">0.5</ground-level-nearplane-m>
+        <x-offset-m type="double">.40</x-offset-m>
+        <y-offset-m type="double">.25</y-offset-m>
+        <z-offset-m type="double">-1.53</z-offset-m>
+        <pitch-offset-deg>-5</pitch-offset-deg>
+        <default-field-of-view-deg type="double">78.7</default-field-of-view-deg>
+        <limits>
+          <enabled type="bool">true</enabled>
+          <left>
+            <heading-max-deg type="double">140</heading-max-deg>
+            <x-offset-max-m type="double">0.10</x-offset-max-m>
+            <x-offset-threshold-deg type="double">45</x-offset-threshold-deg>
+          </left>
+          <right>
+            <heading-max-deg type="double">160</heading-max-deg>
+            <x-offset-max-m type="double">0.20</x-offset-max-m>
+            <x-offset-threshold-deg type="double">65</x-offset-threshold-deg>
+          </right>
+        </limits>
+      </config>
+    </view>
+    <view n="106">
+      <name>Passenger</name>
+      <type>lookfrom</type>
+      <internal type="bool">true</internal>
+      <config>
+        <from-model type="bool">true</from-model>
+        <ground-level-nearplane-m type="double">0.5</ground-level-nearplane-m>
+        <x-offset-m type="double">.16</x-offset-m>
+        <y-offset-m type="double">.30</y-offset-m>
+        <z-offset-m type="double">-0.5</z-offset-m>
+        <pitch-offset-deg>-7</pitch-offset-deg>
+        <heading-offset-deg type="double">10</heading-offset-deg>
+        <default-field-of-view-deg type="double">70.9</default-field-of-view-deg>
+        <limits>
+          <enabled type="bool">true</enabled>
+          <left>
+            <heading-max-deg type="double">100</heading-max-deg>
+            <x-offset-max-m type="double">0.10</x-offset-max-m>
+            <x-offset-threshold-deg type="double">45</x-offset-threshold-deg>
+          </left>
+          <right>
+            <heading-max-deg type="double">160</heading-max-deg>
+            <x-offset-max-m type="double">0.20</x-offset-max-m>
+            <x-offset-threshold-deg type="double">65</x-offset-threshold-deg>
+          </right>
+        </limits>
+      </config>
+    </view>
+
+  </sim>
+
+  <instrumentation>
+    <my_aircraft>
+      <map>
+        <controls>
+          <serviceable type="bool">1</serviceable>
+          <zoom type="int">13</zoom>
+        </controls>
+      </map>
+    </my_aircraft>
+  </instrumentation>
+
+
+  <!--
+================================================================================
+                                                                OTHER PROPERTIES
+================================================================================
+  -->
+  <engines>
+    <engine>
+      <rpm type="double">1000</rpm>
+      <magnetos type="int">3</magnetos>
+      <mixture type="double">0.5</mixture>
+      <running type="bool">true</running>
+    </engine>
+  </engines>
+
+  <input>
+    <keyboard>
+      <key n="115">
+        <name>s</name>
+        <desc>Toggle Starter Switch</desc>
+        <binding>
+          <command>property-assign</command>
+          <property>/controls/engines/engine/starter</property>
+          <value>1</value>
+        </binding>
+        <mod-up>
+          <binding>
+            <command>property-assign</command>
+            <property>/controls/engines/engine/starter</property>
+            <value>0</value>
+          </binding>
+        </mod-up>
+      </key>
+    </keyboard>
+  </input>
+
+  <controls>
+    <engines>
+      <engine n="0">
+        <magnetos type="int">3</magnetos>
+        <master-bat type="bool">true</master-bat>
+        <master-alt type="bool">true</master-alt>
+      </engine>
+    </engines>
+  </controls>
+
+  <!--
+================================================================================
+                                                                           NASAL
+================================================================================
+  -->
+
+  <nasal>
+    <map>
+      <file type="string">Aircraft/panthera/include/map.nas</file>
+    </map>
+    <ai>
+      <file type="string">Aircraft/panthera/include/ai_canvas.nas</file>
+    </ai>
+    <pfd_light>
+      <file type="string">Aircraft/panthera/include/pfd_light_canvas.nas</file>
+    </pfd_light>
+  </nasal>
+
+
+</PropertyList>

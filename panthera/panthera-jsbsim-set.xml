@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+################################################################################
+#
+#             MAIN PROPERTIES DESCRIPTION AND INITIALISATION
+#
+################################################################################
+
+http://wiki.flightgear.org/Property_tree
+
+-->
+
+<PropertyList include="panthera-common.xml">
+  <!--
+================================================================================
+                                                                  SIM PROPERTIES
+================================================================================
+  -->
+  <sim>
+
+    <!-- ~~~~~~~~~~~~~~~~~~ metadata -->
+    <description type="string">Pipistrel Panthera JSBSIM</description>
+
+    <rating>
+      <FDM type="int">1</FDM>
+      <systems type="int">0</systems>
+      <cockpit type="int">1</cockpit>
+      <model type="int">1</model>
+    </rating>
+
+    <!-- ~~~~~~~~~~~~~~~~~~ flight model -->
+    <flight-model>jsb</flight-model>
+    <aero>fdm/WIP-jsbsim</aero>
+
+  </sim>
+
+</PropertyList>
