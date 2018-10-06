@@ -44,6 +44,7 @@ magcompass : x=-2.0852 y=0 z=0.27545
     <object-name>middle.lever.propeller</object-name>
     <object-name>middle.lever.throttle</object-name>
     <object-name>panneaux</object-name>
+    <object-name>right.screen</object-name>
     <object-name>tableau</object-name>
     <object-name>vis</object-name>
   </animation>

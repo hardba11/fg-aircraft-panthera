@@ -257,6 +257,9 @@ http://wiki.flightgear.org/Property_tree
     <pfd_light>
       <file type="string">Aircraft/panthera/include/pfd_light_canvas.nas</file>
     </pfd_light>
+    <sfd_light>
+      <file type="string">Aircraft/panthera/include/sfd_light_canvas.nas</file>
+    </sfd_light>
   </nasal>
 
 

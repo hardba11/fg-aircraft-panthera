@@ -112,7 +112,7 @@ var draw_background = func(container)
 var draw_static_marks = func(container)
 {
         center = container.createChild('path', 'center')
-            .rect((width / 2) - 7, (height / 2) - 7, 14, 14)
+            .rect((width / 2) - 8, (height / 2) - 8, 16, 16)
             .setColorFill(1, 1, 0);
         roll_arc = container.createChild('path', 'roll_arc');
         draw_arc(roll_arc,
