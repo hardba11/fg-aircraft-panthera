@@ -29,7 +29,7 @@
     <control-output control="FLAP0" prop="/surface-positions/flap-pos-norm" />
     <control-output control="FLAP1" side="left" prop="/surface-positions/left-aileron-pos-norm" />
     <control-output control="FLAP1" side="right" prop="/surface-positions/right-aileron-pos-norm" />
-    <control-speed control="FLAP0" transition-time="2" />
+    <control-speed control="FLAP0" transition-time="5" />
   </wing>
 
   <hstab x="-5.231" y="0" z="0.763" chord="1.263" length="3.120" sweep="3" taper="0.7">

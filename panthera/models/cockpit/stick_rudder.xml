@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PropertyList>
+
+  <path>stick_rudder.ac</path>
+
+  <animation>
+    <type>material</type>
+    <object-name>stick</object-name>
+    <object-name>rudder</object-name>
+  </animation>
+
+  <!-- ~~~~~~~~~~~~~~~~~~ stick -->
+  <animation>
+    <type>rotate</type>
+    <object-name>stick</object-name>
+    <property>/controls/flight/elevator</property>
+    <factor>8</factor>
+    <center>
+      <x-m type="float">-1.9778</x-m>
+      <y-m type="float">0</y-m>
+      <z-m type="float">-0.618162</z-m>
+    </center>
+    <axis>
+      <x>0</x>
+      <y>-1</y>
+      <z>0</z>
+    </axis>
+  </animation>
+  <animation>
+    <type>rotate</type>
+    <object-name>stick</object-name>
+    <property>/controls/flight/aileron</property>
+    <factor>8</factor>
+    <center>
+      <x-m type="float">-1.9778</x-m>
+      <y-m type="float">0</y-m>
+      <z-m type="float">-0.618162</z-m>
+    </center>
+    <axis>
+      <x>-1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+  </animation>
+
+  <!-- ~~~~~~~~~~~~~~~~~~ rudder -->
+  <animation>
+    <type>translate</type>
+    <object-name>rudder_L</object-name>
+    <property>/controls/flight/rudder</property>
+    <factor>.015</factor>
+    <axis>
+      <x>-1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+  </animation>
+  <animation>
+    <type>translate</type>
+    <object-name>rudder_R</object-name>
+    <property>/controls/flight/rudder</property>
+    <factor>.015</factor>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+  </animation>
+
+</PropertyList>
+

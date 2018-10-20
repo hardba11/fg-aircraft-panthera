@@ -60,6 +60,17 @@ http://wiki.flightgear.org/Property_tree
 
     <status type="string">development</status>
     <tags>
+      <tag>bizjet</tag>
+      <tag>2010s</tag>
+      <tag>glass-cockpit</tag>
+      <tag>ifr</tag>
+      <tag>retractable-gear</tag>
+      <tag>t-tail</tag>
+      <tag>propeller</tag>
+      <tag>piston</tag>
+      <tag>single-engine</tag>
+      <tag>variable-pitch</tag>
+      <!--tag>rembrandt</tag-->
     </tags>
 
     <!-- ~~~~~~~~~~~~~~~~~~ model -->
@@ -106,9 +117,9 @@ http://wiki.flightgear.org/Property_tree
       <config>
         <from-model type="bool">true</from-model>
         <ground-level-nearplane-m type="double">0.5</ground-level-nearplane-m>
-        <x-offset-m type="double">-.21</x-offset-m>
-        <y-offset-m type="double">.28</y-offset-m>
-        <z-offset-m type="double">-1.53</z-offset-m>
+        <x-offset-m type="double">-.37</x-offset-m>
+        <y-offset-m type="double">.31</y-offset-m>
+        <z-offset-m type="double">-1.55</z-offset-m>
         <pitch-offset-deg>-5</pitch-offset-deg>
         <default-field-of-view-deg type="double">78.7</default-field-of-view-deg>
         <limits>
@@ -133,7 +144,7 @@ http://wiki.flightgear.org/Property_tree
       <config>
         <from-model type="bool">true</from-model>
         <ground-level-nearplane-m type="double">0.5</ground-level-nearplane-m>
-        <x-offset-m type="double">.40</x-offset-m>
+        <x-offset-m type="double">.20</x-offset-m>
         <y-offset-m type="double">.25</y-offset-m>
         <z-offset-m type="double">-1.53</z-offset-m>
         <pitch-offset-deg>-5</pitch-offset-deg>
@@ -212,21 +223,29 @@ http://wiki.flightgear.org/Property_tree
 
   <input>
     <keyboard>
-      <key n="115">
-        <name>s</name>
-        <desc>Toggle Starter Switch</desc>
-        <binding>
-          <command>property-assign</command>
-          <property>/controls/engines/engine/starter</property>
+      <key n="91">
+        <name>]</name>
+        <desc>decrease flaps</desc>
+        <binding n="0">
+          <command>property-cycle</command>
+          <property>controls/flight/flaps</property>
           <value>1</value>
+          <value>.33</value>
+          <value>0</value>
+          <wrap>false</wrap>
         </binding>
-        <mod-up>
-          <binding>
-            <command>property-assign</command>
-            <property>/controls/engines/engine/starter</property>
-            <value>0</value>
-          </binding>
-        </mod-up>
+      </key>
+      <key n="93">
+        <name>]</name>
+        <desc>increase flaps</desc>
+        <binding n="0">
+          <command>property-cycle</command>
+          <property>controls/flight/flaps</property>
+          <value>0</value>
+          <value>.33</value>
+          <value>1</value>
+          <wrap>false</wrap>
+        </binding>
       </key>
     </keyboard>
   </input>
@@ -239,7 +258,37 @@ http://wiki.flightgear.org/Property_tree
         <master-alt type="bool">true</master-alt>
       </engine>
     </engines>
+    <switches>
+      <master-avionics type="bool">true</master-avionics>
+      <pitot-heat type="bool">false</pitot-heat>
+      <autopilot type="bool">false</autopilot>
+      <a_and_c type="bool">false</a_and_c>
+      <aux type="bool">false</aux>
+    </switches>
+    <lighting>
+      <instrument-norm type="float">0</instrument-norm>
+    </lighting>
   </controls>
+
+  <!-- for tests and settings
+  <_debug>
+    <float1 type="float">0</float1>
+    <float2 type="float">0</float2>
+    <float3 type="float">0</float3>
+    <float4 type="float">0</float4>
+    <float5 type="float">0</float5>
+    <float6 type="float">0</float6>
+    <bool1 type="bool">0</bool1>
+    <bool2 type="bool">0</bool2>
+    <bool3 type="bool">0</bool3>
+    <bool4 type="bool">0</bool4>
+    <bool5 type="bool">0</bool5>
+    <bool6 type="bool">0</bool6>
+    <bool7 type="bool">0</bool7>
+    <bool8 type="bool">0</bool8>
+    <bool9 type="bool">0</bool9>
+  </_debug>
+ -->
 
   <!--
 ================================================================================
@@ -252,14 +301,14 @@ http://wiki.flightgear.org/Property_tree
       <file type="string">Aircraft/panthera/include/map.nas</file>
     </map>
     <ai>
-      <file type="string">Aircraft/panthera/include/ai_canvas.nas</file>
+      <file type="string">Aircraft/panthera/include/ai.nas</file>
     </ai>
-    <pfd_light>
-      <file type="string">Aircraft/panthera/include/pfd_light_canvas.nas</file>
-    </pfd_light>
-    <sfd_light>
-      <file type="string">Aircraft/panthera/include/sfd_light_canvas.nas</file>
-    </sfd_light>
+    <basic_pfd>
+      <file type="string">Aircraft/panthera/include/basic_pfd.nas</file>
+    </basic_pfd>
+    <basic_sfd>
+      <file type="string">Aircraft/panthera/include/basic_sfd.nas</file>
+    </basic_sfd>
   </nasal>
 
 
