@@ -251,5 +251,7 @@ var init = setlistener("/sim/signals/fdm-initialized", func() {
     removelistener(init); # only call once
     var my_map = MAP.new({'node': 'center.top_screen'});
     my_map.update();
+    var my_map_little = MAP.new({'node': 'center.bottom_screen'});
+    my_map_little.update();
 });
 

@@ -51,7 +51,7 @@
     <property>/controls/flight/rudder</property>
     <factor>.015</factor>
     <axis>
-      <x>-1</x>
+      <x>1</x>
       <y>0</y>
       <z>0</z>
     </axis>
@@ -62,7 +62,7 @@
     <property>/controls/flight/rudder</property>
     <factor>.015</factor>
     <axis>
-      <x>1</x>
+      <x>-1</x>
       <y>0</y>
       <z>0</z>
     </axis>
