@@ -8,6 +8,31 @@
 
 http://wiki.flightgear.org/Property_tree
 
+
+https://en.wikipedia.org/wiki/Pipistrel_Panthera
+
+General characteristics
+=======================
+- Crew: one
+- Capacity: 3 passengers
+- Length: 8.07 m
+- Wingspan: 10.86 m
+- Height: 2.19 m
+- Wing area: 11.2 m2
+- Empty weight: 815 kg
+- Max takeoff weight: 1315 kg
+- Fuel capacity: 210 litres (46 imp gal; 55 US gal)
+- Powerplant: 1 Lycoming IO-540 six cylinder piston aircraft engine. 
+
+Performance
+===========
+- Cruise speed: 367 km/h (198 kt) 8000ft 75% power
+- Stall speed: 111 km/h (60 kt) flaps extended
+- Never exceed speed: 407 km/h (220 kt)
+- Range: 1852 km (1,000 nm)
+- Service ceiling: 25000 ft (7,600 m)
+- Rate of climb: 1550 ft/min (7.9 m/s)
+
 -->
 
 <PropertyList>
@@ -19,12 +44,12 @@ http://wiki.flightgear.org/Property_tree
   <sim>
 
     <!-- ~~~~~~~~~~~~~~~~~~ metadata -->
-    <long-description type="string">FIXME</long-description>
+    <long-description type="string">The Pipistrel Panthera is a lightweight, all-composite, highly efficient four-seat aircraft under development by Pipistrel of Slovenia</long-description>
     <aircraft-version type="string">20180806-01</aircraft-version>
     <minimum-fg-version type="string">2018.1.1</minimum-fg-version>
 
     <!-- old / simple style -->
-    <author>urbu</author>
+    <author>urbu, hardball</author>
 
     <!-- new in FlightGear 2018.3.0 style -->
     <authors>

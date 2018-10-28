@@ -260,9 +260,8 @@
       <condition>
         <and>
           <or>
-            <property>controls/engines/engine/master-bat</property>
+            <property>controls/engines/engine[0]/master-bat</property>
             <property>controls/engines/engine[0]/master-alt</property>
-            <property>controls/engines/engine[1]/master-alt</property>
           </or>
           <less-than>
             <property>velocities/airspeed-kt</property>
@@ -314,10 +313,6 @@
                 <property>controls/engines/engine[0]/throttle</property>
                 <value>0.2</value>
               </less-than>
-              <less-than>
-                <property>controls/engines/engine[1]/throttle</property>
-                <value>0.2</value>
-              </less-than>
             </or>
             <or>
               <less-than>
@@ -339,6 +334,8 @@
       <reference-dist>2.0</reference-dist>
       <max-dist>5.0</max-dist>
     </gear-warn>
+
+<!-- GEARS -->
 
     <gear>
       <name>gear</name>
@@ -367,6 +364,8 @@
       <max-dist>20.0</max-dist>
     </gear>
 
+<!-- ENVIRONMENT -->
+
     <wind>
       <name>wind</name>
       <mode>looped</mode>
@@ -392,14 +391,13 @@
       </pitch>
     </wind>
 
-<!-- SWITCHES -->
 
-    <!-- BATTERY -->
+<!-- BATTERY SWITCH -->
     <click>
       <name>Battery ON (switch)</name>
       <path>Aircraft/panthera/sounds/ButtonPower.wav</path>
       <condition>
-        <property>controls/engines/engine/master-bat</property>
+        <property>controls/engines/engine[0]/master-bat</property>
       </condition>
       <volume>
         <factor>0.7</factor>
@@ -410,7 +408,7 @@
       <name>Battery ON (noise)</name>
       <path>Aircraft/panthera/sounds/BatteryStart.wav</path>
       <condition>
-        <property>controls/engines/engine/master-bat</property>
+        <property>controls/engines/engine[0]/master-bat</property>
       </condition>
       <volume>
         <factor>0.2</factor>
@@ -422,7 +420,7 @@
       <path>Aircraft/panthera/sounds/ButtonPower.wav</path>
       <condition>
         <not>
-          <property>controls/engines/engine/master-bat</property>
+          <property>controls/engines/engine[0]/master-bat</property>
         </not>
       </condition>
       <volume>
@@ -430,7 +428,7 @@
       </volume>
     </click>
 
-    <!-- ALTERNATORS -->
+<!-- ALTERNATOR SWITCH -->
     <click>
       <name>Front Alt ON</name>
       <path>Aircraft/panthera/sounds/ButtonPower.wav</path>
@@ -455,31 +453,7 @@
       </volume>
     </click>
 
-    <click>
-      <name>Rear Alt ON</name>
-      <path>Aircraft/panthera/sounds/ButtonPower.wav</path>
-      <condition>
-        <property>controls/engines/engine[1]/master-alt</property>
-      </condition>
-      <volume>
-        <factor>0.7</factor>
-      </volume>
-    </click>
-
-    <click>
-      <name>Rear Alt OFF</name>
-      <path>Aircraft/panthera/sounds/ButtonPower.wav</path>
-      <condition>
-        <not>
-          <property>controls/engines/engine[1]/master-alt</property>
-        </not>
-      </condition>
-      <volume>
-        <factor>0.7</factor>
-      </volume>
-    </click>
-
-    <!-- FUEL PUMPS -->
+<!-- FUEL PUMP SWITCH -->
     <click>
       <name>Front Fuel Pump LO ON</name>
       <path>Aircraft/panthera/sounds/ButtonPower.wav</path>
@@ -504,32 +478,7 @@
       </volume>
     </click>
 
-    <click>
-      <name>Rear Fuel Pump LO ON</name>
-      <path>Aircraft/panthera/sounds/ButtonPower.wav</path>
-      <condition>
-        <property>/controls/engines/engine[1]/fuel-pump</property>
-      </condition>
-      <volume>
-        <factor>0.7</factor>
-      </volume>
-    </click>
-
-    <click>
-      <name>Rear Alt OFF</name>
-      <path>Aircraft/panthera/sounds/ButtonPower.wav</path>
-      <condition>
-        <not>
-          <property>/controls/engines/engine[1]/fuel-pump</property>
-        </not>
-      </condition>
-      <volume>
-        <factor>0.7</factor>
-      </volume>
-    </click>
-
-<!-- MASTER AVIONICS -->
-
+<!-- MASTER AVIONICS SWITCH -->
     <click>
       <name>Avionics ON</name>
       <path>Aircraft/panthera/sounds/ButtonPower.wav</path>
@@ -554,8 +503,7 @@
       </volume>
     </click>
 
-<!-- PITOT HEAT -->
-
+<!-- PITOT HEAT SWITCH -->
     <click>
       <name>Pitot Heat ON</name>
       <path>Aircraft/panthera/sounds/ButtonLights.wav</path>
@@ -580,8 +528,7 @@
       </volume>
     </click>
 
-<!-- PITOT HEAT -->
-
+<!-- WINDOW HEAT SWITCH -->
     <click>
       <name>Window Heat ON</name>
       <path>Aircraft/panthera/sounds/ButtonLights.wav</path>
@@ -606,8 +553,7 @@
       </volume>
     </click>
 
-<!-- NAV LIGHTS -->
-
+<!-- NAV LIGHTS SWITCH -->
     <click>
       <name>Nav Lights ON</name>
       <path>Aircraft/panthera/sounds/ButtonLights.wav</path>
@@ -632,8 +578,7 @@
       </volume>
     </click>
 
-<!-- STROBE LIGHTS -->
-
+<!-- STROBE LIGHTS SWITCH -->
     <click>
       <name>Strobe Lights ON</name>
       <path>Aircraft/panthera/sounds/ButtonLights.wav</path>
@@ -658,8 +603,7 @@
       </volume>
     </click>
 
-<!-- BEACON LIGHT -->
-
+<!-- BEACON LIGHT SWITCH -->
     <click>
       <name>Beacon Light ON</name>
       <path>Aircraft/panthera/sounds/ButtonLights.wav</path>
@@ -684,10 +628,9 @@
       </volume>
     </click>
 
-<!-- TAXI LIGHT -->
-
+<!-- TAXI LIGHT SWITCH -->
     <click>
-      <name>Beacon Light ON</name>
+      <name>Taxi Light ON</name>
       <path>Aircraft/panthera/sounds/ButtonLights.wav</path>
       <condition>
         <property>controls/lighting/taxi-light</property>
@@ -698,7 +641,7 @@
     </click>
 
     <click>
-      <name>Beacon Light OFF</name>
+      <name>Taxi Light OFF</name>
       <path>Aircraft/panthera/sounds/ButtonLights.wav</path>
       <condition>
         <not>
@@ -710,10 +653,9 @@
       </volume>
     </click>
 
-<!-- LANDING LIGHTS -->
-
+<!-- LANDING LIGHTS SWITCH -->
     <click>
-      <name>Beacon Light ON</name>
+      <name>Landing Light ON</name>
       <path>Aircraft/panthera/sounds/ButtonLights.wav</path>
       <condition>
         <property>controls/lighting/landing-lights</property>
@@ -724,7 +666,7 @@
     </click>
 
     <click>
-      <name>Beacon Light OFF</name>
+      <name>Landing Light OFF</name>
       <path>Aircraft/panthera/sounds/ButtonLights.wav</path>
       <condition>
         <not>
@@ -736,9 +678,7 @@
       </volume>
     </click>
 
-<!-- AVIONICS BUTTONS -->
-
-    <!-- ADF -->
+<!-- AVIONICS SWITCHES -->
     <click>
       <name>ADF Btn ON</name>
       <path>Aircraft/panthera/sounds/ButtonRadio.wav</path>
@@ -819,8 +759,6 @@
         <factor>0.6</factor>
       </volume>
     </click>
-
-<!-- AUDIO PANEL -->
 
     <click>
       <name>TEST Btn</name>

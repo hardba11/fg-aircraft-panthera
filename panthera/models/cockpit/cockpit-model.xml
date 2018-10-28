@@ -202,6 +202,11 @@ ________________________________________________________________________________
     <object-name>panneaux</object-name>
     <object-name>tableau</object-name>
     <object-name>vis</object-name>
+    <object-name>l_door_open.indicator</object-name>
+    <object-name>l_fuel_low.indicator</object-name>
+    <object-name>p_door_open.indicator</object-name>
+    <object-name>r_door_open.indicator</object-name>
+    <object-name>r_fuel_low.indicator</object-name>
     <condition>
       <greater-than>
         <property>/controls/lighting/panel-norm</property>
@@ -209,7 +214,7 @@ ________________________________________________________________________________
       </greater-than>
     </condition>
     <emission>
-      <factor>.06</factor>
+      <factor>.1</factor>
       <red>1</red>
       <green>0</green>
       <blue>0</blue>
@@ -258,7 +263,7 @@ ________________________________________________________________________________
       </equals>
     </condition>
     <emission>
-      <factor>.06</factor>
+      <factor>.1</factor>
       <red>1</red>
       <green>0</green>
       <blue>0</blue>
@@ -287,7 +292,7 @@ ________________________________________________________________________________
       </greater-than>
     </condition>
     <emission>
-      <factor>.5</factor>
+      <factor>.4</factor>
       <red>1</red>
       <green>0</green>
       <blue>0</blue>
@@ -317,6 +322,23 @@ ________________________________________________________________________________
       <blue>.2</blue>
     </emission>
   </animation>
+  <animation>
+    <type>material</type>
+    <object-name>fuel_pump.indicator</object-name>
+    <condition>
+      <not><property>/controls/engines/engine[0]/fuel-pump</property></not>
+      <greater-than>
+        <property>/controls/lighting/panel-norm</property>
+        <value>0</value>
+      </greater-than>
+    </condition>
+    <emission>
+      <factor>.1</factor>
+      <red>1</red>
+      <green>0</green>
+      <blue>0</blue>
+    </emission>
+  </animation>
 
   <!--
 ________________________________________________________________________________
@@ -333,6 +355,23 @@ ________________________________________________________________________________
       <red>1</red>
       <green>.8</green>
       <blue>.2</blue>
+    </emission>
+  </animation>
+  <animation>
+    <type>material</type>
+    <object-name>pitot_heat.indicator</object-name>
+    <condition>
+      <not><property>/controls/switches/pitot-heat</property></not>
+      <greater-than>
+        <property>/controls/lighting/panel-norm</property>
+        <value>0</value>
+      </greater-than>
+    </condition>
+    <emission>
+      <factor>.1</factor>
+      <red>1</red>
+      <green>0</green>
+      <blue>0</blue>
     </emission>
   </animation>
 
@@ -353,8 +392,34 @@ ________________________________________________________________________________
     <object-name>center.bottom_screen</object-name>
     <object-name>left.screen</object-name>
     <object-name>right.screen</object-name>
+    <condition>
+      <equals>
+        <property>/controls/lighting/instrument-norm</property>
+        <value>0</value>
+      </equals>
+    </condition>
     <emission>
       <factor>.6</factor>
+      <red>1</red>
+      <green>1</green>
+      <blue>1</blue>
+    </emission>
+  </animation>
+  <animation>
+    <type>material</type>
+    <object-name>instrument.ai.screen</object-name>
+    <object-name>center.top_screen</object-name>
+    <object-name>center.bottom_screen</object-name>
+    <object-name>left.screen</object-name>
+    <object-name>right.screen</object-name>
+    <condition>
+      <equals>
+        <property>/controls/lighting/instrument-norm</property>
+        <value>1</value>
+      </equals>
+    </condition>
+    <emission>
+      <factor>.3</factor>
       <red>1</red>
       <green>1</green>
       <blue>1</blue>
@@ -1597,7 +1662,6 @@ ________________________________________________________________________________
         <value>1</value>
         <value>2</value>
         <value>3</value>
-        <value>4</value>
         <wrap>false</wrap>
       </binding>
     </action>
@@ -1607,7 +1671,6 @@ ________________________________________________________________________________
       <binding>
         <command>property-cycle</command>
         <property>/controls/engines/engine[0]/magnetos</property>
-        <value>4</value>
         <value>3</value>
         <value>2</value>
         <value>1</value>
