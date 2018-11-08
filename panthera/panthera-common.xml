@@ -292,10 +292,12 @@ Performance
     </switches>
     <lighting>
       <instrument-norm type="float">0</instrument-norm>
+      <left-light-norm type="float">0</left-light-norm>
+      <right-light-norm type="float">0</right-light-norm>
     </lighting>
   </controls>
 
-  <!-- for tests and settings
+  <!-- for tests and settings -->
   <_debug>
     <float1 type="float">0</float1>
     <float2 type="float">0</float2>
@@ -313,7 +315,7 @@ Performance
     <bool8 type="bool">0</bool8>
     <bool9 type="bool">0</bool9>
   </_debug>
- -->
+
 
   <!--
 ================================================================================

@@ -63,6 +63,45 @@
     <object-name>vis</object-name>
   </animation>
 
+  <effect>
+    <inherits-from>Aircraft/panthera/models/effects/cabine_light_effect</inherits-from>
+    <object-name>cabine</object-name>
+  </effect>
+  <effect>
+    <inherits-from>Aircraft/panthera/models/effects/commandes_light_effect</inherits-from>
+    <object-name>bottom.lever.flaps</object-name>
+    <object-name>bottom.lever.gear</object-name>
+    <object-name>bottom.switch.a_and_c</object-name>
+    <object-name>bottom.switch.auto_pilot</object-name>
+    <object-name>bottom.switch.aux</object-name>
+    <object-name>bottom.switch.avionic</object-name>
+    <object-name>bottom.switch.fuel_pump</object-name>
+    <object-name>bottom.switch.master</object-name>
+    <object-name>bottom.switch.pitot_heat</object-name>
+    <object-name>commandes</object-name>
+    <object-name>elt</object-name>
+    <object-name>left.cutoff</object-name>
+    <object-name>left.switch</object-name>
+    <object-name>magneto</object-name>
+    <object-name>middle.fuel_selector</object-name>
+    <object-name>middle.knob.trim</object-name>
+    <object-name>middle.lever</object-name>
+    <object-name>middle.lever.mix</object-name>
+    <object-name>middle.lever.propeller</object-name>
+    <object-name>middle.lever.throttle</object-name>
+  </effect>
+  <effect>
+    <inherits-from>Aircraft/panthera/models/effects/panneaux_light_effect</inherits-from>
+    <object-name>panneaux</object-name>
+    <object-name>panneaux_label</object-name>
+  </effect>
+  <effect>
+    <inherits-from>Aircraft/panthera/models/effects/tableau_light_effect</inherits-from>
+    <object-name>tableau</object-name>
+  </effect>
+
+
+
   <!--
 ________________________________________________________________________________
                                                                         CALLSIGN
@@ -631,6 +670,84 @@ ________________________________________________________________________________
       </binding>
     </action>
   </animation>
+
+
+  <!--
+________________________________________________________________________________
+                                                                  LEFT MAP LIGHT
+  -->
+  <!-- ~~~~~~~~~~~~~~~~~~ animations -->
+  <animation>
+    <type>material</type>
+    <object-name>up.switch.map_left_light</object-name>
+    <condition>
+      <greater-than>
+        <property>/controls/lighting/left-light-norm</property>
+        <value>0</value>
+      </greater-than>
+    </condition>
+    <emission>
+      <factor>1</factor>
+      <red>1</red>
+      <green>.8</green>
+      <blue>.2</blue>
+    </emission>
+  </animation>
+
+  <!-- ~~~~~~~~~~~~~~~~~~ controls -->
+  <animation>
+    <type>pick</type>
+    <object-name>up.switch.map_left_light</object-name>
+    <action>
+      <button>0</button>
+      <repeatable>false</repeatable>
+      <binding>
+        <command>property-cycle</command>
+        <property>/controls/lighting/left-light-norm</property>
+        <value>0</value>
+        <value>1</value>
+      </binding>
+    </action>
+  </animation>
+
+  <!--
+________________________________________________________________________________
+                                                                 RIGHT MAP LIGHT
+  -->
+  <!-- ~~~~~~~~~~~~~~~~~~ animations -->
+  <animation>
+    <type>material</type>
+    <object-name>up.switch.map_right_light</object-name>
+    <condition>
+      <greater-than>
+        <property>/controls/lighting/right-light-norm</property>
+        <value>0</value>
+      </greater-than>
+    </condition>
+    <emission>
+      <factor>1</factor>
+      <red>1</red>
+      <green>.8</green>
+      <blue>.2</blue>
+    </emission>
+  </animation>
+
+  <!-- ~~~~~~~~~~~~~~~~~~ controls -->
+  <animation>
+    <type>pick</type>
+    <object-name>up.switch.map_right_light</object-name>
+    <action>
+      <button>0</button>
+      <repeatable>false</repeatable>
+      <binding>
+        <command>property-cycle</command>
+        <property>/controls/lighting/right-light-norm</property>
+        <value>0</value>
+        <value>1</value>
+      </binding>
+    </action>
+  </animation>
+
 
   <!--
 ________________________________________________________________________________
