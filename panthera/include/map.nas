@@ -66,15 +66,47 @@ var MAP = {
             .setTranslation(200, 70)
             .setAlignment('left-bottom')
             .setFont('LiberationFonts/LiberationSansNarrow-Bold.ttf')
-            .setFontSize(46)
+            .setFontSize(40)
             .setColor(.8, 0, 0, 1)
             .setText('txt_zoom')
+            .set('z-index', 1);
+        m.txt_gps_wpt = m.root.createChild('text', 'txt_gps_wpt')
+            .setTranslation(700, 70)
+            .setAlignment('left-bottom')
+            .setFont('LiberationFonts/LiberationSansNarrow-Bold.ttf')
+            .setFontSize(46)
+            .setColor(0, 0, 0, 1)
+            .setText('txt_gps_wpt')
+            .set('z-index', 1);
+        m.txt_gps_bearing = m.root.createChild('text', 'txt_gps_bearing')
+            .setTranslation(700, 130)
+            .setAlignment('left-bottom')
+            .setFont('LiberationFonts/LiberationSansNarrow-Bold.ttf')
+            .setFontSize(46)
+            .setColor(0, 0, 0, 1)
+            .setText('txt_gps_bearing')
+            .set('z-index', 1);
+        m.txt_gps_distance = m.root.createChild('text', 'txt_gps_distance')
+            .setTranslation(700, 190)
+            .setAlignment('left-bottom')
+            .setFont('LiberationFonts/LiberationSansNarrow-Bold.ttf')
+            .setFontSize(46)
+            .setColor(0, 0, 0, 1)
+            .setText('txt_gps_distance')
+            .set('z-index', 1);
+        m.txt_gps_eta = m.root.createChild('text', 'txt_gps_eta')
+            .setTranslation(700, 250)
+            .setAlignment('left-bottom')
+            .setFont('LiberationFonts/LiberationSansNarrow-Bold.ttf')
+            .setFontSize(46)
+            .setColor(0, 0, 0, 1)
+            .setText('txt_gps_eta')
             .set('z-index', 1);
         m.txt_coords_lat = m.root.createChild('text', 'txt_coords_lat')
             .setTranslation(180, 850)
             .setAlignment('left-bottom')
             .setFont('LiberationFonts/LiberationSansNarrow-Bold.ttf')
-            .setFontSize(46)
+            .setFontSize(40)
             .setColor(.8, 0, 0, 1)
             .setText('txt_coords_lat')
             .set('z-index', 1);
@@ -82,7 +114,7 @@ var MAP = {
             .setTranslation(180, 900)
             .setAlignment('left-bottom')
             .setFont('LiberationFonts/LiberationSansNarrow-Bold.ttf')
-            .setFontSize(46)
+            .setFontSize(40)
             .setColor(.8, 0, 0, 1)
             .setText('txt_coords_lng')
             .set('z-index', 1);
@@ -98,7 +130,7 @@ var MAP = {
             .setTranslation(600, 900)
             .setAlignment('left-bottom')
             .setFont('LiberationFonts/LiberationSansNarrow-Bold.ttf')
-            .setFontSize(46)
+            .setFontSize(40)
             .setColor(.8, 0, 0, 1)
             .setText('txt_alt')
             .set('z-index', 1);
@@ -151,6 +183,23 @@ var MAP = {
             me.txt_alt.setText(sprintf('alt agl : %d m', getprop("/position/altitude-agl-m") or 0));
             me.txt_hdg.setText(sprintf('heading true : %d - heading mag : %d', getprop("/orientation/heading-deg") or 0, getprop("/orientation/heading-magnetic-deg") or 0));
             me.txt_zoom.setText(sprintf('zoom : %s', me.zoom));
+
+            var gps_wpt  = getprop("/instrumentation/gps/wp/wp[1]/ID") or '---';
+            var gps_brg  = '---';
+            var gps_dist = '---';
+            var gps_eta  = '---';
+            var gps_mode = getprop("/instrumentation/gps/mode") or '';
+            if(((gps_mode == 'dto') or (gps_mode == 'obs')) and (gps_wpt != '---'))
+            {
+                gps_wpt  = getprop("/instrumentation/gps/wp/wp[1]/ID") or '---';
+                gps_brg  = sprintf('%d', getprop("/instrumentation/gps/wp/wp[1]/bearing-true-deg") or 0);
+                gps_dist = sprintf('%.2f', getprop("/instrumentation/gps/wp/wp[1]/distance-nm") or 0);
+                gps_eta  = getprop("/instrumentation/gps/wp/wp[1]/TTW") or '---';
+            }
+            me.txt_gps_wpt.setText(sprintf('WPT : %s', gps_wpt));
+            me.txt_gps_bearing.setText(sprintf('BRG : %s', gps_brg));
+            me.txt_gps_distance.setText(sprintf('DIST : %s', gps_dist));
+            me.txt_gps_eta.setText(sprintf('ETA : %s', gps_eta));
 
             # getting position
             me.myCoord = geo.aircraft_position();

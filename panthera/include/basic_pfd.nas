@@ -35,6 +35,17 @@ var draw_arc = func(element, center_x, center_y, radius, start_angle, end_angle,
         .arcSmallCCW(radius, radius, 0, to_x, to_y);
 }
 
+
+var draw_label = func(element_bg, element_lbl, center_x, center_y, font_size, bg_width)
+{
+    element_bg.rect(center_x - (bg_width / 2), center_y, bg_width, font_size + 6);
+    element_lbl.setTranslation(center_x, center_y + 3 + (font_size / 2))
+        .setAlignment('center-center')
+        .setFont('LiberationFonts/LiberationSansNarrow-Bold.ttf')
+        .setFontSize(font_size);
+}
+
+
 #===============================================================================
 #                                                      FUNCTIONS TO DRAW OBJECTS
 
@@ -344,7 +355,7 @@ var BASIC_PFD = {
             .rect((width / 2) - 5, (height / 2) - 5, 10, 10)
             .setColorFill(1, 1, 0);
 
-
+# speed
         m.speed_bg = m.my_container.createChild('path', 'speed_bg')
             .set('stroke', 'rgb(255, 255, 255)')
             .rect((7 * width / 20) - 95, (height / 2) - 15, 100, 30)
@@ -357,6 +368,7 @@ var BASIC_PFD = {
             .setColor(1, 1, 1, 1)
             .setText('SPEED');
 
+# alt
         m.alt_bg = m.my_container.createChild('path', 'alt_bg')
             .set('stroke', 'rgb(255, 255, 255)')
             .rect((13 * width / 20) + 5, (height / 2) - 15, 100, 30)
@@ -369,7 +381,7 @@ var BASIC_PFD = {
             .setColor(1, 1, 1, 1)
             .setText('ALT');
 
-# @TODO: descendre
+# heading
         m.hdg_bg = m.my_container.createChild('path', 'hdg_bg')
             .set('stroke', 'rgb(255, 255, 255)')
             .rect((width / 2) - 50, (2 * height / 7) - 15, 100, 30)
@@ -381,6 +393,104 @@ var BASIC_PFD = {
             .setFontSize(30)
             .setColor(1, 1, 1, 1)
             .setText('HDG');
+
+# heading bug label
+        m.hdgbug_bg = m.my_container.createChild('path', 'hdgbug_bg')
+            .setColorFill(0, 0, 0);
+        m.hdgbug = m.my_container.createChild('text', 'hdgbug')
+            .setColor(1, 0, 1, 1)
+            .setText('HDG');
+        draw_label(m.hdgbug_bg, m.hdgbug, (7 * width / 20),  (height / 2) + 50, 18, 100);
+
+# course label
+        m.crs_bg = m.my_container.createChild('path', 'crs_bg')
+            .setColorFill(0, 0, 0);
+        m.crs = m.my_container.createChild('text', 'crs')
+            .setColor(0, 1, 0, 1)
+            .setText('CRS');
+        draw_label(m.crs_bg, m.crs, (13 * width / 20),  (height / 2) + 50, 18, 100);
+
+# ap speed
+        m.ap_speed_bg = m.my_container.createChild('path', 'ap_speed_bg')
+            .setColorFill(0, 0, 0);
+        m.ap_speed = m.my_container.createChild('text', 'ap_speed')
+            .setColor(1, 0, 1, 1)
+            .setText('AP spd');
+        draw_label(m.ap_speed_bg, m.ap_speed, (6 * width / 20),  (3 * height / 7), 18, 80);
+
+# ap alt
+        m.ap_alt_bg = m.my_container.createChild('path', 'ap_alt_bg')
+            .setColorFill(0, 0, 0);
+        m.ap_alt = m.my_container.createChild('text', 'ap_alt')
+            .setColor(1, 0, 1, 1)
+            .setText('AP alt');
+        draw_label(m.ap_alt_bg, m.ap_alt, (14 * width / 20),  (3 * height / 7), 18, 80);
+
+# nav1 active
+        m.nav1_bg = m.my_container.createChild('path', 'nav1_bg')
+            .setColorFill(0, 0, 0);
+        m.nav1 = m.my_container.createChild('text', 'nav1')
+            .setColor(0, 1, 0, 1)
+            .setText('NAV1');
+        draw_label(m.nav1_bg, m.nav1, (3 * width / 20),  (2 * height / 7) - 10, 18, 100);
+
+# nav1 stdby
+        m.nav1s_bg = m.my_container.createChild('path', 'nav1s_bg')
+            .setColorFill(0, 0, 0);
+        m.nav1s = m.my_container.createChild('text', 'nav1s')
+            .setColor(1, 1, 0, 1)
+            .setText('NAV1');
+        draw_label(m.nav1s_bg, m.nav1s, (3 * width / 20) + 102,  (2 * height / 7) - 10, 18, 100);
+
+# nav2 active
+        m.nav2_bg = m.my_container.createChild('path', 'nav2_bg')
+            .setColorFill(0, 0, 0);
+        m.nav2 = m.my_container.createChild('text', 'nav2')
+            .setColor(0, 1, 0, 1)
+            .setText('NAV2');
+        draw_label(m.nav2_bg, m.nav2, (3 * width / 20),  (2 * height / 7) - 10 + 26, 18, 100);
+
+# nav2 stdby
+        m.nav2s_bg = m.my_container.createChild('path', 'nav2s_bg')
+            .setColorFill(0, 0, 0);
+        m.nav2s = m.my_container.createChild('text', 'nav2s')
+            .setColor(1, 1, 0, 1)
+            .setText('NAV2');
+        draw_label(m.nav2s_bg, m.nav2s, (3 * width / 20) + 102,  (2 * height / 7) - 10 + 26, 18, 100);
+
+# com1 active
+        m.com1_bg = m.my_container.createChild('path', 'com1_bg')
+            .setColorFill(0, 0, 0);
+        m.com1 = m.my_container.createChild('text', 'com1')
+            .setColor(0, 1, 0, 1)
+            .setText('COM1');
+        draw_label(m.com1_bg, m.com1, (15 * width / 20),  (2 * height / 7) - 10, 18, 100);
+
+# com1 stdby
+        m.com1s_bg = m.my_container.createChild('path', 'com1s_bg')
+            .setColorFill(0, 0, 0);
+        m.com1s = m.my_container.createChild('text', 'com1s')
+            .setColor(1, 1, 0, 1)
+            .setText('COM1');
+        draw_label(m.com1s_bg, m.com1s, (15 * width / 20) + 102,  (2 * height / 7) - 10, 18, 100);
+
+# com2 active
+        m.com2_bg = m.my_container.createChild('path', 'com2_bg')
+            .setColorFill(0, 0, 0);
+        m.com2 = m.my_container.createChild('text', 'com2')
+            .setColor(0, 1, 0, 1)
+            .setText('COM2');
+        draw_label(m.com2_bg, m.com2, (15 * width / 20),  (2 * height / 7) - 10 + 26, 18, 100);
+
+# com2 stdby
+        m.com2s_bg = m.my_container.createChild('path', 'com2s_bg')
+            .setColorFill(0, 0, 0);
+        m.com2s = m.my_container.createChild('text', 'com2s')
+            .setColor(1, 1, 0, 1)
+            .setText('COM2');
+        draw_label(m.com2s_bg, m.com2s, (15 * width / 20) + 102,  (2 * height / 7) - 10 + 26, 18, 100);
+
+
 
         draw_static_marks(m.my_container);
         draw_static_hsi(m.my_container);
@@ -397,6 +507,20 @@ var BASIC_PFD = {
         var speed          = getprop("/instrumentation/airspeed-indicator/true-speed-kt");
         var alt            = getprop("/instrumentation/altimeter/indicated-altitude-ft");
         var hdg            = getprop("/orientation/heading-magnetic-deg");
+        var hdgbug         = getprop("/autopilot/settings/heading-bug-deg") or 0;
+        var crs            = getprop("/instrumentation/nav[0]/radials/selected-deg") or 0;
+        var ap_alt         = getprop("/autopilot/settings/target-altitude-ft") or 0;
+        var ap_speed       = getprop("/autopilot/settings/target-speed-kt") or 0;
+
+        var nav1_active = getprop("/instrumentation/nav[0]/frequencies/selected-mhz-fmt") or '';
+        var nav1_stdby  = getprop("/instrumentation/nav[0]/frequencies/standby-mhz-fmt") or '';
+        var nav2_active = getprop("/instrumentation/nav[1]/frequencies/selected-mhz-fmt") or '';
+        var nav2_stdby  = getprop("/instrumentation/nav[1]/frequencies/standby-mhz-fmt") or '';
+
+        var com1_active = getprop("/instrumentation/comm[0]/frequencies/selected-mhz-fmt") or '';
+        var com1_stdby  = getprop("/instrumentation/comm[0]/frequencies/standby-mhz-fmt") or '';
+        var com2_active = getprop("/instrumentation/comm[1]/frequencies/selected-mhz-fmt") or '';
+        var com2_stdby  = getprop("/instrumentation/comm[1]/frequencies/standby-mhz-fmt") or '';
 
         # update AI
         me.t_vertical_container.setTranslation(0, pitch_deg * angle_to_pixel_factor);
@@ -408,7 +532,21 @@ var BASIC_PFD = {
         # update numeric values
         me.speed.setText(sprintf('%d', speed));
         me.alt.setText(sprintf('%d', alt));
-        me.hdg.setText(sprintf('%d', hdg));
+        me.hdg.setText(sprintf('%03d', hdg));
+        me.hdgbug.setText(sprintf('hdg %03d', hdgbug));
+        me.crs.setText(sprintf('crs %d', crs));
+        me.ap_speed.setText(sprintf('%d kt', ap_speed));
+        me.ap_alt.setText(sprintf('%d ft', ap_alt));
+
+        me.nav1.setText(sprintf('NAV1 %s', nav1_active));
+        me.nav2.setText(sprintf('NAV2 %s', nav2_active));
+        me.nav1s.setText(sprintf('stdby %s', nav1_stdby));
+        me.nav2s.setText(sprintf('stdby %s', nav2_stdby));
+
+        me.com1.setText(sprintf('COM1 %s', com1_active));
+        me.com2.setText(sprintf('COM2 %s', com2_active));
+        me.com1s.setText(sprintf('stdby %s', com1_stdby));
+        me.com2s.setText(sprintf('stdby %s', com2_stdby));
 
         # hiding deg mark / pitch
         for(var deg = 5 ; deg < 40 ; deg = deg + 5)

@@ -9,9 +9,9 @@
     <lightmap-enabled type="int">1</lightmap-enabled>
     <lightmap-multi type="int">1</lightmap-multi>
     <lightmap-factor type="float" n="0"><use>/controls/lighting/left-light-norm</use></lightmap-factor>
-    <lightmap-color type="vec3d" n="0"> 1.0 0.2 0.2 </lightmap-color>
+    <lightmap-color type="vec3d" n="0"> 1.0 0.0 0.0 </lightmap-color>
     <lightmap-factor type="float" n="1"><use>/controls/lighting/right-light-norm</use></lightmap-factor>
-    <lightmap-color type="vec3d" n="1"> 1.0 0.2 0.2 </lightmap-color>
+    <lightmap-color type="vec3d" n="1"> 1.0 0.0 0.0 </lightmap-color>
     <lightmap-factor type="float" n="2"><use>/_debug/float3</use></lightmap-factor>
     <lightmap-color type="vec3d" n="2"> 1.0 1.0 1.0 </lightmap-color>
     <lightmap-factor type="float" n="3"><use>/_debug/float4</use></lightmap-factor>

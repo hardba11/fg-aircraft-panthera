@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PropertyList>
+
+
+  <!-- ~~~~~~~~~~~~~~~~~~ als lights -->
+  <model>
+    <name>left light</name>
+    <path>Aircraft/panthera/models/aircraft/lights/light_nav_left.xml</path>
+    <offsets>
+      <x-m type="float">-1.05</x-m>
+      <y-m type="float">-5.63</y-m>
+      <z-m type="float">-.09</z-m>
+    </offsets>
+  </model>
+  <model>
+    <name>right light</name>
+    <path>Aircraft/panthera/models/aircraft/lights/light_nav_right.xml</path>
+    <offsets>
+      <x-m type="float">-1.05</x-m>
+      <y-m type="float">5.63</y-m>
+      <z-m type="float">-.09</z-m>
+    </offsets>
+  </model>
+  <model>
+    <name>tail light</name>
+    <path>Aircraft/panthera/models/aircraft/lights/light_nav_tail.xml</path>
+    <offsets>
+      <x-m type="float">4.09</x-m>
+      <y-m type="float">0</y-m>
+      <z-m type="float">-.12</z-m>
+    </offsets>
+  </model>
+  <model>
+    <name>strobe light</name>
+    <path>Aircraft/panthera/models/aircraft/lights/light_strobe.xml</path>
+    <offsets>
+      <x-m type="float">3.75</x-m>
+      <y-m type="float">0</y-m>
+      <z-m type="float">1.12</z-m>
+    </offsets>
+  </model>
+  <model>
+    <name>anticoll light</name>
+    <path>Aircraft/panthera/models/aircraft/lights/light_anticoll.xml</path>
+    <offsets>
+      <x-m type="float">-1.10</x-m>
+      <y-m type="float">0</y-m>
+      <z-m type="float">-.84</z-m>
+    </offsets>
+  </model>
+  <model>
+    <name>landing light left</name>
+    <path>Aircraft/panthera/models/aircraft/lights/light_landing.xml</path>
+    <offsets>
+      <x-m type="float">-1.5</x-m>
+      <y-m type="float">-1.0</y-m>
+      <z-m type="float">-.71</z-m>
+    </offsets>
+  </model>
+  <model>
+    <name>landing light right</name>
+    <path>Aircraft/panthera/models/aircraft/lights/light_landing.xml</path>
+    <offsets>
+      <x-m type="float">-1.5</x-m>
+      <y-m type="float">1.0</y-m>
+      <z-m type="float">-.71</z-m>
+    </offsets>
+  </model>
+
+
+</PropertyList>
+

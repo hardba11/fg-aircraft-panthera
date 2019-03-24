@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PropertyList>
+
+  <path>Aircraft/panthera/models/aircraft/lights/als_light.ac</path>
+  <nopreview />
+
+  <effect>
+    <inherits-from>procedural-light-nav-right</inherits-from>
+    <object-name>als_light</object-name>
+  </effect>
+
+  <animation>
+    <type>select</type>
+    <object-name>als_light</object-name>
+    <condition>
+      <and>
+        <property>/controls/lighting/nav-lights</property>
+      </and>
+    </condition>
+  </animation>
+
+</PropertyList>

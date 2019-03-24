@@ -218,6 +218,14 @@ Performance
       </config>
     </view>
 
+    <rendering>
+      <als-secondary-lights>
+        <landing-light1-offset-deg type="double">6</landing-light1-offset-deg>  <!-- left landing-light -->
+        <landing-light2-offset-deg type="double">-6</landing-light2-offset-deg> <!-- right landing-light -->
+        <landing-light3-offset-deg type="double">-3</landing-light3-offset-deg> <!-- vertical angle landing-lights -->
+      </als-secondary-lights>
+    </rendering>
+
   </sim>
 
   <instrumentation>
@@ -225,7 +233,7 @@ Performance
       <map>
         <controls>
           <serviceable type="bool">1</serviceable>
-          <zoom type="int">13</zoom>
+          <zoom type="int">12</zoom>
         </controls>
       </map>
     </my_aircraft>
@@ -291,11 +299,22 @@ Performance
       <aux type="bool">false</aux>
     </switches>
     <lighting>
+      <landing-lights type="bool">0</landing-lights>
+      <recog-lights type="bool">0</recog-lights>
+      <nav-lights type="bool">1</nav-lights>
+      <strobe-lights type="bool">1</strobe-lights>
       <instrument-norm type="float">0</instrument-norm>
       <left-light-norm type="float">0</left-light-norm>
       <right-light-norm type="float">0</right-light-norm>
     </lighting>
   </controls>
+
+  <autopilot>
+    <settings>
+      <target-altitude-ft type="float">3000</target-altitude-ft>
+      <target-speed-kt type="float">190</target-speed-kt>
+    </settings>
+  </autopilot>
 
   <!-- for tests and settings -->
   <_debug>
@@ -324,6 +343,9 @@ Performance
   -->
 
   <nasal>
+    <lights>
+      <file type="string">Aircraft/panthera/models/aircraft/lights/lights.nas</file>
+    </lights>
     <map>
       <file type="string">Aircraft/panthera/include/map.nas</file>
     </map>

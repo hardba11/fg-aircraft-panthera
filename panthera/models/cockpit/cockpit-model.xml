@@ -480,7 +480,7 @@ ________________________________________________________________________________
     <type>material</type>
     <object-name>up.switch.landing_light</object-name>
     <condition>
-      <property>/controls/switches/landing-light</property>
+      <property>/controls/lighting/landing-lights</property>
     </condition>
     <emission>
       <factor>1</factor>
@@ -497,7 +497,7 @@ ________________________________________________________________________________
         <property>/controls/lighting/panel-norm</property>
         <value>0</value>
       </greater-than>
-      <not><property>/controls/switches/landing-light</property></not>
+      <not><property>/controls/lighting/landing-lights</property></not>
     </condition>
     <emission>
       <factor>.06</factor>
@@ -516,7 +516,7 @@ ________________________________________________________________________________
       <repeatable>false</repeatable>
       <binding>
         <command>property-toggle</command>
-        <property>/controls/switches/landing-light</property>
+        <property>/controls/lighting/landing-lights</property>
       </binding>
     </action>
   </animation>
@@ -530,7 +530,7 @@ ________________________________________________________________________________
     <type>material</type>
     <object-name>up.switch.recog_light</object-name>
     <condition>
-      <property>/controls/switches/flashing-beacon</property>
+      <property>/controls/lighting/recog-lights</property>
     </condition>
     <emission>
       <factor>1</factor>
@@ -547,7 +547,7 @@ ________________________________________________________________________________
         <property>/controls/lighting/panel-norm</property>
         <value>0</value>
       </greater-than>
-      <not><property>/controls/switches/flashing-beacon</property></not>
+      <not><property>/controls/lighting/recog-lights</property></not>
     </condition>
     <emission>
       <factor>.06</factor>
@@ -557,7 +557,7 @@ ________________________________________________________________________________
     </emission>
   </animation>
 
-  <!-- ~~~~~~~~~~~~~~~~~~ controls -->
+  <!-- ~~~~~~~~~~~~~~~~~~ controls
   <animation>
     <type>pick</type>
     <object-name>up.switch.recog_light</object-name>
@@ -566,10 +566,10 @@ ________________________________________________________________________________
       <repeatable>false</repeatable>
       <binding>
         <command>property-toggle</command>
-        <property>/controls/switches/flashing-beacon</property>
+        <property>/controls/lighting/recog-lights</property>
       </binding>
     </action>
-  </animation>
+  </animation> -->
 
   <!--
 ________________________________________________________________________________
@@ -580,7 +580,7 @@ ________________________________________________________________________________
     <type>material</type>
     <object-name>up.switch.nav_light</object-name>
     <condition>
-      <property>/controls/switches/nav-lights</property>
+      <property>/controls/lighting/nav-lights</property>
     </condition>
     <emission>
       <factor>1</factor>
@@ -597,7 +597,7 @@ ________________________________________________________________________________
         <property>/controls/lighting/panel-norm</property>
         <value>0</value>
       </greater-than>
-      <not><property>/controls/switches/nav-lights</property></not>
+      <not><property>/controls/lighting/nav-lights</property></not>
     </condition>
     <emission>
       <factor>.06</factor>
@@ -616,7 +616,7 @@ ________________________________________________________________________________
       <repeatable>false</repeatable>
       <binding>
         <command>property-toggle</command>
-        <property>/controls/switches/nav-lights</property>
+        <property>/controls/lighting/nav-lights</property>
       </binding>
     </action>
   </animation>
@@ -630,7 +630,7 @@ ________________________________________________________________________________
     <type>material</type>
     <object-name>up.switch.strobe_light</object-name>
     <condition>
-      <property>/controls/switches/strobe-lights</property>
+      <property>/controls/lighting/strobe-lights</property>
     </condition>
     <emission>
       <factor>1</factor>
@@ -647,7 +647,7 @@ ________________________________________________________________________________
         <property>/controls/lighting/panel-norm</property>
         <value>0</value>
       </greater-than>
-      <not><property>/controls/switches/strobe-lights</property></not>
+      <not><property>/controls/lighting/strobe-lights</property></not>
     </condition>
     <emission>
       <factor>.06</factor>
@@ -666,7 +666,7 @@ ________________________________________________________________________________
       <repeatable>false</repeatable>
       <binding>
         <command>property-toggle</command>
-        <property>/controls/switches/strobe-lights</property>
+        <property>/controls/lighting/strobe-lights</property>
       </binding>
     </action>
   </animation>
@@ -705,7 +705,7 @@ ________________________________________________________________________________
         <command>property-cycle</command>
         <property>/controls/lighting/left-light-norm</property>
         <value>0</value>
-        <value>1</value>
+        <value>.75</value>
       </binding>
     </action>
   </animation>
@@ -743,11 +743,10 @@ ________________________________________________________________________________
         <command>property-cycle</command>
         <property>/controls/lighting/right-light-norm</property>
         <value>0</value>
-        <value>1</value>
+        <value>.75</value>
       </binding>
     </action>
   </animation>
-
 
   <!--
 ________________________________________________________________________________
@@ -1655,6 +1654,26 @@ ________________________________________________________________________________
       <binding>
         <command>property-toggle</command>
         <property>/controls/switches/autopilot</property>
+      </binding>
+      <binding>
+        <command>nasal</command>
+        <script>
+          <![CDATA[
+var is_enabled = getprop("/controls/switches/autopilot") or 0;
+if(is_enabled)
+{
+    setprop("/autopilot/locks/speed",       'speed-with-throttle');
+    setprop("/autopilot/locks/altitude",    'altitude-hold');
+    setprop("/autopilot/locks/heading",     'dg-heading-hold');
+}
+else
+{
+    setprop("/autopilot/locks/speed",       '');
+    setprop("/autopilot/locks/altitude",    '');
+    setprop("/autopilot/locks/heading",     '');
+}
+          ]]>
+        </script>
       </binding>
     </action>
   </animation>

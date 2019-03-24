@@ -11,11 +11,52 @@
     <object-name>porte_ar</object-name>
     <object-name>porte_av</object-name>
     <object-name>propeller_fast</object-name>
-    <object-name>train_avant.roue</object-name>
-    <object-name>train_principal.roue</object-name>
+    <object-name>roues_d</object-name>
+    <object-name>train_d</object-name>
+    <object-name>train.jambe_roue_d</object-name>
+    <object-name>train.piston_d</object-name>
+    <object-name>train.piston_roue_d</object-name>
+    <object-name>roues_g</object-name>
+    <object-name>train_g</object-name>
+    <object-name>train.jambe_roue_g</object-name>
+    <object-name>train.piston_g</object-name>
+    <object-name>train.piston_roue_g</object-name>
+    <object-name>roue_avant</object-name>
+    <object-name>train_av</object-name>
+    <object-name>train_av.jambe_roue</object-name>
+    <object-name>train_av.piston</object-name>
+    <object-name>train_av.piston_roue</object-name>
     <object-name>vitre_ar</object-name>
     <object-name>vitre_av</object-name>
   </animation>
+
+
+  <animation>
+    <name>block_train_avant</name>
+    <object-name>roue_avant</object-name>
+    <object-name>train_av</object-name>
+    <object-name>train_av.jambe_roue</object-name>
+    <object-name>train_av.piston</object-name>
+    <object-name>train_av.piston_roue</object-name>
+  </animation>
+  <animation>
+    <name>block_train_gauche</name>
+    <object-name>roues_g</object-name>
+    <object-name>train_g</object-name>
+    <object-name>train.jambe_roue_g</object-name>
+    <object-name>train.piston_g</object-name>
+    <object-name>train.piston_roue_g</object-name>
+  </animation>
+  <animation>
+    <name>block_train_droit</name>
+    <object-name>roues_d</object-name>
+    <object-name>train_d</object-name>
+    <object-name>train.jambe_roue_d</object-name>
+    <object-name>train.piston_d</object-name>
+    <object-name>train.piston_roue_d</object-name>
+  </animation>
+
+
 
   <effect>
     <inherits-from>Aircraft/panthera/models/effects/glass</inherits-from>
@@ -38,6 +79,78 @@
         <property>sim/current-view/internal</property>
         <value>0</value>
       </equals>
+    </condition>
+  </animation>
+
+  <animation>
+    <type>rotate</type>
+    <object-name>block_train_avant</object-name>
+    <property>gear/gear[0]/position-norm</property>
+    <interpolation>
+      <entry><ind>0.0</ind><dep>110</dep></entry>
+      <entry><ind>1.0</ind><dep>0</dep></entry>
+    </interpolation>
+    <center>
+      <x-m>-3.0268</x-m>
+      <y-m>0</y-m>
+      <z-m>-0.64</z-m>
+    </center>
+    <axis>
+      <x>0</x>
+      <y>-1</y>
+      <z>0</z>
+    </axis>
+  </animation>
+
+  <animation>
+    <type>rotate</type>
+    <object-name>block_train_gauche</object-name>
+    <property>gear/gear[1]/position-norm</property>
+    <interpolation>
+      <entry><ind>0.0</ind><dep>80</dep></entry>
+      <entry><ind>1.0</ind><dep>0</dep></entry>
+    </interpolation>
+    <center>
+      <x-m>-1.43</x-m>
+      <y-m>-.81</y-m>
+      <z-m>-.52</z-m>
+    </center>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+  </animation>
+  <animation>
+    <type>rotate</type>
+    <object-name>block_train_droit</object-name>
+    <property>gear/gear[2]/position-norm</property>
+    <interpolation>
+      <entry><ind>0.0</ind><dep>80</dep></entry>
+      <entry><ind>1.0</ind><dep>0</dep></entry>
+    </interpolation>
+    <center>
+      <x-m>-1.43</x-m>
+      <y-m>.81</y-m>
+      <z-m>-.52</z-m>
+    </center>
+    <axis>
+      <x>-1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+  </animation>
+
+  <animation>
+    <type>select</type>
+    <object-name>block_train_avant</object-name>
+    <object-name>block_train_gauche</object-name>
+    <object-name>block_train_droit</object-name>
+    <condition>
+      <greater-than>
+        <property>gear/gear/position-norm</property>
+        <value>.05</value>
+      </greater-than>
     </condition>
   </animation>
 
@@ -78,16 +191,58 @@
     </axis>
   </animation>
 
+  <model>
+    <name>lights</name>
+    <path>lights/lights-model.xml</path>
+  </model>
+
   <animation>
-    <type>select</type>
-    <object-name>train_avant.roue</object-name>
-    <object-name>train_principal.roue</object-name>
-    <condition>
-      <equals>
-        <property>gear/gear/position-norm</property>
-        <value>1</value>
-      </equals>
-    </condition>
+    <type>spin</type>
+    <object-name>roue_avant</object-name>
+    <property>/gear/gear[0]/rollspeed-ms</property>
+    <factor>30</factor>
+    <center>
+      <x-m>-2.92</x-m>
+      <y-m>0</y-m>
+      <z-m>-1.104</z-m>
+    </center>
+    <axis>
+      <x>0</x>
+      <y>-1</y>
+      <z>0</z>
+    </axis>
+  </animation>
+  <animation>
+    <type>spin</type>
+    <object-name>roues_g</object-name>
+    <property>/gear/gear[1]/rollspeed-ms</property>
+    <factor>30</factor>
+    <center>
+      <x-m>-1.292</x-m>
+      <y-m>0</y-m>
+      <z-m>-1.079</z-m>
+    </center>
+    <axis>
+      <x>0</x>
+      <y>-1</y>
+      <z>0</z>
+    </axis>
+  </animation>
+  <animation>
+    <type>spin</type>
+    <object-name>roues_d</object-name>
+    <property>/gear/gear[2]/rollspeed-ms</property>
+    <factor>30</factor>
+    <center>
+      <x-m>-1.292</x-m>
+      <y-m>0</y-m>
+      <z-m>-1.079</z-m>
+    </center>
+    <axis>
+      <x>0</x>
+      <y>-1</y>
+      <z>0</z>
+    </axis>
   </animation>
 
   <!--animation>
@@ -118,83 +273,6 @@
     </axis>
   </animation>
 
-  <animation>
-    <type>rotate</type>
-    <object-name>gear_left</object-name>
-    <property>gear/gear/position-norm</property>
-    <interpolation>
-      <entry>
-        <ind>1</ind>
-        <dep>0</dep>
-      </entry>
-      <entry>
-        <ind>0</ind>
-        <dep>90</dep>
-      </entry>
-    </interpolation>
-    <center>
-      <x-m>1.02276</x-m>
-      <y-m>-1.32566</y-m>
-      <z-m>-0.53887</z-m>
-    </center>
-    <axis>
-      <x>0</x>
-      <y>1</y>
-      <z>0</z>
-    </axis>
-  </animation>
-
-  <animation>
-    <type>rotate</type>
-    <object-name>gear_right</object-name>
-    <property>gear/gear/position-norm</property>
-    <interpolation>
-      <entry>
-        <ind>1</ind>
-        <dep>0</dep>
-      </entry>
-      <entry>
-        <ind>0</ind>
-        <dep>90</dep>
-      </entry>
-    </interpolation>
-    <center>
-      <x-m>-1.01914</x-m>
-      <y-m>-1.32566</y-m>
-      <z-m>-0.53887</z-m>
-    </center>
-    <axis>
-      <x>0</x>
-      <y>-1</y>
-      <z>0</z>
-    </axis>
-  </animation>
-
-  <animation>
-    <type>rotate</type>
-    <object-name>gear_front</object-name>
-    <property>gear/gear/position-norm</property>
-    <interpolation>
-      <entry>
-        <ind>1</ind>
-        <dep>0</dep>
-      </entry>
-      <entry>
-        <ind>0</ind>
-        <dep>115</dep>
-      </entry>
-    </interpolation>
-    <center>
-      <x-m>-0.00006</x-m>
-      <y-m>-2.92519</y-m>
-      <z-m>-0.66519</z-m>
-    </center>
-    <axis>
-      <x>1</x>
-      <y>0</y>
-      <z>0</z>
-    </axis>
-  </animation-->
 
 </PropertyList>
 
