@@ -432,7 +432,7 @@ var BASIC_PFD = {
         m.nav1 = m.my_container.createChild('text', 'nav1')
             .setColor(0, 1, 0, 1)
             .setText('NAV1');
-        draw_label(m.nav1_bg, m.nav1, (3 * width / 20),  (2 * height / 7) - 10, 18, 100);
+        draw_label(m.nav1_bg, m.nav1, (3 * width / 20),  (2 * height / 7) - 10, 18, 110);
 
 # nav1 stdby
         m.nav1s_bg = m.my_container.createChild('path', 'nav1s_bg')
@@ -448,7 +448,7 @@ var BASIC_PFD = {
         m.nav2 = m.my_container.createChild('text', 'nav2')
             .setColor(0, 1, 0, 1)
             .setText('NAV2');
-        draw_label(m.nav2_bg, m.nav2, (3 * width / 20),  (2 * height / 7) - 10 + 26, 18, 100);
+        draw_label(m.nav2_bg, m.nav2, (3 * width / 20),  (2 * height / 7) - 10 + 26, 18, 110);
 
 # nav2 stdby
         m.nav2s_bg = m.my_container.createChild('path', 'nav2s_bg')
@@ -464,7 +464,7 @@ var BASIC_PFD = {
         m.com1 = m.my_container.createChild('text', 'com1')
             .setColor(0, 1, 0, 1)
             .setText('COM1');
-        draw_label(m.com1_bg, m.com1, (15 * width / 20),  (2 * height / 7) - 10, 18, 100);
+        draw_label(m.com1_bg, m.com1, (15 * width / 20),  (2 * height / 7) - 10, 18, 110);
 
 # com1 stdby
         m.com1s_bg = m.my_container.createChild('path', 'com1s_bg')
@@ -480,7 +480,7 @@ var BASIC_PFD = {
         m.com2 = m.my_container.createChild('text', 'com2')
             .setColor(0, 1, 0, 1)
             .setText('COM2');
-        draw_label(m.com2_bg, m.com2, (15 * width / 20),  (2 * height / 7) - 10 + 26, 18, 100);
+        draw_label(m.com2_bg, m.com2, (15 * width / 20),  (2 * height / 7) - 10 + 26, 18, 110);
 
 # com2 stdby
         m.com2s_bg = m.my_container.createChild('path', 'com2s_bg')

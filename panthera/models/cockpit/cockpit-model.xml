@@ -1063,7 +1063,7 @@ ________________________________________________________________________________
   <animation>
     <type>rotate</type>
     <object-name>middle.lever.throttle</object-name>
-    <property>controls/engines/engine/throttle</property>
+    <property>/controls/engines/engine[0]/throttle</property>
     <interpolation>
       <entry><ind>0</ind><dep>40</dep></entry>
       <entry><ind>1</ind><dep>-40</dep></entry>
@@ -1088,7 +1088,7 @@ ________________________________________________________________________________
   <animation>
     <type>rotate</type>
     <object-name>middle.lever.propeller</object-name>
-    <property>controls/engines/engine/propeller-pitch</property>
+    <property>/controls/engines/engine[0]/propeller-pitch</property>
     <interpolation>
       <entry><ind>0</ind><dep>40</dep></entry>
       <entry><ind>1</ind><dep>-40</dep></entry>
@@ -1113,7 +1113,7 @@ ________________________________________________________________________________
   <animation>
     <type>rotate</type>
     <object-name>middle.lever.mix</object-name>
-    <property>controls/engines/engine/mixture</property>
+    <property>/controls/engines/engine[0]/mixture</property>
     <interpolation>
       <entry><ind>0</ind><dep>40</dep></entry>
       <entry><ind>1</ind><dep>-40</dep></entry>
@@ -1432,7 +1432,7 @@ ________________________________________________________________________________
   <animation>
     <type>rotate</type>
     <object-name>left.cutoff</object-name>
-    <property>/controls/engines/engine[0]/master-bat</property>
+    <property>/controls/switches/master-bat</property>
     <interpolation>
       <entry><ind>0</ind><dep>-20</dep></entry>
       <entry><ind>1</ind><dep>20</dep></entry>
@@ -1458,7 +1458,7 @@ ________________________________________________________________________________
       <repeatable>false</repeatable>
       <binding>
         <command>property-toggle</command>
-        <property>/controls/engines/engine[0]/master-bat</property>
+        <property>/controls/switches/master-bat</property>
       </binding>
     </action>
   </animation>
@@ -1471,7 +1471,7 @@ ________________________________________________________________________________
   <animation>
     <type>rotate</type>
     <object-name>bottom.switch.master</object-name>
-    <property>/controls/engines/engine[0]/master-alt</property>
+    <property>/controls/switches/master-alt</property>
     <interpolation>
       <entry><ind>0</ind><dep>25</dep></entry>
       <entry><ind>1</ind><dep>0</dep></entry>
@@ -1497,7 +1497,7 @@ ________________________________________________________________________________
       <repeatable>false</repeatable>
       <binding>
         <command>property-toggle</command>
-        <property>/controls/engines/engine[0]/master-alt</property>
+        <property>/controls/switches/master-alt</property>
       </binding>
     </action>
   </animation>
@@ -1549,7 +1549,7 @@ ________________________________________________________________________________
   <animation>
     <type>rotate</type>
     <object-name>bottom.switch.fuel_pump</object-name>
-    <property>/controls/engines/engine[0]/fuel-pump</property>
+    <property>/controls/switches/fuel-pump</property>
     <interpolation>
       <entry><ind>0</ind><dep>25</dep></entry>
       <entry><ind>1</ind><dep>0</dep></entry>
@@ -1575,7 +1575,7 @@ ________________________________________________________________________________
       <repeatable>false</repeatable>
       <binding>
         <command>property-toggle</command>
-        <property>/controls/engines/engine[0]/fuel-pump</property>
+        <property>/controls/switches/fuel-pump</property>
       </binding>
     </action>
   </animation>
@@ -1703,7 +1703,7 @@ ________________________________________________________________________________
     </axis>
   </animation>
 
-  <!-- ~~~~~~~~~~~~~~~~~~ controls -->
+  <!-- ~~~~~~~~~~~~~~~~~~ controls
   <animation>
     <type>pick</type>
     <object-name>bottom.switch.a_and_c</object-name>
@@ -1715,7 +1715,7 @@ ________________________________________________________________________________
         <property>/controls/switches/a_and_c</property>
       </binding>
     </action>
-  </animation>
+  </animation> -->
 
   <!--
 ________________________________________________________________________________
@@ -1742,7 +1742,7 @@ ________________________________________________________________________________
     </axis>
   </animation>
 
-  <!-- ~~~~~~~~~~~~~~~~~~ controls -->
+  <!-- ~~~~~~~~~~~~~~~~~~ controls
   <animation>
     <type>pick</type>
     <object-name>bottom.switch.aux</object-name>
@@ -1754,7 +1754,7 @@ ________________________________________________________________________________
         <property>/controls/switches/aux</property>
       </binding>
     </action>
-  </animation>
+  </animation> -->
 
   <!--
 ________________________________________________________________________________
@@ -1823,11 +1823,7 @@ ________________________________________________________________________________
     </hovered>
   </animation>
 
-
-
-
-
-  <!-- USED FOR DEVELOPMENT -->
+  <!-- ************************************************ USED FOR DEVELOPMENT -->
   <!--animation>
     <type>translate</type>
     <object-name>turn-pilot</object-name>

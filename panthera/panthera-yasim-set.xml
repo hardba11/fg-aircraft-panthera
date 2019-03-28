@@ -30,7 +30,7 @@ http://wiki.flightgear.org/Property_tree
 
     <!-- ~~~~~~~~~~~~~~~~~~ flight model -->
     <flight-model>yasim</flight-model>
-    <aero>fdm/WIP-yasim</aero>
+    <aero>fdm/yasim-panthera</aero>
 
   </sim>
 

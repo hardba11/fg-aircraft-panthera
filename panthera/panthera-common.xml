@@ -226,6 +226,8 @@ Performance
       </als-secondary-lights>
     </rendering>
 
+    <fuel-fraction>.5</fuel-fraction>
+
   </sim>
 
   <instrumentation>
@@ -284,19 +286,25 @@ Performance
   </input>
 
   <controls>
+    <gear>
+      <brake-parking type="bool">1</brake-parking>
+    </gear>
     <engines>
       <engine n="0">
         <magnetos type="int">3</magnetos>
-        <master-bat type="bool">true</master-bat>
-        <master-alt type="bool">true</master-alt>
+        <master-bat type="bool">1</master-bat>
+        <master-alt type="bool">1</master-alt>
       </engine>
     </engines>
     <switches>
-      <master-avionics type="bool">true</master-avionics>
-      <pitot-heat type="bool">false</pitot-heat>
-      <autopilot type="bool">false</autopilot>
-      <a_and_c type="bool">false</a_and_c>
-      <aux type="bool">false</aux>
+      <master-bat alias="/controls/engines/engine[0]/master-bat" />
+      <master-alt alias="/controls/engines/engine[0]/master-alt" />
+      <master-avionics type="bool">1</master-avionics>
+      <fuel-pump alias="/controls/engines/engine[0]/fuel-pump" />
+      <pitot-heat alias="/controls/anti-ice/pitot-heat" />
+      <autopilot type="bool">0</autopilot>
+      <a_and_c type="bool">0</a_and_c>
+      <aux type="bool">0</aux>
     </switches>
     <lighting>
       <landing-lights type="bool">0</landing-lights>
