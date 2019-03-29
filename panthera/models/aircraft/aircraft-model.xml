@@ -28,6 +28,8 @@
     <object-name>train_av.piston_roue</object-name>
     <object-name>vitre_ar</object-name>
     <object-name>vitre_av</object-name>
+    <object-name>vitre_ar-int</object-name>
+    <object-name>vitre_av-int</object-name>
   </animation>
 
 
@@ -56,8 +58,6 @@
     <object-name>train.piston_roue_d</object-name>
   </animation>
 
-
-
   <effect>
     <inherits-from>Aircraft/panthera/models/effects/glass</inherits-from>
     <object-name>vitre_av</object-name>
@@ -69,8 +69,7 @@
     <object-name>propeller_fast</object-name>
   </effect>
 
-
-  <animation>
+  <!--animation>
     <type>select</type>
     <object-name>vitre_av</object-name>
     <object-name>vitre_ar</object-name>
@@ -80,7 +79,12 @@
         <value>0</value>
       </equals>
     </condition>
-  </animation>
+  </animation-->
+  <effect>
+    <inherits-from>Aircraft/panthera/models/effects/interior-glass</inherits-from>
+    <object-name>vitre_ar-int</object-name>
+    <object-name>vitre_av-int</object-name>
+  </effect>
 
   <animation>
     <type>rotate</type>

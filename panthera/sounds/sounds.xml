@@ -369,7 +369,7 @@
     <wind>
       <name>wind</name>
       <mode>looped</mode>
-      <path>Sounds/wind.wav</path>
+      <path>wind.wav</path>
       <property>velocities/airspeed-kt</property>
       <volume>
         <property>position/altitude-ft</property>
@@ -528,31 +528,6 @@
       </volume>
     </click>
 
-<!-- WINDOW HEAT SWITCH -->
-    <click>
-      <name>Window Heat ON</name>
-      <path>Aircraft/panthera/sounds/ButtonLights.wav</path>
-      <condition>
-        <property>/controls/anti-ice/window-heat</property>
-      </condition>
-      <volume>
-        <factor>0.6</factor>
-      </volume>
-    </click>
-
-    <click>
-      <name>Window Heat OFF</name>
-      <path>Aircraft/panthera/sounds/ButtonLights.wav</path>
-      <condition>
-        <not>
-          <property>/controls/anti-ice/window-heat</property>
-        </not>
-      </condition>
-      <volume>
-        <factor>0.6</factor>
-      </volume>
-    </click>
-
 <!-- NAV LIGHTS SWITCH -->
     <click>
       <name>Nav Lights ON</name>
@@ -678,574 +653,135 @@
       </volume>
     </click>
 
-<!-- AVIONICS SWITCHES -->
-    <click>
-      <name>ADF Btn ON</name>
-      <path>Aircraft/panthera/sounds/ButtonRadio.wav</path>
+
+
+
+
+
+
+    <!-- ~~~~~~~~~~~~~~~~~~ internal rain -->
+    <rain_int>
+      <name>rain_int</name>
+      <path>rain-windshield.wav</path>
+      <mode>looped</mode>
       <condition>
-        <property>/instrumentation/adf[0]/adf-btn</property>
+        <greater-than>
+          <property>/environment/rain-norm</property>
+          <value>0.1</value>
+        </greater-than>
       </condition>
       <volume>
-        <factor>0.6</factor>
+        <property>/environment/rain-norm</property>
+        <factor>0.3</factor>
+        <min>0</min>
+        <max>2</max>
       </volume>
-    </click>
-
-    <click>
-      <name>ADF Btn OFF</name>
-      <path>Aircraft/panthera/sounds/ButtonRadio.wav</path>
-      <condition>
-        <not>
-          <property>/instrumentation/adf[0]/adf-btn</property>
-        </not>
-      </condition>
-      <volume>
+      <pitch>
+        <property>/velocities/mach</property>
         <factor>0.6</factor>
-      </volume>
-    </click>
+        <min>0</min>
+        <max>2</max>
+      </pitch>
+      <position>
+        <x>-4.0</x>
+        <y>0.0</y>
+        <z>0.0</z>
+      </position>
+      <orientation>
+        <x>-1.0</x>
+        <y>0.0</y>
+        <z>0.0</z>
+        <inner-angle>3.0</inner-angle>
+        <outer-angle>45.0</outer-angle>
+        <outer-gain>0.9</outer-gain>
+      </orientation>
+    </rain_int>
 
-    <click>
-      <name>BFO Btn ON</name>
-      <path>Aircraft/panthera/sounds/ButtonRadio.wav</path>
-      <condition>
-        <property>/instrumentation/adf[0]/bfo-btn</property>
-      </condition>
-      <volume>
-        <factor>0.6</factor>
-      </volume>
-    </click>
-
-    <click>
-      <name>BFO Btn OFF</name>
-      <path>Aircraft/panthera/sounds/ButtonRadio.wav</path>
-      <condition>
-        <not>
-          <property>/instrumentation/adf[0]/bfo-btn</property>
-        </not>
-      </condition>
-      <volume>
-        <factor>0.6</factor>
-      </volume>
-    </click>
-
-    <click>
-      <name>FRQ Btn</name>
-      <path>Aircraft/panthera/sounds/ButtonRadio.wav</path>
-      <condition>
-        <property>/instrumentation/adf[0]/frq-btn</property>
-      </condition>
-      <volume>
-        <factor>0.6</factor>
-      </volume>
-    </click>
-
-    <click>
-      <name>FLT Btn</name>
-      <path>Aircraft/panthera/sounds/ButtonRadio.wav</path>
-      <condition>
-        <property>/instrumentation/adf[0]/flt-btn</property>
-      </condition>
-      <volume>
-        <factor>0.6</factor>
-      </volume>
-    </click>
-
-    <click>
-      <name>SET Btn</name>
-      <path>Aircraft/panthera/sounds/ButtonRadio.wav</path>
-      <condition>
-        <property>/instrumentation/adf[0]/set-btn</property>
-      </condition>
-      <volume>
-        <factor>0.6</factor>
-      </volume>
-    </click>
-
-    <click>
-      <name>TEST Btn</name>
-      <path>Aircraft/panthera/sounds/ButtonRadio.wav</path>
-      <condition>
-        <property>instrumentation/kma24/test</property>
-      </condition>
-      <volume>
-        <factor>0.6</factor>
-      </volume>
-    </click>
-
-    <click>
-      <name>SENS Btn ON</name>
-      <path>Aircraft/panthera/sounds/ButtonRadio.wav</path>
-      <condition>
-        <property>instrumentation/kma24/sens</property>
-      </condition>
-      <volume>
-        <factor>0.6</factor>
-      </volume>
-    </click>
-
-    <click>
-      <name>SENS Btn OFF</name>
-      <path>Aircraft/panthera/sounds/ButtonRadio.wav</path>
+    <!-- ~~~~~~~~~~~~~~~~~~ external wind -->
+    <wind_ext>
+      <name>wind</name>
+      <mode>looped</mode>
+      <path>wind.wav</path>
       <condition>
         <not>
-          <property>instrumentation/kma24/sens</property>
+          <property>/sim/current-view/internal</property>
         </not>
       </condition>
+      <property>/instrumentation/airspeed-indicator/true-speed-kt</property>
       <volume>
-        <factor>0.6</factor>
+        <property>/position/altitude-ft</property>
+        <factor>-0.000015</factor>
+        <offset>1.0</offset>
+        <min>0.1</min>
+        <max>0.7</max>
       </volume>
-    </click>
+      <volume>
+        <property>/instrumentation/airspeed-indicator/true-speed-kt</property>
+        <factor>0.015</factor>
+        <min>0.03</min>
+        <max>0.55</max>
+      </volume>
+      <pitch>
+        <property>/instrumentation/airspeed-indicator/true-speed-kt</property>
+        <factor>0.01</factor>
+        <offset>0.75</offset>
+      </pitch>
+      <reference-dist>100</reference-dist>
+      <max-dist>1000</max-dist>
+    </wind_ext>
 
-    <click>
-      <name>TEL Btn ON</name>
-      <path>Aircraft/panthera/sounds/ButtonRadio.wav</path>
+    <!-- ~~~~~~~~~~~~~~~~~~ external rain -->
+    <rain_ext>
+      <name>rain_ext</name>
+      <path>rain.wav</path>
+      <mode>looped</mode>
       <condition>
-        <equals>
-          <property>instrumentation/kma24/tel</property>
-          <value>-1</value>
-        </equals>
+        <and>
+          <greater-than>
+            <property>/environment/rain-norm</property>
+            <value>0.1</value>
+          </greater-than>
+          <or>
+            <not><property>/sim/current-view/internal</property></not>
+            <greater-than>
+              <property>/sim/model/canopy-pos-norm</property>
+              <value>0</value>
+            </greater-than>
+          </or>
+        </and>
       </condition>
       <volume>
-        <factor>0.6</factor>
+        <factor>0.2</factor>
       </volume>
-    </click>
+    </rain_ext>
 
-    <click>
-      <name>TEL Btn ZERO</name>
-      <path>Aircraft/panthera/sounds/ButtonRadio.wav</path>
+    <!-- ~~~~~~~~~~~~~~~~~~ gears rumble -->
+    <rumble_gear_internal>
+      <name>rumble_internal</name>
+      <mode>looped</mode>
+      <path>rumble.wav</path>
       <condition>
-        <equals>
-          <property>instrumentation/kma24/tel</property>
-          <value>0</value>
-        </equals>
+        <or>
+          <property>/gear/gear[0]/wow</property>
+          <property>/gear/gear[1]/wow</property>
+          <property>/gear/gear[2]/wow</property>
+        </or>
       </condition>
       <volume>
-        <factor>0.6</factor>
+        <property>/instrumentation/airspeed-indicator/true-speed-kt</property>
+        <factor>.0004</factor>
       </volume>
-    </click>
+      <pitch>
+        <property>/instrumentation/airspeed-indicator/true-speed-kt</property>
+        <factor>.0003</factor>
+      </pitch>
+    </rumble_gear_internal>
 
-    <click>
-      <name>TEL Btn OFF</name>
-      <path>Aircraft/panthera/sounds/ButtonRadio.wav</path>
-      <condition>
-        <equals>
-          <property>instrumentation/kma24/tel</property>
-          <value>1</value>
-        </equals>
-      </condition>
-      <volume>
-        <factor>0.6</factor>
-      </volume>
-    </click>
 
-    <click>
-      <name>COM1 Btn ON</name>
-      <path>Aircraft/panthera/sounds/ButtonRadio.wav</path>
-      <condition>
-        <equals>
-          <property>instrumentation/kma24/com1</property>
-          <value>-1</value>
-        </equals>
-      </condition>
-      <volume>
-        <factor>0.6</factor>
-      </volume>
-    </click>
 
-    <click>
-      <name>COM1 Btn ZERO</name>
-      <path>Aircraft/panthera/sounds/ButtonRadio.wav</path>
-      <condition>
-        <equals>
-          <property>instrumentation/kma24/com1</property>
-          <value>0</value>
-        </equals>
-      </condition>
-      <volume>
-        <factor>0.6</factor>
-      </volume>
-    </click>
 
-    <click>
-      <name>COM1 Btn OFF</name>
-      <path>Aircraft/panthera/sounds/ButtonRadio.wav</path>
-      <condition>
-        <equals>
-          <property>instrumentation/kma24/com1</property>
-          <value>1</value>
-        </equals>
-      </condition>
-      <volume>
-        <factor>0.6</factor>
-      </volume>
-    </click>
 
-    <click>
-      <name>COM2 Btn ON</name>
-      <path>Aircraft/panthera/sounds/ButtonRadio.wav</path>
-      <condition>
-        <equals>
-          <property>instrumentation/kma24/com2</property>
-          <value>-1</value>
-        </equals>
-      </condition>
-      <volume>
-        <factor>0.6</factor>
-      </volume>
-    </click>
 
-    <click>
-      <name>COM2 Btn ZERO</name>
-      <path>Aircraft/panthera/sounds/ButtonRadio.wav</path>
-      <condition>
-        <equals>
-          <property>instrumentation/kma24/com2</property>
-          <value>0</value>
-        </equals>
-      </condition>
-      <volume>
-        <factor>0.6</factor>
-      </volume>
-    </click>
-
-    <click>
-      <name>COM2 Btn OFF</name>
-      <path>Aircraft/panthera/sounds/ButtonRadio.wav</path>
-      <condition>
-        <equals>
-          <property>instrumentation/kma24/com2</property>
-          <value>1</value>
-        </equals>
-      </condition>
-      <volume>
-        <factor>0.6</factor>
-      </volume>
-    </click>
-
-    <click>
-      <name>NAV1 Btn ON</name>
-      <path>Aircraft/panthera/sounds/ButtonRadio.wav</path>
-      <condition>
-        <equals>
-          <property>instrumentation/kma24/nav1</property>
-          <value>-1</value>
-        </equals>
-      </condition>
-      <volume>
-        <factor>0.6</factor>
-      </volume>
-    </click>
-
-    <click>
-      <name>NAV1 Btn ZERO</name>
-      <path>Aircraft/panthera/sounds/ButtonRadio.wav</path>
-      <condition>
-        <equals>
-          <property>instrumentation/kma24/nav1</property>
-          <value>0</value>
-        </equals>
-      </condition>
-      <volume>
-        <factor>0.6</factor>
-      </volume>
-    </click>
-
-    <click>
-      <name>NAV1 Btn OFF</name>
-      <path>Aircraft/panthera/sounds/ButtonRadio.wav</path>
-      <condition>
-        <equals>
-          <property>instrumentation/kma24/nav1</property>
-          <value>1</value>
-        </equals>
-      </condition>
-      <volume>
-        <factor>0.6</factor>
-      </volume>
-    </click>
-
-    <click>
-      <name>NAV2 Btn ON</name>
-      <path>Aircraft/panthera/sounds/ButtonRadio.wav</path>
-      <condition>
-        <equals>
-          <property>instrumentation/kma24/nav2</property>
-          <value>-1</value>
-        </equals>
-      </condition>
-      <volume>
-        <factor>0.6</factor>
-      </volume>
-    </click>
-
-    <click>
-      <name>NAV2 Btn ZERO</name>
-      <path>Aircraft/panthera/sounds/ButtonRadio.wav</path>
-      <condition>
-        <equals>
-          <property>instrumentation/kma24/nav2</property>
-          <value>0</value>
-        </equals>
-      </condition>
-      <volume>
-        <factor>0.6</factor>
-      </volume>
-    </click>
-
-    <click>
-      <name>NAV2 Btn OFF</name>
-      <path>Aircraft/panthera/sounds/ButtonRadio.wav</path>
-      <condition>
-        <equals>
-          <property>instrumentation/kma24/nav2</property>
-          <value>1</value>
-        </equals>
-      </condition>
-      <volume>
-        <factor>0.6</factor>
-      </volume>
-    </click>
-
-    <click>
-      <name>ADF Audio Btn ON</name>
-      <path>Aircraft/panthera/sounds/ButtonRadio.wav</path>
-      <condition>
-        <equals>
-          <property>instrumentation/kma24/adf</property>
-          <value>-1</value>
-        </equals>
-      </condition>
-      <volume>
-        <factor>0.6</factor>
-      </volume>
-    </click>
-
-    <click>
-      <name>ADF Audio Btn ZERO</name>
-      <path>Aircraft/panthera/sounds/ButtonRadio.wav</path>
-      <condition>
-        <equals>
-          <property>instrumentation/kma24/adf</property>
-          <value>0</value>
-        </equals>
-      </condition>
-      <volume>
-        <factor>0.6</factor>
-      </volume>
-    </click>
-
-    <click>
-      <name>ADF Audio Btn OFF</name>
-      <path>Aircraft/panthera/sounds/ButtonRadio.wav</path>
-      <condition>
-        <equals>
-          <property>instrumentation/kma24/adf</property>
-          <value>1</value>
-        </equals>
-      </condition>
-      <volume>
-        <factor>0.6</factor>
-      </volume>
-    </click>
-
-    <click>
-      <name>DME Audio Btn ON</name>
-      <path>Aircraft/panthera/sounds/ButtonRadio.wav</path>
-      <condition>
-        <equals>
-          <property>instrumentation/kma24/dme</property>
-          <value>-1</value>
-        </equals>
-      </condition>
-      <volume>
-        <factor>0.6</factor>
-      </volume>
-    </click>
-
-    <click>
-      <name>DME Audio Btn ZERO</name>
-      <path>Aircraft/panthera/sounds/ButtonRadio.wav</path>
-      <condition>
-        <equals>
-          <property>instrumentation/kma24/dme</property>
-          <value>0</value>
-        </equals>
-      </condition>
-      <volume>
-        <factor>0.6</factor>
-      </volume>
-    </click>
-
-    <click>
-      <name>DME Audio Btn OFF</name>
-      <path>Aircraft/panthera/sounds/ButtonRadio.wav</path>
-      <condition>
-        <equals>
-          <property>instrumentation/kma24/dme</property>
-          <value>1</value>
-        </equals>
-      </condition>
-      <volume>
-        <factor>0.6</factor>
-      </volume>
-    </click>
-
-    <click>
-      <name>MKR Btn ON</name>
-      <path>Aircraft/panthera/sounds/ButtonRadio.wav</path>
-      <condition>
-        <equals>
-          <property>instrumentation/kma24/mkr</property>
-          <value>-1</value>
-        </equals>
-      </condition>
-      <volume>
-        <factor>0.6</factor>
-      </volume>
-    </click>
-
-    <click>
-      <name>MKR Btn ZERO</name>
-      <path>Aircraft/panthera/sounds/ButtonRadio.wav</path>
-      <condition>
-        <equals>
-          <property>instrumentation/kma24/mkr</property>
-          <value>0</value>
-        </equals>
-      </condition>
-      <volume>
-        <factor>0.6</factor>
-      </volume>
-    </click>
-
-    <click>
-      <name>MKR Btn OFF</name>
-      <path>Aircraft/panthera/sounds/ButtonRadio.wav</path>
-      <condition>
-        <equals>
-          <property>instrumentation/kma24/mkr</property>
-          <value>1</value>
-        </equals>
-      </condition>
-      <volume>
-        <factor>0.6</factor>
-      </volume>
-    </click>
-
-    <click>
-      <name>AUTO Btn ON</name>
-      <path>Aircraft/panthera/sounds/ButtonRadio.wav</path>
-      <condition>
-        <equals>
-          <property>instrumentation/kma24/auto</property>
-          <value>-1</value>
-        </equals>
-      </condition>
-      <volume>
-        <factor>0.6</factor>
-      </volume>
-    </click>
-
-    <click>
-      <name>AUTO Btn ZERO</name>
-      <path>Aircraft/panthera/sounds/ButtonRadio.wav</path>
-      <condition>
-        <equals>
-          <property>instrumentation/kma24/auto</property>
-          <value>0</value>
-        </equals>
-      </condition>
-      <volume>
-        <factor>0.6</factor>
-      </volume>
-    </click>
-
-    <click>
-      <name>AUTO Btn OFF</name>
-      <path>Aircraft/panthera/sounds/ButtonRadio.wav</path>
-      <condition>
-        <equals>
-          <property>instrumentation/kma24/auto</property>
-          <value>1</value>
-        </equals>
-      </condition>
-      <volume>
-        <factor>0.6</factor>
-      </volume>
-    </click>
-
-<!-- DME -->
-
-    <click>
-      <name>DME ON</name>
-      <path>Aircraft/panthera/sounds/ButtonRadio.wav</path>
-      <condition>
-        <property>instrumentation/dme[0]/power-btn</property>
-      </condition>
-      <volume>
-        <factor>0.6</factor>
-      </volume>
-    </click>
-
-    <click>
-      <name>DME OFF</name>
-      <path>Aircraft/panthera/sounds/ButtonRadio.wav</path>
-      <condition>
-        <not>
-          <property>instrumentation/dme[0]/power-btn</property>
-        </not>
-      </condition>
-      <volume>
-        <factor>0.6</factor>
-      </volume>
-    </click>
-
-<!-- RADIO COMM/NAV [0] -->
-
-    <click>
-      <name>COMM 1 FREQ</name>
-      <path>Aircraft/panthera/sounds/ButtonRadio.wav</path>
-      <condition>
-        <property>instrumentation/comm[0]/frq-swap-btn</property>
-      </condition>
-      <volume>
-        <factor>0.6</factor>
-      </volume>
-    </click>
-
-    <click>
-      <name>NAV 1 FREQ</name>
-      <path>Aircraft/panthera/sounds/ButtonRadio.wav</path>
-      <condition>
-        <property>instrumentation/nav[0]/frq-swap-btn</property>
-      </condition>
-      <volume>
-        <factor>0.6</factor>
-      </volume>
-    </click>
-
-<!-- RADIO COMM/NAV [1] -->
-
-    <click>
-      <name>COMM 2 FREQ</name>
-      <path>Aircraft/panthera/sounds/ButtonRadio.wav</path>
-      <condition>
-        <property>instrumentation/comm[1]/frq-swap-btn</property>
-      </condition>
-      <volume>
-        <factor>0.6</factor>
-      </volume>
-    </click>
-
-    <click>
-      <name>NAV 2 FREQ</name>
-      <path>Aircraft/panthera/sounds/ButtonRadio.wav</path>
-      <condition>
-        <property>instrumentation/nav[1]/frq-swap-btn</property>
-      </condition>
-      <volume>
-        <factor>0.6</factor>
-      </volume>
-    </click>
 
   </fx>
 
