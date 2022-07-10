@@ -153,7 +153,7 @@ Performance
         <ground-level-nearplane-m type="double">0.5</ground-level-nearplane-m>
         <x-offset-m type="double">-.33</x-offset-m>
         <y-offset-m type="double">.3</y-offset-m>
-        <z-offset-m type="double">-1.51</z-offset-m>
+        <z-offset-m type="double">-1.7</z-offset-m>
         <pitch-offset-deg>-5</pitch-offset-deg>
         <default-field-of-view-deg type="double">78.7</default-field-of-view-deg>
         <limits>
@@ -172,33 +172,6 @@ Performance
       </config>
     </view>
     <view n="105">
-      <name>Copilot</name>
-      <type>lookfrom</type>
-      <internal type="bool">true</internal>
-      <config>
-        <from-model type="bool">true</from-model>
-        <ground-level-nearplane-m type="double">0.5</ground-level-nearplane-m>
-        <x-offset-m type="double">.20</x-offset-m>
-        <y-offset-m type="double">.25</y-offset-m>
-        <z-offset-m type="double">-1.53</z-offset-m>
-        <pitch-offset-deg>-5</pitch-offset-deg>
-        <default-field-of-view-deg type="double">78.7</default-field-of-view-deg>
-        <limits>
-          <enabled type="bool">true</enabled>
-          <left>
-            <heading-max-deg type="double">140</heading-max-deg>
-            <x-offset-max-m type="double">0.10</x-offset-max-m>
-            <x-offset-threshold-deg type="double">45</x-offset-threshold-deg>
-          </left>
-          <right>
-            <heading-max-deg type="double">160</heading-max-deg>
-            <x-offset-max-m type="double">0.20</x-offset-max-m>
-            <x-offset-threshold-deg type="double">65</x-offset-threshold-deg>
-          </right>
-        </limits>
-      </config>
-    </view>
-    <view n="106">
       <name>Passenger</name>
       <type>lookfrom</type>
       <internal type="bool">true</internal>
@@ -226,7 +199,33 @@ Performance
         </limits>
       </config>
     </view>
-
+    <view n="106">
+      <name>Copilot</name>
+      <type>lookfrom</type>
+      <internal type="bool">true</internal>
+      <config>
+        <from-model type="bool">true</from-model>
+        <ground-level-nearplane-m type="double">0.5</ground-level-nearplane-m>
+        <x-offset-m type="double">.20</x-offset-m>
+        <y-offset-m type="double">.25</y-offset-m>
+        <z-offset-m type="double">-1.53</z-offset-m>
+        <pitch-offset-deg>-5</pitch-offset-deg>
+        <default-field-of-view-deg type="double">78.7</default-field-of-view-deg>
+        <limits>
+          <enabled type="bool">true</enabled>
+          <left>
+            <heading-max-deg type="double">140</heading-max-deg>
+            <x-offset-max-m type="double">0.10</x-offset-max-m>
+            <x-offset-threshold-deg type="double">45</x-offset-threshold-deg>
+          </left>
+          <right>
+            <heading-max-deg type="double">160</heading-max-deg>
+            <x-offset-max-m type="double">0.20</x-offset-max-m>
+            <x-offset-threshold-deg type="double">65</x-offset-threshold-deg>
+          </right>
+        </limits>
+      </config>
+    </view>
     <rendering>
       <als-secondary-lights>
         <landing-light1-offset-deg type="double">6</landing-light1-offset-deg>  <!-- left landing-light -->
@@ -236,8 +235,12 @@ Performance
     </rendering>
 
     <systems>
-
       <property-rule n="100">
+        <name>panthera-filters</name>
+        <path>models/panthera-filters.xml</path>
+        <serviceable type="bool">1</serviceable>
+      </property-rule>
+      <property-rule n="101">
         <name>rain-drops-filters</name>
         <path>models/effects/rain/rain-drops-filters.xml</path>
       </property-rule>

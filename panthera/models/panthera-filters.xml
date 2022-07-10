@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PropertyList>
+
+  <filter>
+    <type>gain</type>
+    <gain>-1</gain>
+    <input>/rendering/scene/diffuse/green</input>
+    <reference>1</reference>
+    <output>/sim/model/rendering/relative-light-luminosity</output>
+    <min>.3</min>
+    <max>.85</max>
+  </filter>
+
+</PropertyList>
+
