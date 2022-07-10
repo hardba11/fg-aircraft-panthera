@@ -1,4 +1,4 @@
-                     FLIGHTGEAR "BOURRASQUE" AIRCRAFT - TODO
+                     FLIGHTGEAR "PANTHERA" AIRCRAFT - TODO
 
 Roadmap and releases
 --------------------

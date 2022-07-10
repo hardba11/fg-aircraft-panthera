@@ -12,6 +12,8 @@ print("*** LOADING map.nas ... ***");
 #var makeUrl  = string.compileTemplate('http://{server}.mqcdn.com/tiles/1.0.0/sat/{z}/{x}/{y}.jpg');
 #var servers = ["otile1", "otile2", "otile3", "otile4"];
 
+#var width = 576;
+#var height = 768;
 var width = 1024;
 var height = 1024;
 
@@ -34,13 +36,16 @@ var MAP = {
         # data used to create array of tiles
         m.tile_size = 256;
         m.num_tiles = [5, 5];
-        m.center_tile_offset = [2, 2];
         m.type = 'map';
+        m.center_tile_offset = [
+            (m.num_tiles[0] - 1) / 2,
+            (m.num_tiles[1] - 1) / 2
+        ];
 
         # my aircraft data and settings
         m.myHeadingProp = props.globals.getNode("orientation/heading-deg");
         m.myCoord = geo.aircraft_position();
-        m.zoom = 6;
+        m.zoom = getprop("/instrumentation/my_aircraft/map/controls/zoom") or 10;
 
         # used where to get and store locally tiles files
         m.home =  props.globals.getNode("/sim/fg-home");
@@ -56,7 +61,7 @@ var MAP = {
         m.canvas.addPlacement(placement);
         m.root = m.canvas.createGroup();
 
-        # text for MAP page
+        # text
         m.txt_zoom = m.root.createChild('text', 'txt_zoom')
             .setTranslation(200, 70)
             .setAlignment('left-bottom')
@@ -130,7 +135,8 @@ var MAP = {
             .setText('txt_alt')
             .set('z-index', 1);
 
-        m.g_map = m.root.createChild('group');
+        m.g_front = m.root.createChild('group');
+        m.g_back = m.root.createChild('group');
         m.root.setCenter(width / 2, height / 2); # center of the canvas
 
         # simple aircraft icon at current position/center of the map
@@ -156,27 +162,21 @@ var MAP = {
             return tiles;
         }
 
-        m.tiles_map = make_tiles(m.g_map);
+        m.tiles_front = make_tiles(m.g_front);
+        m.tiles_back  = make_tiles(m.g_back);
+        m.use_front = 1;
         m.last_tile = [-1, -1];
         m.last_type = m.type;
 
         return m;
     },
-    update: func(type) {
+    update: func() {
         var serviceable = getprop("/instrumentation/my_aircraft/map/controls/serviceable") or 0;
-        var time_speed = getprop("/sim/speed-up") or 1;
-        var loop_speed = (time_speed == 1) ? 1 : 4 * time_speed;
-
-        var zoom = getprop("/instrumentation/my_aircraft/map/controls/zoom_primary") or 6;
-        if(type == 'secondary')
-        {
-            zoom = getprop("/instrumentation/my_aircraft/map/controls/zoom_secondary") or 6;
-        }
 
         if(serviceable == 1)
         {
             me.svg_symbol.setRotation(me.myHeadingProp.getValue() * D2R);
-            me.zoom = zoom;
+            me.zoom = getprop("/instrumentation/my_aircraft/map/controls/zoom") or 10;
 
             me.txt_coords_lat.setText(sprintf('%s', getprop("/position/latitude-string") or ''));
             me.txt_coords_lng.setText(sprintf('%s', getprop("/position/longitude-string") or ''));
@@ -215,16 +215,29 @@ var MAP = {
             var tile_index = [int(offset[0]), int(offset[1])];
             var ox = tile_index[0] - offset[0];
             var oy = tile_index[1] - offset[1];
+            me.g_front.setVisible(me.use_front);
+            me.g_back.setVisible(! me.use_front);
+            me.use_front = math.mod(me.use_front + 1, 2);
 
             # placing tiles
             for(var x = 0; x < me.num_tiles[0]; x += 1)
             {
                 for(var y = 0; y < me.num_tiles[1]; y += 1)
                 {
-                    me.tiles_map[x][y].setTranslation(
-                        int(((ox + x) * me.tile_size) +18),
-                        int(((oy + y) * me.tile_size) +13)
-                    );
+                    if(me.use_front)
+                    {
+                        me.tiles_back[x][y].setTranslation(
+                            int(((ox + x) * me.tile_size) + .5),
+                            int(((oy + y) * me.tile_size) + .5)
+                        );
+                    }
+                    else
+                    {
+                        me.tiles_front[x][y].setTranslation(
+                            int(((ox + x) * me.tile_size) + .5),
+                            int(((oy + y) * me.tile_size) + .5)
+                        );
+                    }
                 }
             }
 
@@ -257,7 +270,8 @@ var MAP = {
                                     })
                                     .fail(func(r) {
                                         printf('::map - FAILED downloading %s to %s', img_url, img_path);
-                                        me.tiles_map[x - 1][y - 1].setFile("");
+                                        me.tiles_back[x - 1][y - 1].setFile("");
+                                        me.tiles_front[x - 1][y - 1].setFile("");
                                     });
                             }
                             else
@@ -265,7 +279,8 @@ var MAP = {
                                 if(pos.z == me.zoom)
                                 {
                                     printf('::map - using %s', img_path);
-                                    me.tiles_map[x][y].setFile(img_path);
+                                    me.tiles_back[x][y].setFile(img_path);
+                                    me.tiles_front[x][y].setFile(img_path);
                                 }
                             }
                         })();
@@ -275,17 +290,17 @@ var MAP = {
                 me.last_type = me.type;
             }
         }
-        loop_speed = (time_speed == 1) ? .5 : 4;
-
-        settimer(func() { me.update(type); }, loop_speed);
+        var time_speed = getprop("/sim/speed-up") or 1;
+        var loop_speed = (time_speed == 1) ? .5 : 4 * time_speed;
+        settimer(func() { me.update(); }, loop_speed);
     },
 };
 
 var init = setlistener("/sim/signals/fdm-initialized", func() {
     removelistener(init); # only call once
     var my_map = MAP.new({'node': 'center.top_screen'});
-    my_map.update('primary');
+    my_map.update();
     var my_map_little = MAP.new({'node': 'center.bottom_screen'});
-    my_map_little.update('secondary');
+    my_map_little.update();
 });
 

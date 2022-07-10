@@ -24,13 +24,13 @@ http://wiki.flightgear.org/Property_tree
     <rating>
       <FDM type="int">1</FDM>
       <systems type="int">0</systems>
-      <cockpit type="int">1</cockpit>
+      <cockpit type="int">4</cockpit>
       <model type="int">1</model>
     </rating>
 
     <!-- ~~~~~~~~~~~~~~~~~~ flight model -->
     <flight-model>yasim</flight-model>
-    <aero>fdm/yasim-panthera</aero>
+    <aero>core/yasim-panthera</aero>
 
   </sim>
 

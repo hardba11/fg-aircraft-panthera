@@ -30,7 +30,7 @@ http://wiki.flightgear.org/Property_tree
 
     <!-- ~~~~~~~~~~~~~~~~~~ flight model -->
     <flight-model>jsb</flight-model>
-    <aero>fdm/WIP-jsbsim</aero>
+    <aero>WIP-jsbsim</aero>
 
   </sim>
 

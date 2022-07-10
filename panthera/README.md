@@ -1,7 +1,3 @@
-<!--
-markdown README.md > md.html ; cat {hd.inc,md,ft.inc}.html > github.html
--->
-
 **Pipistrel Panthera**
 
 It is usable in [FLIGHTGEAR open source flight simulator](http://www.flightgear.org).
