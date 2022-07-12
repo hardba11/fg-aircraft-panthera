@@ -264,7 +264,7 @@ var MAP = {
                             {
                                 if(pos.z == me.zoom)
                                 {
-                                    printf('::map - using %s', img_path);
+                                    #printf('::map - using %s', img_path);
                                     me.tiles_map[x][y].setFile(img_path);
                                 }
                             }

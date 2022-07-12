@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+################################################################################
+#
+#                              PROPERTY TREE INIT
+#
+################################################################################
+
+PROPERTY-PATH : /instrumentation/
+-->
+
+<PropertyList>
+<!--
+  <nav n="0">
+    <frequencies>
+      <selected-mhz>117.8</selected-mhz>
+    </frequencies>
+  </nav>
+  <nav n="1">
+    <frequencies>
+      <selected-mhz>117.8</selected-mhz>
+    </frequencies>
+  </nav>
+-->
+  <my_aircraft>
+    <map>
+      <controls>
+        <serviceable type="bool">1</serviceable>
+        <zoom_primary type="int">12</zoom_primary>
+        <zoom_secondary type="int">9</zoom_secondary>
+      </controls>
+    </map>
+    <mfd_left>
+      <current_lb1_set type="string">AP</current_lb1_set>
+      <current_lb7_set type="string">NAV-COM</current_lb7_set>
+      <current_lb8_set type="string"></current_lb8_set>
+    </mfd_left>
+  </my_aircraft>
+
+</PropertyList>
+
+

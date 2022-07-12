@@ -255,18 +255,6 @@ Performance
 
   </sim>
 
-  <instrumentation>
-    <my_aircraft>
-      <map>
-        <controls>
-          <serviceable type="bool">1</serviceable>
-          <zoom_primary type="int">12</zoom_primary>
-          <zoom_secondary type="int">9</zoom_secondary>
-        </controls>
-      </map>
-    </my_aircraft>
-  </instrumentation>
-
 
   <!--
 ================================================================================
@@ -343,12 +331,8 @@ Performance
     </lighting>
   </controls>
 
-  <autopilot>
-    <settings>
-      <target-altitude-ft type="float">3000</target-altitude-ft>
-      <target-speed-kt type="float">190</target-speed-kt>
-    </settings>
-  </autopilot>
+  <autopilot include="include/autopilot-properties.xml" />
+  <instrumentation  include="include/instrumentation-properties.xml" />
 
   <!-- for tests and settings -->
   <_debug>
@@ -360,16 +344,16 @@ Performance
     <float3 type="float">0</float3>
     <float4 type="float">0</float4>
     <float5 type="float">0</float5>
-    <float6 type="float">0</float6>
+    <int1 type="int">0</int1>
+    <int2 type="int">0</int2>
+    <int3 type="int">0</int3>
+    <int4 type="int">0</int4>
+    <int5 type="int">0</int5>
     <bool1 type="bool">0</bool1>
     <bool2 type="bool">0</bool2>
     <bool3 type="bool">0</bool3>
     <bool4 type="bool">0</bool4>
     <bool5 type="bool">0</bool5>
-    <bool6 type="bool">0</bool6>
-    <bool7 type="bool">0</bool7>
-    <bool8 type="bool">0</bool8>
-    <bool9 type="bool">0</bool9>
   </_debug>
 
 

@@ -1,0 +1,919 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PropertyList>
+
+  <path>btn_mfd.ac</path>
+<!--
+btn_mfd_left.k1
+btn_mfd_left.b1
+btn_mfd_left.b2
+btn_mfd_left.b3
+btn_mfd_left.b4
+btn_mfd_left.b5
+btn_mfd_left.b6
+btn_mfd_left.b7
+btn_mfd_left.b8
+btn_mfd_left.k2
+btn_mfd_right.k1
+btn_mfd_right.b1
+btn_mfd_right.b2
+btn_mfd_right.b3
+btn_mfd_right.b4
+btn_mfd_right.b5
+btn_mfd_right.b6
+btn_mfd_right.b7
+btn_mfd_right.b8
+btn_mfd_right.k2
+-->
+  <!-- ~~~~~~~~~~~~~~~~~~ control left mfd button 1 -->
+  <animation>
+    <type>pick</type>
+    <object-name>btn_mfd_left.b1</object-name>
+    <action>
+      <button>0</button>
+      <repeatable>false</repeatable>
+      <binding>
+        <command>property-cycle</command>
+        <wrap type="bool">1</wrap>
+        <property>/instrumentation/my_aircraft/mfd_left/current_lb1_set</property>
+        <value>AP</value>
+        <value>set-hdg</value>
+        <value>set-alt</value>
+        <value>set-speed</value>
+      </binding>
+    </action>
+  </animation>
+
+  <!-- ~~~~~~~~~~~~~~~~~~ control left mfd knob 1 -->
+  <animation>
+    <type>pick</type>
+    <object-name>btn_mfd_left.k1</object-name>
+    <action>
+      <button>3</button>
+      <repeatable>true</repeatable>
+
+      <binding>
+        <condition>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb1_set</property>
+            <value>set-hdg</value>
+          </equals>
+        </condition>
+        <command>property-adjust</command>
+        <property>/autopilot/settings/heading-bug-deg</property>
+        <step>1</step>
+        <min>0</min>
+        <max>360</max>
+        <wrap>1</wrap>
+      </binding>
+
+      <binding>
+        <condition>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb1_set</property>
+            <value>set-alt</value>
+          </equals>
+        </condition>
+        <command>property-adjust</command>
+        <property>/autopilot/settings/target-altitude-ft</property>
+        <step>100</step>
+        <min>0</min>
+        <max>10000</max>
+        <wrap>0</wrap>
+      </binding>
+
+      <binding>
+        <condition>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb1_set</property>
+            <value>set-speed</value>
+          </equals>
+        </condition>
+        <command>property-adjust</command>
+        <property>/autopilot/settings/target-speed-kt</property>
+        <step>1</step>
+        <min>0</min>
+        <max>200</max>
+        <wrap>0</wrap>
+      </binding>
+
+    </action>
+
+    <action>
+      <button>4</button>
+      <repeatable>true</repeatable>
+
+      <binding>
+        <condition>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb1_set</property>
+            <value>set-hdg</value>
+          </equals>
+        </condition>
+        <command>property-adjust</command>
+        <property>/autopilot/settings/heading-bug-deg</property>
+        <step>-1</step>
+        <min>0</min>
+        <max>360</max>
+        <wrap>1</wrap>
+      </binding>
+
+      <binding>
+        <condition>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb1_set</property>
+            <value>set-alt</value>
+          </equals>
+        </condition>
+        <command>property-adjust</command>
+        <property>/autopilot/settings/target-altitude-ft</property>
+        <step>-100</step>
+        <min>0</min>
+        <max>10000</max>
+        <wrap>0</wrap>
+      </binding>
+
+      <binding>
+        <condition>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb1_set</property>
+            <value>set-speed</value>
+          </equals>
+        </condition>
+        <command>property-adjust</command>
+        <property>/autopilot/settings/target-speed-kt</property>
+        <step>-1</step>
+        <min>0</min>
+        <max>200</max>
+        <wrap>0</wrap>
+      </binding>
+
+    </action>
+  </animation>
+
+
+  <!-- ~~~~~~~~~~~~~~~~~~ control left mfd button 7 -->
+  <animation>
+    <type>pick</type>
+    <object-name>btn_mfd_left.b7</object-name>
+    <action>
+      <button>0</button>
+      <repeatable>false</repeatable>
+      <binding>
+        <command>property-cycle</command>
+        <wrap type="bool">1</wrap>
+        <property>/instrumentation/my_aircraft/mfd_left/current_lb7_set</property>
+        <value>NAV-COM</value>
+        <value>nav1</value>
+        <value>nav2</value>
+        <value>com1</value>
+        <value>com2</value>
+      </binding>
+      <binding>
+        <command>property-adjust</command>
+        <property>/instrumentation/my_aircraft/mfd_left/current_lb8_set</property>
+        <value></value>
+      </binding>
+    </action>
+  </animation>
+
+  <!-- ~~~~~~~~~~~~~~~~~~ control left mfd button 8 -->
+  <animation>
+    <type>pick</type>
+    <object-name>btn_mfd_left.b8</object-name>
+    <action>
+      <button>0</button>
+      <repeatable>false</repeatable>
+
+      <binding>
+        <condition>
+          <or>
+            <equals>
+              <property>/instrumentation/my_aircraft/mfd_left/current_lb7_set</property>
+              <value>nav1</value>
+            </equals>
+            <equals>
+              <property>/instrumentation/my_aircraft/mfd_left/current_lb7_set</property>
+              <value>nav2</value>
+            </equals>
+          </or>
+        </condition>
+        <command>property-cycle</command>
+        <wrap type="bool">1</wrap>
+        <property>/instrumentation/my_aircraft/mfd_left/current_lb8_set</property>
+        <value>set-radial</value>
+        <value>set-vol</value>
+        <value>set-frq1</value>
+        <value>set-frq.1</value>
+        <value>swp</value>
+      </binding>
+
+      <binding>
+        <condition>
+          <or>
+            <equals>
+              <property>/instrumentation/my_aircraft/mfd_left/current_lb7_set</property>
+              <value>com1</value>
+            </equals>
+            <equals>
+              <property>/instrumentation/my_aircraft/mfd_left/current_lb7_set</property>
+              <value>com2</value>
+            </equals>
+          </or>
+        </condition>
+        <command>property-cycle</command>
+        <wrap type="bool">1</wrap>
+        <property>/instrumentation/my_aircraft/mfd_left/current_lb8_set</property>
+        <value>set-vol</value>
+        <value>set-frq1</value>
+        <value>set-frq.1</value>
+        <value>swp</value>
+      </binding>
+
+    </action>
+  </animation>
+
+  <!-- ~~~~~~~~~~~~~~~~~~ control left mfd knob 2 -->
+  <animation>
+    <type>pick</type>
+    <object-name>btn_mfd_left.k2</object-name>
+    <action>
+      <button>3</button>
+      <repeatable>true</repeatable>
+
+      <!-- set radial nav1 -->
+      <binding>
+        <condition>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb7_set</property>
+            <value>nav1</value>
+          </equals>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb8_set</property>
+            <value>set-radial</value>
+          </equals>
+        </condition>
+        <command>property-adjust</command>
+        <property>/instrumentation/nav[0]/radials/selected-deg</property>
+        <step>1</step>
+        <min>0</min>
+        <max>360</max>
+        <wrap>1</wrap>
+      </binding>
+      <!-- set volume nav1 -->
+      <binding>
+        <condition>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb7_set</property>
+            <value>nav1</value>
+          </equals>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb8_set</property>
+            <value>set-vol</value>
+          </equals>
+        </condition>
+        <command>property-adjust</command>
+        <property>/instrumentation/nav[0]/volume</property>
+        <step>.05</step>
+        <min>0</min>
+        <max>1</max>
+        <wrap>0</wrap>
+      </binding>
+      <!-- set frequency nav1 -->
+      <binding>
+        <condition>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb7_set</property>
+            <value>nav1</value>
+          </equals>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb8_set</property>
+            <value>set-frq1</value>
+          </equals>
+        </condition>
+        <command>property-adjust</command>
+        <property>/instrumentation/nav[0]/frequencies/standby-mhz</property>
+        <step>1</step>
+        <min>108.00</min>
+        <max>118.000</max>
+        <wrap>1</wrap>
+      </binding>
+      <binding>
+        <condition>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb7_set</property>
+            <value>nav1</value>
+          </equals>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb8_set</property>
+            <value>set-frq.1</value>
+          </equals>
+        </condition>
+        <command>property-adjust</command>
+        <property>/instrumentation/nav[0]/frequencies/standby-mhz</property>
+        <step>0.05</step>
+        <min>108.00</min>
+        <max>118.000</max>
+        <wrap>1</wrap>
+      </binding>
+      <!-- swap frequency nav1 -->
+      <binding>
+        <condition>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb7_set</property>
+            <value>nav1</value>
+          </equals>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb8_set</property>
+            <value>swp</value>
+          </equals>
+        </condition>
+        <command>property-swap</command>
+        <property>/instrumentation/nav[0]/frequencies/selected-mhz</property>
+        <property>/instrumentation/nav[0]/frequencies/standby-mhz</property>
+      </binding>
+
+
+      <!-- set radial nav2 -->
+      <binding>
+        <condition>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb7_set</property>
+            <value>nav2</value>
+          </equals>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb8_set</property>
+            <value>set-radial</value>
+          </equals>
+        </condition>
+        <command>property-adjust</command>
+        <property>/instrumentation/nav[1]/radials/selected-deg</property>
+        <step>1</step>
+        <min>0</min>
+        <max>360</max>
+        <wrap>1</wrap>
+      </binding>
+      <!-- set volume nav2 -->
+      <binding>
+        <condition>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb7_set</property>
+            <value>nav2</value>
+          </equals>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb8_set</property>
+            <value>set-vol</value>
+          </equals>
+        </condition>
+        <command>property-adjust</command>
+        <property>/instrumentation/nav[1]/volume</property>
+        <step>.05</step>
+        <min>0</min>
+        <max>1</max>
+        <wrap>0</wrap>
+      </binding>
+      <!-- set frequency nav2 -->
+      <binding>
+        <condition>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb7_set</property>
+            <value>nav2</value>
+          </equals>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb8_set</property>
+            <value>set-frq1</value>
+          </equals>
+        </condition>
+        <command>property-adjust</command>
+        <property>/instrumentation/nav[1]/frequencies/standby-mhz</property>
+        <step>1</step>
+        <min>108.00</min>
+        <max>118.000</max>
+        <wrap>1</wrap>
+      </binding>
+      <binding>
+        <condition>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb7_set</property>
+            <value>nav2</value>
+          </equals>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb8_set</property>
+            <value>set-frq.1</value>
+          </equals>
+        </condition>
+        <command>property-adjust</command>
+        <property>/instrumentation/nav[1]/frequencies/standby-mhz</property>
+        <step>0.05</step>
+        <min>108.00</min>
+        <max>118.000</max>
+        <wrap>1</wrap>
+      </binding>
+      <!-- swap frequency nav2 -->
+      <binding>
+        <condition>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb7_set</property>
+            <value>nav2</value>
+          </equals>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb8_set</property>
+            <value>swp</value>
+          </equals>
+        </condition>
+        <command>property-swap</command>
+        <property>/instrumentation/nav[1]/frequencies/selected-mhz</property>
+        <property>/instrumentation/nav[1]/frequencies/standby-mhz</property>
+      </binding>
+
+      <!-- set volume com1 -->
+      <binding>
+        <condition>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb7_set</property>
+            <value>com1</value>
+          </equals>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb8_set</property>
+            <value>set-vol</value>
+          </equals>
+        </condition>
+        <command>property-adjust</command>
+        <property>/instrumentation/comm[0]/volume</property>
+        <step>.05</step>
+        <min>0</min>
+        <max>1</max>
+        <wrap>0</wrap>
+      </binding>
+      <!-- set frequency com1 -->
+      <binding>
+        <condition>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb7_set</property>
+            <value>com1</value>
+          </equals>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb8_set</property>
+            <value>set-frq1</value>
+          </equals>
+        </condition>
+        <command>property-adjust</command>
+        <property>/instrumentation/comm[0]/frequencies/standby-mhz</property>
+        <step>1</step>
+        <min>118.000</min>
+        <max>136.000</max>
+        <wrap>1</wrap>
+      </binding>
+      <binding>
+        <condition>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb7_set</property>
+            <value>com1</value>
+          </equals>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb8_set</property>
+            <value>set-frq.1</value>
+          </equals>
+        </condition>
+        <command>property-adjust</command>
+        <property>/instrumentation/comm[0]/frequencies/standby-mhz</property>
+        <step>0.025</step>
+        <min>118.000</min>
+        <max>136.000</max>
+        <wrap>1</wrap>
+      </binding>
+      <!-- swap frequency com1 -->
+      <binding>
+        <condition>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb7_set</property>
+            <value>com1</value>
+          </equals>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb8_set</property>
+            <value>swp</value>
+          </equals>
+        </condition>
+        <command>property-swap</command>
+        <property>/instrumentation/comm[0]/frequencies/selected-mhz</property>
+        <property>/instrumentation/comm[0]/frequencies/standby-mhz</property>
+      </binding>
+
+      <!-- set volume com2 -->
+      <binding>
+        <condition>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb7_set</property>
+            <value>com2</value>
+          </equals>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb8_set</property>
+            <value>set-vol</value>
+          </equals>
+        </condition>
+        <command>property-adjust</command>
+        <property>/instrumentation/comm[1]/volume</property>
+        <step>.05</step>
+        <min>0</min>
+        <max>1</max>
+        <wrap>0</wrap>
+      </binding>
+      <!-- set frequency com2 -->
+      <binding>
+        <condition>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb7_set</property>
+            <value>com2</value>
+          </equals>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb8_set</property>
+            <value>set-frq1</value>
+          </equals>
+        </condition>
+        <command>property-adjust</command>
+        <property>/instrumentation/comm[1]/frequencies/standby-mhz</property>
+        <step>1</step>
+        <min>118.000</min>
+        <max>136.000</max>
+        <wrap>1</wrap>
+      </binding>
+      <binding>
+        <condition>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb7_set</property>
+            <value>com2</value>
+          </equals>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb8_set</property>
+            <value>set-frq.1</value>
+          </equals>
+        </condition>
+        <command>property-adjust</command>
+        <property>/instrumentation/comm[1]/frequencies/standby-mhz</property>
+        <step>0.025</step>
+        <min>118.000</min>
+        <max>136.000</max>
+        <wrap>1</wrap>
+      </binding>
+      <!-- swap frequency com2 -->
+      <binding>
+        <condition>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb7_set</property>
+            <value>com2</value>
+          </equals>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb8_set</property>
+            <value>swp</value>
+          </equals>
+        </condition>
+        <command>property-swap</command>
+        <property>/instrumentation/comm[1]/frequencies/selected-mhz</property>
+        <property>/instrumentation/comm[1]/frequencies/standby-mhz</property>
+      </binding>
+
+    </action>
+
+    <action>
+      <button>4</button>
+      <repeatable>true</repeatable>
+
+      <!-- set radial nav1 -->
+      <binding>
+        <condition>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb7_set</property>
+            <value>nav1</value>
+          </equals>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb8_set</property>
+            <value>set-radial</value>
+          </equals>
+        </condition>
+        <command>property-adjust</command>
+        <property>/instrumentation/nav[0]/radials/selected-deg</property>
+        <step>-1</step>
+        <min>0</min>
+        <max>360</max>
+        <wrap>1</wrap>
+      </binding>
+      <!-- set volume nav1 -->
+      <binding>
+        <condition>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb7_set</property>
+            <value>nav1</value>
+          </equals>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb8_set</property>
+            <value>set-vol</value>
+          </equals>
+        </condition>
+        <command>property-adjust</command>
+        <property>/instrumentation/nav[0]/volume</property>
+        <step>-.05</step>
+        <min>0</min>
+        <max>1</max>
+        <wrap>0</wrap>
+      </binding>
+      <!-- set frequency nav1 -->
+      <binding>
+        <condition>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb7_set</property>
+            <value>nav1</value>
+          </equals>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb8_set</property>
+            <value>set-frq1</value>
+          </equals>
+        </condition>
+        <command>property-adjust</command>
+        <property>/instrumentation/nav[0]/frequencies/standby-mhz</property>
+        <step>-1</step>
+        <min>108.00</min>
+        <max>118.000</max>
+        <wrap>1</wrap>
+      </binding>
+      <binding>
+        <condition>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb7_set</property>
+            <value>nav1</value>
+          </equals>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb8_set</property>
+            <value>set-frq.1</value>
+          </equals>
+        </condition>
+        <command>property-adjust</command>
+        <property>/instrumentation/nav[0]/frequencies/standby-mhz</property>
+        <step>-0.05</step>
+        <min>108.00</min>
+        <max>118.000</max>
+        <wrap>1</wrap>
+      </binding>
+      <!-- swap frequency nav1 -->
+      <binding>
+        <condition>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb7_set</property>
+            <value>nav1</value>
+          </equals>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb8_set</property>
+            <value>swp</value>
+          </equals>
+        </condition>
+        <command>property-swap</command>
+        <property>/instrumentation/nav[0]/frequencies/selected-mhz</property>
+        <property>/instrumentation/nav[0]/frequencies/standby-mhz</property>
+      </binding>
+
+
+      <!-- set radial nav2 -->
+      <binding>
+        <condition>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb7_set</property>
+            <value>nav2</value>
+          </equals>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb8_set</property>
+            <value>set-radial</value>
+          </equals>
+        </condition>
+        <command>property-adjust</command>
+        <property>/instrumentation/nav[1]/radials/selected-deg</property>
+        <step>-1</step>
+        <min>0</min>
+        <max>360</max>
+        <wrap>1</wrap>
+      </binding>
+      <!-- set volume nav2 -->
+      <binding>
+        <condition>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb7_set</property>
+            <value>nav2</value>
+          </equals>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb8_set</property>
+            <value>set-vol</value>
+          </equals>
+        </condition>
+        <command>property-adjust</command>
+        <property>/instrumentation/nav[1]/volume</property>
+        <step>-.05</step>
+        <min>0</min>
+        <max>1</max>
+        <wrap>0</wrap>
+      </binding>
+      <!-- set frequency nav2 -->
+      <binding>
+        <condition>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb7_set</property>
+            <value>nav2</value>
+          </equals>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb8_set</property>
+            <value>set-frq1</value>
+          </equals>
+        </condition>
+        <command>property-adjust</command>
+        <property>/instrumentation/nav[1]/frequencies/standby-mhz</property>
+        <step>-1</step>
+        <min>108.00</min>
+        <max>118.000</max>
+        <wrap>1</wrap>
+      </binding>
+      <binding>
+        <condition>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb7_set</property>
+            <value>nav2</value>
+          </equals>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb8_set</property>
+            <value>set-frq.1</value>
+          </equals>
+        </condition>
+        <command>property-adjust</command>
+        <property>/instrumentation/nav[1]/frequencies/standby-mhz</property>
+        <step>-0.05</step>
+        <min>108.00</min>
+        <max>118.000</max>
+        <wrap>1</wrap>
+      </binding>
+      <!-- swap frequency nav2 -->
+      <binding>
+        <condition>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb7_set</property>
+            <value>nav2</value>
+          </equals>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb8_set</property>
+            <value>swp</value>
+          </equals>
+        </condition>
+        <command>property-swap</command>
+        <property>/instrumentation/nav[1]/frequencies/selected-mhz</property>
+        <property>/instrumentation/nav[1]/frequencies/standby-mhz</property>
+      </binding>
+
+      <!-- set volume com1 -->
+      <binding>
+        <condition>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb7_set</property>
+            <value>com1</value>
+          </equals>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb8_set</property>
+            <value>set-vol</value>
+          </equals>
+        </condition>
+        <command>property-adjust</command>
+        <property>/instrumentation/comm[0]/volume</property>
+        <step>-.05</step>
+        <min>0</min>
+        <max>1</max>
+        <wrap>0</wrap>
+      </binding>
+      <!-- set frequency com1 -->
+      <binding>
+        <condition>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb7_set</property>
+            <value>com1</value>
+          </equals>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb8_set</property>
+            <value>set-frq1</value>
+          </equals>
+        </condition>
+        <command>property-adjust</command>
+        <property>/instrumentation/comm[0]/frequencies/standby-mhz</property>
+        <step>-1</step>
+        <min>118.000</min>
+        <max>136.000</max>
+        <wrap>1</wrap>
+      </binding>
+      <binding>
+        <condition>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb7_set</property>
+            <value>com1</value>
+          </equals>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb8_set</property>
+            <value>set-frq.1</value>
+          </equals>
+        </condition>
+        <command>property-adjust</command>
+        <property>/instrumentation/comm[0]/frequencies/standby-mhz</property>
+        <step>-0.025</step>
+        <min>118.000</min>
+        <max>136.000</max>
+        <wrap>1</wrap>
+      </binding>
+      <!-- swap frequency com1 -->
+      <binding>
+        <condition>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb7_set</property>
+            <value>com1</value>
+          </equals>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb8_set</property>
+            <value>swp</value>
+          </equals>
+        </condition>
+        <command>property-swap</command>
+        <property>/instrumentation/comm[0]/frequencies/selected-mhz</property>
+        <property>/instrumentation/comm[0]/frequencies/standby-mhz</property>
+      </binding>
+
+      <!-- set volume com2 -->
+      <binding>
+        <condition>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb7_set</property>
+            <value>com2</value>
+          </equals>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb8_set</property>
+            <value>set-vol</value>
+          </equals>
+        </condition>
+        <command>property-adjust</command>
+        <property>/instrumentation/comm[1]/volume</property>
+        <step>-.05</step>
+        <min>0</min>
+        <max>1</max>
+        <wrap>0</wrap>
+      </binding>
+      <!-- set frequency com2 -->
+      <binding>
+        <condition>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb7_set</property>
+            <value>com2</value>
+          </equals>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb8_set</property>
+            <value>set-frq1</value>
+          </equals>
+        </condition>
+        <command>property-adjust</command>
+        <property>/instrumentation/comm[1]/frequencies/standby-mhz</property>
+        <step>-1</step>
+        <min>118.000</min>
+        <max>136.000</max>
+        <wrap>1</wrap>
+      </binding>
+      <binding>
+        <condition>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb7_set</property>
+            <value>com2</value>
+          </equals>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb8_set</property>
+            <value>set-frq.1</value>
+          </equals>
+        </condition>
+        <command>property-adjust</command>
+        <property>/instrumentation/comm[1]/frequencies/standby-mhz</property>
+        <step>-0.025</step>
+        <min>118.000</min>
+        <max>136.000</max>
+        <wrap>1</wrap>
+      </binding>
+      <!-- swap frequency com2 -->
+      <binding>
+        <condition>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb7_set</property>
+            <value>com2</value>
+          </equals>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb8_set</property>
+            <value>swp</value>
+          </equals>
+        </condition>
+        <command>property-swap</command>
+        <property>/instrumentation/comm[1]/frequencies/selected-mhz</property>
+        <property>/instrumentation/comm[1]/frequencies/standby-mhz</property>
+      </binding>
+
+
+    </action>
+  </animation>
+
+
+
+</PropertyList>
+

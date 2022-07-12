@@ -1,0 +1,388 @@
+AC3Db
+MATERIAL "transparent" rgb 0.800 0.800 0.800  amb 0.800 0.800 0.800  emis 0.000 0.000 0.000  spec 0.000 0.000 0.000  shi 128 trans 1.000
+OBJECT world
+name "Blender_exporter_v3.3__btn_mfd.ac"
+kids 1
+OBJECT group
+name "export_btn_mfd.ac"
+kids 20
+OBJECT poly
+name "btn_mfd_left.b1"
+data 9
+Plane.002
+crease 40.0
+numvert 4
+-2.12896 -0.10475 0.35005
+-2.12896 -0.08163 0.35005
+-2.12896 -0.10475 0.36745
+-2.12896 -0.08163 0.36745
+numsurf 1
+SURF 0X0
+mat 0
+refs 4
+3 0 0
+2 1 0
+0 1 0.03125
+1 0 0.03125
+kids 0
+OBJECT poly
+name "btn_mfd_left.b2"
+data 9
+Plane.003
+crease 40.0
+numvert 4
+-2.12896 -0.08163 0.33996
+-2.12896 -0.10475 0.33996
+-2.12896 -0.08163 0.32256
+-2.12896 -0.10475 0.32256
+numsurf 1
+SURF 0X0
+mat 0
+refs 4
+0 0 0
+1 1 0
+3 1 0.03125
+2 0 0.03125
+kids 0
+OBJECT poly
+name "btn_mfd_left.b3"
+data 9
+Plane.004
+crease 40.0
+numvert 4
+-2.12896 -0.10475 0.29608
+-2.12896 -0.08163 0.29608
+-2.12896 -0.10475 0.31348
+-2.12896 -0.08163 0.31348
+numsurf 1
+SURF 0X0
+mat 0
+refs 4
+3 0 0
+2 1 0
+0 1 0.03125
+1 0 0.03125
+kids 0
+OBJECT poly
+name "btn_mfd_left.b4"
+data 9
+Plane.005
+crease 40.0
+numvert 4
+-2.12896 -0.08163 0.287
+-2.12896 -0.10475 0.287
+-2.12896 -0.08163 0.2696
+-2.12896 -0.10475 0.2696
+numsurf 1
+SURF 0X0
+mat 0
+refs 4
+0 0 0
+1 1 0
+3 1 0.03125
+2 0 0.03125
+kids 0
+OBJECT poly
+name "btn_mfd_left.b5"
+data 9
+Plane.006
+crease 40.0
+numvert 4
+-2.12896 -0.10475 0.24311
+-2.12896 -0.08163 0.24311
+-2.12896 -0.10475 0.26052
+-2.12896 -0.08163 0.26052
+numsurf 1
+SURF 0X0
+mat 0
+refs 4
+3 0 0
+2 1 0
+0 1 0.03125
+1 0 0.03125
+kids 0
+OBJECT poly
+name "btn_mfd_left.b6"
+data 9
+Plane.007
+crease 40.0
+numvert 4
+-2.12896 -0.08163 0.23328
+-2.12896 -0.10475 0.23328
+-2.12896 -0.08163 0.21588
+-2.12896 -0.10475 0.21588
+numsurf 1
+SURF 0X0
+mat 0
+refs 4
+0 0 0
+1 1 0
+3 1 0.03125
+2 0 0.03125
+kids 0
+OBJECT poly
+name "btn_mfd_left.b7"
+data 9
+Plane.008
+crease 40.0
+numvert 4
+-2.12896 -0.10475 0.1899
+-2.12896 -0.08163 0.1899
+-2.12896 -0.10475 0.2073
+-2.12896 -0.08163 0.2073
+numsurf 1
+SURF 0X0
+mat 0
+refs 4
+3 0 0
+2 1 0
+0 1 0.03125
+1 0 0.03125
+kids 0
+OBJECT poly
+name "btn_mfd_left.b8"
+data 9
+Plane.009
+crease 40.0
+numvert 4
+-2.12896 -0.08163 0.18082
+-2.12896 -0.10475 0.18082
+-2.12896 -0.08163 0.16342
+-2.12896 -0.10475 0.16342
+numsurf 1
+SURF 0X0
+mat 0
+refs 4
+0 0 0
+1 1 0
+3 1 0.03125
+2 0 0.03125
+kids 0
+OBJECT poly
+name "btn_mfd_left.k1"
+data 9
+Plane.001
+crease 40.0
+numvert 4
+-2.11849 -0.07742 0.40262
+-2.11849 -0.10896 0.40262
+-2.11849 -0.07742 0.36856
+-2.11849 -0.10896 0.36856
+numsurf 1
+SURF 0X0
+mat 0
+refs 4
+0 0 0
+1 1 0
+3 1 0.03125
+2 0 0.03125
+kids 0
+OBJECT poly
+name "btn_mfd_left.k2"
+data 9
+Plane.010
+crease 40.0
+numvert 4
+-2.11849 -0.10896 0.12792
+-2.11849 -0.07742 0.12792
+-2.11849 -0.10896 0.16197
+-2.11849 -0.07742 0.16197
+numsurf 1
+SURF 0X0
+mat 0
+refs 4
+3 0 0
+2 1 0
+0 1 0.03125
+1 0 0.03125
+kids 0
+OBJECT poly
+name "btn_mfd_right.b1"
+data 9
+Plane.012
+crease 40.0
+numvert 4
+-2.12896 -0.10475 -0.18348
+-2.12896 -0.08163 -0.18348
+-2.12896 -0.10475 -0.16608
+-2.12896 -0.08163 -0.16608
+numsurf 1
+SURF 0X0
+mat 0
+refs 4
+3 0 0
+2 1 0
+0 1 0.03125
+1 0 0.03125
+kids 0
+OBJECT poly
+name "btn_mfd_right.b2"
+data 9
+Plane.013
+crease 40.0
+numvert 4
+-2.12896 -0.08163 -0.19357
+-2.12896 -0.10475 -0.19357
+-2.12896 -0.08163 -0.21097
+-2.12896 -0.10475 -0.21097
+numsurf 1
+SURF 0X0
+mat 0
+refs 4
+0 0 0
+1 1 0
+3 1 0.03125
+2 0 0.03125
+kids 0
+OBJECT poly
+name "btn_mfd_right.b3"
+data 9
+Plane.014
+crease 40.0
+numvert 4
+-2.12896 -0.10475 -0.23745
+-2.12896 -0.08163 -0.23745
+-2.12896 -0.10475 -0.22005
+-2.12896 -0.08163 -0.22005
+numsurf 1
+SURF 0X0
+mat 0
+refs 4
+3 0 0
+2 1 0
+0 1 0.03125
+1 0 0.03125
+kids 0
+OBJECT poly
+name "btn_mfd_right.b4"
+data 9
+Plane.015
+crease 40.0
+numvert 4
+-2.12896 -0.08163 -0.24653
+-2.12896 -0.10475 -0.24653
+-2.12896 -0.08163 -0.26393
+-2.12896 -0.10475 -0.26393
+numsurf 1
+SURF 0X0
+mat 0
+refs 4
+0 0 0
+1 1 0
+3 1 0.03125
+2 0 0.03125
+kids 0
+OBJECT poly
+name "btn_mfd_right.b5"
+data 9
+Plane.016
+crease 40.0
+numvert 4
+-2.12896 -0.10475 -0.29041
+-2.12896 -0.08163 -0.29041
+-2.12896 -0.10475 -0.27301
+-2.12896 -0.08163 -0.27301
+numsurf 1
+SURF 0X0
+mat 0
+refs 4
+3 0 0
+2 1 0
+0 1 0.03125
+1 0 0.03125
+kids 0
+OBJECT poly
+name "btn_mfd_right.b6"
+data 9
+Plane.017
+crease 40.0
+numvert 4
+-2.12896 -0.08163 -0.30025
+-2.12896 -0.10475 -0.30025
+-2.12896 -0.08163 -0.31765
+-2.12896 -0.10475 -0.31765
+numsurf 1
+SURF 0X0
+mat 0
+refs 4
+0 0 0
+1 1 0
+3 1 0.03125
+2 0 0.03125
+kids 0
+OBJECT poly
+name "btn_mfd_right.b7"
+data 9
+Plane.018
+crease 40.0
+numvert 4
+-2.12896 -0.10475 -0.34363
+-2.12896 -0.08163 -0.34363
+-2.12896 -0.10475 -0.32622
+-2.12896 -0.08163 -0.32622
+numsurf 1
+SURF 0X0
+mat 0
+refs 4
+3 0 0
+2 1 0
+0 1 0.03125
+1 0 0.03125
+kids 0
+OBJECT poly
+name "btn_mfd_right.b8"
+data 9
+Plane.019
+crease 40.0
+numvert 4
+-2.12896 -0.08163 -0.35271
+-2.12896 -0.10475 -0.35271
+-2.12896 -0.08163 -0.37011
+-2.12896 -0.10475 -0.37011
+numsurf 1
+SURF 0X0
+mat 0
+refs 4
+0 0 0
+1 1 0
+3 1 0.03125
+2 0 0.03125
+kids 0
+OBJECT poly
+name "btn_mfd_right.k1"
+data 9
+Plane.011
+crease 40.0
+numvert 4
+-2.11849 -0.07742 -0.13091
+-2.11849 -0.10896 -0.13091
+-2.11849 -0.07742 -0.16496
+-2.11849 -0.10896 -0.16496
+numsurf 1
+SURF 0X0
+mat 0
+refs 4
+0 0 0
+1 1 0
+3 1 0.03125
+2 0 0.03125
+kids 0
+OBJECT poly
+name "btn_mfd_right.k2"
+data 9
+Plane.020
+crease 40.0
+numvert 4
+-2.11849 -0.10896 -0.40561
+-2.11849 -0.07742 -0.40561
+-2.11849 -0.10896 -0.37156
+-2.11849 -0.07742 -0.37156
+numsurf 1
+SURF 0X0
+mat 0
+refs 4
+3 0 0
+2 1 0
+0 1 0.03125
+1 0 0.03125
+kids 0
