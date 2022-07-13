@@ -86,6 +86,200 @@
     <object-name>vitre_av-int</object-name>
   </effect>
 
+
+
+<!-- suspension train avant -->
+  <animation>
+    <name>block_jambe_train_avant</name>
+    <object-name>train_av.jambe_roue</object-name>
+    <object-name>roue_avant</object-name>
+  </animation>
+  <animation>
+    <type>rotate</type>
+    <object-name>block_jambe_train_avant</object-name>
+    <property>gear/gear[0]/compression-norm</property>
+    <interpolation>
+      <entry><ind>0</ind><dep>-10</dep></entry>
+      <entry><ind>.09</ind><dep>0</dep></entry>
+      <entry><ind>.4</ind><dep>10</dep></entry>
+    </interpolation>
+    <center>
+      <x-m>-3.159</x-m>
+      <y-m>0</y-m>
+      <z-m>-0.903</z-m>
+    </center>
+    <axis>
+      <x>0</x>
+      <y>-1</y>
+      <z>0</z>
+    </axis>
+  </animation>
+
+
+<!-- suspension train droit -->
+  <animation>
+    <name>block_jambe_train_droit</name>
+    <object-name>roues_d</object-name>
+    <object-name>train.jambe_roue_d</object-name>
+  </animation>
+  <animation>
+    <type>rotate</type>
+    <object-name>block_jambe_train_droit</object-name>
+    <property>gear/gear[2]/compression-norm</property>
+    <interpolation>
+      <entry><ind>0</ind><dep>-10</dep></entry>
+      <entry><ind>.17</ind><dep>0</dep></entry>
+      <entry><ind>.4</ind><dep>10</dep></entry>
+    </interpolation>
+    <center>
+      <x-m>-1.479</x-m>
+      <y-m>0</y-m>
+      <z-m>-0.918</z-m>
+    </center>
+    <axis>
+      <x>0</x>
+      <y>-1</y>
+      <z>0</z>
+    </axis>
+  </animation>
+  <animation>
+    <name>block_piston_train_droit</name>
+    <object-name>train.piston_d</object-name>
+    <object-name>train.piston_roue_d</object-name>
+  </animation>
+  <animation>
+    <type>rotate</type>
+    <object-name>block_piston_train_droit</object-name>
+    <property>gear/gear[2]/compression-norm</property>
+    <interpolation>
+      <entry><ind>0</ind><dep>-2</dep></entry>
+      <entry><ind>.17</ind><dep>0</dep></entry>
+      <entry><ind>.4</ind><dep>2</dep></entry>
+    </interpolation>
+    <center>
+      <x-m>-1.397</x-m>
+      <y-m>0</y-m>
+      <z-m>-0.689</z-m>
+    </center>
+    <axis>
+      <x>0</x>
+      <y>-1</y>
+      <z>0</z>
+    </axis>
+  </animation>
+  <animation>
+    <type>translate</type>
+    <object-name>train.piston_roue_d</object-name>
+    <property>gear/gear[2]/compression-norm</property>
+    <interpolation>
+      <entry><ind>0</ind><dep>0.015</dep></entry>
+      <entry><ind>.19</ind><dep>0</dep></entry>
+      <entry><ind>.4</ind><dep>-0.03</dep></entry>
+    </interpolation>
+    <axis>
+      <x>0.022</x>
+      <y>0</y>
+      <z>-0.115</z>
+    </axis>
+  </animation>
+
+
+<!-- suspension train gauche -->
+  <animation>
+    <name>block_jambe_train_gauche</name>
+    <object-name>roues_g</object-name>
+    <object-name>train.jambe_roue_g</object-name>
+  </animation>
+  <animation>
+    <type>rotate</type>
+    <object-name>block_jambe_train_gauche</object-name>
+    <property>gear/gear[1]/compression-norm</property>
+    <interpolation>
+      <entry><ind>0</ind><dep>-10</dep></entry>
+      <entry><ind>.17</ind><dep>0</dep></entry>
+      <entry><ind>.4</ind><dep>10</dep></entry>
+    </interpolation>
+    <center>
+      <x-m>-1.479</x-m>
+      <y-m>0</y-m>
+      <z-m>-0.918</z-m>
+    </center>
+    <axis>
+      <x>0</x>
+      <y>-1</y>
+      <z>0</z>
+    </axis>
+  </animation>
+  <animation>
+    <name>block_piston_train_gauche</name>
+    <object-name>train.piston_g</object-name>
+    <object-name>train.piston_roue_g</object-name>
+  </animation>
+  <animation>
+    <type>rotate</type>
+    <object-name>block_piston_train_gauche</object-name>
+    <property>gear/gear[1]/compression-norm</property>
+    <interpolation>
+      <entry><ind>0</ind><dep>-2</dep></entry>
+      <entry><ind>.17</ind><dep>0</dep></entry>
+      <entry><ind>.4</ind><dep>2</dep></entry>
+    </interpolation>
+    <center>
+      <x-m>-1.397</x-m>
+      <y-m>0</y-m>
+      <z-m>-0.689</z-m>
+    </center>
+    <axis>
+      <x>0</x>
+      <y>-1</y>
+      <z>0</z>
+    </axis>
+  </animation>
+  <animation>
+    <type>translate</type>
+    <object-name>train.piston_roue_d</object-name>
+    <property>gear/gear[1]/compression-norm</property>
+    <interpolation>
+      <entry><ind>0</ind><dep>0.015</dep></entry>
+      <entry><ind>.19</ind><dep>0</dep></entry>
+      <entry><ind>.4</ind><dep>-0.03</dep></entry>
+    </interpolation>
+    <axis>
+      <x>0.022</x>
+      <y>0</y>
+      <z>-0.115</z>
+    </axis>
+  </animation>
+
+
+<!-- front gear steering -->
+  <animation>
+    <type>rotate</type>
+    <object-name>block_train_avant</object-name>
+    <property>controls/flight/rudder</property>
+    <interpolation>
+      <entry><ind>-1</ind><dep>45</dep></entry>
+      <entry><ind>-.9</ind><dep>35</dep></entry>
+      <entry><ind>-.8</ind><dep>20</dep></entry>
+      <entry><ind>0</ind><dep>0</dep></entry>
+      <entry><ind>.8</ind><dep>-20</dep></entry>
+      <entry><ind>.9</ind><dep>-35</dep></entry>
+      <entry><ind>1</ind><dep>-45</dep></entry>
+    </interpolation>
+    <center>
+      <x-m>-3.0268</x-m>
+      <y-m>0</y-m>
+      <z-m>0</z-m>
+    </center>
+    <axis>
+      <x>0</x>
+      <y>0</y>
+      <z>1</z>
+    </axis>
+  </animation>
+
+
+<!-- retracting gears -->
   <animation>
     <type>rotate</type>
     <object-name>block_train_avant</object-name>
@@ -105,7 +299,6 @@
       <z>0</z>
     </axis>
   </animation>
-
   <animation>
     <type>rotate</type>
     <object-name>block_train_gauche</object-name>
@@ -144,7 +337,6 @@
       <z>0</z>
     </axis>
   </animation>
-
   <animation>
     <type>select</type>
     <object-name>block_train_avant</object-name>
@@ -158,48 +350,8 @@
     </condition>
   </animation>
 
-  <!--animation>
-    <type>select</type>
-    <object-name>propeller_fast</object-name>
-    <condition>
-      <greater-than>
-        <property>engines/engine[0]/rpm</property>
-        <value>400</value>
-      </greater-than>
-    </condition>
-  </animation-->
 
-  <animation>
-    <type>blend</type>
-    <object-name>propeller_fast</object-name>
-    <property>engines/engine[0]/rpm</property>
-    <factor>0.0002</factor>
-    <max>0.7</max>
-    <min>0</min>
-  </animation>
-
-  <animation>
-    <type>spin</type>
-    <object-name>propeller_fast</object-name>
-    <property>engines/engine[0]/rpm</property>
-    <factor>-0.008</factor>
-    <center>
-      <x-m>-4.2528</x-m>
-      <y-m>0</y-m>
-      <z-m>-0.179864</z-m>
-    </center>
-    <axis>
-      <x>1</x>
-      <y>0</y>
-      <z>0</z>
-    </axis>
-  </animation>
-
-  <model>
-    <name>lights</name>
-    <path>lights/lights-model.xml</path>
-  </model>
-
+<!-- roulement -->
   <animation>
     <type>spin</type>
     <object-name>roue_avant</object-name>
@@ -249,6 +401,41 @@
     </axis>
   </animation>
 
+<!-- propeller -->
+  <!--animation>
+    <type>select</type>
+    <object-name>propeller_fast</object-name>
+    <condition>
+      <greater-than>
+        <property>engines/engine[0]/rpm</property>
+        <value>400</value>
+      </greater-than>
+    </condition>
+  </animation-->
+  <animation>
+    <type>blend</type>
+    <object-name>propeller_fast</object-name>
+    <property>engines/engine[0]/rpm</property>
+    <factor>0.0002</factor>
+    <max>0.7</max>
+    <min>0</min>
+  </animation>
+  <animation>
+    <type>spin</type>
+    <object-name>propeller_fast</object-name>
+    <property>engines/engine[0]/rpm</property>
+    <factor>-0.008</factor>
+    <center>
+      <x-m>-4.2528</x-m>
+      <y-m>0</y-m>
+      <z-m>-0.179864</z-m>
+    </center>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+  </animation>
   <!--animation>
     <type>select</type>
     <object-name>propeller</object-name>
@@ -259,7 +446,6 @@
       </less-than>
     </condition>
   </animation>
-
   <animation>
     <type>spin</type>
     <object-name>propeller</object-name>
@@ -275,8 +461,19 @@
       <y>1</y>
       <z>0</z>
     </axis>
-  </animation>-->
+  </animation-->
+
+
+<!-- lights -->
+  <model>
+    <name>lights</name>
+    <path>lights/lights-model.xml</path>
+  </model>
 
 
 </PropertyList>
+
+
+
+
 

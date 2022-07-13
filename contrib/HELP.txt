@@ -1,0 +1,27 @@
+                     FLIGHTGEAR "BOURRASQUE" AIRCRAFT - HELP
+
+
+memo
+====
+
+keyboard shortcuts
+------------------
+
+- default keys
+
+
+
+glass cockpit
+-------------
+
+autopilot settings
+
+click on button "AP" to choose differents settings
+mouse scroll on knob on the left to adjust (speed, alt, heading)
+
+
+nav/comm settings
+
+click on button "nav-com" to choose differents settings
+click on the button on the right to choose nav1, nav2, com1, com2
+mouse scroll on knob on the right to adjust (radial, frequencies, swap)

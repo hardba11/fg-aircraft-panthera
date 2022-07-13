@@ -1,0 +1,32 @@
+                  FLIGHTGEAR "PANTHERA" AIRCRAFT - FEATURES
+
+
+Features
+========
+
+last version (beta) :
+---------------------
+
+flight model
+
+- yasim
+- autopilot
+
+model
+
+- 1 livery
+- partially animated model
+- interior and exterior lights
+
+instruments and cockpit
+
+- usable instruments
+- map
+- clickable buttons
+- minimalist "glass cockpit"
+
+- FIXME
+
+enjoy ;)
+
+

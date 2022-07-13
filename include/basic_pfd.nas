@@ -593,7 +593,7 @@ var BASIC_PFD = {
         m.nav1_bg = m.my_container.createChild('path', 'nav1_bg')
             .setColorFill(0, 0, 0);
         m.nav1 = m.my_container.createChild('text', 'nav1')
-            .setColor(1, 1, 1, 1)
+            .setColor(0, 1, 0, 1)
             .setText('NAV1');
         draw_label(m.nav1_bg, m.nav1, (3 * width / 20),  (2 * height / 7) - 10, 18, 110);
 
@@ -609,7 +609,7 @@ var BASIC_PFD = {
         m.nav2_bg = m.my_container.createChild('path', 'nav2_bg')
             .setColorFill(0, 0, 0);
         m.nav2 = m.my_container.createChild('text', 'nav2')
-            .setColor(1, 1, 1, 1)
+            .setColor(1, 1, 0, 1)
             .setText('NAV2');
         draw_label(m.nav2_bg, m.nav2, (3 * width / 20),  (2 * height / 7) - 10 + 26, 18, 110);
 
@@ -768,33 +768,63 @@ var BASIC_PFD = {
         var mfd_left_current_lb7_set = getprop("/instrumentation/my_aircraft/mfd_left/current_lb7_set") or 'NAV-COM';
         var mfd_left_current_lb8_set = getprop("/instrumentation/my_aircraft/mfd_left/current_lb8_set") or '';
 
-        var nav_info_dist = getprop("/instrumentation/dme/indicated-distance-nm") or 0;
-        var nav_info_eta = getprop("/instrumentation/dme/indicated-time-min") or 0;
-        var nav_info_spd = getprop("/instrumentation/dme/indicated-ground-speed-kt") or 0;
-
         var nav_info_id = '---';
-        var nav_info_dist = 0;
-        var nav_info_eta = 0;
-        var nav_info_spd = 0;
+        var nav_info_dist = '';
+        var nav_info_eta = '';
+        var nav_info_spd = '';
+        me.nav_info_id.setColor(0, 0, 0, 1);
+        me.nav_info_dist.setColor(0, 0, 0, 1);
+        me.nav_info_eta.setColor(0, 0, 0, 1);
+        me.nav_info_spd.setColor(0, 0, 0, 1);
+
         if(mfd_left_current_lb7_set == 'nav1')
         {
             signal_quality = getprop("/instrumentation/nav[0]/signal-quality-norm") or 0;
             nav_info_is_near = (signal_quality > 0.4);
-            nav_info_id = getprop("/instrumentation/nav[0]/nav-id") or '---';
-            setprop("/instrumentation/dme/frequencies/source",'/instrumentation/nav[0]/frequencies/selected-mhz');
-            nav_info_dist = getprop("/instrumentation/dme/indicated-distance-nm") or 0;
-            nav_info_eta = getprop("/instrumentation/dme/indicated-time-min") or 0;
-            nav_info_spd = getprop("/instrumentation/dme/indicated-ground-speed-kt") or 0;
+            if(nav_info_is_near)
+            {
+                nav_info_id = getprop("/instrumentation/nav[0]/nav-id") or '---';
+                setprop("/instrumentation/dme/frequencies/source",'/instrumentation/nav[0]/frequencies/selected-mhz');
+                var dme_in_range = getprop("/instrumentation/dme/in-range") or 0;
+                if(dme_in_range)
+                {
+                    x = getprop("/instrumentation/dme/indicated-distance-nm") or 0;
+                    nav_info_dist = sprintf('%.1f NM', x);
+                    x = getprop("/instrumentation/dme/indicated-time-min") or 0;
+                    nav_info_eta = sprintf('%.1f min', x);
+                    x = getprop("/instrumentation/dme/indicated-ground-speed-kt") or 0;
+                    nav_info_spd = sprintf('%.1f KT', x);
+                }
+            }
+            me.nav_info_id.setColor(0, 1, 0, 1);
+            me.nav_info_dist.setColor(0, 1, 0, 1);
+            me.nav_info_eta.setColor(0, 1, 0, 1);
+            me.nav_info_spd.setColor(0, 1, 0, 1);
+           
         }
         elsif(mfd_left_current_lb7_set == 'nav2')
         {
             signal_quality = getprop("/instrumentation/nav[1]/signal-quality-norm") or 0;
             nav_info_is_near = (signal_quality > 0.4);
-            nav_info_id = getprop("/instrumentation/nav[1]/nav-id") or '---';
-            setprop("/instrumentation/dme/frequencies/source",'/instrumentation/nav[1]/frequencies/selected-mhz');
-            nav_info_dist = getprop("/instrumentation/dme/indicated-distance-nm") or 0;
-            nav_info_eta = getprop("/instrumentation/dme/indicated-time-min") or 0;
-            nav_info_spd = getprop("/instrumentation/dme/indicated-ground-speed-kt") or 0;
+            if(nav_info_is_near)
+            {
+                nav_info_id = getprop("/instrumentation/nav[1]/nav-id") or '---';
+                setprop("/instrumentation/dme/frequencies/source",'/instrumentation/nav[1]/frequencies/selected-mhz');
+                var dme_in_range = getprop("/instrumentation/dme/in-range") or 0;
+                if(dme_in_range)
+                {
+                    x = getprop("/instrumentation/dme/indicated-distance-nm") or 0;
+                    nav_info_dist = sprintf('%.1f NM', x);
+                    x = getprop("/instrumentation/dme/indicated-time-min") or 0;
+                    nav_info_eta = sprintf('%.1f min', x);
+                    x = getprop("/instrumentation/dme/indicated-ground-speed-kt") or 0;
+                    nav_info_spd = sprintf('%.1f KT', x);
+                }
+            }
+            me.nav_info_id.setColor(1, 1, 0, 1);
+            me.nav_info_dist.setColor(1, 1, 0, 1);
+            me.nav_info_eta.setColor(1, 1, 0, 1);
+            me.nav_info_spd.setColor(1, 1, 0, 1);
         }
 
 
@@ -838,10 +868,10 @@ var BASIC_PFD = {
         me.l_mfd_b7.setText(sprintf('%s', mfd_left_current_lb7_set));
         me.l_mfd_b8.setText(sprintf('%s', mfd_left_current_lb8_set));
 
-        me.nav_info_id.setText(sprintf('%s', nav_info_id));
-        me.nav_info_dist.setText(sprintf('%.1f NM', nav_info_dist));
-        me.nav_info_eta.setText(sprintf('%.1f min', nav_info_eta));
-        me.nav_info_spd.setText(sprintf('%.1f KT', nav_info_spd));
+        me.nav_info_id.setText(nav_info_id);
+        me.nav_info_dist.setText(nav_info_dist);
+        me.nav_info_eta.setText(nav_info_eta);
+        me.nav_info_spd.setText(nav_info_spd);
 
         # hiding deg mark / pitch
         for(var deg = 5 ; deg < 40 ; deg = deg + 5)

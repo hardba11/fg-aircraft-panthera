@@ -4,11 +4,11 @@
 
   <filter>
     <type>gain</type>
-    <gain>-1</gain>
+    <gain>-1.2</gain>
     <input>/rendering/scene/diffuse/green</input>
     <reference>1</reference>
     <output>/sim/model/rendering/relative-light-luminosity</output>
-    <min>.3</min>
+    <min>.4</min>
     <max>.85</max>
   </filter>
 

@@ -12,9 +12,9 @@
     <lightmap-color type="vec3d" n="0"> 1.0 0.0 0.0 </lightmap-color>
     <lightmap-factor type="float" n="1"><use>/controls/lighting/right-light-norm</use></lightmap-factor>
     <lightmap-color type="vec3d" n="1"> 1.0 0.0 0.0 </lightmap-color>
-    <lightmap-factor type="float" n="2"><use>/_debug/float3</use></lightmap-factor>
+    <lightmap-factor type="float" n="2">0</lightmap-factor>
     <lightmap-color type="vec3d" n="2"> 1.0 1.0 1.0 </lightmap-color>
-    <lightmap-factor type="float" n="3"><use>/_debug/float4</use></lightmap-factor>
+    <lightmap-factor type="float" n="3">0</lightmap-factor>
     <lightmap-color type="vec3d" n="3"> 1.0 1.0 1.0 </lightmap-color>
     <texture n="3">
       <image>Aircraft/panthera/models/effects/panneaux_light_effect_tex.png</image>
