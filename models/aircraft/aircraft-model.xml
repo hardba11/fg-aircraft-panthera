@@ -8,9 +8,12 @@
     <type>material</type>
     <object-name>aircraft</object-name>
     <object-name>helice.cone</object-name>
-    <object-name>porte_ar</object-name>
-    <object-name>porte_av</object-name>
+    <object-name>porte_ar_g</object-name>
+    <object-name>porte_ar_d</object-name>
+    <object-name>porte_av_g</object-name>
+    <object-name>porte_av_d</object-name>
     <object-name>propeller_fast</object-name>
+    <object-name>propeller</object-name>
     <object-name>roues_d</object-name>
     <object-name>train_d</object-name>
     <object-name>train.jambe_roue_d</object-name>
@@ -26,10 +29,14 @@
     <object-name>train_av.jambe_roue</object-name>
     <object-name>train_av.piston</object-name>
     <object-name>train_av.piston_roue</object-name>
-    <object-name>vitre_ar</object-name>
-    <object-name>vitre_av</object-name>
-    <object-name>vitre_ar-int</object-name>
-    <object-name>vitre_av-int</object-name>
+    <object-name>vitre_ar_g</object-name>
+    <object-name>vitre_ar_d</object-name>
+    <object-name>vitre_av_g</object-name>
+    <object-name>vitre_av_d</object-name>
+    <object-name>vitre_ar_g-int</object-name>
+    <object-name>vitre_ar_d-int</object-name>
+    <object-name>vitre_av_g-int</object-name>
+    <object-name>vitre_av_d-int</object-name>
   </animation>
 
 
@@ -58,10 +65,39 @@
     <object-name>train.piston_roue_d</object-name>
   </animation>
 
+  <animation>
+    <name>block_porte_av_g</name>
+    <object-name>porte_av_g</object-name>
+    <object-name>vitre_av_g</object-name>
+    <object-name>vitre_av_g-int</object-name>
+  </animation>
+  <animation>
+    <name>block_porte_av_d</name>
+    <object-name>porte_av_d</object-name>
+    <object-name>vitre_av_d</object-name>
+    <object-name>vitre_av_d-int</object-name>
+  </animation>
+  <animation>
+    <name>block_porte_ar_g</name>
+    <object-name>porte_ar_g</object-name>
+    <object-name>vitre_ar_g</object-name>
+    <object-name>vitre_ar_g-int</object-name>
+  </animation>
+  <animation>
+    <name>block_porte_ar_d</name>
+    <object-name>porte_ar_d</object-name>
+    <object-name>vitre_ar_d</object-name>
+    <object-name>vitre_ar_d-int</object-name>
+  </animation>
+
+
+
   <effect>
     <inherits-from>Aircraft/panthera/models/effects/glass</inherits-from>
-    <object-name>vitre_av</object-name>
-    <object-name>vitre_ar</object-name>
+    <object-name>vitre_ar_g</object-name>
+    <object-name>vitre_ar_d</object-name>
+    <object-name>vitre_av_g</object-name>
+    <object-name>vitre_av_d</object-name>
   </effect>
 
   <effect>
@@ -71,19 +107,23 @@
 
   <!--animation>
     <type>select</type>
-    <object-name>vitre_av</object-name>
-    <object-name>vitre_ar</object-name>
+    <object-name>vitre_ar_g-int</object-name>
+    <object-name>vitre_ar_d-int</object-name>
+    <object-name>vitre_av_g-int</object-name>
+    <object-name>vitre_av_d-int</object-name>
     <condition>
       <equals>
-        <property>sim/current-view/internal</property>
+        <value>1</value>
         <value>0</value>
       </equals>
     </condition>
   </animation-->
   <effect>
     <inherits-from>Aircraft/panthera/models/effects/interior-glass</inherits-from>
-    <object-name>vitre_ar-int</object-name>
-    <object-name>vitre_av-int</object-name>
+    <object-name>vitre_ar_g-int</object-name>
+    <object-name>vitre_ar_d-int</object-name>
+    <object-name>vitre_av_g-int</object-name>
+    <object-name>vitre_av_d-int</object-name>
   </effect>
 
 
@@ -309,7 +349,7 @@
     </interpolation>
     <center>
       <x-m>-1.43</x-m>
-      <y-m>-.81</y-m>
+      <y-m>-1.204</y-m>
       <z-m>-.52</z-m>
     </center>
     <axis>
@@ -328,7 +368,7 @@
     </interpolation>
     <center>
       <x-m>-1.43</x-m>
-      <y-m>.81</y-m>
+      <y-m>1.204</y-m>
       <z-m>-.52</z-m>
     </center>
     <axis>
@@ -402,16 +442,16 @@
   </animation>
 
 <!-- propeller -->
-  <!--animation>
+  <animation>
     <type>select</type>
     <object-name>propeller_fast</object-name>
     <condition>
       <greater-than>
         <property>engines/engine[0]/rpm</property>
-        <value>400</value>
+        <value>1000</value>
       </greater-than>
     </condition>
-  </animation-->
+  </animation>
   <animation>
     <type>blend</type>
     <object-name>propeller_fast</object-name>
@@ -436,13 +476,13 @@
       <z>0</z>
     </axis>
   </animation>
-  <!--animation>
+  <animation>
     <type>select</type>
     <object-name>propeller</object-name>
     <condition>
       <less-than>
         <property>engines/engine[0]/rpm</property>
-        <value>500</value>
+        <value>1400</value>
       </less-than>
     </condition>
   </animation>
@@ -450,18 +490,18 @@
     <type>spin</type>
     <object-name>propeller</object-name>
     <property>engines/engine[0]/rpm</property>
-    <factor>-1</factor>
+    <factor>.5</factor>
     <center>
-      <x-m>0</x-m>
-      <y-m>-3.77421</y-m>
-      <z-m>-0.15648</z-m>
+      <x-m>-4.2528</x-m>
+      <y-m>0</y-m>
+      <z-m>-0.179864</z-m>
     </center>
     <axis>
-      <x>0</x>
-      <y>1</y>
+      <x>1</x>
+      <y>0</y>
       <z>0</z>
     </axis>
-  </animation-->
+  </animation>
 
 
 <!-- lights -->
@@ -469,6 +509,173 @@
     <name>lights</name>
     <path>lights/lights-model.xml</path>
   </model>
+
+
+<!-- doors -->
+  <animation>
+    <type>pick</type>
+    <object-name>porte_av_g</object-name>
+    <action>
+      <button>0</button>
+      <repeatable>false</repeatable>
+      <binding>
+        <condition>
+          <less-than>
+            <property>/gear/gear[0]/rollspeed-ms</property>
+            <value>0.5</value>
+          </less-than>
+        </condition>
+        <command>property-cycle</command>
+        <wrap type="bool">1</wrap>
+        <property>/controls/doors/porte-av-g</property>
+        <value>0</value>
+        <value>1</value>
+      </binding>
+    </action>
+  </animation>
+  <animation>
+    <type>rotate</type>
+    <object-name>block_porte_av_g</object-name>
+    <property>/sim/model/porte-av-g-pos-norm</property>
+    <interpolation>
+      <entry><ind>0</ind><dep>0</dep></entry>
+      <entry><ind>1</ind><dep>-85</dep></entry>
+    </interpolation>
+    <center>
+      <x-m>-2.29</x-m>
+      <y-m>-.06</y-m>
+      <z-m>.26</z-m>
+    </center>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>.26</z>
+    </axis>
+  </animation>
+
+  <animation>
+    <type>pick</type>
+    <object-name>porte_av_d</object-name>
+    <action>
+      <button>0</button>
+      <repeatable>false</repeatable>
+      <binding>
+        <condition>
+          <less-than>
+            <property>/gear/gear[0]/rollspeed-ms</property>
+            <value>0.5</value>
+          </less-than>
+        </condition>
+        <command>property-cycle</command>
+        <wrap type="bool">1</wrap>
+        <property>/controls/doors/porte-av-d</property>
+        <value>0</value>
+        <value>1</value>
+      </binding>
+    </action>
+  </animation>
+  <animation>
+    <type>rotate</type>
+    <object-name>block_porte_av_d</object-name>
+    <property>/sim/model/porte-av-d-pos-norm</property>
+    <interpolation>
+      <entry><ind>0</ind><dep>0</dep></entry>
+      <entry><ind>1</ind><dep>85</dep></entry>
+    </interpolation>
+    <center>
+      <x-m>-2.29</x-m>
+      <y-m>.06</y-m>
+      <z-m>.26</z-m>
+    </center>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>.26</z>
+    </axis>
+  </animation>
+
+  <animation>
+    <type>rotate</type>
+    <object-name>block_porte_ar_g</object-name>
+    <property>/sim/model/porte-ar-g-pos-norm</property>
+    <interpolation>
+      <entry><ind>0</ind><dep>0</dep></entry>
+      <entry><ind>1</ind><dep>-85</dep></entry>
+    </interpolation>
+    <center>
+      <x-m>-.932</x-m>
+      <y-m>-.06</y-m>
+      <z-m>.534</z-m>
+    </center>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>-.1</z>
+    </axis>
+  </animation>
+  <animation>
+    <type>pick</type>
+    <object-name>porte_ar_g</object-name>
+    <action>
+      <button>0</button>
+      <repeatable>false</repeatable>
+      <binding>
+        <condition>
+          <less-than>
+            <property>/gear/gear[0]/rollspeed-ms</property>
+            <value>0.5</value>
+          </less-than>
+        </condition>
+        <command>property-cycle</command>
+        <wrap type="bool">1</wrap>
+        <property>/controls/doors/porte-ar-g</property>
+        <value>0</value>
+        <value>1</value>
+      </binding>
+    </action>
+  </animation>
+
+  <animation>
+    <type>rotate</type>
+    <object-name>block_porte_ar_d</object-name>
+    <property>/sim/model/porte-ar-d-pos-norm</property>
+    <interpolation>
+      <entry><ind>0</ind><dep>0</dep></entry>
+      <entry><ind>1</ind><dep>85</dep></entry>
+    </interpolation>
+    <center>
+      <x-m>-.932</x-m>
+      <y-m>.06</y-m>
+      <z-m>.534</z-m>
+    </center>
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>-.1</z>
+    </axis>
+  </animation>
+  <animation>
+    <type>pick</type>
+    <object-name>porte_ar_d</object-name>
+    <action>
+      <button>0</button>
+      <repeatable>false</repeatable>
+      <binding>
+        <condition>
+          <less-than>
+            <property>/gear/gear[0]/rollspeed-ms</property>
+            <value>0.5</value>
+          </less-than>
+        </condition>
+        <command>property-cycle</command>
+        <wrap type="bool">1</wrap>
+        <property>/controls/doors/porte-ar-d</property>
+        <value>0</value>
+        <value>1</value>
+      </binding>
+    </action>
+  </animation>
+
 
 
 </PropertyList>

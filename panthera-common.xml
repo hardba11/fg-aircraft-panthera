@@ -151,8 +151,8 @@ Performance
       <config>
         <from-model type="bool">true</from-model>
         <ground-level-nearplane-m type="double">0.5</ground-level-nearplane-m>
-        <x-offset-m type="double">-.33</x-offset-m>
-        <y-offset-m type="double">.3</y-offset-m>
+        <x-offset-m type="double">-.27</x-offset-m>
+        <y-offset-m type="double">.26</y-offset-m>
         <z-offset-m type="double">-1.7</z-offset-m>
         <pitch-offset-deg>-5</pitch-offset-deg>
         <default-field-of-view-deg type="double">78.7</default-field-of-view-deg>
@@ -329,6 +329,14 @@ Performance
       <left-light-norm type="float">0</left-light-norm>
       <right-light-norm type="float">0</right-light-norm>
     </lighting>
+
+    <doors>
+      <porte-av-g type="int">0</porte-av-g>
+      <porte-av-d type="int">0</porte-av-d>
+      <porte-ar-g type="int">0</porte-ar-g>
+      <porte-ar-d type="int">0</porte-ar-d>
+    </doors>
+
   </controls>
 
   <autopilot include="include/autopilot-properties.xml" />

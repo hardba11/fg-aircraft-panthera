@@ -113,5 +113,30 @@
   <!-- Mass distribution -->
   <ballast x="5" y="0" z="0" mass="1000" />
 
+
+  <!-- HACK !!!  -->
+  <mstab x="0" y="0" z="0" length=".0001" chord=".0001" sweep=".0001" taper=".0001" dihedral="0" camber="0" incidence="0">
+    <control-input  control="FLAP0" axis="/controls/doors/porte-av-g" />
+    <control-output control="FLAP0" prop="/sim/model/porte-av-g-pos-norm" />
+    <control-speed  control="FLAP0" transition-time="14" />
+  </mstab>
+  <mstab x="0" y="0" z="0" length=".0001" chord=".0001" sweep=".0001" taper=".0001" dihedral="0" camber="0" incidence="0">
+    <control-input  control="FLAP0" axis="/controls/doors/porte-av-d" />
+    <control-output control="FLAP0" prop="/sim/model/porte-av-d-pos-norm" />
+    <control-speed  control="FLAP0" transition-time="14" />
+  </mstab>
+  <mstab x="0" y="0" z="0" length=".0001" chord=".0001" sweep=".0001" taper=".0001" dihedral="0" camber="0" incidence="0">
+    <control-input  control="FLAP0" axis="/controls/doors/porte-ar-g" />
+    <control-output control="FLAP0" prop="/sim/model/porte-ar-g-pos-norm" />
+    <control-speed  control="FLAP0" transition-time="14" />
+  </mstab>
+  <mstab x="0" y="0" z="0" length=".0001" chord=".0001" sweep=".0001" taper=".0001" dihedral="0" camber="0" incidence="0">
+    <control-input  control="FLAP0" axis="/controls/doors/porte-ar-d" />
+    <control-output control="FLAP0" prop="/sim/model/porte-ar-d-pos-norm" />
+    <control-speed  control="FLAP0" transition-time="14" />
+  </mstab>
+
+
+
 </airplane>
 
