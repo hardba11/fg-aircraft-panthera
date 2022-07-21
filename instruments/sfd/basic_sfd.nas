@@ -4,82 +4,110 @@ print("*** LOADING basic_sfd.nas ... ***");
 #                                                                      CONSTANTS
 var colors = {
     'light_grey': 'rgba(200, 200, 200, 1)',
+    'yellow':     'rgba(250, 250, 20, 1)',
     'green':      'rgba(20, 250, 20, 1)',
+    'orange':     'rgba(100, 40, 0, 1)',
     'red':        'rgba(200, 20, 20, 1)',
-    'yellow':     'rgba(250, 250, 20, 1)'
 };
 
 var rayon_static = 115;
 var rayon_gauge = 100;
 
-var x_rpm_engine  = 440;
-var y_rpm_engine  = 800;
+var x_rpm_engine = 440;
+var y_rpm_engine = 800;
 
-var x_torque_engine  = 880;
-var y_torque_engine  = 800;
+var x_torque_engine = 880;
+var y_torque_engine = 800;
 
-var x_egt_engine  = 600;
-var y_egt_engine  = 1150;
+var x_egt_engine = 600;
+var y_egt_engine = 1150;
 
-var x_oil_temp_engine  = 600;
-var y_oil_temp_engine  = 1300;
+var x_oil_temp_engine = 600;
+var y_oil_temp_engine = 1300;
 
-var x_ff_engine  = 600;
-var y_ff_engine  = 1450;
+var x_ff_engine = 600;
+var y_ff_engine = 1450;
 
-var x_tank0  = 1400;
-var y_tank0  = 1100;
+var x_tank0 = 1400;
+var y_tank0 = 1100;
 
-var x_tank1  = 1500;
-var y_tank1  = 1100;
+var x_tank1 = 1500;
+var y_tank1 = 1100;
 
-var x_tank2  = 1600;
-var y_tank2  = 1100;
+var x_tank2 = 1600;
+var y_tank2 = 1100;
+
+var x_text_gears = 1200;
+var y_text_gears = 650;
+
+var x_text_flaps = 1200;
+var y_text_flaps = 700;
+
+var x_text_doors = 1200;
+var y_text_doors = 750;
+
+var x_text_parkbrake = 1200;
+var y_text_parkbrake = 800;
+
+
 
 
 #===============================================================================
 #                                                                      FUNCTIONS
 
+
 #-------------------------------------------------------------------------------
-#                                                                       draw_arc
-# this function draws an arc
+#                                                     draw_circular_static_gauge
+# this function creates a circular gauge
+#   the drawed clockwise arc start on EAST
 # params :
 # - element     : canvas object created by createChild()
-# - center_x    : coord x of the center of the arc in px
-# - center_y    : coord y of the center of the arc in px
-# - radius      : radius
-# - start_angle : start angle in deg ()
-# - end_angle   : end angle in deg ()
-# - color       : color
-# - line_width  : line_width
+# - center_x    : center of the circle in px
+# - center_y    : center of the circle in px
+# - rayon       : radius of the circle in px
+# - angle_start : start angle of the arc in deg
+# - angle_end   : end angle of the arc in deg
+# - color       : color of the arc (light_grey|green|red)
+# - width       : width of the arc in px
 #
-var draw_arc = func(element, center_x, center_y, radius, start_angle, end_angle, color, line_width)
+var draw_circular_static_gauge = func(element, center_x, center_y, rayon, angle_start, angle_end, color, width)
 {
-    var coord_start_x = center_x + (radius * math.cos(start_angle * D2R));
-    var coord_start_y = center_y - (radius * math.sin(start_angle * D2R));
+    var coord_x_start = center_x + (rayon * math.cos(angle_start * D2R));
+    var coord_y_start = center_y + (rayon * math.sin(angle_start * D2R));
 
-    var to_x = -(radius * math.cos(start_angle * D2R)) + (radius * math.cos(end_angle * D2R));
-    var to_y = (radius * math.sin(start_angle * D2R)) - (radius * math.sin(end_angle * D2R));
+    var to_x = -(rayon * math.cos(angle_start * D2R)) + (rayon * math.cos(angle_end * D2R));
+    var to_y = -(rayon * math.sin(angle_start * D2R)) + (rayon * math.sin(angle_end * D2R));
 
-    element.setStrokeLineWidth(line_width)
-        .set('stroke', color)
-        .moveTo(coord_start_x, coord_start_y)
-        .arcSmallCCW(radius, radius, 0, to_x, to_y);
+    var angle = (angle_end - angle_start);
+
+    if(angle >= 180)
+    {
+        element.setStrokeLineWidth(width)
+            .set('stroke', colors[color])
+            .moveTo(coord_x_start, coord_y_start)
+            .arcLargeCW(rayon, rayon, 0, to_x, to_y);
+    }
+    else
+    {
+        element.setStrokeLineWidth(width)
+            .set('stroke', colors[color])
+            .moveTo(coord_x_start, coord_y_start)
+            .arcSmallCW(rayon, rayon, 0, to_x, to_y);
+    }
 }
-
 
 #-------------------------------------------------------------------------------
 #                                                            draw_circular_gauge
 # this function creates a circular gauge
 #   the drawed clockwise arc start on EAST
 # params :
-# - element  : canvas object created by createChild()
-# - center_x : center of the circle in px
-# - center_y : center of the circle in px
-# - rayon    : radius of the circle in px
-# - angle    : angle of the arc in deg
-# - color    : color of the arc (light_grey|green|red)
-# - width    : width of the arc in px
+# - element   : canvas object created by createChild()
+# - center_x  : center of the circle in px
+# - center_y  : center of the circle in px
+# - rayon     : radius of the circle in px
+# - angle     : angle of the arc in deg
+# - color     : color of the arc (light_grey|green|red)
+# - width     : width of the arc in px
 #
 var draw_circular_gauge = func(element, center_x, center_y, rayon, angle, color, width)
 {
@@ -142,21 +170,44 @@ var update_circular_gauge = func(element, center_x, center_y, rayon, angle, colo
     element._node.getNode("coord[6]", 1).setValue(coord_y_end);
 }
 
+
+#-------------------------------------------------------------------------------
+#                                                                      draw_line
+# this function creates a line
+# params :
+# - element  : canvas object created by createChild()
+# - start_x  : coords of the start line
+# - start_y  : coords of the start line
+# - end_x    : coords of the end line
+# - end_y    : coords of the end line
+# - color    : color of the rectangle (light_grey|green|yellow|orange|red)
+# - width    : line width
+#
+var draw_line = func(element, start_x, start_y, end_x, end_y, color, width)
+{
+    element.setStrokeLineWidth(width)
+        .set('stroke', colors[color])
+        .moveTo(start_x, start_y)
+        .lineTo(end_x, end_y);
+}
+
+
+
 #-------------------------------------------------------------------------------
 #                                                                 draw_rectangle
 # this function creates a rectangle
 # params :
 # - element  : canvas object created by createChild()
-# - start_x  : coords of the bottom left angle in px
-# - start_y  : coords of the bottom left angle in px
-# - color    : color of the rectangle (light_grey|green|red)
+# - start_x  : coords of the bottom left corner in px
+# - start_y  : coords of the bottom left corner in px
+# - color    : color of the rectangle (light_grey|green|yellow|orange|red)
 # - width    : width of the rectangle in px
 # - height   : height of the rectangle in px
 #
 var draw_rectangle = func(element, start_x, start_y, color, width, height)
 {
     element.setStrokeLineWidth(3)
-        .set('stroke', colors['light_grey'])
+        .set('stroke', colors[color])
         .moveTo(start_x, start_y)
         .lineTo(start_x + width, start_y)
         .lineTo(start_x + width, start_y + height)
@@ -246,12 +297,14 @@ var BASIC_SFD = {
 # display RPM
 
         # static arc
-        m.static_rpm_engine_circle = m.my_group.createChild('path', 'static_rpm_engine_circle');
-        draw_circular_gauge(m.static_rpm_engine_circle, x_rpm_engine, y_rpm_engine, rayon_static, 270, 'light_grey', 3);
-        #m.static_rpm_engine_circle_green = m.my_group.createChild('path', 'static_rpm_engine_circle_green');
-        #draw_arc(m.static_rpm_engine_circle_green, x_rpm_engine, y_rpm_engine, rayon_static, 120, 350, 'green', 3);
-        #m.static_rpm_engine_circle_red = m.my_group.createChild('path', 'static_rpm_engine_circle_red');
-        #draw_arc(m.static_rpm_engine_circle_red, x_rpm_engine, y_rpm_engine, rayon_static, 60, 120, 'red', 3);
+        m.static_rpm_engine_circle_grey = m.my_group.createChild('path', 'static_rpm_engine_circle_grey');
+        draw_circular_static_gauge(m.static_rpm_engine_circle_grey, x_rpm_engine, y_rpm_engine, rayon_static, 0, 270, 'light_grey', 2);
+        m.static_rpm_engine_circle_green = m.my_group.createChild('path', 'static_rpm_engine_circle_green');
+        draw_circular_static_gauge(m.static_rpm_engine_circle_green, x_rpm_engine, y_rpm_engine, rayon_static + 5, 90, 190, 'green', 5);
+        m.static_rpm_engine_circle_orange = m.my_group.createChild('path', 'static_rpm_engine_circle_orange');
+        draw_circular_static_gauge(m.static_rpm_engine_circle_orange, x_rpm_engine, y_rpm_engine, rayon_static + 5, 190, 240, 'yellow', 5);
+        m.static_rpm_engine_circle_red = m.my_group.createChild('path', 'static_rpm_engine_circle_red');
+        draw_circular_static_gauge(m.static_rpm_engine_circle_red, x_rpm_engine, y_rpm_engine, rayon_static + 5, 240, 270, 'red', 5);
 
         # gauge (will be updated)
         m.rpm_engine_circle = m.my_group.createChild('path', 'rpm_engine_circle');
@@ -259,7 +312,7 @@ var BASIC_SFD = {
 
         # rectangle
         m.rpm_engine_frame = m.my_group.createChild('path', 'rpm_engine_frame');
-        draw_rectangle(m.rpm_engine_frame, x_rpm_engine + 20, y_rpm_engine - 100, colors['light_grey'], 160, 80);
+        draw_rectangle(m.rpm_engine_frame, x_rpm_engine + 20, y_rpm_engine - 100, 'light_grey', 160, 80);
 
         # value (will be updated)
         m.rpm_engine_text = m.my_group.createChild('text', 'rpm_engine_text')
@@ -282,8 +335,17 @@ var BASIC_SFD = {
 # display TORQUE
 
         # static arc
-        m.static_torque_engine_circle = m.my_group.createChild('path', 'static_torque_engine_circle');
-        draw_circular_gauge(m.static_torque_engine_circle, x_torque_engine, y_torque_engine, rayon_static, 270, 'light_grey', 3);
+        #m.static_torque_engine_circle = m.my_group.createChild('path', 'static_torque_engine_circle');
+        #draw_circular_static_gauge(m.static_torque_engine_circle, x_torque_engine, y_torque_engine, rayon_static, 0, 270, 'light_grey', 2);
+
+        m.static_torque_engine_circle_grey = m.my_group.createChild('path', 'static_torque_engine_circle_grey');
+        draw_circular_static_gauge(m.static_torque_engine_circle_grey, x_torque_engine, y_torque_engine, rayon_static, 0, 270, 'light_grey', 2);
+        m.static_torque_engine_circle_green = m.my_group.createChild('path', 'static_torque_engine_circle_green');
+        draw_circular_static_gauge(m.static_torque_engine_circle_green, x_torque_engine, y_torque_engine, rayon_static + 5, 90, 190, 'green', 5);
+        m.static_torque_engine_circle_orange = m.my_group.createChild('path', 'static_torque_engine_circle_orange');
+        draw_circular_static_gauge(m.static_torque_engine_circle_orange, x_torque_engine, y_torque_engine, rayon_static + 5, 190, 240, 'yellow', 5);
+        m.static_torque_engine_circle_red = m.my_group.createChild('path', 'static_torque_engine_circle_red');
+        draw_circular_static_gauge(m.static_torque_engine_circle_red, x_torque_engine, y_torque_engine, rayon_static + 5, 240, 270, 'red', 5);
 
         # gauge (will be updated)
         m.torque_engine_circle = m.my_group.createChild('path', 'torque_engine_circle');
@@ -291,7 +353,7 @@ var BASIC_SFD = {
 
         # rectangle
         m.torque_engine_frame = m.my_group.createChild('path', 'torque_engine_frame');
-        draw_rectangle(m.torque_engine_frame, x_torque_engine + 20, y_torque_engine - 100, colors['light_grey'], 160, 80);
+        draw_rectangle(m.torque_engine_frame, x_torque_engine + 20, y_torque_engine - 100, 'light_grey', 160, 80);
 
         # value (will be updated)
         m.torque_engine_text = m.my_group.createChild('text', 'torque_engine_text')
@@ -313,14 +375,27 @@ var BASIC_SFD = {
 
 # display egt
         m.egt_frame = m.my_group.createChild('path', 'egt_frame');
-        draw_rectangle(m.egt_frame, x_egt_engine, y_egt_engine, colors['light_grey'], 30, 358);
+        draw_rectangle(m.egt_frame, x_egt_engine, y_egt_engine, 'light_grey', 30, 358);
         m.egt_frame.setCenter(x_egt_engine, y_egt_engine).setRotation(90 * D2R);
+
+        m.static_egt_green = m.my_group.createChild('path', 'static_egt_green');
+        draw_line(m.static_egt_green, x_egt_engine + 30 + 5, y_egt_engine + 358 - 100, x_egt_engine + 30 + 5, y_egt_engine + 358 - 280, 'green', 5);
+        m.static_egt_green.setCenter(x_egt_engine, y_egt_engine).setRotation(90 * D2R);
+
+        m.static_egt_orange = m.my_group.createChild('path', 'static_egt_orange');
+        draw_line(m.static_egt_orange, x_egt_engine + 30 + 5, y_egt_engine + 358 - 280, x_egt_engine + 30 + 5, y_egt_engine + 358 - 320, 'yellow', 5);
+        m.static_egt_orange.setCenter(x_egt_engine, y_egt_engine).setRotation(90 * D2R);
+
+        m.static_egt_red = m.my_group.createChild('path', 'static_egt_red');
+        draw_line(m.static_egt_red, x_egt_engine + 30 + 5, y_egt_engine + 358 - 320, x_egt_engine + 30 + 5, y_egt_engine + 358 - 358, 'red', 5);
+        m.static_egt_red.setCenter(x_egt_engine, y_egt_engine).setRotation(90 * D2R);
+
         m.egt_gauge = m.my_group.createChild('path', 'egt_gauge');
         draw_vertical_gauge(m.egt_gauge, x_egt_engine + 15, y_egt_engine + 358, 0, -100, 'green', 20);
         m.egt_gauge.setCenter(x_egt_engine, y_egt_engine).setRotation(90 * D2R);
         m.egt_engine_text = m.my_group.createChild('text', 'egt_engine_text')
             .setTranslation(x_egt_engine + 125, y_egt_engine - 15)
-            .setAlignment('center-center')
+            .setAlignment('left-center')
             .setFont('LiberationFonts/LiberationSansNarrow-Bold.ttf')
             .setFontSize(36)
             .setColor(1, 1, 1, 1)
@@ -329,7 +404,7 @@ var BASIC_SFD = {
         # label
         m.egt_label = m.my_group.createChild('text', 'egt_label')
             .setTranslation(x_egt_engine + 125, y_egt_engine + 15)
-            .setAlignment('center-center')
+            .setAlignment('left-center')
             .setFont('LiberationFonts/LiberationSansNarrow-Bold.ttf')
             .setFontSize(36)
             .setColor(1, 1, 1, 1)
@@ -337,14 +412,27 @@ var BASIC_SFD = {
 
 # display oil temp
         m.oil_temp_frame = m.my_group.createChild('path', 'oil_temp_frame');
-        draw_rectangle(m.oil_temp_frame, x_oil_temp_engine, y_oil_temp_engine, colors['light_grey'], 30, 358);
+        draw_rectangle(m.oil_temp_frame, x_oil_temp_engine, y_oil_temp_engine, 'light_grey', 30, 358);
         m.oil_temp_frame.setCenter(x_oil_temp_engine, y_oil_temp_engine).setRotation(90 * D2R);
+
+        m.static_oil_temp_green = m.my_group.createChild('path', 'static_oil_temp_green');
+        draw_line(m.static_oil_temp_green, x_oil_temp_engine + 30 + 5, y_oil_temp_engine + 358 - 100, x_oil_temp_engine + 30 + 5, y_oil_temp_engine + 358 - 280, 'green', 5);
+        m.static_oil_temp_green.setCenter(x_oil_temp_engine, y_oil_temp_engine).setRotation(90 * D2R);
+
+        m.static_oil_temp_orange = m.my_group.createChild('path', 'static_oil_temp_orange');
+        draw_line(m.static_oil_temp_orange, x_oil_temp_engine + 30 + 5, y_oil_temp_engine + 358 - 280, x_oil_temp_engine + 30 + 5, y_oil_temp_engine + 358 - 320, 'yellow', 5);
+        m.static_oil_temp_orange.setCenter(x_oil_temp_engine, y_oil_temp_engine).setRotation(90 * D2R);
+
+        m.static_oil_temp_red = m.my_group.createChild('path', 'static_oil_temp_red');
+        draw_line(m.static_oil_temp_red, x_oil_temp_engine + 30 + 5, y_oil_temp_engine + 358 - 320, x_oil_temp_engine + 30 + 5, y_oil_temp_engine + 358 - 358, 'red', 5);
+        m.static_oil_temp_red.setCenter(x_oil_temp_engine, y_oil_temp_engine).setRotation(90 * D2R);
+
         m.oil_temp_gauge = m.my_group.createChild('path', 'oil_temp_gauge');
         draw_horizontal_gauge(m.oil_temp_gauge, x_oil_temp_engine + 15, y_oil_temp_engine + 358, 0, -100, 'green', 20);
         m.oil_temp_gauge.setCenter(x_oil_temp_engine, y_oil_temp_engine).setRotation(90 * D2R);
         m.oil_temp_engine_text = m.my_group.createChild('text', 'oil_temp_engine_text')
             .setTranslation(x_oil_temp_engine + 125, y_oil_temp_engine - 15)
-            .setAlignment('center-center')
+            .setAlignment('left-center')
             .setFont('LiberationFonts/LiberationSansNarrow-Bold.ttf')
             .setFontSize(36)
             .setColor(1, 1, 1, 1)
@@ -353,7 +441,7 @@ var BASIC_SFD = {
         # label
         m.oil_temp_label = m.my_group.createChild('text', 'oil_temp_label')
             .setTranslation(x_oil_temp_engine + 125, y_oil_temp_engine + 15)
-            .setAlignment('center-center')
+            .setAlignment('left-center')
             .setFont('LiberationFonts/LiberationSansNarrow-Bold.ttf')
             .setFontSize(36)
             .setColor(1, 1, 1, 1)
@@ -361,14 +449,28 @@ var BASIC_SFD = {
 
 # display FUEL FLOW
         m.ff_frame = m.my_group.createChild('path', 'ff_frame');
-        draw_rectangle(m.ff_frame, x_ff_engine, y_ff_engine, colors['light_grey'], 30, 358);
+        draw_rectangle(m.ff_frame, x_ff_engine, y_ff_engine, 'light_grey', 30, 358);
         m.ff_frame.setCenter(x_ff_engine, y_ff_engine).setRotation(90 * D2R);
+
+
+        m.static_ff_green = m.my_group.createChild('path', 'static_ff_green');
+        draw_line(m.static_ff_green, x_ff_engine + 30 + 5, y_ff_engine + 358 - 100, x_ff_engine + 30 + 5, y_ff_engine + 358 - 280, 'green', 5);
+        m.static_ff_green.setCenter(x_ff_engine, y_ff_engine).setRotation(90 * D2R);
+
+        m.static_ff_orange = m.my_group.createChild('path', 'static_ff_orange');
+        draw_line(m.static_ff_orange, x_ff_engine + 30 + 5, y_ff_engine + 358 - 280, x_ff_engine + 30 + 5, y_ff_engine + 358 - 320, 'yellow', 5);
+        m.static_ff_orange.setCenter(x_ff_engine, y_ff_engine).setRotation(90 * D2R);
+
+        m.static_ff_red = m.my_group.createChild('path', 'static_ff_red');
+        draw_line(m.static_ff_red, x_ff_engine + 30 + 5, y_ff_engine + 358 - 320, x_ff_engine + 30 + 5, y_ff_engine + 358 - 358, 'red', 5);
+        m.static_ff_red.setCenter(x_ff_engine, y_ff_engine).setRotation(90 * D2R);
+
         m.ff_gauge = m.my_group.createChild('path', 'ff_gauge');
         draw_horizontal_gauge(m.ff_gauge, x_ff_engine + 15, y_ff_engine + 358, 0, -100, 'green', 20);
         m.ff_gauge.setCenter(x_ff_engine, y_ff_engine).setRotation(90 * D2R);
         m.ff_engine_text = m.my_group.createChild('text', 'ff_engine_text')
             .setTranslation(x_ff_engine + 125, y_ff_engine - 15)
-            .setAlignment('center-center')
+            .setAlignment('left-center')
             .setFont('LiberationFonts/LiberationSansNarrow-Bold.ttf')
             .setFontSize(36)
             .setColor(1, 1, 1, 1)
@@ -377,7 +479,7 @@ var BASIC_SFD = {
         # label
         m.ff_label = m.my_group.createChild('text', 'ff_label')
             .setTranslation(x_ff_engine + 125, y_ff_engine + 15)
-            .setAlignment('center-center')
+            .setAlignment('left-center')
             .setFont('LiberationFonts/LiberationSansNarrow-Bold.ttf')
             .setFontSize(36)
             .setColor(1, 1, 1, 1)
@@ -386,17 +488,17 @@ var BASIC_SFD = {
 # display FUEL TANK
 
         m.tank0_frame = m.my_group.createChild('path', 'tank0_frame');
-        draw_rectangle(m.tank0_frame, x_tank0, y_tank0, colors['light_grey'], 30, 258);
+        draw_rectangle(m.tank0_frame, x_tank0, y_tank0, 'light_grey', 30, 258);
         m.tank0_gauge = m.my_group.createChild('path', 'tank0_gauge');
         draw_vertical_gauge(m.tank0_gauge, x_tank0 + 15, y_tank0 + 258, 0, -100, 'green', 20);
 
         m.tank1_frame = m.my_group.createChild('path', 'tank1_frame');
-        draw_rectangle(m.tank1_frame, x_tank1, y_tank1, colors['light_grey'], 30, 258);
+        draw_rectangle(m.tank1_frame, x_tank1, y_tank1, 'light_grey', 30, 258);
         m.tank1_gauge = m.my_group.createChild('path', 'tank1_gauge');
         draw_vertical_gauge(m.tank1_gauge, x_tank1 + 15, y_tank1 + 258, 0, -100, 'green', 20);
 
         m.tank2_frame = m.my_group.createChild('path', 'tank2_frame');
-        draw_rectangle(m.tank2_frame, x_tank2, y_tank2, colors['light_grey'], 30, 258);
+        draw_rectangle(m.tank2_frame, x_tank2, y_tank2, 'light_grey', 30, 258);
         m.tank2_gauge = m.my_group.createChild('path', 'tank2_gauge');
         draw_vertical_gauge(m.tank2_gauge, x_tank2 + 15, y_tank2 + 258, 0, -100, 'green', 20);
 
@@ -409,6 +511,38 @@ var BASIC_SFD = {
             .setColor(1, 1, 1, 1)
             .setText('FUEL TANK');
 
+        # gears
+        m.text_gears = m.my_group.createChild('text', 'text_gears')
+            .setTranslation(x_text_gears, y_text_gears)
+            .setFont('LiberationFonts/LiberationSansNarrow-Bold.ttf')
+            .setFontSize(40)
+            .setColor(1, 1, 0, 1)
+            .setText('GEARS : down');
+
+        # flaps
+        m.text_flaps = m.my_group.createChild('text', 'text_flaps')
+            .setTranslation(x_text_flaps, y_text_flaps)
+            .setFont('LiberationFonts/LiberationSansNarrow-Bold.ttf')
+            .setFontSize(40)
+            .setColor(0, 1, 0, 1)
+            .setText('FLAPS : 0%');
+
+        # doors
+        m.text_doors = m.my_group.createChild('text', 'text_doors')
+            .setTranslation(x_text_doors, y_text_doors)
+            .setFont('LiberationFonts/LiberationSansNarrow-Bold.ttf')
+            .setFontSize(40)
+            .setColor(0, 1, 0, 1)
+            .setText('DOORS : closed');
+
+        # parkbrake
+        m.text_parkbrake = m.my_group.createChild('text', 'text_parkbrake')
+            .setTranslation(x_text_parkbrake, y_text_parkbrake)
+            .setFont('LiberationFonts/LiberationSansNarrow-Bold.ttf')
+            .setFontSize(40)
+            .setColor(0, 1, 0, 1)
+            .setText('PRKBRK : released');
+
 
         return m;
     },
@@ -420,20 +554,28 @@ var BASIC_SFD = {
         var egt      = getprop("/engines/engine[0]/egt-degf") or 0;
         var oil_temp = getprop("/engines/engine[0]/oil-temperature-degf") or 0;
 
-        var flap_pos   = getprop("/surface_positions/flap-pos-norm") or 0;
-        var parkbrk    = getprop("/controls/gear/brake-parking") or 0;
         var prop_pitch = getprop("/controls/engines/engine[0]/propeller-pitch") or 0;
 
         var tank0  = getprop("/consumables/fuel/tank[0]/level-lbs") or 0;
         var tank1  = getprop("/consumables/fuel/tank[1]/level-lbs") or 0;
         var tank2  = getprop("/consumables/fuel/tank[2]/level-lbs") or 0;
 
+        var gears      = getprop("/controls/gear/gear-down") or 0;
+        var flaps      = getprop("/controls/flight/flaps") or 0;
+        #var flap_pos   = getprop("/surface_positions/flap-pos-norm") or 0;
+        var door_av_g  = getprop("/controls/doors/porte-av-g") or 0;
+        var door_av_d  = getprop("/controls/doors/porte-av-d") or 0;
+        var door_ar_g  = getprop("/controls/doors/porte-ar-g") or 0;
+        var door_ar_d  = getprop("/controls/doors/porte-ar-d") or 0;
+        var parkbrk    = getprop("/controls/gear/brake-parking") or 0;
+
+
         # gauge + value rpm
         update_circular_gauge(me.rpm_engine_circle, x_rpm_engine, y_rpm_engine, rayon_gauge, (rpm * 270 / 2600), 'green');
         me.rpm_engine_text.setText(sprintf('%.1f', rpm));
 
         # gauge + value torque
-        update_circular_gauge(me.torque_engine_circle, x_torque_engine, y_torque_engine, rayon_gauge, (torque * 270 / 1500), 'green');
+        update_circular_gauge(me.torque_engine_circle, x_torque_engine, y_torque_engine, rayon_gauge, (torque * 270 / 2000), 'green');
         me.torque_engine_text.setText(sprintf('%.1f', torque));
 
         # gauge + value egt
@@ -452,6 +594,47 @@ var BASIC_SFD = {
         update_gauge(me.tank0_gauge, 0, -tank0 * 250 / 400, 'green');
         update_gauge(me.tank1_gauge, 0, -tank1 * 250 / 700, 'green');
         update_gauge(me.tank2_gauge, 0, -tank2 * 250 / 400, 'green');
+
+        if(gears > 0)
+        {
+            me.text_gears.setText('GEARS : down').setColor(1, 1, 0, 1);
+        }
+        else
+        {
+            me.text_gears.setText('GEARS : up').setColor(0, 1, 0, 1);
+        }
+
+        if(flaps > 0.1)
+        {
+            me.text_flaps.setText(sprintf('FLAPS : %d%%', flaps * 100)).setColor(1, 1, 0, 1);
+        }
+        else
+        {
+            me.text_flaps.setText('FLAPS : retracted').setColor(0, 1, 0, 1);
+        }
+
+        if((door_av_g + door_av_d + door_ar_g + door_ar_d) > 0.1)
+        {
+            var txt_tmp = 'open';
+            txt_tmp = (door_av_g > 0) ? txt_tmp ~' avg' : txt_tmp;
+            txt_tmp = (door_av_d > 0) ? txt_tmp ~' avd' : txt_tmp;
+            txt_tmp = (door_ar_g > 0) ? txt_tmp ~' arg' : txt_tmp;
+            txt_tmp = (door_ar_d > 0) ? txt_tmp ~' ard' : txt_tmp;
+            me.text_doors.setText(sprintf('DOORS : %s', txt_tmp)).setColor(1, 1, 0, 1);
+        }
+        else
+        {
+            me.text_doors.setText('DOORS : closed').setColor(0, 1, 0, 1);
+        }
+
+        if(parkbrk > 0)
+        {
+            me.text_parkbrake.setText('PRKBRK : pulled').setColor(1, 1, 0, 1);
+        }
+        else
+        {
+            me.text_parkbrake.setText('PRKBRK : released').setColor(0, 1, 0, 1);
+        }
 
         var time_speed = getprop("/sim/speed-up") or 1;
         var loop_speed = (time_speed == 1) ? .05 : 5;
@@ -480,6 +663,51 @@ var init = setlistener("/sim/signals/fdm-initialized", func() {
 # - ??? : /engines/engine[0]/cht-degf
 # - egt : /engines/engine[0]/egt-degf
 # - mp-inhg : /engines/engine[0]/mp-inhg
+# 
+# inhg
+# /instrumentation/altimeter/setting-inhg
+# 
+# temp ext
+# 
+# vitesse du vent et direction
+# /environment/wind-from-heading-deg
+# /environment/wind-speed-kt
+# 
+# date/heure
+# /instrumentation/clock/local-hour
+# /instrumentation/clock/indicated-hour
+# /instrumentation/clock/indicated-min
+# /instrumentation/clock/indicated-sec
+# /sim/time/real/day
+# /sim/time/real/month
+# 
+# flaps
+# /controls/flight/flaps
+# /surface-positions/flap-pos-norm
+# 
+# parkbrake
+# /controls/gear/brake-parking
+# 
+# doors
+# /controls/doors/porte-av-g
+# /controls/doors/porte-av-d
+# /controls/doors/porte-ar-g
+# /controls/doors/porte-ar-d
+# /sim/model/porte-av-g-pos-norm
+# /sim/model/porte-av-d-pos-norm
+# /sim/model/porte-ar-g-pos-norm
+# /sim/model/porte-ar-d-pos-norm
+# 
+# 
+# gears
+# /controls/gear/gear-down
+# /gear/gear[0]/position-norm
+# /gear/gear[1]/position-norm
+# /gear/gear[2]/position-norm
+# 
+# chrono
+
+
 
 
 

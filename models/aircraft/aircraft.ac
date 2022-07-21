@@ -1,7 +1,7 @@
 AC3Db
 MATERIAL "aircraft" rgb 1.000 1.000 1.000  amb 0.800 0.800 0.800  emis 0.000 0.000 0.000  spec 0.500 0.500 0.500  shi 64 trans 0.000
 MATERIAL "cockpit" rgb 1.000 1.000 1.000  amb 0.800 0.800 0.800  emis 0.000 0.000 0.000  spec 0.250 0.250 0.250  shi 64 trans 0.000
-MATERIAL "vitre" rgb 1.000 1.000 1.000  amb 0.800 0.800 0.800  emis 0.000 0.000 0.000  spec 0.500 0.500 0.500  shi 64 trans 0.700
+MATERIAL "vitre" rgb 1.000 1.000 1.000  amb 0.800 0.800 0.800  emis 0.000 0.000 0.000  spec 0.500 0.500 0.500  shi 64 trans 0.600
 MATERIAL "vitre-int" rgb 1.000 1.000 1.000  amb 0.800 0.800 0.800  emis 0.000 0.000 0.000  spec 0.500 0.500 0.500  shi 64 trans 0.900
 OBJECT world
 name "Blender_exporter_v3.3__aircraft-v3.ac"
@@ -13,8 +13,8 @@ OBJECT poly
 name "aircraft"
 data 8
 aircraft
-crease 40.0
-subdiv 1
+crease 78.88
+subdiv 2
 texture "aircraft.png"
 numvert 2007
 -2.29079 -0.7105 0.41401
@@ -15480,7 +15480,7 @@ OBJECT poly
 name "helice.cone"
 data 11
 helice.cone
-crease 40.0
+crease 78.88
 subdiv 2
 texture "aircraft.png"
 numvert 96
@@ -16184,8 +16184,8 @@ OBJECT poly
 name "porte_ar_d"
 data 12
 aircraft.005
-crease 40.0
-subdiv 1
+crease 78.88
+subdiv 2
 texture "aircraft.png"
 numvert 205
 -1.09384 0.04645 -0.70969
@@ -17834,8 +17834,8 @@ OBJECT poly
 name "porte_ar_g"
 data 12
 aircraft.002
-crease 40.0
-subdiv 1
+crease 78.88
+subdiv 2
 texture "aircraft.png"
 numvert 205
 -1.09384 0.04645 0.70969
@@ -19484,8 +19484,8 @@ OBJECT poly
 name "porte_av_d"
 data 12
 aircraft.006
-crease 40.0
-subdiv 1
+crease 78.88
+subdiv 2
 texture "aircraft.png"
 numvert 252
 -1.09384 0.40549 -0.50921
@@ -21490,8 +21490,8 @@ OBJECT poly
 name "porte_av_g"
 data 12
 aircraft.001
-crease 40.0
-subdiv 1
+crease 78.88
+subdiv 2
 texture "aircraft.png"
 numvert 252
 -1.09384 0.40549 0.50921
@@ -23496,7 +23496,7 @@ OBJECT poly
 name "propeller"
 data 9
 propeller
-crease 40.0
+crease 78.88
 subdiv 1
 texture "aircraft.png"
 numvert 768
@@ -29939,7 +29939,7 @@ OBJECT poly
 name "roue_avant"
 data 10
 roue_avant
-crease 40.0
+crease 78.88
 subdiv 1
 texture "aircraft.png"
 numvert 1472
@@ -41571,7 +41571,7 @@ OBJECT poly
 name "roues_d"
 data 5
 roues
-crease 40.0
+crease 78.88
 subdiv 2
 texture "aircraft.png"
 numvert 1856
@@ -56275,7 +56275,7 @@ OBJECT poly
 name "roues_g"
 data 9
 roues.001
-crease 40.0
+crease 78.88
 subdiv 2
 texture "aircraft.png"
 numvert 1856
@@ -70979,7 +70979,7 @@ OBJECT poly
 name "train.jambe_roue_d"
 data 16
 train.jambe_roue
-crease 40.0
+crease 78.88
 subdiv 1
 texture "aircraft.png"
 numvert 342
@@ -73514,7 +73514,7 @@ OBJECT poly
 name "train.jambe_roue_g"
 data 20
 train.jambe_roue.001
-crease 40.0
+crease 78.88
 subdiv 1
 texture "aircraft.png"
 numvert 342
@@ -76049,7 +76049,7 @@ OBJECT poly
 name "train.piston_d"
 data 12
 train.piston
-crease 40.0
+crease 78.88
 subdiv 1
 texture "aircraft.png"
 numvert 300
@@ -78351,7 +78351,7 @@ OBJECT poly
 name "train.piston_g"
 data 16
 train.piston.001
-crease 40.0
+crease 78.88
 subdiv 1
 texture "aircraft.png"
 numvert 300
@@ -80653,7 +80653,7 @@ OBJECT poly
 name "train.piston_roue_d"
 data 17
 train.piston_roue
-crease 40.0
+crease 78.88
 subdiv 1
 texture "aircraft.png"
 numvert 276
@@ -82763,7 +82763,7 @@ OBJECT poly
 name "train.piston_roue_g"
 data 21
 train.piston_roue.001
-crease 40.0
+crease 78.88
 subdiv 1
 texture "aircraft.png"
 numvert 276
@@ -84873,7 +84873,7 @@ OBJECT poly
 name "train_av"
 data 8
 train_av
-crease 40.0
+crease 78.88
 subdiv 1
 texture "aircraft.png"
 numvert 426
@@ -88080,7 +88080,7 @@ OBJECT poly
 name "train_av.jambe_roue"
 data 19
 train_av.jambe_roue
-crease 40.0
+crease 78.88
 subdiv 1
 texture "aircraft.png"
 numvert 366
@@ -90887,7 +90887,7 @@ OBJECT poly
 name "train_av.piston"
 data 15
 train_av.piston
-crease 40.0
+crease 78.88
 subdiv 1
 texture "aircraft.png"
 numvert 300
@@ -93189,7 +93189,7 @@ OBJECT poly
 name "train_av.piston_roue"
 data 20
 train_av.piston_roue
-crease 40.0
+crease 78.88
 subdiv 1
 texture "aircraft.png"
 numvert 276
@@ -95299,7 +95299,7 @@ OBJECT poly
 name "train_d"
 data 5
 train
-crease 40.0
+crease 78.88
 subdiv 1
 texture "aircraft.png"
 numvert 366
@@ -98080,7 +98080,7 @@ OBJECT poly
 name "train_g"
 data 9
 train.001
-crease 40.0
+crease 78.88
 subdiv 1
 texture "aircraft.png"
 numvert 366
@@ -100861,7 +100861,7 @@ OBJECT poly
 name "vitre_ar_d"
 data 12
 aircraft.007
-crease 40.0
+crease 78.88
 subdiv 1
 texture "aircraft.png"
 numvert 23
@@ -100992,7 +100992,7 @@ OBJECT poly
 name "vitre_ar_d-int"
 data 16
 vitre_ar-int.001
-crease 40.0
+crease 78.88
 subdiv 1
 texture "aircraft.png"
 numvert 23
@@ -101123,7 +101123,7 @@ OBJECT poly
 name "vitre_ar_g"
 data 12
 aircraft.004
-crease 40.0
+crease 78.88
 subdiv 1
 texture "aircraft.png"
 numvert 27
@@ -101258,7 +101258,7 @@ OBJECT poly
 name "vitre_ar_g-int"
 data 12
 vitre_ar-int
-crease 40.0
+crease 78.88
 subdiv 1
 texture "aircraft.png"
 numvert 23
@@ -101389,7 +101389,7 @@ OBJECT poly
 name "vitre_av_d"
 data 12
 aircraft.008
-crease 40.0
+crease 78.88
 subdiv 1
 texture "aircraft.png"
 numvert 39
@@ -101608,7 +101608,7 @@ OBJECT poly
 name "vitre_av_d-int"
 data 16
 vitre_av-int.001
-crease 40.0
+crease 78.88
 subdiv 1
 texture "aircraft.png"
 numvert 39
@@ -101827,7 +101827,7 @@ OBJECT poly
 name "vitre_av_g"
 data 12
 aircraft.003
-crease 40.0
+crease 78.88
 subdiv 1
 texture "aircraft.png"
 numvert 39
@@ -102046,7 +102046,7 @@ OBJECT poly
 name "vitre_av_g-int"
 data 12
 vitre_av-int
-crease 40.0
+crease 78.88
 subdiv 1
 texture "aircraft.png"
 numvert 39

@@ -376,16 +376,16 @@ Performance
       <file type="string">Aircraft/panthera/models/aircraft/lights/lights.nas</file>
     </lights>
     <map>
-      <file type="string">Aircraft/panthera/include/map.nas</file>
+      <file type="string">Aircraft/panthera/instruments/map/map.nas</file>
     </map>
     <ai>
-      <file type="string">Aircraft/panthera/include/ai.nas</file>
+      <file type="string">Aircraft/panthera/instruments/ai/ai.nas</file>
     </ai>
     <basic_pfd>
-      <file type="string">Aircraft/panthera/include/basic_pfd.nas</file>
+      <file type="string">Aircraft/panthera/instruments/pfd/basic_pfd.nas</file>
     </basic_pfd>
     <basic_sfd>
-      <file type="string">Aircraft/panthera/include/basic_sfd.nas</file>
+      <file type="string">Aircraft/panthera/instruments/sfd/basic_sfd.nas</file>
     </basic_sfd>
   </nasal>
 

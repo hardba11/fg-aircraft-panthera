@@ -48,7 +48,7 @@ var MAP = {
         m.makeUrl  = string.compileTemplate('http://{server}.tile.osm.org/{z}/{x}/{y}.png');
         m.servers = ['a', 'b', 'c'];
         m.makePath = string.compileTemplate(m.maps_base ~'/osm-{type}/{z}/{x}/{y}.png');
-        m.filename = 'Aircraft/panthera/include/my_aircraft_icon.svg';
+        m.filename = 'Aircraft/panthera/instruments/map/my_aircraft_icon.svg';
 
 # CANVAS STUFF
 
