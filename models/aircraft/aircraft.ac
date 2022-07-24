@@ -13,10 +13,10 @@ OBJECT poly
 name "aircraft"
 data 8
 aircraft
-crease 78.88
+crease 40.0
 subdiv 2
 texture "aircraft.png"
-numvert 2007
+numvert 2026
 -2.29079 -0.7105 0.41401
 -3.70026 -0.39545 0.04442
 2.99792 -0.31821 0.02531
@@ -2024,7 +2024,26 @@ numvert 2007
 -1.16375 0.52929 0.05854
 -1.1633 0.52238 -0.0583
 -1.16375 0.52929 -0.05854
-numsurf 1924
+-2.71219 -0.52078 -0.50947
+-2.47753 -0.2144 -0.65556
+-2.83095 -0.50229 -0.49167
+-2.79657 -0.39362 -0.58133
+-2.77758 -0.32197 -0.60782
+-2.81949 -0.46607 -0.52758
+-2.80803 -0.42984 -0.55445
+-2.8364 -0.50229 -0.48338
+-2.76512 -0.2696 -0.61635
+-2.83778 -0.50229 -0.46477
+-2.80341 -0.39362 -0.55443
+-2.78441 -0.32197 -0.58092
+-2.77057 -0.2696 -0.60806
+-2.82632 -0.46607 -0.50067
+-2.81487 -0.42984 -0.52755
+-2.48365 -0.22167 -0.6557
+-2.77195 -0.2696 -0.58945
+-2.82989 -0.49896 -0.49414
+-2.83673 -0.49896 -0.46724
+numsurf 1944
 SURF 0X10
 mat 0
 refs 4
@@ -15475,12 +15494,152 @@ refs 4
 1930 0.638542 0.196788
 2006 0.625073 0.195503
 2005 0.625028 0.196196
+SURF 0X10
+mat 0
+refs 4
+1683 0.786182 0.27502
+1657 0.786043 0.27502
+2019 0.786043 0.27502
+2023 0.786182 0.27502
+SURF 0X10
+mat 0
+refs 4
+1648 0.792638 0.298332
+1192 0.792092 0.298332
+2009 0.792092 0.298332
+2014 0.792638 0.298332
+SURF 0X10
+mat 0
+refs 4
+1654 0.792777 0.298332
+1648 0.792638 0.298332
+2014 0.792638 0.298332
+2016 0.792777 0.298332
+SURF 0X10
+mat 0
+refs 4
+1700 0.792671 0.297998
+1654 0.792777 0.298332
+2016 0.792777 0.298332
+2025 0.792671 0.297998
+SURF 0X10
+mat 0
+refs 4
+1659 0.986912 0.977465
+1658 0.985974 0.974647
+2020 0.985974 0.974647
+2021 0.986912 0.977465
+SURF 0X10
+mat 0
+refs 4
+988 0.756687 0.269491
+1651 0.785497 0.27502
+2015 0.785497 0.27502
+2008 0.756687 0.269491
+SURF 0X10
+mat 0
+refs 4
+1661 0.7573 0.270219
+1683 0.786182 0.27502
+2023 0.786182 0.27502
+2022 0.7573 0.270219
+SURF 0X10
+mat 0
+refs 4
+1683 0.990452 0.989939
+1656 0.989417 0.985861
+2018 0.989417 0.985861
+2023 0.990452 0.989939
+SURF 0X10
+mat 0
+refs 4
+1657 0.786043 0.27502
+1651 0.785497 0.27502
+2015 0.785497 0.27502
+2019 0.786043 0.27502
+SURF 0X10
+mat 0
+refs 4
+1192 0.792092 0.298332
+1692 0.791986 0.297998
+2024 0.791986 0.297998
+2009 0.792092 0.298332
+SURF 0X10
+mat 0
+refs 4
+1249 0.790944 0.294703
+1692 0.791986 0.297998
+2024 0.791986 0.297998
+2012 0.790944 0.294703
+SURF 0X10
+mat 0
+refs 4
+1194 0.786746 0.280267
+1651 0.785497 0.27502
+2015 0.785497 0.27502
+2011 0.786746 0.280267
+SURF 0X10
+mat 0
+refs 4
+1249 0.790944 0.294703
+1250 0.789796 0.291074
+2013 0.789796 0.291074
+2012 0.790944 0.294703
+SURF 0X10
+mat 0
+refs 4
+1659 0.790481 0.291074
+1655 0.789333 0.287445
+2017 0.789333 0.287445
+2021 0.790481 0.291074
+SURF 0X10
+mat 0
+refs 4
+1193 0.788648 0.287445
+1250 0.789796 0.291074
+2013 0.789796 0.291074
+2010 0.788648 0.287445
+SURF 0X10
+mat 0
+refs 4
+1700 0.792671 0.297998
+1658 0.791629 0.294703
+2020 0.791629 0.294703
+2025 0.792671 0.297998
+SURF 0X10
+mat 0
+refs 4
+1656 0.989417 0.985861
+1655 0.987849 0.980283
+2017 0.987849 0.980283
+2018 0.989417 0.985861
+SURF 0X10
+mat 0
+refs 4
+1194 0.786746 0.280267
+1193 0.788648 0.287445
+2010 0.788648 0.287445
+2011 0.786746 0.280267
+SURF 0X10
+mat 0
+refs 4
+1192 0.792092 0.298332
+985 0.780195 0.300184
+2007 0.780195 0.300184
+2009 0.792092 0.298332
+SURF 0X10
+mat 0
+refs 4
+1654 0.792777 0.298332
+985 0.780195 0.300184
+2007 0.780195 0.300184
+2016 0.792777 0.298332
 kids 0
 OBJECT poly
 name "helice.cone"
 data 11
 helice.cone
-crease 78.88
+crease 40.0
 subdiv 2
 texture "aircraft.png"
 numvert 96
@@ -16184,7 +16343,7 @@ OBJECT poly
 name "porte_ar_d"
 data 12
 aircraft.005
-crease 78.88
+crease 40.0
 subdiv 2
 texture "aircraft.png"
 numvert 205
@@ -17834,7 +17993,7 @@ OBJECT poly
 name "porte_ar_g"
 data 12
 aircraft.002
-crease 78.88
+crease 40.0
 subdiv 2
 texture "aircraft.png"
 numvert 205
@@ -19484,7 +19643,7 @@ OBJECT poly
 name "porte_av_d"
 data 12
 aircraft.006
-crease 78.88
+crease 40.0
 subdiv 2
 texture "aircraft.png"
 numvert 252
@@ -21490,7 +21649,7 @@ OBJECT poly
 name "porte_av_g"
 data 12
 aircraft.001
-crease 78.88
+crease 40.0
 subdiv 2
 texture "aircraft.png"
 numvert 252
@@ -23496,7 +23655,7 @@ OBJECT poly
 name "propeller"
 data 9
 propeller
-crease 78.88
+crease 40.0
 subdiv 1
 texture "aircraft.png"
 numvert 768
@@ -29939,7 +30098,7 @@ OBJECT poly
 name "roue_avant"
 data 10
 roue_avant
-crease 78.88
+crease 40.0
 subdiv 1
 texture "aircraft.png"
 numvert 1472
@@ -41571,7 +41730,7 @@ OBJECT poly
 name "roues_d"
 data 5
 roues
-crease 78.88
+crease 40.0
 subdiv 2
 texture "aircraft.png"
 numvert 1856
@@ -56275,7 +56434,7 @@ OBJECT poly
 name "roues_g"
 data 9
 roues.001
-crease 78.88
+crease 40.0
 subdiv 2
 texture "aircraft.png"
 numvert 1856
@@ -70979,7 +71138,7 @@ OBJECT poly
 name "train.jambe_roue_d"
 data 16
 train.jambe_roue
-crease 78.88
+crease 40.0
 subdiv 1
 texture "aircraft.png"
 numvert 342
@@ -73514,7 +73673,7 @@ OBJECT poly
 name "train.jambe_roue_g"
 data 20
 train.jambe_roue.001
-crease 78.88
+crease 40.0
 subdiv 1
 texture "aircraft.png"
 numvert 342
@@ -76049,7 +76208,7 @@ OBJECT poly
 name "train.piston_d"
 data 12
 train.piston
-crease 78.88
+crease 40.0
 subdiv 1
 texture "aircraft.png"
 numvert 300
@@ -78351,7 +78510,7 @@ OBJECT poly
 name "train.piston_g"
 data 16
 train.piston.001
-crease 78.88
+crease 40.0
 subdiv 1
 texture "aircraft.png"
 numvert 300
@@ -80653,7 +80812,7 @@ OBJECT poly
 name "train.piston_roue_d"
 data 17
 train.piston_roue
-crease 78.88
+crease 40.0
 subdiv 1
 texture "aircraft.png"
 numvert 276
@@ -82763,7 +82922,7 @@ OBJECT poly
 name "train.piston_roue_g"
 data 21
 train.piston_roue.001
-crease 78.88
+crease 40.0
 subdiv 1
 texture "aircraft.png"
 numvert 276
@@ -84873,7 +85032,7 @@ OBJECT poly
 name "train_av"
 data 8
 train_av
-crease 78.88
+crease 40.0
 subdiv 1
 texture "aircraft.png"
 numvert 426
@@ -88080,7 +88239,7 @@ OBJECT poly
 name "train_av.jambe_roue"
 data 19
 train_av.jambe_roue
-crease 78.88
+crease 40.0
 subdiv 1
 texture "aircraft.png"
 numvert 366
@@ -90887,7 +91046,7 @@ OBJECT poly
 name "train_av.piston"
 data 15
 train_av.piston
-crease 78.88
+crease 40.0
 subdiv 1
 texture "aircraft.png"
 numvert 300
@@ -93189,7 +93348,7 @@ OBJECT poly
 name "train_av.piston_roue"
 data 20
 train_av.piston_roue
-crease 78.88
+crease 40.0
 subdiv 1
 texture "aircraft.png"
 numvert 276
@@ -95299,7 +95458,7 @@ OBJECT poly
 name "train_d"
 data 5
 train
-crease 78.88
+crease 40.0
 subdiv 1
 texture "aircraft.png"
 numvert 366
@@ -98080,7 +98239,7 @@ OBJECT poly
 name "train_g"
 data 9
 train.001
-crease 78.88
+crease 40.0
 subdiv 1
 texture "aircraft.png"
 numvert 366
@@ -100861,7 +101020,7 @@ OBJECT poly
 name "vitre_ar_d"
 data 12
 aircraft.007
-crease 78.88
+crease 40.0
 subdiv 1
 texture "aircraft.png"
 numvert 23
@@ -100992,7 +101151,7 @@ OBJECT poly
 name "vitre_ar_d-int"
 data 16
 vitre_ar-int.001
-crease 78.88
+crease 40.0
 subdiv 1
 texture "aircraft.png"
 numvert 23
@@ -101123,8 +101282,8 @@ OBJECT poly
 name "vitre_ar_g"
 data 12
 aircraft.004
-crease 78.88
-subdiv 1
+crease 40.0
+subdiv 2
 texture "aircraft.png"
 numvert 27
 -1.09384 0.04456 0.70706
@@ -101258,7 +101417,7 @@ OBJECT poly
 name "vitre_ar_g-int"
 data 12
 vitre_ar-int
-crease 78.88
+crease 40.0
 subdiv 1
 texture "aircraft.png"
 numvert 23
@@ -101389,8 +101548,8 @@ OBJECT poly
 name "vitre_av_d"
 data 12
 aircraft.008
-crease 78.88
-subdiv 1
+crease 40.0
+subdiv 2
 texture "aircraft.png"
 numvert 39
 -1.09724 0.40165 -0.50921
@@ -101608,7 +101767,7 @@ OBJECT poly
 name "vitre_av_d-int"
 data 16
 vitre_av-int.001
-crease 78.88
+crease 40.0
 subdiv 1
 texture "aircraft.png"
 numvert 39
@@ -101827,8 +101986,8 @@ OBJECT poly
 name "vitre_av_g"
 data 12
 aircraft.003
-crease 78.88
-subdiv 1
+crease 40.0
+subdiv 2
 texture "aircraft.png"
 numvert 39
 -1.09724 0.40165 0.50921
@@ -102046,7 +102205,7 @@ OBJECT poly
 name "vitre_av_g-int"
 data 12
 vitre_av-int
-crease 78.88
+crease 40.0
 subdiv 1
 texture "aircraft.png"
 numvert 39
