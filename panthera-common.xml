@@ -112,7 +112,7 @@ Performance
     </sound>
 
     <!-- ~~~~~~~~~~~~~~~~~~ specific menu -->
-<!--
+<!---->
     <menubar>
       <default>
         <menu n="100">
@@ -136,7 +136,7 @@ Performance
         </menu>
       </default>
     </menubar>
--->
+
     <!-- ~~~~~~~~~~~~~~~~~~ initialisation -->
     <startup>
       <splash-texture>Aircraft/panthera/contrib/splash.png</splash-texture>
@@ -342,6 +342,10 @@ Performance
   <autopilot include="include/autopilot-properties.xml" />
   <instrumentation  include="include/instrumentation-properties.xml" />
 
+  <environment>
+    <pressure-sea-level-hpa type="float">0</pressure-sea-level-hpa>
+  </environment>
+
   <!-- for tests and settings -->
   <_debug>
     <Kp type="float">1.0</Kp>
@@ -387,6 +391,9 @@ Performance
     <basic_sfd>
       <file type="string">Aircraft/panthera/instruments/sfd/basic_sfd.nas</file>
     </basic_sfd>
+    <instrument_chrono>
+      <file type="string">Aircraft/panthera/instruments/chrono/chrono.nas</file>
+    </instrument_chrono>
   </nasal>
 
 

@@ -870,6 +870,7 @@ ________________________________________________________________________________
       <entry><ind>200</ind><dep>300</dep></entry>
       <entry><ind>220</ind><dep>330</dep></entry>
       <entry><ind>240</ind><dep>350</dep></entry>
+      <entry><ind>300</ind><dep>351</dep></entry>
     </interpolation>
     <center>
       <x-m>0</x-m>
@@ -997,7 +998,9 @@ ________________________________________________________________________________
       <binding>
         <command>set-tooltip</command>
         <tooltip-id>tooltip-stdby-alt-setting-inhg</tooltip-id>
-        <label>InHg settings</label>
+        <label>pressure : %.02f / altitude : %d ft</label>
+        <property>/instrumentation/altimeter/setting-hpa</property>
+        <property>/instrumentation/altimeter/indicated-altitude-ft</property>
       </binding>
     </hovered>
   </animation>
@@ -1229,6 +1232,12 @@ ________________________________________________________________________________
       <button>0</button>
       <repeatable>false</repeatable>
       <binding>
+        <condition>
+          <equals>
+            <property>/gear/gear[0]/wow</property>
+            <value>0</value>
+          </equals>
+        </condition>
         <command>property-toggle</command>
         <property>controls/gear/gear-down</property>
       </binding>

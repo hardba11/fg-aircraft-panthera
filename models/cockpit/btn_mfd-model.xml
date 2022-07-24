@@ -42,12 +42,27 @@ btn_mfd_right.k2
         <value>set-speed</value>
       </binding>
     </action>
+    <hovered>
+      <binding>
+        <command>set-tooltip</command>
+        <tooltip-id>tooltip-b1</tooltip-id>
+        <label>click to set auto-pilot heading, altitude, speed</label>
+      </binding>
+    </hovered>
   </animation>
 
   <!-- ~~~~~~~~~~~~~~~~~~ control left mfd knob 1 -->
   <animation>
     <type>pick</type>
     <object-name>btn_mfd_left.k1</object-name>
+    <hovered>
+      <binding>
+        <command>set-tooltip</command>
+        <tooltip-id>tooltip-k1</tooltip-id>
+        <label>adjust auto-pilot heading, altitude, speed</label>
+      </binding>
+    </hovered>
+
     <action>
       <button>3</button>
       <repeatable>true</repeatable>
@@ -76,7 +91,7 @@ btn_mfd_right.k2
         </condition>
         <command>property-adjust</command>
         <property>/autopilot/settings/target-altitude-ft</property>
-        <step>100</step>
+        <step>50</step>
         <min>0</min>
         <max>10000</max>
         <wrap>0</wrap>
@@ -127,7 +142,7 @@ btn_mfd_right.k2
         </condition>
         <command>property-adjust</command>
         <property>/autopilot/settings/target-altitude-ft</property>
-        <step>-100</step>
+        <step>-50</step>
         <min>0</min>
         <max>10000</max>
         <wrap>0</wrap>
@@ -151,11 +166,78 @@ btn_mfd_right.k2
     </action>
   </animation>
 
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~ control chrono start/pause btn -->
+  <animation>
+    <type>pick</type>
+    <object-name>btn_mfd_left.b2</object-name>
+    <action>
+      <button>0</button>
+      <repeatable>false</repeatable>
+      <binding>
+        <command>nasal</command>
+        <script>
+          <![CDATA[
+instrument_chrono.event_start_pause();
+          ]]>
+        </script>
+      </binding>
+    </action>
+    <hovered>
+      <binding>
+        <command>set-tooltip</command>
+        <tooltip-id>tooltip-chrono-start-pause</tooltip-id>
+        <label>Start-Pause chrono</label>
+      </binding>
+    </hovered>
+  </animation>
+
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~ control chrono hold/reset btn -->
+  <animation>
+    <type>pick</type>
+    <object-name>btn_mfd_left.b3</object-name>
+    <action>
+      <button>0</button>
+      <repeatable>false</repeatable>
+      <binding>
+        <command>property-toggle</command>
+        <property>/instrumentation/my_aircraft/chrono/is-hold</property>
+      </binding>
+    </action>
+    <action>
+      <button>1</button>
+      <repeatable>false</repeatable>
+      <binding>
+        <command>nasal</command>
+        <script>
+          <![CDATA[
+instrument_chrono.event_reset();
+          ]]>
+        </script>
+      </binding>
+    </action>
+    <hovered>
+      <binding>
+        <command>set-tooltip</command>
+        <tooltip-id>tooltip-chrono-hold-reset</tooltip-id>
+        <label>Hold, MMB=Reset</label>
+      </binding>
+    </hovered>
+  </animation>
+
 
   <!-- ~~~~~~~~~~~~~~~~~~ control left mfd button 7 -->
   <animation>
     <type>pick</type>
     <object-name>btn_mfd_left.b7</object-name>
+    <hovered>
+      <binding>
+        <command>set-tooltip</command>
+        <tooltip-id>tooltip-b7</tooltip-id>
+        <label>choose nav/com to set</label>
+      </binding>
+    </hovered>
+
     <action>
       <button>0</button>
       <repeatable>false</repeatable>
@@ -181,6 +263,13 @@ btn_mfd_right.k2
   <animation>
     <type>pick</type>
     <object-name>btn_mfd_left.b8</object-name>
+    <hovered>
+      <binding>
+        <command>set-tooltip</command>
+        <tooltip-id>tooltip-b8</tooltip-id>
+        <label>choose setting of nav/comm selected</label>
+      </binding>
+    </hovered>
     <action>
       <button>0</button>
       <repeatable>false</repeatable>
@@ -237,6 +326,13 @@ btn_mfd_right.k2
   <animation>
     <type>pick</type>
     <object-name>btn_mfd_left.k2</object-name>
+    <hovered>
+      <binding>
+        <command>set-tooltip</command>
+        <label>adjust nav/comm setting</label>
+      </binding>
+    </hovered>
+
     <action>
       <button>3</button>
       <repeatable>true</repeatable>

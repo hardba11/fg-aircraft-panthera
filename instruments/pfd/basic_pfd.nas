@@ -36,13 +36,32 @@ var draw_arc = func(element, center_x, center_y, radius, start_angle, end_angle,
 }
 
 
-var draw_label = func(element_bg, element_lbl, center_x, center_y, font_size, bg_width)
+var draw_label = func(element_bg, element_lbl, center_x, center_y, font_size, bg_width, align='center')
 {
-    element_bg.rect(center_x - (bg_width / 2), center_y, bg_width, font_size + 6);
-    element_lbl.setTranslation(center_x, center_y + 3 + (font_size / 2))
-        .setAlignment('center-center')
-        .setFont('LiberationFonts/LiberationSansNarrow-Bold.ttf')
-        .setFontSize(font_size);
+    if(align == 'right')
+    {
+        element_bg.rect(center_x - bg_width, center_y, bg_width, font_size + 6);
+        element_lbl.setTranslation(center_x - 3, center_y + 3 + (font_size / 2))
+            .setAlignment('right-center')
+            .setFont('LiberationFonts/LiberationSansNarrow-Bold.ttf')
+            .setFontSize(font_size);
+    }
+    elsif(align == 'left')
+    {
+        element_bg.rect(center_x, center_y, bg_width, font_size + 6);
+        element_lbl.setTranslation(center_x + 3, center_y + 3 + (font_size / 2))
+            .setAlignment('left-center')
+            .setFont('LiberationFonts/LiberationSansNarrow-Bold.ttf')
+            .setFontSize(font_size);
+    }
+    else
+    {
+        element_bg.rect(center_x - (bg_width / 2), center_y, bg_width, font_size + 6);
+        element_lbl.setTranslation(center_x, center_y + 3 + (font_size / 2))
+            .setAlignment('center-center')
+            .setFont('LiberationFonts/LiberationSansNarrow-Bold.ttf')
+            .setFontSize(font_size);
+    }
 }
 
 
@@ -668,6 +687,28 @@ var BASIC_PFD = {
             .setText('off');
         draw_label(m.l_mfd_b1_bg, m.l_mfd_b1, 210,  730, 18, 100);
 
+
+        m.l_mfd_b2_bg = m.my_container.createChild('path', 'l_mfd_b2_bg')
+            .setColorFill(0, 0, 0);
+        m.l_mfd_b2 = m.my_container.createChild('text', 'l_mfd_b2')
+            .setColor(1, .5, .5, 1)
+            .setText('start/pause');
+        draw_label(m.l_mfd_b2_bg, m.l_mfd_b2, 298,  730, 18, 100);
+        m.l_mfd_b3_bg = m.my_container.createChild('path', 'l_mfd_b3_bg')
+            .setColorFill(0, 0, 0);
+        m.l_mfd_b3 = m.my_container.createChild('text', 'l_mfd_b3')
+            .setColor(1, .5, .5, 1)
+            .setText('hold/reset');
+        draw_label(m.l_mfd_b3_bg, m.l_mfd_b3, 386,  730, 18, 100);
+        m.chrono_bg = m.my_container.createChild('path', 'chrono_bg')
+            .setColorFill(0, 0, 0);
+        m.chrono = m.my_container.createChild('text', 'chrono')
+            .setColor(1, 1, 1, 1)
+            .setText('00:00:00.000');
+        draw_label(m.chrono_bg, m.chrono, 100,  600, 28, 150, 'left');
+
+# k1 130 730 # b1 210 # b2 298 # b3 386 # b4 # b5 # b6 650 # b7 738 # b8 826 # k2 930 
+
         m.l_mfd_b7_bg = m.my_container.createChild('path', 'l_mfd_b7_bg')
             .setColorFill(0, 0, 0);
         m.l_mfd_b7 = m.my_container.createChild('text', 'l_mfd_b7')
@@ -717,8 +758,6 @@ var BASIC_PFD = {
             .setText('0');
         draw_label(m.nav_info_spd_bg, m.nav_info_spd, (17 * width / 20),  (height / 2) + 50 + 60, 18, 100);
 
-# k1 130 730 # b1 210 # b2 298 # b3 386 # b4 # b5 # b6 650 # b7 738 # b8 826 # k2 930 
-
         draw_static_marks(m.my_container);
         draw_static_hsi(m.my_container);
 
@@ -767,6 +806,14 @@ var BASIC_PFD = {
         var mfd_left_current_lb1_set = getprop("/instrumentation/my_aircraft/mfd_left/current_lb1_set") or 'AP';
         var mfd_left_current_lb7_set = getprop("/instrumentation/my_aircraft/mfd_left/current_lb7_set") or 'NAV-COM';
         var mfd_left_current_lb8_set = getprop("/instrumentation/my_aircraft/mfd_left/current_lb8_set") or '';
+
+        var chrono_et_hour = getprop("/instrumentation/my_aircraft/chrono/et-hour") or 0;
+        var chrono_et_min = getprop("/instrumentation/my_aircraft/chrono/et-min") or 0;
+        var chrono_et_sec = getprop("/instrumentation/my_aircraft/chrono/et-sec") or 0;
+        var chrono_et_msec = getprop("/instrumentation/my_aircraft/chrono/et-msec") or 0;
+        var chrono_is_running = getprop("/instrumentation/my_aircraft/chrono/is-running") or 0;
+        #var chrono_is_hold = getprop("/instrumentation/my_aircraft/chrono/is-hold") or 0;
+        #var chrono_is_pause = getprop("/instrumentation/my_aircraft/chrono/is-pause") or 0;
 
         var nav_info_id = '---';
         var nav_info_dist = '';
@@ -872,6 +919,17 @@ var BASIC_PFD = {
         me.nav_info_dist.setText(nav_info_dist);
         me.nav_info_eta.setText(nav_info_eta);
         me.nav_info_spd.setText(nav_info_spd);
+
+        me.chrono.setText(sprintf('%02d:%02d:%02d.%03d', chrono_et_hour, chrono_et_min, chrono_et_sec, chrono_et_msec));
+
+        if(chrono_is_running)
+        {
+            me.chrono.setColor(1, 0, 0, 1);
+        }
+        else
+        {
+            me.chrono.setColor(1, 1, 1, 1);
+        }
 
         # hiding deg mark / pitch
         for(var deg = 5 ; deg < 40 ; deg = deg + 5)

@@ -349,8 +349,8 @@
     </interpolation>
     <center>
       <x-m>-1.43</x-m>
-      <y-m>-1.204</y-m>
-      <z-m>-.52</z-m>
+      <y-m>-.9</y-m>
+      <z-m>-.5</z-m>
     </center>
     <axis>
       <x>1</x>
@@ -368,8 +368,8 @@
     </interpolation>
     <center>
       <x-m>-1.43</x-m>
-      <y-m>1.204</y-m>
-      <z-m>-.52</z-m>
+      <y-m>.9</y-m>
+      <z-m>-.5</z-m>
     </center>
     <axis>
       <x>-1</x>
@@ -524,6 +524,7 @@
             <property>/gear/gear[0]/rollspeed-ms</property>
             <value>0.5</value>
           </less-than>
+          <property>/gear/gear[0]/wow</property>
         </condition>
         <command>property-cycle</command>
         <wrap type="bool">1</wrap>
@@ -565,6 +566,7 @@
             <property>/gear/gear[0]/rollspeed-ms</property>
             <value>0.5</value>
           </less-than>
+          <property>/gear/gear[0]/wow</property>
         </condition>
         <command>property-cycle</command>
         <wrap type="bool">1</wrap>
@@ -595,6 +597,28 @@
   </animation>
 
   <animation>
+    <type>pick</type>
+    <object-name>porte_ar_g</object-name>
+    <action>
+      <button>0</button>
+      <repeatable>false</repeatable>
+      <binding>
+        <condition>
+          <less-than>
+            <property>/gear/gear[0]/rollspeed-ms</property>
+            <value>0.5</value>
+          </less-than>
+          <property>/gear/gear[0]/wow</property>
+        </condition>
+        <command>property-cycle</command>
+        <wrap type="bool">1</wrap>
+        <property>/controls/doors/porte-ar-g</property>
+        <value>0</value>
+        <value>1</value>
+      </binding>
+    </action>
+  </animation>
+  <animation>
     <type>rotate</type>
     <object-name>block_porte_ar_g</object-name>
     <property>/sim/model/porte-ar-g-pos-norm</property>
@@ -613,9 +637,10 @@
       <z>-.1</z>
     </axis>
   </animation>
+
   <animation>
     <type>pick</type>
-    <object-name>porte_ar_g</object-name>
+    <object-name>porte_ar_d</object-name>
     <action>
       <button>0</button>
       <repeatable>false</repeatable>
@@ -625,16 +650,16 @@
             <property>/gear/gear[0]/rollspeed-ms</property>
             <value>0.5</value>
           </less-than>
+          <property>/gear/gear[0]/wow</property>
         </condition>
         <command>property-cycle</command>
         <wrap type="bool">1</wrap>
-        <property>/controls/doors/porte-ar-g</property>
+        <property>/controls/doors/porte-ar-d</property>
         <value>0</value>
         <value>1</value>
       </binding>
     </action>
   </animation>
-
   <animation>
     <type>rotate</type>
     <object-name>block_porte_ar_d</object-name>
@@ -654,27 +679,7 @@
       <z>-.1</z>
     </axis>
   </animation>
-  <animation>
-    <type>pick</type>
-    <object-name>porte_ar_d</object-name>
-    <action>
-      <button>0</button>
-      <repeatable>false</repeatable>
-      <binding>
-        <condition>
-          <less-than>
-            <property>/gear/gear[0]/rollspeed-ms</property>
-            <value>0.5</value>
-          </less-than>
-        </condition>
-        <command>property-cycle</command>
-        <wrap type="bool">1</wrap>
-        <property>/controls/doors/porte-ar-d</property>
-        <value>0</value>
-        <value>1</value>
-      </binding>
-    </action>
-  </animation>
+
 
 
 

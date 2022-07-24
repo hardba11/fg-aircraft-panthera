@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<airplane mass="4570">
+<airplane mass="4570" version="YASIM_VERSION_CURRENT">
 
   <!-- Approach configuration -->
   <approach speed="70" aoa="6" fuel="0.5">

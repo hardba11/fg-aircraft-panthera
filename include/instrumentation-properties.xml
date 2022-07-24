@@ -10,6 +10,7 @@ PROPERTY-PATH : /instrumentation/
 -->
 
 <PropertyList>
+
 <!--
   <nav n="0">
     <frequencies>
@@ -35,6 +36,18 @@ PROPERTY-PATH : /instrumentation/
       <current_lb7_set type="string">NAV-COM</current_lb7_set>
       <current_lb8_set type="string"></current_lb8_set>
     </mfd_left>
+
+    <chrono>
+      <et-hour type="int">0</et-hour>
+      <et-min type="int">0</et-min>
+      <et-sec type="int">0</et-sec>
+      <et-msec type="int">0</et-msec>
+      <is-running type="bool">0</is-running>
+      <is-hold type="bool">0</is-hold>
+      <is-pause type="bool">0</is-pause>
+    </chrono>
+
+
   </my_aircraft>
 
 </PropertyList>

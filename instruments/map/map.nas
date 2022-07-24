@@ -180,7 +180,7 @@ var MAP = {
 
             me.txt_coords_lat.setText(sprintf('%s', getprop("/position/latitude-string") or ''));
             me.txt_coords_lng.setText(sprintf('%s', getprop("/position/longitude-string") or ''));
-            me.txt_alt.setText(sprintf('alt agl : %d m', getprop("/position/altitude-agl-m") or 0));
+            me.txt_alt.setText(sprintf('alt agl : %d ft', getprop("/position/altitude-agl-ft") or 0));
             me.txt_hdg.setText(sprintf('heading true : %d - heading mag : %d', getprop("/orientation/heading-deg") or 0, getprop("/orientation/heading-magnetic-deg") or 0));
             me.txt_zoom.setText(sprintf('zoom : %s', me.zoom));
 

@@ -12,5 +12,15 @@
     <max>.85</max>
   </filter>
 
+  <filter>
+    <type>gain</type>
+    <gain>33.86389</gain>
+    <input>/environment/pressure-sea-level-inhg</input>
+    <output>/environment/pressure-sea-level-hpa</output>
+  </filter>
+
+
+
+
 </PropertyList>
 
