@@ -39,6 +39,35 @@
     <object-name>vitre_av_d-int</object-name>
   </animation>
 
+  <animation>
+    <type>material</type>
+    <object-name>aircraft</object-name>
+    <object-name>helice.cone</object-name>
+    <object-name>porte_ar_g</object-name>
+    <object-name>porte_ar_d</object-name>
+    <object-name>porte_av_g</object-name>
+    <object-name>porte_av_d</object-name>
+    <object-name>propeller_fast</object-name>
+    <object-name>propeller</object-name>
+    <object-name>roues_d</object-name>
+    <object-name>train_d</object-name>
+    <object-name>train.jambe_roue_d</object-name>
+    <object-name>train.piston_d</object-name>
+    <object-name>train.piston_roue_d</object-name>
+    <object-name>roues_g</object-name>
+    <object-name>train_g</object-name>
+    <object-name>train.jambe_roue_g</object-name>
+    <object-name>train.piston_g</object-name>
+    <object-name>train.piston_roue_g</object-name>
+    <object-name>roue_avant</object-name>
+    <object-name>train_av</object-name>
+    <object-name>train_av.jambe_roue</object-name>
+    <object-name>train_av.piston</object-name>
+    <object-name>train_av.piston_roue</object-name>
+    <property-base>sim/model/livery</property-base>
+    <texture-prop>texture</texture-prop>
+    <texture>aircraft.png</texture>
+  </animation>
 
   <animation>
     <name>block_train_avant</name>
@@ -638,7 +667,7 @@
     </axis>
   </animation>
 
-  <animation>
+  <!--animation>
     <type>pick</type>
     <object-name>porte_ar_d</object-name>
     <action>
@@ -678,7 +707,7 @@
       <y>0</y>
       <z>-.1</z>
     </axis>
-  </animation>
+  </animation-->
 
 
 

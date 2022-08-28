@@ -33,7 +33,7 @@ var MAP = {
 
         # data used to create array of tiles
         m.tile_size = 256;
-        m.num_tiles = [5, 5];
+        m.num_tiles = [7, 7];
         m.center_tile_offset = [2, 2];
         m.type = 'map';
 
@@ -136,8 +136,8 @@ var MAP = {
         # simple aircraft icon at current position/center of the map
         m.svg_symbol = m.root.createChild('group');
         canvas.parsesvg(m.svg_symbol, m.filename);
-        m.svg_symbol.setScale(0.03);
-        m.svg_symbol.setTranslation(width / 2, height / 2);
+        m.svg_symbol.setScale(0.1);
+        m.svg_symbol.setTranslation((width / 2) - 40, (height / 2) - 40);
         m.myVector = m.svg_symbol.getBoundingBox();
         m.svg_symbol.updateCenter();
         m.svg_symbol.set('z-index', 1);
@@ -222,8 +222,10 @@ var MAP = {
                 for(var y = 0; y < me.num_tiles[1]; y += 1)
                 {
                     me.tiles_map[x][y].setTranslation(
-                        int(((ox + x) * me.tile_size) +18),
-                        int(((oy + y) * me.tile_size) +13)
+                        int(((ox + x) * me.tile_size)),
+                        int(((oy + y) * me.tile_size))
+#                        int(((ox + x) * me.tile_size) +18),
+#                        int(((oy + y) * me.tile_size) +13)
                     );
                 }
             }

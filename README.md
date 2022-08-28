@@ -8,10 +8,10 @@ It is usable in [FLIGHTGEAR open source flight simulator](http://www.flightgear.
 
 ## installation
 
-download on github
-unzip the file fg-aircraft-panthera-master.zip
-rename the directory fg-aircraft-panthera-master to panthera
-move the directory panthera in your addon aircraft directory (`/dir/of/my/hangars/panthera`)
+1. download on github
+2. unzip the file `fg-aircraft-panthera-master.zip`
+3. rename the directory `fg-aircraft-panthera-master` to `panthera`
+4. move the directory panthera in your addon aircraft directory (`/dir/of/my/hangars/panthera`)
 
 
 ## status
@@ -20,11 +20,8 @@ Still in development - help needed for
 
 - find documentation
 - find images
-- jsbsim or yasim flight model
-- 3d model and textures exterior and interior 
-- exterior animations (ailerons, gears, flaps, doors, etc)
-- effects : rain, shadows, reflection, lights
-- add cockpit and instrument lights
+- jsbsim flight model
+- yasim flight model
 - system scripts (start/stop procedures)
 - keyboard mapping
 - set autopilot

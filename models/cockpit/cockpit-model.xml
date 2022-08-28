@@ -114,7 +114,7 @@ ________________________________________________________________________________
     <alignment>center-center</alignment>
     <axis-alignment>yz-plane</axis-alignment>
     <type type="string">text-value</type>
-    <property>/sim/multiplay/callsign</property>
+    <property>sim/multiplay/callsign</property>
     <font>helvetica_bold.txf</font>
     <character-size>0.01</character-size>
     <character-aspect-ratio type="double">1.4</character-aspect-ratio>
@@ -998,12 +998,25 @@ ________________________________________________________________________________
       <binding>
         <command>set-tooltip</command>
         <tooltip-id>tooltip-stdby-alt-setting-inhg</tooltip-id>
-        <label>pressure : %.02f / altitude : %d ft</label>
+        <label>pressure : %.02f</label>
         <property>/instrumentation/altimeter/setting-hpa</property>
+      </binding>
+    </hovered>
+  </animation>
+  <animation>
+    <type>pick</type>
+    <object-name>instrument.alt.box</object-name>
+    <hovered>
+      <binding>
+        <command>set-tooltip</command>
+        <tooltip-id>tooltip-stdby-alt</tooltip-id>
+        <label>altitude : %d ft</label>
         <property>/instrumentation/altimeter/indicated-altitude-ft</property>
       </binding>
     </hovered>
   </animation>
+
+
 
   <!--
 ________________________________________________________________________________
@@ -1048,6 +1061,19 @@ ________________________________________________________________________________
       <y>0</y>
       <z>1</z>
     </axis>
+  </animation>
+
+  <animation>
+    <type>pick</type>
+    <object-name>instrument.magcompass.box</object-name>
+    <hovered>
+      <binding>
+        <command>set-tooltip</command>
+        <tooltip-id>tooltip-magcompass-hdg</tooltip-id>
+        <label>heading mag : %d</label>
+        <property>/instrumentation/magnetic-compass/indicated-heading-deg</property>
+      </binding>
+    </hovered>
   </animation>
 
 

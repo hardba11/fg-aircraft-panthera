@@ -329,6 +329,7 @@ instrument_chrono.event_reset();
     <hovered>
       <binding>
         <command>set-tooltip</command>
+        <tooltip-id>tooltip-k2</tooltip-id>
         <label>adjust nav/comm setting</label>
       </binding>
     </hovered>

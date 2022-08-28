@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PropertyList>
+
+  <sim>
+    <model>
+      <livery>
+        <name type="string">Orange</name>
+        <texture>liveries/panthera_orange.png</texture>
+      </livery>
+    </model>
+  </sim>
+
+</PropertyList>

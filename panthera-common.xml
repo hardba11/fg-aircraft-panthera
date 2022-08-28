@@ -102,7 +102,7 @@ Performance
     <model>
       <path>Aircraft/panthera/models/panthera.xml</path>
       <livery>
-        <file type="string" />
+        <file type="string"></file>
       </livery>
     </model>
 
@@ -112,14 +112,14 @@ Performance
     </sound>
 
     <!-- ~~~~~~~~~~~~~~~~~~ specific menu -->
-<!---->
+
     <menubar>
       <default>
         <menu n="100">
           <label>panthera</label>
           <enabled type="bool">true</enabled>
           <item>
-            <label>Select Livery</label>
+            <label>Select Livery ...</label>
             <binding>
               <command>nasal</command>
               <script>aircraft.livery.dialog.open()</script>
@@ -394,6 +394,9 @@ Performance
     <instrument_chrono>
       <file type="string">Aircraft/panthera/instruments/chrono/chrono.nas</file>
     </instrument_chrono>
+    <liveries>
+      <file>Aircraft/panthera/models/aircraft/select_liveries.nas</file>
+    </liveries>
   </nasal>
 
 
