@@ -1,0 +1,25 @@
+AC3Db
+MATERIAL "hud_canvas" rgb 1.000 1.000 1.000  amb 0.800 0.800 0.800  emis 0.000 0.000 0.000  spec 0.500 0.500 0.500  shi 64 trans 0.000
+OBJECT world
+name "Blender_exporter_v3.3__field_of_view.ac"
+kids 1
+OBJECT poly
+name "fieldOfView"
+data 10
+Sphere.001
+crease 40.0
+texture "screen.png"
+numvert 4
+-1.99656 3.03897 3.03897
+-1.99656 -3.03897 3.03897
+-1.99656 3.03897 -3.03897
+-1.99656 -3.03897 -3.03897
+numsurf 1
+SURF 0X0
+mat 0
+refs 4
+0 0.000864 0.999236
+1 0.000864 0.000584
+3 0.999516 0.000584
+2 0.999516 0.999236
+kids 0

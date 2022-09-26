@@ -140,6 +140,56 @@ ________________________________________________________________________________
     </ambient>
   </animation>
 
+
+<!--
+________________________________________________________________________________
+                                                                TARGET POSITIONS
+
+diameter = 2m,
+center : has to be the coords for view n=0
+@see functions.nas
+  -->
+  <model>
+    <name>target_positions</name>
+    <path>Aircraft/panthera/instruments/target_positions/target_positions-model.xml</path>
+    <offsets>
+      <x-m>-1.7</x-m>
+      <y-m>-.27</y-m>
+      <z-m>.26</z-m>
+    </offsets>
+  </model>
+  <animation>
+    <type>rotate</type> <!-- left/right -->
+    <object-name>target_positions</object-name>
+    <property>/instrumentation/my_aircraft/target_positions/view/heading-offset-deg</property>
+    <center>
+      <x-m>-1.7</x-m>
+      <y-m>-.27</y-m>
+      <z-m>.26</z-m>
+    </center>
+    <axis>
+      <x>0</x>
+      <y>0</y>
+      <z>1</z>
+    </axis>
+  </animation>
+  <animation>
+    <type>rotate</type> <!-- up/down -->
+    <object-name>target_positions</object-name>
+    <property>/instrumentation/my_aircraft/target_positions/view/pitch-offset-deg</property>
+    <center>
+      <x-m>-1.7</x-m>
+      <y-m>-.27</y-m>
+      <z-m>.26</z-m>
+    </center>
+    <axis>
+      <x>0</x>
+      <y>1</y>
+      <z>0</z>
+    </axis>
+  </animation>
+
+
   <!--
 ________________________________________________________________________________
                                                                            SEATS

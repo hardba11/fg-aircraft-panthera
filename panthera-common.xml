@@ -397,6 +397,10 @@ Performance
     <liveries>
       <file>Aircraft/panthera/models/aircraft/select_liveries.nas</file>
     </liveries>
+    <target_positions>
+      <file type="string">instruments/target_positions/target_positions.nas</file>
+    </target_positions>
+
   </nasal>
 
 
