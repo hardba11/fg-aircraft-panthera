@@ -1,5 +1,16 @@
 print("*** LOADING basic_pfd.nas ... ***");
 
+
+# TODO:
+# [V] lbl ap en gris si ils ne sont pas actifs
+# [V] decaler chrono
+# [V] vertical speed : lbl + jauge 
+# [ ] accel : jauge
+# [ ] nav2
+
+
+
+
 var width = 1024;
 var height = 1024;
 
@@ -78,16 +89,16 @@ var draw_label = func(element_bg, element_lbl, center_x, center_y, font_size, bg
 var draw_background = func(container)
 {
     sky = container.createChild('path', 'sky')
-        .rect(-(width / 2), -(height / 2), (width * 2), height)
+        .rect(-512, -512, 2048, 1024)
         .setColorFill(.1, .5, 1);
     ground = container.createChild('path', 'ground')
-        .rect(-(width / 2), (height / 2), (width * 2), height)
+        .rect(-512, 512, 2048, 1024)
         .setColorFill(.30, .15, .1);
     horizon_line = container.createChild('path', 'horizon_line')
         .setColor(1, 1, 1)
         .setStrokeLineWidth(6)
-        .moveTo(-(width / 2), (height / 2))
-        .lineTo((width + (width / 2)), (height / 2));
+        .moveTo(-512, 512)
+        .lineTo((1024 + 512), 512);
 
     var deg_mark = {};
     var deg_line = {};
@@ -100,26 +111,26 @@ var draw_background = func(container)
         {
             deg_mark['deg_mark_'~ pos_or_min ~'-'~ deg] = container.createChild('group', 'deg_mark_'~ pos_or_min ~'-'~ deg);
             line_offset = (pos_or_min == 'm')
-                ? (height / 2) + (angle_to_pixel_factor * deg)
-                : (height / 2) - (angle_to_pixel_factor * deg);
+                ? 512 + (angle_to_pixel_factor * deg)
+                : 512 - (angle_to_pixel_factor * deg);
 
             if(math.mod(deg, 10) == 0)
             {
                 deg_line[pos_or_min ~ deg] = deg_mark['deg_mark_'~ pos_or_min ~'-'~ deg].createChild('path', 'deg_line_'~ pos_or_min ~'-'~ deg)
                     .setColor(1, 1, 1)
                     .setStrokeLineWidth(3)
-                    .moveTo(18 * width / 40, line_offset)
-                    .lineTo(22 * width / 40, line_offset);
+                    .moveTo(461, line_offset)
+                    .lineTo(563, line_offset);
 
                 deg_label_left[pos_or_min ~ deg] = deg_mark['deg_mark_'~ pos_or_min ~'-'~ deg].createChild('text', 'deg_label_l_'~ pos_or_min ~'-'~ deg)
-                    .setTranslation((18 * width / 40) - 10, line_offset)
+                    .setTranslation(461 - 10, line_offset)
                     .setAlignment('right-center')
                     .setFont('LiberationFonts/LiberationSansNarrow-Bold.ttf')
                     .setFontSize(25)
                     .setColor(1, 1, 1, 1)
                     .setText(deg);
                 deg_label_right[pos_or_min ~ deg] = deg_mark['deg_mark_'~ pos_or_min ~'-'~ deg].createChild('text', 'deg_label_r_'~ pos_or_min ~'-'~ deg)
-                    .setTranslation((22 * width / 40) + 10, line_offset)
+                    .setTranslation(563 + 10, line_offset)
                     .setAlignment('left-center')
                     .setFont('LiberationFonts/LiberationSansNarrow-Bold.ttf')
                     .setFontSize(25)
@@ -131,8 +142,8 @@ var draw_background = func(container)
                 deg_line[pos_or_min ~ deg] = deg_mark['deg_mark_'~ pos_or_min ~'-'~ deg].createChild('path', 'deg_line_'~ pos_or_min ~'-'~ deg)
                     .setColor(1, 1, 1)
                     .setStrokeLineWidth(2)
-                    .moveTo(29 * width / 60, line_offset)
-                    .lineTo(31 * width / 60, line_offset);
+                    .moveTo(495, line_offset)
+                    .lineTo(529, line_offset);
             }
         }
     }
@@ -160,10 +171,10 @@ var draw_hsi = func(container)
         hsi_mark['hsi_mark-'~ deg] = hsi_mark['hsi_grp-'~ deg].createChild('path', 'hsi_mark-'~ deg)
             .setColor(1, 1, 1)
             .setStrokeLineWidth(2)
-            .moveTo((width / 2), (height / 2) + 60)
-            .lineTo((width / 2), (height / 2) + 50);
+            .moveTo(512, 512 + 60)
+            .lineTo(512, 512 + 50);
         hsi_mark['hsi_label-'~ deg] = hsi_mark['hsi_grp-'~ deg].createChild('text', 'hsi_label-'~ deg)
-            .setTranslation((width / 2), (height / 2) + 80)
+            .setTranslation(512, 512 + 80)
             .setAlignment('center-bottom')
             .setFont('LiberationFonts/LiberationSansNarrow-Bold.ttf')
             .setFontSize(20)
@@ -176,10 +187,10 @@ var draw_hsi = func(container)
             hsi_mark['hsi_mark-'~ deg] = hsi_mark['hsi_grp-'~ deg].createChild('path', 'hsi_mark-'~ deg)
                 .setColor(1, 1, 1)
                 .setStrokeLineWidth(3)
-                .moveTo((width / 2), (height / 2) + 60)
-                .lineTo((width / 2), (height / 2) + 50);
+                .moveTo(512, 512 + 60)
+                .lineTo(512, 512 + 50);
             hsi_mark['hsi_label-'~ deg] = hsi_mark['hsi_grp-'~ deg].createChild('text', 'hsi_label-'~ deg)
-                .setTranslation((width / 2), (height / 2) + 80)
+                .setTranslation(512, 512 + 80)
                 .setAlignment('center-bottom')
                 .setFont('LiberationFonts/LiberationSansNarrow-Bold.ttf')
                 .setFontSize(18)
@@ -192,8 +203,8 @@ var draw_hsi = func(container)
             hsi_mark['hsi_mark-'~ deg] = hsi_mark['hsi_grp-'~ deg].createChild('path', 'hsi_mark-'~ deg)
                 .setColor(1, 1, 1)
                 .setStrokeLineWidth(3)
-                .moveTo((width / 2), (height / 2) + 60)
-                .lineTo((width / 2), (height / 2) + 50);
+                .moveTo(512, 512 + 60)
+                .lineTo(512, 512 + 50);
         }
         else
         {
@@ -201,11 +212,11 @@ var draw_hsi = func(container)
             hsi_mark['hsi_mark-'~ deg] = hsi_mark['hsi_grp-'~ deg].createChild('path', 'hsi_mark-'~ deg)
                 .setColor(1, 1, 1)
                 .setStrokeLineWidth(3)
-                .moveTo((width / 2), (height / 2) + 57)
-                .lineTo((width / 2), (height / 2) + 50);
+                .moveTo(512, 512 + 57)
+                .lineTo(512, 512 + 50);
         }
         hsi_mark['hsi_grp-'~ deg]
-            .setCenter((width / 2), (height / 2) + 150)
+            .setCenter(512, 512 + 150)
             .setRotation(deg * D2R);
 
     }
@@ -219,11 +230,11 @@ var draw_hsi_hdgbug = func(container)
     var hsi_hdgbug = container.createChild('path', 'hsi_hdgbug')
         .setColor(1, 0, 1)
         .setStrokeLineWidth(1)
-        .moveTo((width / 2), (height / 2) + 55)
-        .lineTo((width / 2) - 5,  (height / 2) + 55 + 5)
-        .lineTo((width / 2) - 5,  (height / 2) + 55 + 5 - 10)
-        .lineTo((width / 2) + 5,  (height / 2) + 55 + 5 - 10)
-        .lineTo((width / 2) + 5,  (height / 2) + 55 + 5)
+        .moveTo(512, 512 + 55)
+        .lineTo(512 - 5,  512 + 55 + 5)
+        .lineTo(512 - 5,  512 + 55 + 5 - 10)
+        .lineTo(512 + 5,  512 + 55 + 5 - 10)
+        .lineTo(512 + 5,  512 + 55 + 5)
         .setColorFill(1, 0, 1)
         .close();
 }
@@ -237,13 +248,13 @@ var draw_hsi_nav1_needle = func(container)
     var hsi_nav1_needle = container.createChild('path', 'hsi_nav1_needle')
         .setColor(0, 1, 0)
         .setStrokeLineWidth(2)
-        .moveTo((width / 2), (height / 2) + 58)
-        .lineTo((width / 2) - 7, (height / 2) + 58 + 7)
-        .lineTo((width / 2) - 1, (height / 2) + 58 + 7)
-        .lineTo((width / 2) - 1, (height / 2) + 58 + 10)
-        .lineTo((width / 2) + 1, (height / 2) + 58 + 10)
-        .lineTo((width / 2) + 1, (height / 2) + 58 + 7)
-        .lineTo((width / 2) + 7, (height / 2) + 58 + 7)
+        .moveTo(512, 512 + 58)
+        .lineTo(512 - 7, 512 + 58 + 7)
+        .lineTo(512 - 1, 512 + 58 + 7)
+        .lineTo(512 - 1, 512 + 58 + 10)
+        .lineTo(512 + 1, 512 + 58 + 10)
+        .lineTo(512 + 1, 512 + 58 + 7)
+        .lineTo(512 + 7, 512 + 58 + 7)
         .setColorFill(0, 1, 0)
         .close();
 }
@@ -256,23 +267,23 @@ var draw_hsi_nav1_crs = func(container)
     var hsi_nav1_crs_head = container.createChild('path', 'hsi_nav1_crs_head')
         .setColor(0, 1, 0)
         .setStrokeLineWidth(2)
-        .moveTo((width / 2), (height / 2) + 68)
-        .lineTo((width / 2) - 5, (height / 2) + 68 + 5)
-        .lineTo((width / 2) - 1, (height / 2) + 68 + 5)
-        .lineTo((width / 2) - 1, (height / 2) + 68 + 30)
-        .lineTo((width / 2) + 1, (height / 2) + 68 + 30)
-        .lineTo((width / 2) + 1, (height / 2) + 68 + 5)
-        .lineTo((width / 2) + 5, (height / 2) + 68 + 5)
+        .moveTo(512, 512 + 68)
+        .lineTo(512 - 5, 512 + 68 + 5)
+        .lineTo(512 - 1, 512 + 68 + 5)
+        .lineTo(512 - 1, 512 + 68 + 30)
+        .lineTo(512 + 1, 512 + 68 + 30)
+        .lineTo(512 + 1, 512 + 68 + 5)
+        .lineTo(512 + 5, 512 + 68 + 5)
         .setColorFill(0, 1, 0)
         .close();
     var hsi_nav1_crs_tail = container.createChild('path', 'hsi_nav1_crs_tail')
         .setColor(0, 1, 0)
         .setStrokeLineWidth(2)
-        .moveTo((width / 2), (height / 2) + 188 + 5)
-        .lineTo((width / 2) - 1, (height / 2) + 178 + 5)
-        .lineTo((width / 2) - 1, (height / 2) + 178 + 30)
-        .lineTo((width / 2) + 1, (height / 2) + 178 + 30)
-        .lineTo((width / 2) + 1, (height / 2) + 178 + 5)
+        .moveTo(512, 512 + 188 + 5)
+        .lineTo(512 - 1, 512 + 178 + 5)
+        .lineTo(512 - 1, 512 + 178 + 30)
+        .lineTo(512 + 1, 512 + 178 + 30)
+        .lineTo(512 + 1, 512 + 178 + 5)
         .setColorFill(0, 1, 0)
         .close();
 }
@@ -285,10 +296,10 @@ var draw_hsi_nav1_deflection = func(container)
     var hsi_nav1_deflection = container.createChild('path', 'hsi_nav1_deflection')
         .setColor(0, 1, 0)
         .setStrokeLineWidth(2)
-        .moveTo((width / 2) - 1, (height / 2) + 68 + 30)
-        .lineTo((width / 2) - 1, (height / 2) + 178 + 5)
-        .lineTo((width / 2) + 1, (height / 2) + 178 + 5)
-        .lineTo((width / 2) + 1, (height / 2) + 68 + 30)
+        .moveTo(512 - 1, 512 + 68 + 30)
+        .lineTo(512 - 1, 512 + 178 + 5)
+        .lineTo(512 + 1, 512 + 178 + 5)
+        .lineTo(512 + 1, 512 + 68 + 30)
         .setColorFill(0, 1, 0)
         .close();
 }
@@ -302,13 +313,13 @@ var draw_hsi_nav2_needle = func(container)
     var hsi_nav2_needle = container.createChild('path', 'hsi_nav2_needle')
         .setColor(1, 1, 0)
         .setStrokeLineWidth(2)
-        .moveTo((width / 2), (height / 2) + 58)
-        .lineTo((width / 2) - 7, (height / 2) + 58 + 7)
-        .lineTo((width / 2) - 1, (height / 2) + 58 + 7)
-        .lineTo((width / 2) - 1, (height / 2) + 58 + 10)
-        .lineTo((width / 2) + 1, (height / 2) + 58 + 10)
-        .lineTo((width / 2) + 1, (height / 2) + 58 + 7)
-        .lineTo((width / 2) + 7, (height / 2) + 58 + 7)
+        .moveTo(512, 512 + 58)
+        .lineTo(512 - 7, 512 + 58 + 7)
+        .lineTo(512 - 1, 512 + 58 + 7)
+        .lineTo(512 - 1, 512 + 58 + 10)
+        .lineTo(512 + 1, 512 + 58 + 10)
+        .lineTo(512 + 1, 512 + 58 + 7)
+        .lineTo(512 + 7, 512 + 58 + 7)
         .close();
 }
 
@@ -320,22 +331,22 @@ var draw_hsi_nav2_crs = func(container)
     var hsi_nav2_crs_head = container.createChild('path', 'hsi_nav2_crs_head')
         .setColor(1, 1, 0)
         .setStrokeLineWidth(2)
-        .moveTo((width / 2), (height / 2) + 68)
-        .lineTo((width / 2) - 5, (height / 2) + 68 + 5)
-        .lineTo((width / 2) - 1, (height / 2) + 68 + 5)
-        .lineTo((width / 2) - 1, (height / 2) + 68 + 30)
-        .lineTo((width / 2) + 1, (height / 2) + 68 + 30)
-        .lineTo((width / 2) + 1, (height / 2) + 68 + 5)
-        .lineTo((width / 2) + 5, (height / 2) + 68 + 5)
+        .moveTo(512, 512 + 68)
+        .lineTo(512 - 5, 512 + 68 + 5)
+        .lineTo(512 - 1, 512 + 68 + 5)
+        .lineTo(512 - 1, 512 + 68 + 30)
+        .lineTo(512 + 1, 512 + 68 + 30)
+        .lineTo(512 + 1, 512 + 68 + 5)
+        .lineTo(512 + 5, 512 + 68 + 5)
         .close();
     var hsi_nav2_crs_tail = container.createChild('path', 'hsi_nav2_crs_tail')
         .setColor(1, 1, 0)
         .setStrokeLineWidth(2)
-        .moveTo((width / 2), (height / 2) + 188 + 5)
-        .lineTo((width / 2) - 1, (height / 2) + 178 + 5)
-        .lineTo((width / 2) - 1, (height / 2) + 178 + 30)
-        .lineTo((width / 2) + 1, (height / 2) + 178 + 30)
-        .lineTo((width / 2) + 1, (height / 2) + 178 + 5)
+        .moveTo(512, 512 + 188 + 5)
+        .lineTo(512 - 1, 512 + 178 + 5)
+        .lineTo(512 - 1, 512 + 178 + 30)
+        .lineTo(512 + 1, 512 + 178 + 30)
+        .lineTo(512 + 1, 512 + 178 + 5)
         .close();
 }
 
@@ -347,10 +358,10 @@ var draw_hsi_nav2_deflection = func(container)
     var hsi_nav2_deflection = container.createChild('path', 'hsi_nav2_deflection')
         .setColor(1, 1, 0)
         .setStrokeLineWidth(2)
-        .moveTo((width / 2) - 1, (height / 2) + 68 + 30)
-        .lineTo((width / 2) - 1, (height / 2) + 178 + 5)
-        .lineTo((width / 2) + 1, (height / 2) + 178 + 5)
-        .lineTo((width / 2) + 1, (height / 2) + 68 + 30)
+        .moveTo(512 - 1, 512 + 68 + 30)
+        .lineTo(512 - 1, 512 + 178 + 5)
+        .lineTo(512 + 1, 512 + 178 + 5)
+        .lineTo(512 + 1, 512 + 68 + 30)
         .close();
 }
 
@@ -367,9 +378,9 @@ var draw_static_hsi = func(container)
         hsi_static_mark['hsi_static_mark-'~ deg] = container.createChild('path', 'hsi_static_mark-'~ deg)
             .setColor(1, 1, 1)
             .setStrokeLineWidth(3)
-            .moveTo((width / 2), (height / 2) + 47)
-            .lineTo((width / 2), (height / 2) + 37)
-            .setCenter((width / 2), (height / 2) + 150)
+            .moveTo(512, 512 + 47)
+            .lineTo(512, 512 + 37)
+            .setCenter(512, 512 + 150)
             .setRotation(deg * D2R);
     }
 
@@ -377,23 +388,23 @@ var draw_static_hsi = func(container)
     hsi_static_mark['hsi_static_mark-center'] = container.createChild('path', 'hsi_static_mark-center')
         .setColor(1, 1, 1)
         .setStrokeLineWidth(1)
-        .moveTo((width / 2),      (height / 2) + 136)
-        .lineTo((width / 2) + 2,  (height / 2) + 138)
-        .lineTo((width / 2) + 2,  (height / 2) + 146)
-        .lineTo((width / 2) + 12, (height / 2) + 150)
-        .lineTo((width / 2) + 12, (height / 2) + 154)
-        .lineTo((width / 2) + 2,  (height / 2) + 154)
-        .lineTo((width / 2) + 2,  (height / 2) + 160)
-        .lineTo((width / 2) + 7,  (height / 2) + 164)
-        .lineTo((width / 2) + 7,  (height / 2) + 166)
-        .lineTo((width / 2) - 7,  (height / 2) + 166)
-        .lineTo((width / 2) - 7,  (height / 2) + 164)
-        .lineTo((width / 2) - 2,  (height / 2) + 160)
-        .lineTo((width / 2) - 2,  (height / 2) + 154)
-        .lineTo((width / 2) - 12, (height / 2) + 154)
-        .lineTo((width / 2) - 12, (height / 2) + 150)
-        .lineTo((width / 2) - 2,  (height / 2) + 146)
-        .lineTo((width / 2) - 2,  (height / 2) + 138)
+        .moveTo(512,      512 + 136)
+        .lineTo(512 + 2,  512 + 138)
+        .lineTo(512 + 2,  512 + 146)
+        .lineTo(512 + 12, 512 + 150)
+        .lineTo(512 + 12, 512 + 154)
+        .lineTo(512 + 2,  512 + 154)
+        .lineTo(512 + 2,  512 + 160)
+        .lineTo(512 + 7,  512 + 164)
+        .lineTo(512 + 7,  512 + 166)
+        .lineTo(512 - 7,  512 + 166)
+        .lineTo(512 - 7,  512 + 164)
+        .lineTo(512 - 2,  512 + 160)
+        .lineTo(512 - 2,  512 + 154)
+        .lineTo(512 - 12, 512 + 154)
+        .lineTo(512 - 12, 512 + 150)
+        .lineTo(512 - 2,  512 + 146)
+        .lineTo(512 - 2,  512 + 138)
         .setColorFill(1, 1, 1)
         .close();
 
@@ -407,13 +418,13 @@ var draw_static_hsi = func(container)
 var draw_static_marks = func(container)
 {
         center = container.createChild('path', 'center')
-            .rect((width / 2) - 5, (height / 2) - 5, 10, 10)
+            .rect(512 - 5, 512 - 5, 10, 10)
             .setColorFill(1, 1, 0);
         roll_arc = container.createChild('path', 'roll_arc');
         draw_arc(roll_arc,
-            width / 2,
-            height / 2,
-            (height / 6) - 30,
+            512,
+            512,
+            171 - 30,
             30,
             150,
             'rgb(255, 255, 255)',
@@ -422,21 +433,21 @@ var draw_static_marks = func(container)
         zero_deg_mark = container.createChild('path', 'zero_deg_mark')
             .setStrokeLineWidth(2)
             .set('stroke', 'rgb(255, 255, 255)')
-            .moveTo((width / 2), (height / 2) - (height / 6) + 25)
-            .lineTo((width / 2) - 6, (height / 2) - (height / 6) + 15)
-            .lineTo((width / 2) + 6, (height / 2) - (height / 6) + 15)
+            .moveTo(512, 512 - 171 + 25)
+            .lineTo(512 - 6, 512 - 171 + 15)
+            .lineTo(512 + 6, 512 - 171 + 15)
             .setColorFill(1, 1, 1)
             .close();
         horizontal_mark_left = container.createChild('path', 'horizontal_mark_left')
             .setColor(1, 1, 0)
             .setStrokeLineWidth(8)
-            .moveTo(6 * width / 16, height / 2)
-            .lineTo(7 * width / 16, height / 2);
+            .moveTo(384, 512)
+            .lineTo(448, 512);
         horizontal_mark_right = container.createChild('path', 'horizontal_mark_right')
             .setColor(1, 1, 0)
             .setStrokeLineWidth(8)
-            .moveTo(9 * width / 16, height / 2)
-            .lineTo(10 * width / 16, height / 2);
+            .moveTo(576, 512)
+            .lineTo(640, 512);
 
         var roll_mark = {};
         foreach(var deg ; [30, 60])
@@ -444,16 +455,16 @@ var draw_static_marks = func(container)
             roll_mark['roll_mark_m'~ deg] = container.createChild('path', 'roll_mark_m'~ deg)
                 .setColor(1, 1, 1)
                 .setStrokeLineWidth(3)
-                .moveTo((width / 2), (height / 2) - (height / 6) + 30)
-                .lineTo((width / 2), (height / 2) - (height / 6) + 10)
-                .setCenter((width / 2), (height / 2))
+                .moveTo(512, 512 - 171 + 30)
+                .lineTo(512, 512 - 171 + 10)
+                .setCenter(512, 512)
                 .setRotation(-deg * D2R);
             roll_mark['roll_mark_p'~ deg] = container.createChild('path', 'roll_mark_p'~ deg)
                 .setColor(1, 1, 1)
                 .setStrokeLineWidth(3)
-                .moveTo((width / 2), (height / 2) - (height / 6) + 30)
-                .lineTo((width / 2), (height / 2) - (height / 6) + 10)
-                .setCenter((width / 2), (height / 2))
+                .moveTo(512, 512 - 171 + 30)
+                .lineTo(512, 512 - 171 + 10)
+                .setCenter(512, 512)
                 .setRotation(deg * D2R);
         }
         foreach(var deg ; [10, 20, 45])
@@ -461,18 +472,51 @@ var draw_static_marks = func(container)
             roll_mark['roll_mark_m'~ deg] = container.createChild('path', 'roll_mark_m'~ deg)
                 .setColor(1, 1, 1)
                 .setStrokeLineWidth(3)
-                .moveTo((width / 2), (height / 2) - (height / 6) + 30)
-                .lineTo((width / 2), (height / 2) - (height / 6) + 15)
-                .setCenter((width / 2), (height / 2))
+                .moveTo(512, 512 - 171 + 30)
+                .lineTo(512, 512 - 171 + 15)
+                .setCenter(512, 512)
                 .setRotation(-deg * D2R);
             roll_mark['roll_mark_p'~ deg] = container.createChild('path', 'roll_mark_p'~ deg)
                 .setColor(1, 1, 1)
                 .setStrokeLineWidth(3)
-                .moveTo((width / 2), (height / 2) - (height / 6) + 30)
-                .lineTo((width / 2), (height / 2) - (height / 6) + 15)
-                .setCenter((width / 2), (height / 2))
+                .moveTo(512, 512 - 171 + 30)
+                .lineTo(512, 512 - 171 + 15)
+                .setCenter(512, 512)
                 .setRotation(deg * D2R);
         }
+}
+
+#-------------------------------------------------------------------------------
+#                                                            draw_vertical_gauge
+# this function creates a vertical gauge
+# params :
+# - element  : canvas object created by createChild()
+# - start_x  : start of the gauge in px
+# - start_y  : start of the gauge in px
+# - end_x    : relative end of the gauge in px
+# - end_y    : relative end of the gauge in px
+# - width    : width of the gauge in px
+#
+var draw_vertical_gauge = func(element, start_x, start_y, end_x, end_y, width)
+{
+        element.moveTo(start_x, start_y)
+            .line(end_x, end_y)
+            .setStrokeLineWidth(width)
+            .set('stroke', 'rgba(250, 100, 50, 1)');
+}
+
+#-------------------------------------------------------------------------------
+#                                                                   update_gauge
+# this function updates the lenght of a gauge
+# params :
+# - element  : canvas object created by createChild()
+# - end_x    : relative end of the gauge in px
+# - end_y    : relative end of the gauge in px
+#
+var update_gauge = func(element, end_x, end_y)
+{
+    element._node.getNode("coord[2]", 1).setValue(end_x);
+    element._node.getNode("coord[3]", 1).setValue(end_y);
 }
 
 #===============================================================================
@@ -482,7 +526,7 @@ var BASIC_PFD = {
     canvas_settings: {
         'name': 'pfd_light',
         'size': [1024, 1024],
-        'view': [width, height],
+        'view': [1024, 1024],
         'mipmapping': 1
     },
     new: func(placement)
@@ -521,23 +565,23 @@ var BASIC_PFD = {
         m.top_symbol = m.horizontal_container.createChild('path', 'top_symbol')
             .setStrokeLineWidth(2)
             .set('stroke', 'rgb(255, 255, 255)')
-            .moveTo((width / 2), (height / 2) - (height / 6) + 32)
-            .lineTo((width / 2) - 5, (height / 2) - (height / 6) + 44)
-            .lineTo((width / 2) + 5, (height / 2) - (height / 6) + 44)
+            .moveTo(512, 512 - 171 + 32)
+            .lineTo(512 - 5, 512 - 171 + 44)
+            .lineTo(512 + 5, 512 - 171 + 44)
             .setColorFill(1, 1, 1)
             .close();
 
         m.center = m.my_container.createChild('path', 'center')
-            .rect((width / 2) - 5, (height / 2) - 5, 10, 10)
+            .rect(512 - 5, 512 - 5, 10, 10)
             .setColorFill(1, 1, 0);
 
 # speed
         m.speed_bg = m.my_container.createChild('path', 'speed_bg')
             .set('stroke', 'rgb(255, 255, 255)')
-            .rect((7 * width / 20) - 95, (height / 2) - 15, 100, 30)
+            .rect(358 - 95, 512 - 15, 100, 30)
             .setColorFill(0, 0, 0);
         m.speed = m.my_container.createChild('text', 'speed')
-            .setTranslation((7 * width / 20), (height / 2))
+            .setTranslation(358, 512)
             .setAlignment('right-center')
             .setFont('LiberationFonts/LiberationSansNarrow-Bold.ttf')
             .setFontSize(30)
@@ -547,10 +591,10 @@ var BASIC_PFD = {
 # alt
         m.alt_bg = m.my_container.createChild('path', 'alt_bg')
             .set('stroke', 'rgb(255, 255, 255)')
-            .rect((13 * width / 20) + 5, (height / 2) - 15, 100, 30)
+            .rect(755 - 95, 512 - 15, 100, 30)
             .setColorFill(0, 0, 0);
         m.alt = m.my_container.createChild('text', 'alt')
-            .setTranslation((13 * width / 20) + 100, (height / 2))
+            .setTranslation(755, 512)
             .setAlignment('right-center')
             .setFont('LiberationFonts/LiberationSansNarrow-Bold.ttf')
             .setFontSize(30)
@@ -560,53 +604,134 @@ var BASIC_PFD = {
 # heading
         m.hdg_bg = m.my_container.createChild('path', 'hdg_bg')
             .set('stroke', 'rgb(255, 255, 255)')
-            .rect((width / 2) - 50, (2 * height / 7) - 15, 100, 30)
+            .rect(512 - 50, 292 - 15, 100, 30)
             .setColorFill(0, 0, 0);
         m.hdg = m.my_container.createChild('text', 'hdg')
-            .setTranslation((width / 2), (2 * height / 7))
+            .setTranslation(512, 292)
             .setAlignment('center-center')
             .setFont('LiberationFonts/LiberationSansNarrow-Bold.ttf')
             .setFontSize(30)
             .setColor(1, 1, 1, 1)
             .setText('HDG');
 
-# heading bug label
-        m.hdgbug_bg = m.my_container.createChild('path', 'hdgbug_bg')
-            .setColorFill(0, 0, 0);
-        m.hdgbug = m.my_container.createChild('text', 'hdgbug')
-            .setColor(1, 0, 1, 1)
-            .setText('HDG');
-        draw_label(m.hdgbug_bg, m.hdgbug, (7 * width / 20),  (height / 2) + 50, 18, 100);
+# vspeed gauge
+        m.vspeed_gauge = m.my_container.createChild('path', 'vspeed_gauge');
+        draw_vertical_gauge(m.vspeed_gauge, 783, 512, 0, -100, 10);
 
-# course label
+# vspeed
+        m.vspeed_bg = m.my_container.createChild('path', 'vspeed_bg')
+            .set('stroke', 'rgb(255, 255, 255)')
+            .rect(830 - 40, 512 - 15, 100, 30)
+            .setColorFill(0, 0, 0);
+        m.vspeed = m.my_container.createChild('text', 'vspeed')
+            .setTranslation(870, 512)
+            .setAlignment('right-center')
+            .setFont('LiberationFonts/LiberationSansNarrow-Bold.ttf')
+            .setFontSize(20)
+            .setColor(1, 1, 1, 1)
+            .setText('VSPEED');
+
+# nav1 label
         m.crs1_bg = m.my_container.createChild('path', 'crs1_bg')
             .setColorFill(0, 0, 0);
         m.crs1 = m.my_container.createChild('text', 'crs1')
             .setColor(0, 1, 0, 1)
             .setText('CRS1');
-        draw_label(m.crs1_bg, m.crs1, (13 * width / 20),  (height / 2) + 50, 18, 100);
+        draw_label(m.crs1_bg, m.crs1, 310, 590, 18, 100);
+
+        m.nav1_info_id_bg = m.my_container.createChild('path', 'nav1_info_id_bg')
+            .setColorFill(0, 0, 0);
+        m.nav1_info_id = m.my_container.createChild('text', 'nav1_info_id')
+            .setColor(1, 0, 1, 1)
+            .setText('ID');
+        draw_label(m.nav1_info_id_bg, m.nav1_info_id, 310, 590 + 20, 18, 100);
+        m.nav1_info_dist_bg = m.my_container.createChild('path', 'nav1_info_dist_bg')
+            .setColorFill(0, 0, 0);
+        m.nav1_info_dist = m.my_container.createChild('text', 'nav1_info_dist')
+            .setColor(1, 0, 1, 1)
+            .setText('0');
+        draw_label(m.nav1_info_dist_bg, m.nav1_info_dist, 310, 590 + 40, 18, 100);
+        m.nav1_info_eta_bg = m.my_container.createChild('path', 'nav1_info_eta_bg')
+            .setColorFill(0, 0, 0);
+        m.nav1_info_eta = m.my_container.createChild('text', 'nav1_info_eta')
+            .setColor(1, 0, 1, 1)
+            .setText('0');
+        draw_label(m.nav1_info_eta_bg, m.nav1_info_eta, 310, 590 + 60, 18, 100);
+        m.nav1_info_spd_bg = m.my_container.createChild('path', 'nav1_info_spd_bg')
+            .setColorFill(0, 0, 0);
+        m.nav1_info_spd = m.my_container.createChild('text', 'nav1_info_spd')
+            .setColor(1, 0, 1, 1)
+            .setText('0');
+        draw_label(m.nav1_info_spd_bg, m.nav1_info_spd, 310, 590 + 80, 18, 100);
+
+# nav2 label
         m.crs2_bg = m.my_container.createChild('path', 'crs2_bg')
             .setColorFill(0, 0, 0);
         m.crs2 = m.my_container.createChild('text', 'crs2')
             .setColor(1, 1, 0, 1)
             .setText('CRS2');
-        draw_label(m.crs2_bg, m.crs2, (13 * width / 20),  (height / 2) + 70, 18, 100);
+        draw_label(m.crs2_bg, m.crs2, 714,  590, 18, 100);
+
+        m.nav2_info_id_bg = m.my_container.createChild('path', 'nav2_info_id_bg')
+            .setColorFill(0, 0, 0);
+        m.nav2_info_id = m.my_container.createChild('text', 'nav2_info_id')
+            .setColor(1, 0, 1, 1)
+            .setText('ID');
+        draw_label(m.nav2_info_id_bg, m.nav2_info_id, 714, 590 + 20, 18, 100);
+        m.nav2_info_dist_bg = m.my_container.createChild('path', 'nav2_info_dist_bg')
+            .setColorFill(0, 0, 0);
+        m.nav2_info_dist = m.my_container.createChild('text', 'nav2_info_dist')
+            .setColor(1, 0, 1, 1)
+            .setText('0');
+        draw_label(m.nav2_info_dist_bg, m.nav2_info_dist, 714, 590 + 40, 18, 100);
+        m.nav2_info_eta_bg = m.my_container.createChild('path', 'nav2_info_eta_bg')
+            .setColorFill(0, 0, 0);
+        m.nav2_info_eta = m.my_container.createChild('text', 'nav2_info_eta')
+            .setColor(1, 0, 1, 1)
+            .setText('0');
+        draw_label(m.nav2_info_eta_bg, m.nav2_info_eta, 714, 590 + 60, 18, 100);
+        m.nav2_info_spd_bg = m.my_container.createChild('path', 'nav2_info_spd_bg')
+            .setColorFill(0, 0, 0);
+        m.nav2_info_spd = m.my_container.createChild('text', 'nav2_info_spd')
+            .setColor(1, 0, 1, 1)
+            .setText('0');
+        draw_label(m.nav2_info_spd_bg, m.nav2_info_spd, 714, 590 + 80, 18, 100);
 
 # ap speed
         m.ap_speed_bg = m.my_container.createChild('path', 'ap_speed_bg')
+            .rect(358 - 95, 512 - 140 - 15, 100, 30)
             .setColorFill(0, 0, 0);
         m.ap_speed = m.my_container.createChild('text', 'ap_speed')
-            .setColor(1, 0, 1, 1)
+            .setTranslation(358, 512 - 140)
+            .setAlignment('right-center')
+            .setFont('LiberationFonts/LiberationSansNarrow-Bold.ttf')
+            .setFontSize(25)
+            .setColor(0.5, 0.5, 0.5, 1)
             .setText('AP spd');
-        draw_label(m.ap_speed_bg, m.ap_speed, (6 * width / 20),  (3 * height / 7), 18, 80);
 
 # ap alt
         m.ap_alt_bg = m.my_container.createChild('path', 'ap_alt_bg')
+            .rect(755 - 95, 512 - 140 - 15, 100, 30)
             .setColorFill(0, 0, 0);
         m.ap_alt = m.my_container.createChild('text', 'ap_alt')
-            .setColor(1, 0, 1, 1)
+            .setTranslation(755, 512 - 140)
+            .setAlignment('right-center')
+            .setFont('LiberationFonts/LiberationSansNarrow-Bold.ttf')
+            .setFontSize(25)
+            .setColor(0.5, 0.5, 0.5, 1)
             .setText('AP alt');
-        draw_label(m.ap_alt_bg, m.ap_alt, (14 * width / 20),  (3 * height / 7), 18, 80);
+
+# ap heading bug
+        m.hdgbug_bg = m.my_container.createChild('path', 'hdgbug_bg')
+            .rect(512 - 20, 700 - 15, 40, 30)
+            .setColorFill(0, 0, 0);
+        m.hdgbug = m.my_container.createChild('text', 'hdgbug')
+            .setTranslation(512, 700)
+            .setAlignment('center-center')
+            .setFont('LiberationFonts/LiberationSansNarrow-Bold.ttf')
+            .setFontSize(25)
+            .setColor(0.5, 0.5, 0.5, 1)
+            .setText('AP HDG');
 
 # nav1 active
         m.nav1_bg = m.my_container.createChild('path', 'nav1_bg')
@@ -614,7 +739,7 @@ var BASIC_PFD = {
         m.nav1 = m.my_container.createChild('text', 'nav1')
             .setColor(0, 1, 0, 1)
             .setText('NAV1');
-        draw_label(m.nav1_bg, m.nav1, (3 * width / 20),  (2 * height / 7) - 10, 18, 110);
+        draw_label(m.nav1_bg, m.nav1, 153,  292 - 10, 18, 110);
 
 # nav1 stdby
         m.nav1s_bg = m.my_container.createChild('path', 'nav1s_bg')
@@ -622,7 +747,7 @@ var BASIC_PFD = {
         m.nav1s = m.my_container.createChild('text', 'nav1s')
             .setColor(0.5, 0.5, 0.5, 1)
             .setText('NAV1');
-        draw_label(m.nav1s_bg, m.nav1s, (3 * width / 20) + 102,  (2 * height / 7) - 10, 18, 100);
+        draw_label(m.nav1s_bg, m.nav1s, 153 + 102,  292 - 10, 18, 100);
 
 # nav2 active
         m.nav2_bg = m.my_container.createChild('path', 'nav2_bg')
@@ -630,7 +755,7 @@ var BASIC_PFD = {
         m.nav2 = m.my_container.createChild('text', 'nav2')
             .setColor(1, 1, 0, 1)
             .setText('NAV2');
-        draw_label(m.nav2_bg, m.nav2, (3 * width / 20),  (2 * height / 7) - 10 + 26, 18, 110);
+        draw_label(m.nav2_bg, m.nav2, 153,  292 - 10 + 26, 18, 110);
 
 # nav2 stdby
         m.nav2s_bg = m.my_container.createChild('path', 'nav2s_bg')
@@ -638,7 +763,7 @@ var BASIC_PFD = {
         m.nav2s = m.my_container.createChild('text', 'nav2s')
             .setColor(0.5, 0.5, 0.5, 1)
             .setText('NAV2');
-        draw_label(m.nav2s_bg, m.nav2s, (3 * width / 20) + 102,  (2 * height / 7) - 10 + 26, 18, 100);
+        draw_label(m.nav2s_bg, m.nav2s, 153 + 102,  292 - 10 + 26, 18, 100);
 
 # com1 active
         m.com1_bg = m.my_container.createChild('path', 'com1_bg')
@@ -646,7 +771,7 @@ var BASIC_PFD = {
         m.com1 = m.my_container.createChild('text', 'com1')
             .setColor(1, 1, 1, 1)
             .setText('COM1');
-        draw_label(m.com1_bg, m.com1, (15 * width / 20),  (2 * height / 7) - 10, 18, 110);
+        draw_label(m.com1_bg, m.com1, 768,  292 - 10, 18, 110);
 
 # com1 stdby
         m.com1s_bg = m.my_container.createChild('path', 'com1s_bg')
@@ -654,7 +779,7 @@ var BASIC_PFD = {
         m.com1s = m.my_container.createChild('text', 'com1s')
             .setColor(0.5, 0.5, 0.5, 1)
             .setText('COM1');
-        draw_label(m.com1s_bg, m.com1s, (15 * width / 20) + 102,  (2 * height / 7) - 10, 18, 100);
+        draw_label(m.com1s_bg, m.com1s, 768 + 102,  292 - 10, 18, 100);
 
 # com2 active
         m.com2_bg = m.my_container.createChild('path', 'com2_bg')
@@ -662,7 +787,7 @@ var BASIC_PFD = {
         m.com2 = m.my_container.createChild('text', 'com2')
             .setColor(1, 1, 1, 1)
             .setText('COM2');
-        draw_label(m.com2_bg, m.com2, (15 * width / 20),  (2 * height / 7) - 10 + 26, 18, 110);
+        draw_label(m.com2_bg, m.com2, 768,  292 - 10 + 26, 18, 110);
 
 # com2 stdby
         m.com2s_bg = m.my_container.createChild('path', 'com2s_bg')
@@ -670,7 +795,7 @@ var BASIC_PFD = {
         m.com2s = m.my_container.createChild('text', 'com2s')
             .setColor(0.5, 0.5, 0.5, 1)
             .setText('COM2');
-        draw_label(m.com2s_bg, m.com2s, (15 * width / 20) + 102,  (2 * height / 7) - 10 + 26, 18, 100);
+        draw_label(m.com2s_bg, m.com2s, 768 + 102,  292 - 10 + 26, 18, 100);
 
 # left mfd buttons
         m.l_mfd_k1_bg = m.my_container.createChild('path', 'l_mfd_k1_bg')
@@ -698,14 +823,14 @@ var BASIC_PFD = {
             .setColorFill(0, 0, 0);
         m.l_mfd_b3 = m.my_container.createChild('text', 'l_mfd_b3')
             .setColor(1, .5, .5, 1)
-            .setText('hold/reset');
+            .setText('hld/rst');
         draw_label(m.l_mfd_b3_bg, m.l_mfd_b3, 386,  730, 18, 100);
         m.chrono_bg = m.my_container.createChild('path', 'chrono_bg')
             .setColorFill(0, 0, 0);
         m.chrono = m.my_container.createChild('text', 'chrono')
             .setColor(1, 1, 1, 1)
             .setText('00:00:00.000');
-        draw_label(m.chrono_bg, m.chrono, 100,  600, 28, 150, 'left');
+        draw_label(m.chrono_bg, m.chrono, 260,  697, 25, 140, 'left');
 
 # k1 130 730 # b1 210 # b2 298 # b3 386 # b4 # b5 # b6 650 # b7 738 # b8 826 # k2 930 
 
@@ -730,33 +855,6 @@ var BASIC_PFD = {
             .setColor(1, .5, .5, 1)
             .setText('+ / -');
         draw_label(m.l_mfd_k2_bg, m.l_mfd_k2, 910,  730, 18, 100);
-
-
-# nav infos
-        m.nav_info_id_bg = m.my_container.createChild('path', 'nav_info_id_bg')
-            .setColorFill(0, 0, 0);
-        m.nav_info_id = m.my_container.createChild('text', 'nav_info_id')
-            .setColor(1, 0, 1, 1)
-            .setText('ID');
-        draw_label(m.nav_info_id_bg, m.nav_info_id, (17 * width / 20),  (height / 2) + 50, 18, 100);
-        m.nav_info_dist_bg = m.my_container.createChild('path', 'nav_info_dist_bg')
-            .setColorFill(0, 0, 0);
-        m.nav_info_dist = m.my_container.createChild('text', 'nav_info_dist')
-            .setColor(1, 0, 1, 1)
-            .setText('0');
-        draw_label(m.nav_info_dist_bg, m.nav_info_dist, (17 * width / 20),  (height / 2) + 50 + 20, 18, 100);
-        m.nav_info_eta_bg = m.my_container.createChild('path', 'nav_info_eta_bg')
-            .setColorFill(0, 0, 0);
-        m.nav_info_eta = m.my_container.createChild('text', 'nav_info_eta')
-            .setColor(1, 0, 1, 1)
-            .setText('0');
-        draw_label(m.nav_info_eta_bg, m.nav_info_eta, (17 * width / 20),  (height / 2) + 50 + 40, 18, 100);
-        m.nav_info_spd_bg = m.my_container.createChild('path', 'nav_info_spd_bg')
-            .setColorFill(0, 0, 0);
-        m.nav_info_spd = m.my_container.createChild('text', 'nav_info_spd')
-            .setColor(1, 0, 1, 1)
-            .setText('0');
-        draw_label(m.nav_info_spd_bg, m.nav_info_spd, (17 * width / 20),  (height / 2) + 50 + 60, 18, 100);
 
         draw_static_marks(m.my_container);
         draw_static_hsi(m.my_container);
@@ -784,6 +882,7 @@ var BASIC_PFD = {
         var hdgbugerr   = getprop("/autopilot/internal/heading-bug-error-deg") or 0;
         var ap_alt      = getprop("/autopilot/settings/target-altitude-ft") or 0;
         var ap_speed    = getprop("/autopilot/settings/target-speed-kt") or 0;
+        var vspeed      = getprop("/autopilot/internal/vert-speed-fpm") or 0;
 
         var crs1        = getprop("/instrumentation/nav[0]/radials/selected-deg") or 0;
         var nav1_active = getprop("/instrumentation/nav[0]/frequencies/selected-mhz") or '';
@@ -815,91 +914,134 @@ var BASIC_PFD = {
         #var chrono_is_hold = getprop("/instrumentation/my_aircraft/chrono/is-hold") or 0;
         #var chrono_is_pause = getprop("/instrumentation/my_aircraft/chrono/is-pause") or 0;
 
-        var nav_info_id = '---';
-        var nav_info_dist = '';
-        var nav_info_eta = '';
-        var nav_info_spd = '';
-        me.nav_info_id.setColor(0, 0, 0, 1);
-        me.nav_info_dist.setColor(0, 0, 0, 1);
-        me.nav_info_eta.setColor(0, 0, 0, 1);
-        me.nav_info_spd.setColor(0, 0, 0, 1);
+        var nav1_info_id = '---';
+        var nav1_info_dist = '';
+        var nav1_info_eta = '';
+        var nav1_info_spd = '';
+        me.nav1_info_id.setColor(0, 0, 0, 1);
+        me.nav1_info_dist.setColor(0, 0, 0, 1);
+        me.nav1_info_eta.setColor(0, 0, 0, 1);
+        me.nav1_info_spd.setColor(0, 0, 0, 1);
+
+        var nav2_info_id = '---';
+        var nav2_info_dist = '';
+        var nav2_info_eta = '';
+        var nav2_info_spd = '';
+        me.nav2_info_id.setColor(0, 0, 0, 1);
+        me.nav2_info_dist.setColor(0, 0, 0, 1);
+        me.nav2_info_eta.setColor(0, 0, 0, 1);
+        me.nav2_info_spd.setColor(0, 0, 0, 1);
+
+        var lock_speed = getprop("/autopilot/locks/speed") or '';
+        if(lock_speed != '')
+        {
+            me.ap_speed.setColor(1, 0, 1, 1);
+        }
+        else
+        {
+            me.ap_speed.setColor(0.5, 0.5, 0.5, 1);
+        }
+
+        var lock_alt = getprop("/autopilot/locks/altitude") or '';
+        if(lock_alt == 'altitude-hold')
+        {
+            me.ap_alt.setColor(1, 0, 1, 1);
+        }
+        else
+        {
+            me.ap_alt.setColor(0.5, 0.5, 0.5, 1);
+        }
+
+        var lock_hdg = getprop("/autopilot/locks/heading") or '';
+        if(lock_hdg == 'dg-heading-hold')
+        {
+            me.hdgbug.setColor(1, 0, 1, 1);
+        }
+        else
+        {
+            me.hdgbug.setColor(0.5, 0.5, 0.5, 1);
+        }
 
         if(mfd_left_current_lb7_set == 'nav1')
         {
             signal_quality = getprop("/instrumentation/nav[0]/signal-quality-norm") or 0;
-            nav_info_is_near = (signal_quality > 0.4);
-            if(nav_info_is_near)
+            nav1_info_is_near = (signal_quality > 0.4);
+            if(nav1_info_is_near)
             {
-                nav_info_id = getprop("/instrumentation/nav[0]/nav-id") or '---';
+                nav1_info_id = getprop("/instrumentation/nav[0]/nav-id") or '---';
                 setprop("/instrumentation/dme/frequencies/source",'/instrumentation/nav[0]/frequencies/selected-mhz');
                 var dme_in_range = getprop("/instrumentation/dme/in-range") or 0;
                 if(dme_in_range)
                 {
                     x = getprop("/instrumentation/dme/indicated-distance-nm") or 0;
-                    nav_info_dist = sprintf('%.1f NM', x);
+                    nav1_info_dist = sprintf('%.1f NM', x);
                     x = getprop("/instrumentation/dme/indicated-time-min") or 0;
-                    nav_info_eta = sprintf('%.1f min', x);
+                    nav1_info_eta = sprintf('%.1f min', x);
                     x = getprop("/instrumentation/dme/indicated-ground-speed-kt") or 0;
-                    nav_info_spd = sprintf('%.1f KT', x);
+                    nav1_info_spd = sprintf('%.1f KT', x);
                 }
             }
-            me.nav_info_id.setColor(0, 1, 0, 1);
-            me.nav_info_dist.setColor(0, 1, 0, 1);
-            me.nav_info_eta.setColor(0, 1, 0, 1);
-            me.nav_info_spd.setColor(0, 1, 0, 1);
+            me.nav1_info_id.setColor(0, 1, 0, 1);
+            me.nav1_info_dist.setColor(0, 1, 0, 1);
+            me.nav1_info_eta.setColor(0, 1, 0, 1);
+            me.nav1_info_spd.setColor(0, 1, 0, 1);
            
         }
         elsif(mfd_left_current_lb7_set == 'nav2')
         {
             signal_quality = getprop("/instrumentation/nav[1]/signal-quality-norm") or 0;
-            nav_info_is_near = (signal_quality > 0.4);
-            if(nav_info_is_near)
+            nav2_info_is_near = (signal_quality > 0.4);
+            if(nav2_info_is_near)
             {
-                nav_info_id = getprop("/instrumentation/nav[1]/nav-id") or '---';
+                nav2_info_id = getprop("/instrumentation/nav[1]/nav-id") or '---';
                 setprop("/instrumentation/dme/frequencies/source",'/instrumentation/nav[1]/frequencies/selected-mhz');
                 var dme_in_range = getprop("/instrumentation/dme/in-range") or 0;
                 if(dme_in_range)
                 {
                     x = getprop("/instrumentation/dme/indicated-distance-nm") or 0;
-                    nav_info_dist = sprintf('%.1f NM', x);
+                    nav2_info_dist = sprintf('%.1f NM', x);
                     x = getprop("/instrumentation/dme/indicated-time-min") or 0;
-                    nav_info_eta = sprintf('%.1f min', x);
+                    nav2_info_eta = sprintf('%.1f min', x);
                     x = getprop("/instrumentation/dme/indicated-ground-speed-kt") or 0;
-                    nav_info_spd = sprintf('%.1f KT', x);
+                    nav2_info_spd = sprintf('%.1f KT', x);
                 }
             }
-            me.nav_info_id.setColor(1, 1, 0, 1);
-            me.nav_info_dist.setColor(1, 1, 0, 1);
-            me.nav_info_eta.setColor(1, 1, 0, 1);
-            me.nav_info_spd.setColor(1, 1, 0, 1);
+            me.nav2_info_id.setColor(1, 1, 0, 1);
+            me.nav2_info_dist.setColor(1, 1, 0, 1);
+            me.nav2_info_eta.setColor(1, 1, 0, 1);
+            me.nav2_info_spd.setColor(1, 1, 0, 1);
         }
 
 
         # update AI
         me.t_vertical_container.setTranslation(0, pitch_deg * angle_to_pixel_factor);
-        me.t_horizontal_container.setRotation(-(roll_deg * D2R), (width / 2), (height / 2));
+        me.t_horizontal_container.setRotation(-(roll_deg * D2R), 512, 512);
 
         # update hsi
-        me.t_hsi_container.setRotation(-(hdg * D2R), (width / 2), (height / 2) + 150);
-        me.t_hsi_hdgbug_container.setRotation((hdgbugerr * D2R), (width / 2), (height / 2) + 150);
+        me.t_hsi_container.setRotation(-(hdg * D2R), 512, 512 + 150);
+        me.t_hsi_hdgbug_container.setRotation((hdgbugerr * D2R), 512, 512 + 150);
 
-        me.t_hsi_nav1_needle_container.setRotation(-((hdg - nav1_hdg) * D2R), (width / 2), (height / 2) + 150);
-        me.t_hsi_nav1_crs_container.setRotation(-((hdg - crs1) * D2R), (width / 2), (height / 2) + 150);
+        me.t_hsi_nav1_needle_container.setRotation(-((hdg - nav1_hdg) * D2R), 512, 512 + 150);
+        me.t_hsi_nav1_crs_container.setRotation(-((hdg - crs1) * D2R), 512, 512 + 150);
         me.t_hsi_nav1_deflection_container.setTranslation(nav1_defl * 50, 0);
 
-        me.t_hsi_nav2_needle_container.setRotation(-((hdg - nav2_hdg) * D2R), (width / 2), (height / 2) + 150);
-        me.t_hsi_nav2_crs_container.setRotation(-((hdg - crs2) * D2R), (width / 2), (height / 2) + 150);
+        me.t_hsi_nav2_needle_container.setRotation(-((hdg - nav2_hdg) * D2R), 512, 512 + 150);
+        me.t_hsi_nav2_crs_container.setRotation(-((hdg - crs2) * D2R), 512, 512 + 150);
         me.t_hsi_nav2_deflection_container.setTranslation(nav2_defl * 50, 0);
+
+        # update gauges
+        update_gauge(me.vspeed_gauge, 0, vspeed / -100);
 
         # update numeric values
         me.speed.setText(sprintf('%d', speed));
         me.alt.setText(sprintf('%d', alt));
         me.hdg.setText(sprintf('%03d', hdg));
-        me.hdgbug.setText(sprintf('hdg %03d', hdgbug));
+        me.ap_speed.setText(sprintf('%d', ap_speed));
+        me.ap_alt.setText(sprintf('%d', ap_alt));
+        me.hdgbug.setText(sprintf('%03d', hdgbug));
         me.crs1.setText(sprintf('crs1 %d', crs1));
         me.crs2.setText(sprintf('crs2 %d', crs2));
-        me.ap_speed.setText(sprintf('%d kt', ap_speed));
-        me.ap_alt.setText(sprintf('%d ft', ap_alt));
+        me.vspeed.setText(sprintf('%d fpm', vspeed));
 
         me.nav1.setText(sprintf('NAV1 %0.2f', nav1_active));
         me.nav2.setText(sprintf('NAV2 %0.2f', nav2_active));
@@ -915,10 +1057,15 @@ var BASIC_PFD = {
         me.l_mfd_b7.setText(sprintf('%s', mfd_left_current_lb7_set));
         me.l_mfd_b8.setText(sprintf('%s', mfd_left_current_lb8_set));
 
-        me.nav_info_id.setText(nav_info_id);
-        me.nav_info_dist.setText(nav_info_dist);
-        me.nav_info_eta.setText(nav_info_eta);
-        me.nav_info_spd.setText(nav_info_spd);
+        me.nav1_info_id.setText(nav1_info_id);
+        me.nav1_info_dist.setText(nav1_info_dist);
+        me.nav1_info_eta.setText(nav1_info_eta);
+        me.nav1_info_spd.setText(nav1_info_spd);
+
+        me.nav2_info_id.setText(nav2_info_id);
+        me.nav2_info_dist.setText(nav2_info_dist);
+        me.nav2_info_eta.setText(nav2_info_eta);
+        me.nav2_info_spd.setText(nav2_info_spd);
 
         me.chrono.setText(sprintf('%02d:%02d:%02d.%03d', chrono_et_hour, chrono_et_min, chrono_et_sec, chrono_et_msec));
 

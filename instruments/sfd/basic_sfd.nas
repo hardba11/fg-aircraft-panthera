@@ -230,10 +230,10 @@ var draw_rectangle = func(element, start_x, start_y, color, width, height)
 #
 var draw_vertical_gauge = func(element, start_x, start_y, end_x, end_y, color, width)
 {
-        element.moveTo(start_x, start_y)
-            .line(end_x, end_y)
-            .setStrokeLineWidth(width)
-            .set('stroke', colors[color]);
+    element.moveTo(start_x, start_y)
+        .line(end_x, end_y)
+        .setStrokeLineWidth(width)
+        .set('stroke', colors[color]);
 }
 
 
@@ -251,12 +251,12 @@ var draw_vertical_gauge = func(element, start_x, start_y, end_x, end_y, color, w
 #
 var draw_horizontal_gauge = func(element, start_x, start_y, end_x, end_y, color, width)
 {
-        element.moveTo(start_x, start_y)
-            .line(end_x, end_y)
-            .setStrokeLineWidth(width)
-            .set('stroke', colors[color])
-            .setCenter(start_x, start_y)
-            .setRotation(90 * D2R);
+    element.moveTo(start_x, start_y)
+        .line(end_x, end_y)
+        .setStrokeLineWidth(width)
+        .set('stroke', colors[color])
+        .setCenter(start_x, start_y)
+        .setRotation(90 * D2R);
 }
 
 #-------------------------------------------------------------------------------

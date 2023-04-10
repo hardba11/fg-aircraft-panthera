@@ -46,6 +46,67 @@ yasim / fdm (aircraft behaviour)
   D   No effect   Decrease    Decrease    No effect
 
   -->
+
+
+  <!--
+================================================================================
+                                                                       AUTO TRIM
+================================================================================
+  -->
+
+  <filter>
+    <name>pitch distance from zero</name>
+    <type>gain</type>
+    <gain>1.0</gain>
+    <input>
+      <expression>
+        <table>
+          <property>/controls/flight/elevator</property>
+          <entry><ind>-1.0</ind><dep>-.06</dep></entry>
+          <entry><ind>-.2</ind><dep>-.01</dep></entry>
+          <entry><ind>-.01</ind><dep>-.0001</dep></entry>
+          <entry><ind>.01</ind><dep>.0001</dep></entry>
+          <entry><ind>.2</ind><dep>.01</dep></entry>
+          <entry><ind>1.0</ind><dep>.06</dep></entry>
+        </table>
+      </expression>
+    </input>
+    <output>/controls/flight/autotrim-rate-of-change</output>
+  </filter>
+
+  <filter>
+    <name>autotrim pitch</name>
+    <debug>false</debug>
+    <initialize-to>output</initialize-to>
+    <enable>
+      <condition>
+        <property>/controls/flight/autotrim-pitch</property>
+      </condition>
+    </enable>
+    <input>
+      <condition>
+        <greater-than>
+          <property>/controls/flight/elevator</property>
+          <value>0.02</value>
+        </greater-than>
+      </condition>
+      <value>1</value>
+    </input>
+    <input>
+      <condition>
+        <less-than>
+          <property>/controls/flight/elevator</property>
+          <value>-0.02</value>
+        </less-than>
+      </condition>
+      <value>-1</value>
+    </input>
+    <output>/controls/flight/elevator-trim</output>
+    <type>noise-spike</type>
+    <max-rate-of-change>/controls/flight/autotrim-rate-of-change</max-rate-of-change>
+  </filter>
+
+
   <!--
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                                                                             ROLL
@@ -187,31 +248,6 @@ yasim / fdm (aircraft behaviour)
     <input>/controls/flight/elevator</input>
     <output>/controls/flight/fcm-elevator</output>
   </filter>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   <!-- =============================================================== -->
   <!-- Roll Axis Modes                                                 -->
@@ -544,7 +580,7 @@ directly connect output to the FDM when AP is on otherwise connect FCM to FDM
   </filter>
 
   <filter>
-    <name>fdm-elevato</name>
+    <name>fdm-elevator</name>
     <type>gain</type>
     <gain>1.0</gain>
     <input>

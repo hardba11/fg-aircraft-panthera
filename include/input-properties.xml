@@ -1,0 +1,688 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+################################################################################
+#
+#                              PROPERTY TREE INIT
+#
+################################################################################
+
+PROPERTY-PATH : /input/
+
+see :
+- /devices/status/keyboard/event/
+- /input/keyboard/key[*]/
+-->
+
+<PropertyList>
+  <!--
+================================================================================
+                                                               KEYBOARD SETTINGS
+================================================================================
+  -->
+  <keyboard>
+
+    <!--
+________________________________________________________________________________
+                                           RAZ of some useless keys for panthera
+  -->
+    <key n="2">
+      <name>ctrl-b</name>
+      <desc>RAZ</desc>
+      <binding n="0"><command>nasal</command><script /></binding>
+    </key>
+    <key n="7">
+      <name>ctrl-g</name>
+      <desc>RAZ</desc>
+      <binding><command>nasal</command><script /></binding>
+    </key>
+    <key n="10">
+      <name>Enter</name>
+      <desc>RAZ</desc>
+      <binding><command>nasal</command><script /></binding>
+    </key>
+    <key n="13">
+      <name>Keypad Enter</name>
+      <desc>RAZ</desc>
+      <binding><command>nasal</command><script /></binding>
+    </key>
+    <key n="20">
+      <name>ctrl-t</name>
+      <desc>RAZ</desc>
+      <binding><command>nasal</command><script /></binding>
+    </key>
+    <key n="21">
+      <name>ctrl-u</name>
+      <desc>RAZ</desc>
+      <binding><command>nasal</command><script /></binding>
+    </key>
+    <key n="23">
+      <name>ctrl-w</name>
+      <desc>RAZ</desc>
+      <binding><command>nasal</command><script /></binding>
+    </key>
+    <key n="33">
+      <name>!</name>
+      <desc>RAZ</desc>
+      <binding><command>nasal</command><script /></binding>
+    </key>
+    <key n="35">
+      <name>#</name>
+      <desc>RAZ</desc>
+      <binding><command>nasal</command><script /></binding>
+    </key>
+    <key n="36">
+      <name>$</name>
+      <desc>RAZ</desc>
+      <binding><command>nasal</command><script /></binding>
+    </key>
+    <key n="48">
+      <name>0</name>
+      <desc>RAZ</desc>
+      <binding><command>nasal</command><script /></binding>
+    </key>
+    <key n="64">
+      <name>@</name>
+      <desc>RAZ</desc>
+      <binding><command>nasal</command><script /></binding>
+    </key>
+    <key n="80">
+      <name>P</name>
+      <desc>RAZ</desc>
+      <binding><command>nasal</command><script /></binding>
+    </key>
+    <key n="83">
+      <name>S</name>
+      <desc>RAZ</desc>
+      <binding><command>nasal</command><script /></binding>
+    </key>
+    <key n="99">
+      <name>c</name>
+      <desc>RAZ</desc>
+      <binding><command>nasal</command><script /></binding>
+    </key>
+    <key n="126">
+      <name>~</name>
+      <desc>RAZ</desc>
+      <binding><command>nasal</command><script /></binding>
+    </key>
+    <key n="262">
+      <name>F6</name>
+      <desc>RAZ</desc>
+      <binding><command>nasal</command><script /></binding>
+    </key>
+
+
+
+
+
+
+  <!--
+________________________________________________________________________________
+                                                                        COMMANDS
+  -->
+
+    <!-- ~~~~~~~~~~~~~~~~~~ flaps -->
+    <key n="91">
+      <name>]</name>
+      <desc>decrease flaps</desc>
+      <binding n="0">
+        <command>property-cycle</command>
+        <property>controls/flight/flaps</property>
+        <value>1</value>
+        <value>.33</value>
+        <value>0</value>
+        <wrap>false</wrap>
+      </binding>
+    </key>
+    <key n="93">
+      <name>]</name>
+      <desc>increase flaps</desc>
+      <binding n="0">
+        <command>property-cycle</command>
+        <property>controls/flight/flaps</property>
+        <value>0</value>
+        <value>.33</value>
+        <value>1</value>
+        <wrap>false</wrap>
+      </binding>
+    </key>
+
+    <!-- ~~~~~~~~~~~~~~~~~~ autotrim -->
+    <key n="115">
+      <name>s</name>
+      <desc>toggle pitch autotrim</desc>
+      <binding n="0">
+        <property>/controls/flight/autotrim-pitch</property>
+        <command>property-toggle</command>
+      </binding>
+    </key>
+
+    <!-- ~~~~~~~~~~~~~~~~~~ auto pilot : hold / disengage -->
+    <key n="16">
+      <name>ctrl-p</name>
+      <desc>toggle autopilot</desc>
+      <binding>
+        <command>nasal</command>
+        <script>
+          <![CDATA[
+my_aircraft_functions.event_click_hold_autopilot();
+          ]]>
+        </script>
+      </binding>
+      <mod-shift>
+        <binding>
+          <command>nasal</command>
+          <script>
+            <![CDATA[
+my_aircraft_functions.event_click_disengage_autopilot();
+            ]]>
+          </script>
+        </binding>
+      </mod-shift>
+    </key>
+
+    <!-- ~~~~~~~~~~~~~~~~~~ autopilot altitude : hold / disengage -->
+    <key n="1">
+      <name>ctrl-a</name>
+      <desc>toggle autopilot altitude</desc>
+      <binding n="0">
+        <command>nasal</command>
+        <script>
+          <![CDATA[
+my_aircraft_functions.event_click_lock_alt(-1);
+          ]]>
+        </script>
+      </binding>
+    </key>
+
+    <!-- ~~~~~~~~~~~~~~~~~~ auto throttle : hold / disengage -->
+    <key n="19">
+      <name>ctrl-s</name>
+      <desc>toggle autopilot speed</desc>
+      <binding n="0">
+        <command>nasal</command>
+        <script>
+          <![CDATA[
+my_aircraft_functions.event_click_lock_speed(-1);
+          ]]>
+        </script>
+      </binding>
+    </key>
+
+    <!-- ~~~~~~~~~~~~~~~~~~ park brake -->
+    <key n="66">
+      <name>B</name>
+      <desc>toggle parking brake on or off</desc>
+      <binding>
+        <command>property-toggle</command>
+        <property>/controls/gear/brake-parking</property>
+      </binding>
+      <!--binding>
+        <command>property-interpolate</command>
+        <property>sim/model/lever_parkbrake</property>
+        <property>/controls/gear/brake-parking</property>
+        <time>.5</time>
+      </binding-->
+    </key>
+
+    <!-- ~~~~~~~~~~~~~~~~~~ start/pause chrono -->
+    <key n="121">
+      <name>y</name>
+      <desc>start/pause chrono</desc>
+      <binding>
+        <command>nasal</command>
+        <script>
+          <![CDATA[
+instrument_chrono.event_start_pause();
+          ]]>
+        </script>
+      </binding>
+    </key>
+
+  <!--
+________________________________________________________________________________
+                                                                        CONTROLS
+  -->
+
+    <!-- ~~~~~~~~~~~~~~~~~~ center -->
+    <key n="53">
+      <name>keypad 5</name>
+      <desc>center aileron, elevator, rudder</desc>
+      <binding>
+        <command>nasal</command>
+        <script>
+          <![CDATA[
+my_aircraft_functions.center_flight_controls();
+          ]]>
+        </script>
+      </binding>
+      <mod-ctrl>
+        <desc>center all trim</desc>
+        <binding>
+          <command>nasal</command>
+          <script>
+            <![CDATA[
+my_aircraft_functions.center_flight_controls_trim();
+            ]]>
+          </script>
+        </binding>
+      </mod-ctrl>
+    </key>
+
+    <!-- ~~~~~~~~~~~~~~~~~~ pitch / trim / ap alt -->
+
+    <key n="359">
+      <name>elevator up</name>
+      <desc>decrease elevator or autopilot altitude</desc>
+      <repeatable type="bool">true</repeatable>
+      <binding>
+        <command>nasal</command>
+        <script>
+          <![CDATA[
+my_aircraft_functions.inc_elevator(-0.05, 1);
+          ]]>
+        </script>
+      </binding>
+      <mod-ctrl>
+        <desc>trim up</desc>
+        <binding>
+          <command>property-adjust</command>
+          <property>/controls/flight/elevator-trim</property>
+          <step type="double">-0.0005</step>
+        </binding>
+      </mod-ctrl>
+      <mod-shift>
+        <desc>look backwards</desc>
+        <binding>
+          <command>property-assign</command>
+          <property>/sim/current-view/goal-heading-offset-deg</property>
+          <property>/sim/view/config/back-direction-deg</property>
+        </binding>
+      </mod-shift>
+    </key>
+
+    <key n="357">
+      <name>elevator down</name>
+      <desc>increase elevator or autopilot altitude</desc>
+      <repeatable type="bool">true</repeatable>
+      <binding>
+        <command>nasal</command>
+        <script>
+          <![CDATA[
+my_aircraft_functions.inc_elevator(0.05, -1);
+          ]]>
+        </script>
+      </binding>
+      <mod-ctrl>
+        <desc>trim down</desc>
+        <binding>
+          <command>property-adjust</command>
+          <property>/controls/flight/elevator-trim</property>
+          <step type="double">0.0005</step>
+        </binding>
+      </mod-ctrl>
+      <mod-shift>
+        <desc>look forward</desc>
+        <binding>
+          <command>property-assign</command>
+          <property>/sim/current-view/goal-heading-offset-deg</property>
+          <property>/sim/view/config/front-direction-deg</property>
+        </binding>
+      </mod-shift>
+    </key>
+
+    <!-- ~~~~~~~~~~~~~~~~~~ roll / trim / ap hdg -->
+
+    <key n="356">
+      <name>left arrow</name>
+      <desc>move aileron left</desc>
+      <repeatable type="bool">true</repeatable>
+      <binding>
+        <command>nasal</command>
+        <script>
+          <![CDATA[
+my_aircraft_functions.inc_aileron(-0.05, -1);
+          ]]>
+        </script>
+      </binding>
+      <mod-ctrl>
+        <desc>trim left</desc>
+        <binding>
+          <command>property-adjust</command>
+          <property>/controls/flight/aileron-trim</property>
+          <step type="double">-0.001</step>
+        </binding>
+      </mod-ctrl>
+      <mod-shift>
+        <desc>look left</desc>
+        <binding>
+          <command>property-assign</command>
+          <property>/sim/current-view/goal-heading-offset-deg</property>
+          <property>/sim/view/config/left-direction-deg</property>
+        </binding>
+      </mod-shift>
+    </key>
+
+    <key n="358">
+      <name>right arrow</name>
+      <desc>move aileron right (or adjust AP heading.)</desc>
+      <repeatable type="bool">true</repeatable>
+      <binding>
+        <command>nasal</command>
+        <script>
+          <![CDATA[
+my_aircraft_functions.inc_aileron(0.05, 1);
+          ]]>
+        </script>
+      </binding>
+      <mod-ctrl>
+        <desc>trim right</desc>
+        <binding>
+          <command>property-adjust</command>
+          <property>/controls/flight/aileron-trim</property>
+          <step type="double">0.001</step>
+        </binding>
+      </mod-ctrl>
+      <mod-shift>
+        <desc>look right</desc>
+        <binding>
+          <command>property-assign</command>
+          <property>/sim/current-view/goal-heading-offset-deg</property>
+          <property>/sim/view/config/right-direction-deg</property>
+        </binding>
+      </mod-shift>
+    </key>
+
+    <!-- ~~~~~~~~~~~~~~~~~~ rudder / trim -->
+
+    <key n="363">
+      <name>Keypad 1</name>
+      <desc>rudder left</desc>
+      <repeatable type="bool">true</repeatable>
+      <binding>
+        <command>property-adjust</command>
+        <property>/controls/flight/rudder</property>
+        <step type="double">-0.02</step>
+      </binding>
+      <mod-ctrl>
+        <desc>trim rudder left</desc>
+        <binding>
+          <command>property-adjust</command>
+          <property>/controls/flight/rudder-trim</property>
+          <step type="double">-0.001</step>
+        </binding>
+      </mod-ctrl>
+    </key>
+
+    <key n="361">
+      <name>Keypad 3</name>
+      <desc>rudder right</desc>
+      <repeatable type="bool">true</repeatable>
+      <binding>
+        <command>property-adjust</command>
+        <property>/controls/flight/rudder</property>
+        <step type="double">0.02</step>
+      </binding>
+      <mod-ctrl>
+        <desc>trim rudder right</desc>
+        <binding>
+          <command>property-adjust</command>
+          <property>/controls/flight/rudder-trim</property>
+          <step type="double">0.001</step>
+        </binding>
+      </mod-ctrl>
+    </key>
+
+    <!-- ~~~~~~~~~~~~~~~~~~ throttle / ap speed -->
+    <key n="43">
+      <name>Keypad +</name>
+      <desc>increase throttle or autopilot speed</desc>
+      <repeatable type="bool">true</repeatable>
+      <binding>
+        <command>nasal</command>
+        <script>
+          <![CDATA[
+my_aircraft_functions.inc_throttle(0.01, 1);
+          ]]>
+        </script>
+      </binding>
+    </key>
+
+    <key n="364">
+      <name>Keypad 0</name>
+      <desc>decrease throttle or autopilot speed</desc>
+      <repeatable type="bool">true</repeatable>
+      <binding>
+        <command>nasal</command>
+        <script>
+          <![CDATA[
+my_aircraft_functions.inc_throttle(-0.01, -1);
+          ]]>
+        </script>
+      </binding>
+    </key>
+
+  <!--
+________________________________________________________________________________
+                                                                           VIEWS
+    <key n="22">
+      <name>ctrl-v</name>
+      <desc>Select initial view</desc>
+      <binding n="0">
+        <command>nasal</command>
+        <script>
+          <![CDATA[
+my_aircraft_functions.event_set_view(0);
+          ]]>
+        </script>
+        <property />
+      </binding>
+    </key>
+
+    <key n="86">
+      <name>V</name>
+      <desc>Scroll in reverse thought views</desc>
+      <binding n="0">
+        <command>nasal</command>
+        <script>
+          <![CDATA[
+my_aircraft_functions.event_set_view(-1);
+          ]]>
+        </script>
+        <property />
+      </binding>
+    </key>
+
+    <key n="118">
+      <name>v</name>
+      <desc>Scroll thought views</desc>
+      <binding n="0">
+        <command>nasal</command>
+        <script>
+          <![CDATA[
+my_aircraft_functions.event_set_view(1);
+          ]]>
+        </script>
+        <property />
+      </binding>
+      <mod-shift>
+        <desc>Scroll in reverse thought views</desc>
+        <binding n="0">
+          <command>nasal</command>
+          <script>
+            <![CDATA[
+my_aircraft_functions.event_set_view(-1);
+            ]]>
+          </script>
+          <property />
+        </binding>
+      </mod-shift>
+    </key>
+
+    <key n="362">
+      <name>Home</name>
+      <desc>toggle view left</desc>
+      <repeatable type="bool">false</repeatable>
+      <binding n="0">
+        <command>nasal</command>
+        <script>
+          <![CDATA[
+my_aircraft_functions.view_cockpit_panels(-1);
+          ]]>
+        </script>
+        <property />
+      </binding>
+    </key>
+
+    <key n="360">
+      <name>PageUp</name>
+      <desc>toggle view right</desc>
+      <repeatable type="bool">false</repeatable>
+      <binding n="0">
+        <command>nasal</command>
+        <script>
+          <![CDATA[
+my_aircraft_functions.view_cockpit_panels(1);
+          ]]>
+        </script>
+        <property />
+      </binding>
+    </key>
+  -->
+
+
+  </keyboard>
+  <!--
+================================================================================
+                                                                  MOUSE SETTINGS
+================================================================================
+  -->
+  <mice>
+  <mouse n="0">
+
+  <!--
+________________________________________________________________________________
+                                                                         BUTTONS
+  -->
+    <mode n="1"> <!-- crosshair -->
+
+      <button n="3"> <!-- scroll up adjust throttle if AP disabled, adjust speed if AP enabled -->
+        <binding>
+          <command>nasal</command>
+          <script>
+            <![CDATA[
+my_aircraft_functions.inc_throttle(0.01, 1);
+            ]]>
+          </script>
+          <offset>0</offset>
+          <property />
+          <step />
+        </binding>
+      </button>
+
+      <button n="4"> <!-- scroll down adjust throttle if AP disabled, adjust speed if AP enabled -->
+        <binding>
+          <command>nasal</command>
+          <script>
+            <![CDATA[
+my_aircraft_functions.inc_throttle(-0.01, -1);
+            ]]>
+          </script>
+          <offset>0</offset>
+          <property />
+          <step />
+        </binding>
+      </button>
+
+  <!--
+________________________________________________________________________________
+                                                               LEFT/RIGHT MOTION
+  -->
+      <x-axis>
+        <!-- no buttons pressed: control ailerons -->
+        <binding n="0">
+          <condition>
+            <and>
+              <not><property>/devices/status/mice/mouse[0]/button[0]</property></not>
+              <not><property>/devices/status/mice/mouse[0]/button[1]</property></not>
+            </and>
+          </condition>
+          <command>property-adjust</command>
+          <property>/controls/flight/aileron</property>
+          <factor type="double">1.0</factor>
+          <min type="double">-1.0</min>
+          <max type="double">1.0</max>
+          <wrap type="bool">false</wrap>
+        </binding>
+
+        <!-- 2nd binding has to be void to disable default conditions -->
+        <binding n="1">
+          <condition n="0" />
+          <command>nasal</command>
+          <property />
+          <factor />
+          <min />
+          <max />
+          <wrap />
+        </binding>
+
+        <!-- left or middle button pressed : control rudder -->
+        <binding n="2">
+          <condition>
+            <or>
+              <property>/devices/status/mice/mouse[0]/button[0]</property>
+              <and>
+                <property>/devices/status/mice/mouse[0]/button[1]</property>
+                <property>/gear/gear[0]/wow</property>
+              </and>
+            </or>
+          </condition>
+          <command>property-adjust</command>
+          <property>/controls/flight/rudder</property>
+          <factor type="double">.7</factor>
+          <min type="double">-1.0</min>
+          <max type="double">1.0</max>
+          <wrap type="bool">false</wrap>
+        </binding>
+      </x-axis>
+
+  <!--
+________________________________________________________________________________
+                                                                  UP/DOWN MOTION
+  -->
+      <y-axis>
+
+        <!-- no button pressed: control elevator -->
+        <binding n="0">
+          <condition>
+            <not><property>/devices/status/mice/mouse[0]/button[0]</property></not>
+            <not><property>/devices/status/mice/mouse[0]/button[1]</property></not>
+          </condition>
+          <command>property-adjust</command>
+          <property>/controls/flight/elevator</property>
+          <factor type="double">-2.0</factor>
+          <min type="double">-1.0</min>
+          <max type="double">1.0</max>
+          <wrap type="bool">false</wrap>
+        </binding>
+
+        <!-- middle button pressed: control throttle -->
+        <binding n="2">
+          <command>nasal</command>
+          <script>
+            <![CDATA[
+my_aircraft_functions.throttle_mouse();
+            ]]>
+          </script>
+        </binding>
+
+      </y-axis>
+
+    </mode>
+
+  </mouse>
+  </mice>
+
+</PropertyList>
+
+

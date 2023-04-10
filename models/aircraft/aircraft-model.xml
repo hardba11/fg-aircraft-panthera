@@ -574,7 +574,7 @@
     <center>
       <x-m>-2.29</x-m>
       <y-m>-.06</y-m>
-      <z-m>.26</z-m>
+      <z-m>.3</z-m>
     </center>
     <axis>
       <x>1</x>
@@ -616,7 +616,7 @@
     <center>
       <x-m>-2.29</x-m>
       <y-m>.06</y-m>
-      <z-m>.26</z-m>
+      <z-m>.3</z-m>
     </center>
     <axis>
       <x>1</x>
