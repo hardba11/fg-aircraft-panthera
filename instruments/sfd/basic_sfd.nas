@@ -620,6 +620,7 @@ var BASIC_SFD = {
         me.rpm_engine_text.setText(sprintf('%.1f', rpm));
 
         # gauge + value torque
+        if(torque < 0) { torque = 0; }
         update_circular_gauge(me.torque_engine_circle, x_torque_engine, y_torque_engine, rayon_gauge, (torque * 270 / 2000), 'green');
         me.torque_engine_text.setText(sprintf('%.1f', torque));
 
@@ -636,9 +637,9 @@ var BASIC_SFD = {
         me.ff_engine_text.setText(sprintf('%.1f', ff));
 
         # gauge + value tanks
-        update_gauge(me.tank0_gauge, 0, -tank0 * 250 / 400, 'green');
-        update_gauge(me.tank1_gauge, 0, -tank1 * 250 / 700, 'green');
-        update_gauge(me.tank2_gauge, 0, -tank2 * 250 / 400, 'green');
+        update_gauge(me.tank0_gauge, 0, -tank0 * 200 / 400, 'green');
+        update_gauge(me.tank1_gauge, 0, -tank1 * 200 / 700, 'green');
+        update_gauge(me.tank2_gauge, 0, -tank2 * 200 / 400, 'green');
 
         if(gears > 0)
         {

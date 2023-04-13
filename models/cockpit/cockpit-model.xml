@@ -289,11 +289,6 @@ ________________________________________________________________________________
     <object-name>panneaux</object-name>
     <object-name>tableau</object-name>
     <object-name>vis</object-name>
-    <object-name>l_door_open.indicator</object-name>
-    <object-name>l_fuel_low.indicator</object-name>
-    <object-name>p_door_open.indicator</object-name>
-    <object-name>r_door_open.indicator</object-name>
-    <object-name>r_fuel_low.indicator</object-name>
     <condition>
       <greater-than>
         <property>/controls/lighting/panel-norm</property>
@@ -462,6 +457,194 @@ ________________________________________________________________________________
     </emission>
   </animation>
 
+
+  <!--
+________________________________________________________________________________
+                                                            ANNUN LEFT DOOR OPEN
+  -->
+  <animation>
+    <type>material</type>
+    <object-name>l_door_open.indicator</object-name>
+    <condition>
+      <property>/controls/doors/porte-av-g</property>
+    </condition>
+    <emission>
+      <factor>1</factor>
+      <red>1</red>
+      <green>.8</green>
+      <blue>.2</blue>
+    </emission>
+  </animation>
+  <animation>
+    <type>material</type>
+    <object-name>l_door_open.indicator</object-name>
+    <condition>
+      <not><property>/controls/doors/porte-av-g</property></not>
+      <greater-than>
+        <property>/controls/lighting/panel-norm</property>
+        <value>0</value>
+      </greater-than>
+    </condition>
+    <emission>
+      <factor>.1</factor>
+      <red>1</red>
+      <green>0</green>
+      <blue>0</blue>
+    </emission>
+  </animation>
+
+  <!--
+________________________________________________________________________________
+                                                       ANNUN PASSENGER DOOR OPEN
+  -->
+  <animation>
+    <type>material</type>
+    <object-name>p_door_open.indicator</object-name>
+    <condition>
+      <property>/controls/doors/porte-av-d</property>
+    </condition>
+    <emission>
+      <factor>1</factor>
+      <red>1</red>
+      <green>.8</green>
+      <blue>.2</blue>
+    </emission>
+  </animation>
+  <animation>
+    <type>material</type>
+    <object-name>p_door_open.indicator</object-name>
+    <condition>
+      <not><property>/controls/doors/porte-av-d</property></not>
+      <greater-than>
+        <property>/controls/lighting/panel-norm</property>
+        <value>0</value>
+      </greater-than>
+    </condition>
+    <emission>
+      <factor>.1</factor>
+      <red>1</red>
+      <green>0</green>
+      <blue>0</blue>
+    </emission>
+  </animation>
+
+  <!--
+________________________________________________________________________________
+                                                            ANNUN READ DOOR OPEN
+  -->
+  <animation>
+    <type>material</type>
+    <object-name>r_door_open.indicator</object-name>
+    <condition>
+      <property>/controls/doors/porte-ar-g</property>
+    </condition>
+    <emission>
+      <factor>1</factor>
+      <red>1</red>
+      <green>.8</green>
+      <blue>.2</blue>
+    </emission>
+  </animation>
+  <animation>
+    <type>material</type>
+    <object-name>r_door_open.indicator</object-name>
+    <condition>
+      <not><property>/controls/doors/porte-ar-g</property></not>
+      <greater-than>
+        <property>/controls/lighting/panel-norm</property>
+        <value>0</value>
+      </greater-than>
+    </condition>
+    <emission>
+      <factor>.1</factor>
+      <red>1</red>
+      <green>0</green>
+      <blue>0</blue>
+    </emission>
+  </animation>
+
+  <!--
+________________________________________________________________________________
+                                                        ANNUN LEFT WING FUEL LOW
+  -->
+  <animation>
+    <type>material</type>
+    <object-name>l_fuel_low.indicator</object-name>
+    <condition>
+      <less-than>
+        <property>/consumables/fuel/tank[0]/level-lbs</property>
+        <value>45</value>
+      </less-than>
+    </condition>
+    <emission>
+      <factor>1</factor>
+      <red>1</red>
+      <green>.8</green>
+      <blue>.2</blue>
+    </emission>
+  </animation>
+  <animation>
+    <type>material</type>
+    <object-name>l_fuel_low.indicator</object-name>
+    <condition>
+      <greater-than>
+        <property>/consumables/fuel/tank[0]/level-lbs</property>
+        <value>45</value>
+      </greater-than>
+      <greater-than>
+        <property>/controls/lighting/panel-norm</property>
+        <value>0</value>
+      </greater-than>
+    </condition>
+    <emission>
+      <factor>.1</factor>
+      <red>1</red>
+      <green>0</green>
+      <blue>0</blue>
+    </emission>
+  </animation>
+
+
+  <!--
+________________________________________________________________________________
+                                                       ANNUN RIGHT WING FUEL LOW
+  -->
+  <animation>
+    <type>material</type>
+    <object-name>r_fuel_low.indicator</object-name>
+    <condition>
+      <less-than>
+        <property>/consumables/fuel/tank[2]/level-lbs</property>
+        <value>45</value>
+      </less-than>
+    </condition>
+    <emission>
+      <factor>1</factor>
+      <red>1</red>
+      <green>.8</green>
+      <blue>.2</blue>
+    </emission>
+  </animation>
+  <animation>
+    <type>material</type>
+    <object-name>r_fuel_low.indicator</object-name>
+    <condition>
+      <greater-than>
+        <property>/consumables/fuel/tank[2]/level-lbs</property>
+        <value>45</value>
+      </greater-than>
+      <greater-than>
+        <property>/controls/lighting/panel-norm</property>
+        <value>0</value>
+      </greater-than>
+    </condition>
+    <emission>
+      <factor>.1</factor>
+      <red>1</red>
+      <green>0</green>
+      <blue>0</blue>
+    </emission>
+  </animation>
 
   <!--
 ================================================================================
@@ -1786,7 +1969,7 @@ ________________________________________________________________________________
     </axis>
   </animation>
 
-  <!-- ~~~~~~~~~~~~~~~~~~ controls
+  <!-- ~~~~~~~~~~~~~~~~~~ controls -->
   <animation>
     <type>pick</type>
     <object-name>bottom.switch.a_and_c</object-name>
@@ -1798,7 +1981,7 @@ ________________________________________________________________________________
         <property>/controls/switches/a_and_c</property>
       </binding>
     </action>
-  </animation> -->
+  </animation>
 
   <!--
 ________________________________________________________________________________
@@ -1825,7 +2008,7 @@ ________________________________________________________________________________
     </axis>
   </animation>
 
-  <!-- ~~~~~~~~~~~~~~~~~~ controls
+  <!-- ~~~~~~~~~~~~~~~~~~ controls -->
   <animation>
     <type>pick</type>
     <object-name>bottom.switch.aux</object-name>
@@ -1837,7 +2020,7 @@ ________________________________________________________________________________
         <property>/controls/switches/aux</property>
       </binding>
     </action>
-  </animation> -->
+  </animation>
 
   <!--
 ________________________________________________________________________________
@@ -1905,44 +2088,6 @@ ________________________________________________________________________________
       </binding>
     </hovered>
   </animation>
-
-  <!-- ************************************************ USED FOR DEVELOPMENT -->
-  <!--animation>
-    <type>translate</type>
-    <object-name>turn-pilot</object-name>
-    <property>/_debug/float1</property>
-    <factor>1</factor>
-    <axis>
-      <x>1</x>
-      <y>0</y>
-      <z>0</z>
-    </axis>
-  </animation>
-
-  <animation>
-    <type>translate</type>
-    <object-name>turn-pilot</object-name>
-    <property>/_debug/float2</property>
-    <factor>1</factor>
-    <axis>
-      <x>0</x>
-      <y>1</y>
-      <z>0</z>
-    </axis>
-  </animation>
-
-  <animation>
-    <type>translate</type>
-    <object-name>turn-pilot</object-name>
-    <property>/_debug/float3</property>
-    <factor>1</factor>
-    <axis>
-      <x>0</x>
-      <y>0</y>
-      <z>1</z>
-    </axis>
-  </animation-->
-
 
 
 </PropertyList>

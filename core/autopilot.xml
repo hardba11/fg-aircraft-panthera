@@ -110,7 +110,6 @@ yasim / fdm (aircraft behaviour)
   <!--
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                                                                             ROLL
-  -->
   <pid-controller>
     <name>flimo-aileron</name>
     <debug>false</debug>
@@ -155,13 +154,6 @@ yasim / fdm (aircraft behaviour)
     </reference>
     <output>/controls/flight/flimo-aileron</output>
     <config>
-<!--
-      <Kp>/_debug/Kp</Kp><Ti>/_debug/Ti</Ti><Td>/_debug/Td</Td>
-200kt
-- 2
-- 0.0005
-- 1
--->
       <Kp>2</Kp><Ti>1</Ti><Td>0.0005</Td>
       <u_min>-1.0</u_min><u_max>1.0</u_max>
     </config>
@@ -171,6 +163,14 @@ yasim / fdm (aircraft behaviour)
     <type>gain</type>
     <gain>1.0</gain>
     <input>/controls/flight/flimo-aileron</input>
+    <output>/controls/flight/fcm-aileron</output>
+  </filter>
+  -->
+  <filter>
+    <name>fcm-aileron</name>
+    <type>gain</type>
+    <gain>1.0</gain>
+    <input>/controls/flight/aileron</input>
     <output>/controls/flight/fcm-aileron</output>
   </filter>
 
@@ -197,9 +197,9 @@ yasim / fdm (aircraft behaviour)
         <table>
           <property>/accelerations/pilot-g</property>
           <entry><ind>-10</ind><dep>1.00</dep></entry>
-          <entry><ind>-4</ind><dep>1.00</dep></entry>
+          <entry><ind>-3</ind><dep>1.00</dep></entry>
           <entry><ind>1.0</ind><dep>0.00</dep></entry>
-          <entry><ind>6</ind><dep>-1.00</dep></entry>
+          <entry><ind>5</ind><dep>-1.00</dep></entry>
           <entry><ind>20.0</ind><dep>-1.00</dep></entry>
         </table>
       </expression>
@@ -439,8 +439,8 @@ yasim / fdm (aircraft behaviour)
     <config>
       <Kp>0.3</Kp>          <!-- proportional gain -->
       <Ki>0.0</Ki>          <!-- integral gain -->
-      <u_min>-16.67</u_min> <!-- minimum output clamp -->
-      <u_max>8.33</u_max>   <!-- maximum output clamp -->
+      <u_min>-16</u_min> <!-- minimum output clamp -->
+      <u_max>12</u_max>   <!-- maximum output clamp -->
     </config>
   </pi-simple-controller>
 

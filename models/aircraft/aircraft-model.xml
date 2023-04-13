@@ -425,7 +425,7 @@
     <type>spin</type>
     <object-name>roue_avant</object-name>
     <property>/gear/gear[0]/rollspeed-ms</property>
-    <factor>30</factor>
+    <factor>60</factor>
     <center>
       <x-m>-2.92</x-m>
       <y-m>0</y-m>
@@ -441,7 +441,7 @@
     <type>spin</type>
     <object-name>roues_g</object-name>
     <property>/gear/gear[1]/rollspeed-ms</property>
-    <factor>30</factor>
+    <factor>60</factor>
     <center>
       <x-m>-1.292</x-m>
       <y-m>0</y-m>
@@ -457,7 +457,7 @@
     <type>spin</type>
     <object-name>roues_d</object-name>
     <property>/gear/gear[2]/rollspeed-ms</property>
-    <factor>30</factor>
+    <factor>60</factor>
     <center>
       <x-m>-1.292</x-m>
       <y-m>0</y-m>
