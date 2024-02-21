@@ -616,7 +616,7 @@ var BASIC_PFD = {
 
 # vspeed gauge
         m.vspeed_gauge = m.my_container.createChild('path', 'vspeed_gauge');
-        draw_vertical_gauge(m.vspeed_gauge, 783, 512, 0, -100, 10);
+        draw_vertical_gauge(m.vspeed_gauge, 783, 512, 0, -100, 20);
 
 # vspeed
         m.vspeed_bg = m.my_container.createChild('path', 'vspeed_bg')

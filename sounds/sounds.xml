@@ -109,9 +109,9 @@
       </volume>
       <pitch>
         <property>engines/engine[0]/rpm</property>
-        <factor>0.0005</factor>
+        <factor>0.0006</factor>
         <min>0.3</min>
-        <max>2.0</max>
+        <max>2.5</max>
         <offset>0.3</offset>
       </pitch>
     </engine>
@@ -430,7 +430,7 @@
 
 <!-- ALTERNATOR SWITCH -->
     <click>
-      <name>Front Alt ON</name>
+      <name>Alt ON</name>
       <path>Aircraft/panthera/sounds/ButtonPower.wav</path>
       <condition>
         <property>controls/engines/engine[0]/master-alt</property>
@@ -441,7 +441,7 @@
     </click>
 
     <click>
-      <name>Front Alt OFF</name>
+      <name>Alt OFF</name>
       <path>Aircraft/panthera/sounds/ButtonPower.wav</path>
       <condition>
         <not>
@@ -455,8 +455,8 @@
 
 <!-- FUEL PUMP SWITCH -->
     <click>
-      <name>Front Fuel Pump LO ON</name>
-      <path>Aircraft/panthera/sounds/ButtonPower.wav</path>
+      <name>Fuel Pump ON</name>
+      <path>Aircraft/panthera/sounds/ButtonLights.wav</path>
       <condition>
         <property>/controls/engines/engine[0]/fuel-pump</property>
       </condition>
@@ -466,8 +466,8 @@
     </click>
 
     <click>
-      <name>Front Alt OFF</name>
-      <path>Aircraft/panthera/sounds/ButtonPower.wav</path>
+      <name>Fuel Pump OFF</name>
+      <path>Aircraft/panthera/sounds/ButtonLights.wav</path>
       <condition>
         <not>
           <property>/controls/engines/engine[0]/fuel-pump</property>
@@ -481,7 +481,7 @@
 <!-- MASTER AVIONICS SWITCH -->
     <click>
       <name>Avionics ON</name>
-      <path>Aircraft/panthera/sounds/ButtonPower.wav</path>
+      <path>Aircraft/panthera/sounds/ButtonLights.wav</path>
       <condition>
         <property>controls/switches/master-avionics</property>
       </condition>
@@ -492,7 +492,7 @@
 
     <click>
       <name>Avionics OFF</name>
-      <path>Aircraft/panthera/sounds/ButtonPower.wav</path>
+      <path>Aircraft/panthera/sounds/ButtonLights.wav</path>
       <condition>
         <not>
           <property>controls/switches/master-avionics</property>

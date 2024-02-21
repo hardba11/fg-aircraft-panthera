@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PropertyList>
+
+  <sim>
+    <model>
+      <livery>
+        <name type="string">Motif Disruptif Simple Zone Temperee Moyenne Altitude</name>
+        <texture>liveries/panthera_mdsztba.png</texture>
+      </livery>
+    </model>
+  </sim>
+
+</PropertyList>

@@ -153,7 +153,7 @@ center : has to be the coords for view n=0
     <name>target_positions</name>
     <path>Aircraft/panthera/instruments/target_positions/target_positions-model.xml</path>
     <offsets>
-      <x-m>-1.5</x-m>
+      <x-m>-1.6</x-m>
       <y-m>-.27</y-m>
       <z-m>.32</z-m>
     </offsets>

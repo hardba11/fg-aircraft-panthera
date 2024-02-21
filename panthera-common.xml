@@ -162,7 +162,15 @@ Performance
     </startup>
     <splash-title>panthera</splash-title>
 
-    <!-- ~~~~~~~~~~~~~~~~~~ views -->
+    <!-- ~~~~~~~~~~~~~~~~~~ hud -->
+    <hud>
+      <enable3d>false</enable3d>
+      <path n="1" type="string">instruments/hud/hud.xml</path>
+    </hud>
+
+    <!-- ~~~~~~~~~~~~~~~~~~ views 
+    @see cockpit-model / target_positions
+    -->
     <view n="0">
       <name>Pilot</name>
       <type>lookfrom</type>
@@ -172,7 +180,7 @@ Performance
         <ground-level-nearplane-m type="double">0.5</ground-level-nearplane-m>
         <x-offset-m type="double">-.27</x-offset-m>
         <y-offset-m type="double">.32</y-offset-m>
-        <z-offset-m type="double">-1.5</z-offset-m>
+        <z-offset-m type="double">-1.6</z-offset-m>
         <pitch-offset-deg>-5</pitch-offset-deg>
         <default-field-of-view-deg type="double">78.7</default-field-of-view-deg>
         <limits>
@@ -190,7 +198,7 @@ Performance
         </limits>
       </config>
     </view>
-    <view n="105">
+    <view n="104">
       <name>Passenger</name>
       <type>lookfrom</type>
       <internal type="bool">true</internal>
@@ -218,7 +226,7 @@ Performance
         </limits>
       </config>
     </view>
-    <view n="106">
+    <view n="105">
       <name>Copilot</name>
       <type>lookfrom</type>
       <internal type="bool">true</internal>
@@ -245,6 +253,39 @@ Performance
         </limits>
       </config>
     </view>
+    <view n="106">
+      <name>Panels</name>
+      <type>lookfrom</type>
+      <internal type="bool">true</internal>
+      <config>
+        <from-model type="bool">true</from-model>
+        <x-offset-m type="double">-.27</x-offset-m>
+        <y-offset-m type="double">.01</y-offset-m>
+        <z-offset-m type="double">-1.53</z-offset-m>
+        <pitch-offset-deg>-5</pitch-offset-deg>
+        <default-field-of-view-deg type="double">33.3</default-field-of-view-deg>
+      </config>
+    </view>
+
+    <view n="107">
+      <name>Full</name>
+      <type>lookfrom</type>
+      <internal type="bool">true</internal>
+      <config>
+        <from-model type="bool">true</from-model>
+        <ground-level-nearplane-m type="double">0.5</ground-level-nearplane-m>
+        <x-offset-m type="double">0</x-offset-m>
+        <y-offset-m type="double">-.2</y-offset-m>
+        <z-offset-m type="double">-4.4</z-offset-m>
+        <pitch-offset-deg>-5</pitch-offset-deg>
+        <default-field-of-view-deg type="double">78.2</default-field-of-view-deg>
+        <limits>
+          <enabled type="bool">false</enabled>
+        </limits>
+      </config>
+    </view>
+
+
     <rendering>
       <als-secondary-lights>
         <landing-light1-offset-deg type="double">6</landing-light1-offset-deg>  <!-- left landing-light -->

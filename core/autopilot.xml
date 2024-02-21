@@ -196,7 +196,7 @@ yasim / fdm (aircraft behaviour)
       <expression>
         <table>
           <property>/accelerations/pilot-g</property>
-          <entry><ind>-10</ind><dep>1.00</dep></entry>
+          <entry><ind>-18</ind><dep>1.00</dep></entry>
           <entry><ind>-3</ind><dep>1.00</dep></entry>
           <entry><ind>1.0</ind><dep>0.00</dep></entry>
           <entry><ind>5</ind><dep>-1.00</dep></entry>
@@ -226,7 +226,7 @@ yasim / fdm (aircraft behaviour)
       <Kp>.6</Kp><Ti>100</Ti><Td>.005</Td>
       <Kp>/_debug/Kp</Kp><Ti>/_debug/Ti</Ti><Td>/_debug/Td</Td>
 -->
-      <Kp>1.7</Kp><Ti>50</Ti><Td>.00008</Td>
+      <Kp>1</Kp><Ti>50</Ti><Td>.00008</Td>
       <u_min>-1.0</u_min><u_max>1.0</u_max>
     </config>
   </pid-controller>
