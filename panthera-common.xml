@@ -285,7 +285,6 @@ Performance
       </config>
     </view>
 
-
     <rendering>
       <als-secondary-lights>
         <landing-light1-offset-deg type="double">6</landing-light1-offset-deg>  <!-- left landing-light -->

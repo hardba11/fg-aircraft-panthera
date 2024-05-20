@@ -5,7 +5,6 @@
   <model>
     <path>Aircraft/panthera/models/aircraft/aircraft-model.xml</path>
   </model>
-
   <model>
     <path>Aircraft/panthera/models/cockpit/cockpit-model.xml</path>
   </model>

@@ -9,8 +9,8 @@ It is usable in [FLIGHTGEAR open source flight simulator](http://www.flightgear.
 ## installation
 
 1. download on github
-2. unzip the file `fg-aircraft-panthera-master.zip`
-3. rename the directory `fg-aircraft-panthera-master` to `panthera`
+2. unzip the file `fg-aircraft-panthera-master.zip` or `fg-aircraft-panthera-main.zip`
+3. rename the directory `fg-aircraft-panthera-master` or `fg-aircraft-panthera-main.zip` to `panthera`
 4. move the directory panthera in your addon aircraft directory (`/dir/of/my/hangars/panthera`)
 
 
