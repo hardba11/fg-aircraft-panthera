@@ -625,7 +625,7 @@ var BASIC_SFD = {
         me.torque_engine_text.setText(sprintf('%.1f', torque));
 
         # gauge + value egt
-        update_gauge(me.egt_gauge, 0, -egt * 350 / 100, 'green');
+        update_gauge(me.egt_gauge, 0, -egt * 350 / 600, 'green');
         me.egt_engine_text.setText(sprintf('%.1f', egt));
 
         # gauge + value oil temp

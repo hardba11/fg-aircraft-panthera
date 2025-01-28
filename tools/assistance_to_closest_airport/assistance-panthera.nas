@@ -17,37 +17,37 @@ print("*** LOADING tools - assistance-panthera.nas ... ***");
 # les ordre ATC adequats peuvent etre donnes
 #
 #                                         N
-#  .1  .-------------------------------------------------+-------------------------------.
-#      |                                                 |                               |
-#      |  zone2_1 ------>                                | zone3    |                    |
-#      |  CROSSWIND                                      | DOWNWIND |                    |
-#      |  200kt                          |||             | 200kt    |                    |
-#      |  2000ft                         |.|             | 1500ft   V                    |
-#      |                                 |.|             |                               |
-#      |                                 |.|             |                               |
-#      |                                 |.|             |                               |
-#      |                                 |||             |                               |
-#  0  W+--------------------------------+-0-+------------+                               |E
-#      |                               |     |           |                               |
-#      |  zone1      ^                 |  ^  | zone2_2   |                               |
-#      |  ENTRANCE   |                 |  |  | CROSSWIND |                               |
-#      |  200kt      |                 |  |  | 200kt     |                               |
-#      |  2000ft     |                 |  |  | 1500ft    |                               |
-#      |                               |     | ---->     |                               |
-# -.08 |                               | z6  +-----------+                               |
-#      |                               |  F  |           |                               |
-#      |                               |  I  |           |                               |
-# -.12 |                               |  N  | zone4     +-------------------------------+
-#      |                               |  A  | BASE      |                               |
-#      |                               |  L  | 150kt     |                               |
-#      |                               |     | 1500ft    |                               |
-#      |                               |  1  | __        |                               |
-#      |                               |  2  | |\        | zone5  <-----                 |
-#      |                               |  0  |   \       | BASE                          |
-#      |                               |  kt |    \      | 150kt 1500ft                  |
-# -.2  '-------------------------------+-----+-----------+-------------------------------'
+#  .1  .---------------------------------------------------------+-----------------------.
+#      |                                                         |                       |
+#      |  zone2_1 ------>                                        | zone3    |            |
+#      |  CROSSWIND                                              | DOWNWIND |            |
+#      |  200kt                          |||                     | 200kt    |            |
+#      |  2000ft                         |.|                     | 1500ft   V            |
+#      |                                 |.|                     |                       |
+#      |                                 |.|                     |                       |
+#      |                                 |.|                     |                       |
+#      |                                 |||                     |                       |
+#  0  W+--------------------------------+-0-+--------------------+                       |E
+#      |                               |     |                   |                       |
+#      |  zone1      ^                 |  ^  | zone2_2           |                       |
+#      |  ENTRANCE   |                 |  |  | CROSSWIND         |                       |
+#      |  200kt      |                 |  |  | 200kt             |                       |
+#      |  2000ft     |                 |  |  | 1500ft            |                       |
+#      |                               |     | ---->             |                       |
+# -.08 |                               | z6  +-------------------+                       |
+#      |                               |  F  |                   |                       |
+#      |                               |  I  |                   |                       |
+# -.12 |                               |  N  | zone4             +-----------------------+
+#      |                               |  A  | BASE              |                       |
+#      |                               |  L  | 150kt             |                       |
+#      |                               |     | 1500ft            |                       |
+#      |                               |  1  | __                |                       |
+#      |                               |  2  | |\                | zone5  <-----         |
+#      |                               |  0  |   \               | BASE                  |
+#      |                               |  kt |    \              | 150kt 1500ft          |
+# -.2  '-------------------------------+-----+-------------------+-----------------------'
 #                                         S
-#     -.2                          -.025  0 .025       .05                              .2
+#     -.2                          -.025  0 .025                .1                      .2
 #
 # how to install for another aircraft
 # -----------------------------------
@@ -152,7 +152,7 @@ var atc_zone = [
         'id': 'zone2_1',
         'top_left_x': -.2 / 2,
         'top_left_y': .1 / 2,
-        'bottom_right_x': .05 / 2,
+        'bottom_right_x': .1 / 2,
         'bottom_right_y': 0 / 2,
         'speed': 200,
         'heading': 90,
@@ -163,7 +163,7 @@ var atc_zone = [
         'id': 'zone2_2',
         'top_left_x': .025 / 2,
         'top_left_y': 0 / 2,
-        'bottom_right_x': .05 / 2,
+        'bottom_right_x': .1 / 2,
         'bottom_right_y': -.08 / 2,
         'speed': 200,
         'heading': 90,
@@ -172,7 +172,7 @@ var atc_zone = [
     },
     {
         'id': 'zone3',
-        'top_left_x': .05 / 2,
+        'top_left_x': .1 / 2,
         'top_left_y': .1 / 2,
         'bottom_right_x': .2 / 2,
         'bottom_right_y': -.12 / 2,
@@ -185,7 +185,7 @@ var atc_zone = [
         'id': 'zone4',
         'top_left_x': .025 / 2,
         'top_left_y': -.08 / 2,
-        'bottom_right_x': .05 / 2,
+        'bottom_right_x': .1 / 2,
         'bottom_right_y': -.2 / 2,
         'speed': 150,
         'heading': 315,
@@ -194,7 +194,7 @@ var atc_zone = [
     },
     {
         'id': 'zone5',
-        'top_left_x': .05 / 2,
+        'top_left_x': .1 / 2,
         'top_left_y': -.12 / 2,
         'bottom_right_x': .2 / 2,
         'bottom_right_y': -.2 / 2,
@@ -501,17 +501,17 @@ var assistance = func()
             assistance_message_vertical = sprintf('maintain %d ft.',
                 atc['alt']);
         }
-    } elsif ((atc['circuit'] == 'final') and (dist_nm <= 5.5) and (dist_nm >= 5.4)) {
+    } elsif ((atc['circuit'] == 'final') and (dist_nm <= 5.7) and (dist_nm >= 5.3)) {
         assistance_message_vertical = sprintf('5.5 NM from runway, START 3deg descent glide. airport altitude:%d ft.',
             airport['elevation_ft']
         );
-    } elsif ((atc['circuit'] == 'final') and (dist_nm <= 3.5) and (dist_nm >= 3.4)) {
+    } elsif ((atc['circuit'] == 'final') and (dist_nm <= 3.7) and (dist_nm >= 3.3)) {
         assistance_message_vertical = sprintf('3.5 NM from runway, altitude should be %d ft.',
             (970 + airport['elevation_ft']));
-    } elsif ((atc['circuit'] == 'final') and (dist_nm <= 2.5) and (dist_nm >= 2.4)) {
+    } elsif ((atc['circuit'] == 'final') and (dist_nm <= 2.7) and (dist_nm >= 2.3)) {
         assistance_message_vertical = sprintf('2.5 NM from runway, altitude should be %d ft.',
             (690 + airport['elevation_ft']));
-    } elsif ((atc['circuit'] == 'final') and (dist_nm <= 1.5) and (dist_nm >= 1.4)) {
+    } elsif ((atc['circuit'] == 'final') and (dist_nm <= 1.7) and (dist_nm >= 1.3)) {
         assistance_message_vertical = sprintf('1.5 NM from runway, altitude should be %d ft.',
             (415 + airport['elevation_ft']));
     } elsif (atc['circuit'] == 'final') {

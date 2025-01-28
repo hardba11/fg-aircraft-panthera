@@ -9,8 +9,6 @@ print("*** LOADING basic_pfd.nas ... ***");
 # [ ] nav2
 
 
-
-
 var width = 1024;
 var height = 1024;
 
@@ -417,73 +415,73 @@ var draw_static_hsi = func(container)
 #
 var draw_static_marks = func(container)
 {
-        center = container.createChild('path', 'center')
-            .rect(512 - 5, 512 - 5, 10, 10)
-            .setColorFill(1, 1, 0);
-        roll_arc = container.createChild('path', 'roll_arc');
-        draw_arc(roll_arc,
-            512,
-            512,
-            171 - 30,
-            30,
-            150,
-            'rgb(255, 255, 255)',
-            3);
+    center = container.createChild('path', 'center')
+        .rect(512 - 5, 512 - 5, 10, 10)
+        .setColorFill(1, 1, 0);
+    roll_arc = container.createChild('path', 'roll_arc');
+    draw_arc(roll_arc,
+        512,
+        512,
+        171 - 30,
+        30,
+        150,
+        'rgb(255, 255, 255)',
+        3);
 
-        zero_deg_mark = container.createChild('path', 'zero_deg_mark')
-            .setStrokeLineWidth(2)
-            .set('stroke', 'rgb(255, 255, 255)')
-            .moveTo(512, 512 - 171 + 25)
-            .lineTo(512 - 6, 512 - 171 + 15)
-            .lineTo(512 + 6, 512 - 171 + 15)
-            .setColorFill(1, 1, 1)
-            .close();
-        horizontal_mark_left = container.createChild('path', 'horizontal_mark_left')
-            .setColor(1, 1, 0)
-            .setStrokeLineWidth(8)
-            .moveTo(384, 512)
-            .lineTo(448, 512);
-        horizontal_mark_right = container.createChild('path', 'horizontal_mark_right')
-            .setColor(1, 1, 0)
-            .setStrokeLineWidth(8)
-            .moveTo(576, 512)
-            .lineTo(640, 512);
+    zero_deg_mark = container.createChild('path', 'zero_deg_mark')
+        .setStrokeLineWidth(2)
+        .set('stroke', 'rgb(255, 255, 255)')
+        .moveTo(512, 512 - 171 + 25)
+        .lineTo(512 - 6, 512 - 171 + 15)
+        .lineTo(512 + 6, 512 - 171 + 15)
+        .setColorFill(1, 1, 1)
+        .close();
+    horizontal_mark_left = container.createChild('path', 'horizontal_mark_left')
+        .setColor(1, 1, 0)
+        .setStrokeLineWidth(8)
+        .moveTo(384, 512)
+        .lineTo(448, 512);
+    horizontal_mark_right = container.createChild('path', 'horizontal_mark_right')
+        .setColor(1, 1, 0)
+        .setStrokeLineWidth(8)
+        .moveTo(576, 512)
+        .lineTo(640, 512);
 
-        var roll_mark = {};
-        foreach(var deg ; [30, 60])
-        {
-            roll_mark['roll_mark_m'~ deg] = container.createChild('path', 'roll_mark_m'~ deg)
-                .setColor(1, 1, 1)
-                .setStrokeLineWidth(3)
-                .moveTo(512, 512 - 171 + 30)
-                .lineTo(512, 512 - 171 + 10)
-                .setCenter(512, 512)
-                .setRotation(-deg * D2R);
-            roll_mark['roll_mark_p'~ deg] = container.createChild('path', 'roll_mark_p'~ deg)
-                .setColor(1, 1, 1)
-                .setStrokeLineWidth(3)
-                .moveTo(512, 512 - 171 + 30)
-                .lineTo(512, 512 - 171 + 10)
-                .setCenter(512, 512)
-                .setRotation(deg * D2R);
-        }
-        foreach(var deg ; [10, 20, 45])
-        {
-            roll_mark['roll_mark_m'~ deg] = container.createChild('path', 'roll_mark_m'~ deg)
-                .setColor(1, 1, 1)
-                .setStrokeLineWidth(3)
-                .moveTo(512, 512 - 171 + 30)
-                .lineTo(512, 512 - 171 + 15)
-                .setCenter(512, 512)
-                .setRotation(-deg * D2R);
-            roll_mark['roll_mark_p'~ deg] = container.createChild('path', 'roll_mark_p'~ deg)
-                .setColor(1, 1, 1)
-                .setStrokeLineWidth(3)
-                .moveTo(512, 512 - 171 + 30)
-                .lineTo(512, 512 - 171 + 15)
-                .setCenter(512, 512)
-                .setRotation(deg * D2R);
-        }
+    var roll_mark = {};
+    foreach(var deg ; [30, 60])
+    {
+        roll_mark['roll_mark_m'~ deg] = container.createChild('path', 'roll_mark_m'~ deg)
+            .setColor(1, 1, 1)
+            .setStrokeLineWidth(3)
+            .moveTo(512, 512 - 171 + 30)
+            .lineTo(512, 512 - 171 + 10)
+            .setCenter(512, 512)
+            .setRotation(-deg * D2R);
+        roll_mark['roll_mark_p'~ deg] = container.createChild('path', 'roll_mark_p'~ deg)
+            .setColor(1, 1, 1)
+            .setStrokeLineWidth(3)
+            .moveTo(512, 512 - 171 + 30)
+            .lineTo(512, 512 - 171 + 10)
+            .setCenter(512, 512)
+            .setRotation(deg * D2R);
+    }
+    foreach(var deg ; [10, 20, 45])
+    {
+        roll_mark['roll_mark_m'~ deg] = container.createChild('path', 'roll_mark_m'~ deg)
+            .setColor(1, 1, 1)
+            .setStrokeLineWidth(3)
+            .moveTo(512, 512 - 171 + 30)
+            .lineTo(512, 512 - 171 + 15)
+            .setCenter(512, 512)
+            .setRotation(-deg * D2R);
+        roll_mark['roll_mark_p'~ deg] = container.createChild('path', 'roll_mark_p'~ deg)
+            .setColor(1, 1, 1)
+            .setStrokeLineWidth(3)
+            .moveTo(512, 512 - 171 + 30)
+            .lineTo(512, 512 - 171 + 15)
+            .setCenter(512, 512)
+            .setRotation(deg * D2R);
+    }
 }
 
 #-------------------------------------------------------------------------------
@@ -499,10 +497,10 @@ var draw_static_marks = func(container)
 #
 var draw_vertical_gauge = func(element, start_x, start_y, end_x, end_y, width)
 {
-        element.moveTo(start_x, start_y)
-            .line(end_x, end_y)
-            .setStrokeLineWidth(width)
-            .set('stroke', 'rgba(250, 100, 50, 1)');
+    element.moveTo(start_x, start_y)
+        .line(end_x, end_y)
+        .setStrokeLineWidth(width)
+        .set('stroke', 'rgba(250, 100, 50, 1)');
 }
 
 #-------------------------------------------------------------------------------
@@ -616,7 +614,7 @@ var BASIC_PFD = {
 
 # vspeed gauge
         m.vspeed_gauge = m.my_container.createChild('path', 'vspeed_gauge');
-        draw_vertical_gauge(m.vspeed_gauge, 783, 512, 0, -100, 20);
+        draw_vertical_gauge(m.vspeed_gauge, 783, 512, 0, -100, 16);
 
 # vspeed
         m.vspeed_bg = m.my_container.createChild('path', 'vspeed_bg')
@@ -1030,7 +1028,15 @@ var BASIC_PFD = {
         me.t_hsi_nav2_deflection_container.setTranslation(nav2_defl * 50, 0);
 
         # update gauges
-        update_gauge(me.vspeed_gauge, 0, vspeed / -100);
+        update_gauge(me.vspeed_gauge, 0, vspeed / -75);
+        if (vspeed > 0)
+        {
+            me.vspeed_gauge.set('stroke', 'rgba(0, 250, 0, 1)');
+        }
+        else
+        {
+            me.vspeed_gauge.set('stroke', 'rgba(250, 250, 0, 1)');
+        }
 
         # update numeric values
         me.speed.setText(sprintf('%d', speed));
