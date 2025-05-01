@@ -351,30 +351,6 @@ var event_set_view = func(action) {
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 var event_click_hold_autopilot = func()
 {
     # set AP altitude as curent altitude
@@ -445,25 +421,6 @@ var event_click_lock_alt = func(do_enable)
     }
     setprop("/autopilot/internal/target-climb-rate-fps", 0);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 #===============================================================================

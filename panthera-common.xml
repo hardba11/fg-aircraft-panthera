@@ -176,13 +176,17 @@ Performance
       <type>lookfrom</type>
       <internal type="bool">true</internal>
       <config>
-        <from-model type="bool">true</from-model>
-        <ground-level-nearplane-m type="double">0.5</ground-level-nearplane-m>
+        <!-- 
+        x,y,z used for hud target position, 
+        @see models/cockpit/cockpit-model.xml
+        -->
         <x-offset-m type="double">-.27</x-offset-m>
         <y-offset-m type="double">.32</y-offset-m>
         <z-offset-m type="double">-1.6</z-offset-m>
+        <default-field-of-view-deg type="double">70</default-field-of-view-deg>
+        <from-model type="bool">true</from-model>
+        <ground-level-nearplane-m type="double">0.5</ground-level-nearplane-m>
         <pitch-offset-deg>-5</pitch-offset-deg>
-        <default-field-of-view-deg type="double">78.7</default-field-of-view-deg>
         <limits>
           <enabled type="bool">true</enabled>
           <left>
