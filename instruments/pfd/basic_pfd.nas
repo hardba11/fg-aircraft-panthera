@@ -870,28 +870,30 @@ var BASIC_PFD = {
     },
     update: func()
     {
-
         var pitch_deg   = getprop("/orientation/pitch-deg");
         var roll_deg    = getprop("/orientation/roll-deg");
         var speed       = getprop("/instrumentation/airspeed-indicator/true-speed-kt");
         var alt         = getprop("/instrumentation/altimeter/indicated-altitude-ft");
-        var hdg         = getprop("/orientation/heading-magnetic-deg");
-        var hdgbug      = getprop("/autopilot/settings/heading-bug-deg") or 0;
+        #var hdg         = getprop("/orientation/heading-magnetic-deg");                     # MAG
+        var hdg         = getprop("/orientation/heading-deg");                              # TRU
+        var hdgbug      = getprop("/autopilot/settings/heading-bug-deg") or 0;              # MAG
         var hdgbugerr   = getprop("/autopilot/internal/heading-bug-error-deg") or 0;
         var ap_alt      = getprop("/autopilot/settings/target-altitude-ft") or 0;
         var ap_speed    = getprop("/autopilot/settings/target-speed-kt") or 0;
         var vspeed      = getprop("/autopilot/internal/vert-speed-fpm") or 0;
 
+        var deflection  = getprop("/environment/magnetic-variation-deg") or 0;
+
         var crs1        = getprop("/instrumentation/nav[0]/radials/selected-deg") or 0;
         var nav1_active = getprop("/instrumentation/nav[0]/frequencies/selected-mhz") or '';
         var nav1_stdby  = getprop("/instrumentation/nav[0]/frequencies/standby-mhz") or '';
-        var nav1_hdg    = getprop("/instrumentation/nav[0]/heading-deg") or 0;
+        var nav1_hdg    = getprop("/instrumentation/nav[0]/heading-deg") or 0;              # TRU
         var nav1_defl   = getprop("/instrumentation/nav[0]/heading-needle-deflection-norm") or 0;
 
         var crs2        = getprop("/instrumentation/nav[1]/radials/selected-deg") or 0;
         var nav2_active = getprop("/instrumentation/nav[1]/frequencies/selected-mhz") or '';
         var nav2_stdby  = getprop("/instrumentation/nav[1]/frequencies/standby-mhz") or '';
-        var nav2_hdg    = getprop("/instrumentation/nav[1]/heading-deg") or 0;
+        var nav2_hdg    = getprop("/instrumentation/nav[1]/heading-deg") or 0;              # TRU
         var nav2_defl   = getprop("/instrumentation/nav[1]/heading-needle-deflection-norm") or 0;
 
         var com1_active = getprop("/instrumentation/comm[0]/frequencies/selected-mhz") or '';
@@ -916,19 +918,11 @@ var BASIC_PFD = {
         var nav1_info_dist = '';
         var nav1_info_eta = '';
         var nav1_info_spd = '';
-        me.nav1_info_id.setColor(0, 0, 0, 1);
-        me.nav1_info_dist.setColor(0, 0, 0, 1);
-        me.nav1_info_eta.setColor(0, 0, 0, 1);
-        me.nav1_info_spd.setColor(0, 0, 0, 1);
 
         var nav2_info_id = '---';
         var nav2_info_dist = '';
         var nav2_info_eta = '';
         var nav2_info_spd = '';
-        me.nav2_info_id.setColor(0, 0, 0, 1);
-        me.nav2_info_dist.setColor(0, 0, 0, 1);
-        me.nav2_info_eta.setColor(0, 0, 0, 1);
-        me.nav2_info_spd.setColor(0, 0, 0, 1);
 
         var lock_speed = getprop("/autopilot/locks/speed") or '';
         if(lock_speed != '')
@@ -960,56 +954,65 @@ var BASIC_PFD = {
             me.hdgbug.setColor(0.5, 0.5, 0.5, 1);
         }
 
-        if(mfd_left_current_lb7_set == 'nav1')
+        signal_quality = getprop("/instrumentation/nav[0]/signal-quality-norm") or 0;
+        nav1_info_is_near = (signal_quality > 0.4);
+        if(nav1_info_is_near)
         {
-            signal_quality = getprop("/instrumentation/nav[0]/signal-quality-norm") or 0;
-            nav1_info_is_near = (signal_quality > 0.4);
-            if(nav1_info_is_near)
+            nav1_info_id = getprop("/instrumentation/nav[0]/nav-id") or '---';
+            setprop("/instrumentation/dme/frequencies/source",'/instrumentation/nav[0]/frequencies/selected-mhz');
+            var dme_in_range = getprop("/instrumentation/dme/in-range") or 0;
+            if(dme_in_range)
             {
-                nav1_info_id = getprop("/instrumentation/nav[0]/nav-id") or '---';
-                setprop("/instrumentation/dme/frequencies/source",'/instrumentation/nav[0]/frequencies/selected-mhz');
-                var dme_in_range = getprop("/instrumentation/dme/in-range") or 0;
-                if(dme_in_range)
-                {
-                    x = getprop("/instrumentation/dme/indicated-distance-nm") or 0;
-                    nav1_info_dist = sprintf('%.1f NM', x);
-                    x = getprop("/instrumentation/dme/indicated-time-min") or 0;
-                    nav1_info_eta = sprintf('%.1f min', x);
-                    x = getprop("/instrumentation/dme/indicated-ground-speed-kt") or 0;
-                    nav1_info_spd = sprintf('%.1f KT', x);
-                }
+                x = getprop("/instrumentation/dme/indicated-distance-nm") or 0;
+                nav1_info_dist = sprintf('%.1f NM', x);
+                x = getprop("/instrumentation/dme/indicated-time-min") or 0;
+                nav1_info_eta = sprintf('%.1f min', x);
+                x = getprop("/instrumentation/dme/indicated-ground-speed-kt") or 0;
+                nav1_info_spd = sprintf('%.1f KT', x);
             }
             me.nav1_info_id.setColor(0, 1, 0, 1);
             me.nav1_info_dist.setColor(0, 1, 0, 1);
             me.nav1_info_eta.setColor(0, 1, 0, 1);
             me.nav1_info_spd.setColor(0, 1, 0, 1);
-           
         }
-        elsif(mfd_left_current_lb7_set == 'nav2')
+        else
         {
-            signal_quality = getprop("/instrumentation/nav[1]/signal-quality-norm") or 0;
-            nav2_info_is_near = (signal_quality > 0.4);
-            if(nav2_info_is_near)
+            me.nav1_info_id.setColor(0, 0, 0, 1);
+            me.nav1_info_dist.setColor(0, 0, 0, 1);
+            me.nav1_info_eta.setColor(0, 0, 0, 1);
+            me.nav1_info_spd.setColor(0, 0, 0, 1);
+        }
+
+        signal_quality = getprop("/instrumentation/nav[1]/signal-quality-norm") or 0;
+        nav2_info_is_near = (signal_quality > 0.4);
+        if(nav2_info_is_near)
+        {
+            nav2_info_id = getprop("/instrumentation/nav[1]/nav-id") or '---';
+            setprop("/instrumentation/dme/frequencies/source",'/instrumentation/nav[1]/frequencies/selected-mhz');
+            var dme_in_range = getprop("/instrumentation/dme/in-range") or 0;
+            if(dme_in_range)
             {
-                nav2_info_id = getprop("/instrumentation/nav[1]/nav-id") or '---';
-                setprop("/instrumentation/dme/frequencies/source",'/instrumentation/nav[1]/frequencies/selected-mhz');
-                var dme_in_range = getprop("/instrumentation/dme/in-range") or 0;
-                if(dme_in_range)
-                {
-                    x = getprop("/instrumentation/dme/indicated-distance-nm") or 0;
-                    nav2_info_dist = sprintf('%.1f NM', x);
-                    x = getprop("/instrumentation/dme/indicated-time-min") or 0;
-                    nav2_info_eta = sprintf('%.1f min', x);
-                    x = getprop("/instrumentation/dme/indicated-ground-speed-kt") or 0;
-                    nav2_info_spd = sprintf('%.1f KT', x);
-                }
+                x = getprop("/instrumentation/dme/indicated-distance-nm") or 0;
+                nav2_info_dist = sprintf('%.1f NM', x);
+                x = getprop("/instrumentation/dme/indicated-time-min") or 0;
+                nav2_info_eta = sprintf('%.1f min', x);
+                x = getprop("/instrumentation/dme/indicated-ground-speed-kt") or 0;
+                nav2_info_spd = sprintf('%.1f KT', x);
             }
             me.nav2_info_id.setColor(1, 1, 0, 1);
             me.nav2_info_dist.setColor(1, 1, 0, 1);
             me.nav2_info_eta.setColor(1, 1, 0, 1);
             me.nav2_info_spd.setColor(1, 1, 0, 1);
         }
-
+        else
+        {
+            me.nav2_info_id.setColor(0, 0, 0, 1);
+            me.nav2_info_dist.setColor(0, 0, 0, 1);
+            me.nav2_info_eta.setColor(0, 0, 0, 1);
+            me.nav2_info_spd.setColor(0, 0, 0, 1);
+        }
+        #if(mfd_left_current_lb7_set == 'nav1'){}
+        #elsif(mfd_left_current_lb7_set == 'nav2'){}
 
         # update AI
         me.t_vertical_container.setTranslation(0, pitch_deg * angle_to_pixel_factor);
@@ -1019,12 +1022,12 @@ var BASIC_PFD = {
         me.t_hsi_container.setRotation(-(hdg * D2R), 512, 512 + 150);
         me.t_hsi_hdgbug_container.setRotation((hdgbugerr * D2R), 512, 512 + 150);
 
-        me.t_hsi_nav1_needle_container.setRotation(-((hdg - nav1_hdg) * D2R), 512, 512 + 150);
-        me.t_hsi_nav1_crs_container.setRotation(-((hdg - crs1) * D2R), 512, 512 + 150);
+        me.t_hsi_nav1_needle_container.setRotation(-(geo.normdeg(hdg - nav1_hdg) * D2R), 512, 512 + 150);
+        me.t_hsi_nav1_crs_container.setRotation(-(geo.normdeg(hdg - crs1 - deflection) * D2R), 512, 512 + 150);
         me.t_hsi_nav1_deflection_container.setTranslation(nav1_defl * 50, 0);
 
-        me.t_hsi_nav2_needle_container.setRotation(-((hdg - nav2_hdg) * D2R), 512, 512 + 150);
-        me.t_hsi_nav2_crs_container.setRotation(-((hdg - crs2) * D2R), 512, 512 + 150);
+        me.t_hsi_nav2_needle_container.setRotation(-(geo.normdeg(hdg - nav2_hdg) * D2R), 512, 512 + 150);
+        me.t_hsi_nav2_crs_container.setRotation(-(geo.normdeg(hdg - crs2 - deflection) * D2R), 512, 512 + 150);
         me.t_hsi_nav2_deflection_container.setTranslation(nav2_defl * 50, 0);
 
         # update gauges
@@ -1044,7 +1047,7 @@ var BASIC_PFD = {
         me.hdg.setText(sprintf('%03d', hdg));
         me.ap_speed.setText(sprintf('%d', ap_speed));
         me.ap_alt.setText(sprintf('%d', ap_alt));
-        me.hdgbug.setText(sprintf('%03d', hdgbug));
+        me.hdgbug.setText(sprintf('%03d', geo.normdeg(hdgbug + deflection)));
         me.crs1.setText(sprintf('crs1 %d', crs1));
         me.crs2.setText(sprintf('crs2 %d', crs2));
         me.vspeed.setText(sprintf('%d fpm', vspeed));

@@ -45,7 +45,7 @@ Performance
 
     <!-- ~~~~~~~~~~~~~~~~~~ metadata -->
     <long-description type="string">The Pipistrel Panthera is a lightweight, all-composite, highly efficient four-seat aircraft under development by Pipistrel of Slovenia</long-description>
-    <aircraft-version type="string">20220714-01</aircraft-version>
+    <aircraft-version type="string">20250501</aircraft-version>
     <minimum-fg-version type="string">2018.1.1</minimum-fg-version>
 
     <!-- old / simple style -->

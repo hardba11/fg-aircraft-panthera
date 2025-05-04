@@ -64,6 +64,108 @@ btn_mfd_right.k2
     </hovered>
 
     <action>
+      <button>0</button>
+      <repeatable>true</repeatable>
+
+      <binding>
+        <condition>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb1_set</property>
+            <value>set-hdg</value>
+          </equals>
+        </condition>
+        <command>property-adjust</command>
+        <property>/autopilot/settings/heading-bug-deg</property>
+        <step>30</step>
+        <min>0</min>
+        <max>360</max>
+        <wrap>1</wrap>
+      </binding>
+
+      <binding>
+        <condition>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb1_set</property>
+            <value>set-alt</value>
+          </equals>
+        </condition>
+        <command>property-adjust</command>
+        <property>/autopilot/settings/target-altitude-ft</property>
+        <step>1000</step>
+        <min>0</min>
+        <max>10000</max>
+        <wrap>0</wrap>
+      </binding>
+
+      <binding>
+        <condition>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb1_set</property>
+            <value>set-speed</value>
+          </equals>
+        </condition>
+        <command>property-adjust</command>
+        <property>/autopilot/settings/target-speed-kt</property>
+        <step>20</step>
+        <min>0</min>
+        <max>600</max>
+        <wrap>0</wrap>
+      </binding>
+
+    </action>
+
+    <action>
+      <button>1</button>
+      <repeatable>true</repeatable>
+
+      <binding>
+        <condition>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb1_set</property>
+            <value>set-hdg</value>
+          </equals>
+        </condition>
+        <command>property-adjust</command>
+        <property>/autopilot/settings/heading-bug-deg</property>
+        <step>-30</step>
+        <min>0</min>
+        <max>360</max>
+        <wrap>1</wrap>
+      </binding>
+
+      <binding>
+        <condition>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb1_set</property>
+            <value>set-alt</value>
+          </equals>
+        </condition>
+        <command>property-adjust</command>
+        <property>/autopilot/settings/target-altitude-ft</property>
+        <step>-1000</step>
+        <min>0</min>
+        <max>10000</max>
+        <wrap>0</wrap>
+      </binding>
+
+      <binding>
+        <condition>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb1_set</property>
+            <value>set-speed</value>
+          </equals>
+        </condition>
+        <command>property-adjust</command>
+        <property>/autopilot/settings/target-speed-kt</property>
+        <step>-20</step>
+        <min>0</min>
+        <max>600</max>
+        <wrap>0</wrap>
+      </binding>
+
+    </action>
+
+    <action>
       <button>3</button>
       <repeatable>true</repeatable>
 
@@ -335,6 +437,98 @@ instrument_chrono.event_reset();
     </hovered>
 
     <action>
+      <button>0</button>
+      <repeatable>true</repeatable>
+
+      <!-- set radial nav1 -->
+      <binding>
+        <condition>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb7_set</property>
+            <value>nav1</value>
+          </equals>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb8_set</property>
+            <value>set-radial</value>
+          </equals>
+        </condition>
+        <command>property-adjust</command>
+        <property>/instrumentation/nav[0]/radials/selected-deg</property>
+        <step>30</step>
+        <min>0</min>
+        <max>360</max>
+        <wrap>1</wrap>
+      </binding>
+
+      <!-- set radial nav2 -->
+      <binding>
+        <condition>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb7_set</property>
+            <value>nav2</value>
+          </equals>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb8_set</property>
+            <value>set-radial</value>
+          </equals>
+        </condition>
+        <command>property-adjust</command>
+        <property>/instrumentation/nav[1]/radials/selected-deg</property>
+        <step>30</step>
+        <min>0</min>
+        <max>360</max>
+        <wrap>1</wrap>
+      </binding>
+
+    </action>
+
+    <action>
+      <button>1</button>
+      <repeatable>true</repeatable>
+
+      <!-- set radial nav1 -->
+      <binding>
+        <condition>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb7_set</property>
+            <value>nav1</value>
+          </equals>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb8_set</property>
+            <value>set-radial</value>
+          </equals>
+        </condition>
+        <command>property-adjust</command>
+        <property>/instrumentation/nav[0]/radials/selected-deg</property>
+        <step>-30</step>
+        <min>0</min>
+        <max>360</max>
+        <wrap>1</wrap>
+      </binding>
+
+      <!-- set radial nav2 -->
+      <binding>
+        <condition>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb7_set</property>
+            <value>nav2</value>
+          </equals>
+          <equals>
+            <property>/instrumentation/my_aircraft/mfd_left/current_lb8_set</property>
+            <value>set-radial</value>
+          </equals>
+        </condition>
+        <command>property-adjust</command>
+        <property>/instrumentation/nav[1]/radials/selected-deg</property>
+        <step>-30</step>
+        <min>0</min>
+        <max>360</max>
+        <wrap>1</wrap>
+      </binding>
+
+    </action>
+
+    <action>
       <button>3</button>
       <repeatable>true</repeatable>
 
@@ -1010,7 +1204,6 @@ instrument_chrono.event_reset();
     </action>
   </animation>
 
-
-
 </PropertyList>
+
 
