@@ -147,13 +147,24 @@ ________________________________________________________________________________
       </binding>
     </key>
 
-    <!-- ~~~~~~~~~~~~~~~~~~ autotrim -->
+    <!-- ~~~~~~~~~~~~~~~~~~ autotrim 
     <key n="115">
       <name>s</name>
       <desc>toggle pitch autotrim</desc>
       <binding n="0">
         <property>/controls/flight/autotrim-pitch</property>
         <command>property-toggle</command>
+      </binding>
+    </key>
+ -->
+
+    <!-- ~~~~~~~~~~~~~~~~~~ start -->
+    <key n="115">
+      <name>s</name>
+      <desc>Start Engine</desc>
+      <binding>
+        <command>nasal</command>
+        <script>my_aircraft_functions.start_engine()</script>
       </binding>
     </key>
 

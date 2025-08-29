@@ -30,6 +30,22 @@ var LBS2KG = 0.45359237;
 #                                                                         INPUTS
 # used in include/input-properties.xml
 
+var start_engine = func() {
+    setprop("/controls/engines/engine[0]/magnetos", 3);
+    setprop("/controls/engines/engine[0]/master-bat", 1);
+    setprop("/controls/engines/engine[0]/master-alt", 1);
+    setprop("/controls/engines/engine[0]/mixture", 1);
+    setprop("/controls/engines/engine[0]/fuel-pump", 1);
+    #setprop("/controls/switches/pitot-heat", 1);
+    setprop("/controls/switches/autopilot", 0);
+    setprop("/controls/lighting/nav-lights", 1);
+    setprop("/controls/lighting/strobe-lights", 1);
+    setprop("/controls/lighting/landing-lights", 1);
+
+    controls.startEngine();
+}
+
+
 var throttle_mouse = func() {
     # throttle only if center mouse button pressed
     if(! getprop("/devices/status/mice/mouse[0]/button[1]"))
@@ -195,108 +211,6 @@ var event_smoke = func(do_enable) {
 
 var event_acknowledge_master_caution = func() {
     setprop("/instrumentation/my_aircraft/command_h/ack_alert", 1);
-}
-
-var event_swap_sfd_screen = func() {
-    var current_screen = getprop("/instrumentation/my_aircraft/sfd/controls/display_sfd_screen") or '';
-
-    # first click : alert remain (master caution no blinking and alert-sound disabled) :
-    if(current_screen == 'EICAS')
-    {
-        setprop("/instrumentation/my_aircraft/sfd/controls/display_sfd_screen", 'RADAR');
-    }
-    # second click : reinit
-    elsif(current_screen == 'RADAR')
-    {
-        setprop("/instrumentation/my_aircraft/sfd/controls/display_sfd_screen", 'EICAS');
-    }
-}
-
-var event_toggle_launchbar = func(do_enable) {
-    var is_carrier_equiped = getprop("/sim/model/carrier-equipment") or 0;
-    if(is_carrier_equiped != 1) { return; }
-
-    var is_launchbar_enabled = getprop("/controls/gear/launchbar") or 0;
-    if(do_enable == -1)
-    {
-        # do_enable == -1 : toggle
-        do_enable = (is_launchbar_enabled == 0) ? 1 : 0;
-    }
-
-    if(do_enable == 1)
-    {
-        # lower launchbar
-        setprop("/controls/gear/launchbar", 1);
-
-        # raise launchbar if could not have engaged
-        settimer(func() {
-            var state_launchbar = getprop("/gear/launchbar/state") or ''; # Disengaged, Engaged, Launching, Completed
-            if(state_launchbar != 'Engaged')
-            {
-                setprop("/controls/gear/catapult-launch-cmd", 0);
-                setprop("/controls/gear/launchbar", 0);
-            }
-        }, 1);
-    }
-    else
-    {
-        # raise launchbar unless engaged
-        var state_launchbar = getprop("/gear/launchbar/state") or ''; # Disengaged, Engaged, Launching, Completed
-        if(state_launchbar != 'Engaged')
-        {
-            setprop("/controls/gear/catapult-launch-cmd", 0);
-            setprop("/controls/gear/launchbar", 0);
-        }
-    }
-}
-
-var event_launch = func() {
-    var is_carrier_equiped = getprop("/sim/model/carrier-equipment") or 0;
-    if(is_carrier_equiped != 1) { return; }
-
-    var state_launchbar = getprop("/gear/launchbar/state") or ''; # Disengaged, Engaged, Launching, Completed
-    if(state_launchbar == 'Engaged')
-    {
-        # catapult launching command
-        setprop("/controls/gear/catapult-launch-cmd", 1);
-        # reinit some values after launch (~2 seconds)
-        settimer(func() {
-            setprop("/controls/gear/launchbar", 0);
-            setprop("/controls/gear/catapult-launch-cmd", 0);
-        }, 2);
-    }
-}
-
-
-var event_choose_enabled_cams = func() {
-    # view managed by this function must have :
-    # <enabled type="bool">false</enabled>
-
-    # refueling cam if pod
-    var center_pod = getprop("/sim/model/center-refuel-pod") or 0;
-    if(center_pod == 1)
-    {
-        setprop("/sim/view[104]/enabled", 1);
-    }
-    else
-    {
-        setprop("/sim/view[104]/enabled", 0);
-    }
-
-    # tail cam if empty backseat
-    var is_copilot = getprop("/controls/pax/copilot") or 0;
-    if(is_copilot == 1)
-    {
-        setprop("/sim/view[101]/enabled", 1);
-        setprop("/sim/view[103]/enabled", 1);
-        setprop("/sim/view[105]/enabled", 0);
-    }
-    else
-    {
-        setprop("/sim/view[101]/enabled", 0);
-        setprop("/sim/view[103]/enabled", 0);
-        setprop("/sim/view[105]/enabled", 1);
-    }
 }
 
 var event_brake = func(do_enable) {
