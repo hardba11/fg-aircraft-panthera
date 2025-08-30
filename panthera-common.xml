@@ -133,15 +133,6 @@ Performance
               <dialog-name>panthera-menu</dialog-name>
             </binding>
           </item>
-          <item>
-            <label>Set views ...</label>
-            <name>set-views</name>
-            <binding>
-              <command>dialog-show</command>
-              <dialog-name>panthera-set-views</dialog-name>
-            </binding>
-          </item>
-
 <!--
           <item>
             <label>DevTools ...</label>
