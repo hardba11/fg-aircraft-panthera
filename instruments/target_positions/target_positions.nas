@@ -121,17 +121,18 @@ var HUD = {
                 .setText('VOID'~ i);
             m.t_speed_info = m.speed_info.createTransform();
 
-            # on affiche des infos de la cible a cote du cercle
+            # on affiche des infos de la cible sous le cercle
+            # (le triangle tourne sur un rayon de 17 px, on commence en dessous)
             m.text_lbl = m.target.createChild('text', 'text_lbl-'~ i)
-                .setTranslation(18, 0)
-                .setAlignment('left-center')
+                .setTranslation(0, 24)
+                .setAlignment('center-center')
                 .setFont('LiberationFonts/LiberationSansNarrow-Bold.ttf')
                 .setFontSize(8)
                 .setColor((colors[i]['r'] / 255), (colors[i]['g'] / 255), (colors[i]['b'] / 255), alpha)
                 .setText('LABEL'~ i);
             m.text_info = m.target.createChild('text', 'text_info-'~ i)
-                .setTranslation(18, 10)
-                .setAlignment('left-center')
+                .setTranslation(0, 33)
+                .setAlignment('center-center')
                 .setFont('LiberationFonts/LiberationSansNarrow-Bold.ttf')
                 .setFontSize(7)
                 .setColor((colors[i]['r'] / 255), (colors[i]['g'] / 255), (colors[i]['b'] / 255), alpha)
@@ -254,12 +255,56 @@ var HUD = {
                     var z_t2 = (y_t1 * math.sin(roll_deg * D2R)) + (z_t1 * (math.cos(roll_deg * D2R)));
 
                     # on transforme les nouvelles coordonnees en angles
-                    var new_vertical_offset = math.asin(math.clamp(z_t2, -1, 1)) / D2R;
-                    var new_horizontal_offset = math.atan2(y_t2, x_t2) / D2R;
+                    # position 3D de la cible dans le repere fuselage (en m), depuis la ref FDM
+                    var range_m = target_range * 1852;    # nm -> m
+                    var Px = range_m * x_t2;
+                    var Py = range_m * y_t2;
+                    var Pz = range_m * z_t2;
+
+                    # offset oeil pilote dans le repere fuselage (lu dynamiquement)
+                    var eye_forward = -(getprop("/sim/view[0]/config/z-offset-m") or 0);
+                    var eye_right   =   getprop("/sim/view[0]/config/x-offset-m") or 0;
+                    var eye_up      =   getprop("/sim/view[0]/config/y-offset-m") or 0;
+
+                    # vecteur cible depuis l'oeil
+                    var Dx = Px - eye_forward;
+                    var Dy = Py - eye_right;
+                    var Dz = Pz - eye_up;
+
+                    var range_eye = math.sqrt((Dx * Dx) + (Dy * Dy) + (Dz * Dz));
+                    var new_vertical_offset   = math.asin(math.clamp(Dz / range_eye, -1, 1)) / D2R;
+                    var new_horizontal_offset = math.atan2(Dy, Dx) / D2R;
 
                     # la vue en se deplacant doit afficher les coordonnees (x diminue dans les hautes latitudes)
-                    var coord_x                      = math.tan((new_horizontal_offset + heading_view_deg) * D2R) * px_factor * math.sin((90 - pitch_view_deg) * D2R);
-                    var coord_y                      = math.tan((new_vertical_offset - pitch_view_deg) * D2R) * px_factor * -1;
+                    # repere camera dans le repere fuselage (yaw puis pitch, heading_view positif = gauche)
+                    var alpha = heading_view_deg * D2R;
+                    var beta  = pitch_view_deg   * D2R;
+                    var ca = math.cos(alpha); var sa = math.sin(alpha);
+                    var cb = math.cos(beta);  var sb = math.sin(beta);
+
+                    # vecteur unitaire de la cible dans le repere fuselage
+                    var cv = math.cos(new_vertical_offset * D2R);
+                    var sv = math.sin(new_vertical_offset * D2R);
+                    var ch = math.cos(new_horizontal_offset * D2R);
+                    var sh = math.sin(new_horizontal_offset * D2R);
+                    var tx = cv * ch;   # avant
+                    var ty = cv * sh;   # droite
+                    var tz = sv;        # haut
+
+                    # projection sur les trois axes camera
+                    var t_right   =  tx * sa      + ty * ca;
+                    var t_up      = -tx * ca * sb + ty * sa * sb + tz * cb;
+                    var t_forward =  tx * ca * cb - ty * sa * cb + tz * sb;
+
+                    var coord_x = 0;
+                    var coord_y = 0;
+                    if (t_forward > 0.01) {
+                        coord_x =  t_right / t_forward * px_factor;
+                        coord_y = -t_up    / t_forward * px_factor;   # Y canvas inverse
+                    } else {
+                        # cible derriere la direction de vue, forcer hors champ
+                        target_data.view = 0;
+                    }
 
 #                    print(sprintf('DEBUG h%d:v%d = [%.2f,%.2f,%.2f] -- r %d --> [%.2f,%.2f,%.2f] - p %d --> [%.2f,%.2f,%.2f] = h%d:v%d', 
 #                        horizontal_offset, vertical_offset,
@@ -276,7 +321,9 @@ var HUD = {
                     var relative_speed_T             = target_airspeed * math.cos((target_heading_deg - target_bearing_deg) * D2R);
                     var relative_speed               = relative_speed_T - relative_speed_M;
 #                    var speed_y                      = (sprintf('%d', relative_speed) == 0) ? 0 : math.log10(math.abs(sprintf('%d', relative_speed) / 2)) * 5;
-                    var speed_y                      = (sprintf('%d', relative_speed) == 0) ? 0 : math.log10(math.abs(sprintf('%d', relative_speed))) * 5;
+                    # amplitude des barres : speed_bars_factor px par decade de vitesse (10 kt, 100 kt...)
+                    var speed_bars_factor            = 3;
+                    var speed_y                      = (sprintf('%d', relative_speed) == 0) ? 0 : math.log10(math.abs(sprintf('%d', relative_speed))) * speed_bars_factor;
                     var positive_or_negative         = (relative_speed >= 0) ? 1 : -1;
 
                     target_data.speed_bars_y         = positive_or_negative * speed_y;
@@ -319,13 +366,28 @@ var HUD = {
                 {
                     var td = targets_datas[i];
 
-                    var scale_reticle = ((td.target_range < 10) and (td.target_range > 0))
-                        ? ((-.12 * td.target_range) + 1.5)
-                        : 0.3;
+                    # echelle lineaire : scale_min a scale_range_max nm, scale_max a 0 nm
+                    var scale_range_max = 15;
+                    var scale_min = 0.4;
+                    var scale_max = 1.8;
+                    var scale_reticle = ((td.target_range < scale_range_max) and (td.target_range > 0))
+                        ? (scale_max - ((scale_max - scale_min) * td.target_range / scale_range_max))
+                        : scale_min;
                     me.text_lbl   = me.targets[i].getElementById('text_lbl-'~ i);
                     me.text_info  = me.targets[i].getElementById('text_info-'~ i);
                     me.reticle    = me.targets[i].getElementById('reticle-'~ i);
                     me.text_speed = me.targets[i].getElementById('text_speed-'~ i);
+                    me.speed_info = me.targets[i].getElementById('speed_info-'~ i);
+
+                    # barres de vitesse uniquement a courte distance
+                    if(td.target_range > 5)
+                    {
+                        me.speed_info.hide();
+                    }
+                    else
+                    {
+                        me.speed_info.show();
+                    }
 
                     me.t_speed_infos[i].setTranslation(0, -td.speed_bars_y);
                     me.text_lbl.setText(td.text_lbl);
